@@ -7,5 +7,9 @@ namespace Toscana.Domain
     {
         [YamlAlias("node_templates")]
         public Dictionary<string, NodeTemplate> NodeTemplates { get; set; }
+
+        public Dictionary<string, TopologyInput> Inputs { get; set; }
+
+        public Dictionary<string, TopologyOutput> Outputs { get; set; }
     }
 }

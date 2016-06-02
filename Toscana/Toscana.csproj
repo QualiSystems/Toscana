@@ -53,6 +53,9 @@
     <Compile Include="Domain\Host.cs" />
     <Compile Include="Domain\NodeTemplate.cs" />
     <Compile Include="Domain\Os.cs" />
+    <Compile Include="Domain\OsProperties.cs" />
+    <Compile Include="Domain\TopologyInput.cs" />
+    <Compile Include="Domain\TopologyOutput.cs" />
     <Compile Include="Domain\TopologyTemplate.cs" />
     <Compile Include="Domain\Tosca.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
