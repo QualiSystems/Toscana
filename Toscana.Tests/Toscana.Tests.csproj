@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\MemorySizeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToscaNetAnalyzerTests.cs" />
   </ItemGroup>
