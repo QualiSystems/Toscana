@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace Toscana.Domain
 {
     [Serializable]
-    public struct MemorySize : ISerializable
+    public struct DigitalStorage : ISerializable
     {
         private const string TotaBytesSerializationTag = "TotalBytes";
         private readonly long m_TotalBytes;
 
-        public MemorySize(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        public DigitalStorage(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
             m_TotalBytes = serializationInfo.GetInt64(TotaBytesSerializationTag);
         }
 
-        public MemorySize(string formattedMemorySize)
+        public DigitalStorage(string formattedMemorySize)
             : this(new FileSizeParser().Parse(formattedMemorySize))
         {
         }
 
-        public MemorySize(long totalBytes)
+        public DigitalStorage(long totalBytes)
         {
             m_TotalBytes = totalBytes;
         }
@@ -35,14 +34,51 @@ namespace Toscana.Domain
         {
             info.AddValue(TotaBytesSerializationTag, m_TotalBytes);
         }
+
+        public bool Equals(DigitalStorage other)
+        {
+            return m_TotalBytes == other.m_TotalBytes;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            return obj is DigitalStorage && Equals((DigitalStorage) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return m_TotalBytes.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FormatBytes(m_TotalBytes);
+        }
+
+        private string FormatBytes(long bytes)
+        {
+            const int scale = 1024;
+            string[] orders = {"GB", "MB", "KB", "Bytes"};
+            var max = (long) Math.Pow(scale, orders.Length - 1);
+
+            foreach (var order in orders)
+            {
+                if (bytes > max)
+                    return string.Format("{0:##.##} {1}", decimal.Divide(bytes, max), order);
+
+                max /= scale;
+            }
+            return "0 Bytes";
+        }
     }
 
-    public class FileSizeContext
+    public class DigitalStorageParsingContext
     {
         private string input;
         private long output;
 
-        public FileSizeContext(string input)
+        public DigitalStorageParsingContext(string input)
         {
             Input = input;
         }
@@ -54,12 +90,12 @@ namespace Toscana.Domain
 
     public abstract class FileSizeExpression
     {
-        public abstract void Interpret(FileSizeContext value);
+        public abstract void Interpret(DigitalStorageParsingContext value);
     }
 
     public abstract class TerminalFileSizeExpression : FileSizeExpression
     {
-        public override void Interpret(FileSizeContext value)
+        public override void Interpret(DigitalStorageParsingContext value)
         {
             if (value.Input.EndsWith(ThisPattern()))
             {
@@ -136,7 +172,7 @@ namespace Toscana.Domain
             new KbFileSizeExpression()
         };
 
-        public override void Interpret(FileSizeContext value)
+        public override void Interpret(DigitalStorageParsingContext value)
         {
             foreach (var exp in expressionTree)
             {
@@ -146,7 +182,7 @@ namespace Toscana.Domain
 
         public long Parse(string input)
         {
-            var fileSizeContext = new FileSizeContext(input);
+            var fileSizeContext = new DigitalStorageParsingContext(input);
             Interpret(fileSizeContext);
             return fileSizeContext.Output;
         }

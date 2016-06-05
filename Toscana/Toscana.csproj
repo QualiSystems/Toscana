@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Domain\Capability.cs" />
     <Compile Include="Domain\Host.cs" />
-    <Compile Include="Domain\MemorySize.cs" />
+    <Compile Include="Domain\DigitalStorage.cs" />
     <Compile Include="Domain\NodeTemplate.cs" />
     <Compile Include="Domain\Os.cs" />
     <Compile Include="Domain\OsProperties.cs" />
