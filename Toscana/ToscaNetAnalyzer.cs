@@ -8,14 +8,26 @@ namespace Toscana
 {
     public class ToscaNetAnalyzer
     {
+        private readonly Deserializer deserializer;
+
+        public ToscaNetAnalyzer()
+        {
+            deserializer = CreateDeserializer();
+        }
+
         public Tosca Analyze(string tosca)
         {
             using (var stringReader = new StringReader(tosca))
             {
-                var deserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
-                deserializer.RegisterTypeConverter(new DigitalStorageConverter());
                 return deserializer.Deserialize<Tosca>(stringReader);
             }
+        }
+
+        private static Deserializer CreateDeserializer()
+        {
+            var toscaDeserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
+            toscaDeserializer.RegisterTypeConverter(new DigitalStorageConverter());
+            return toscaDeserializer;
         }
     }
 }

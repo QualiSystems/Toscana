@@ -9,13 +9,10 @@ namespace Toscana.Domain
 
     public class HostProperties
     {
-        [YamlAlias("num_cpus")]
         public object NumCpus { get; set; }
 
-        [YamlAlias("disk_size")]
         public DigitalStorage DiskSize { get; set; }
 
-        [YamlAlias("mem_size")]
         public DigitalStorage MemSize { get; set; }
     }
 }
