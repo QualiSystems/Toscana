@@ -5,8 +5,8 @@ Toscana, which stands for TOSCA Net Analyzer, is a .NET library for validating, 
 
 
 ## What is TOSCA?
-TOSCA, which stands for Topology and Orchestration Topology and Orchestration Specification for Cloud Applications, 
-is a language in YAML grammar for describing ervice templates by means of Topology Templates and towards enablement 
+TOSCA, which stands for Topology and Orchestration Specification for Cloud Applications, 
+is a language in YAML grammar for describing service templates by means of Topology Templates and towards enablement 
 of interaction with a TOSCA instance model perhaps by external APIs or plans.  
 
 ## What is YAML?
@@ -16,4 +16,4 @@ platform-independent format. Unlike XML, it is "human friendly", which means tha
 or produce a valid YAML document.
 
 ### License
-The software is released under Apache 2.0 license. 
+The software is released under [Apache License v2.0](LICENSE). 
