@@ -1,8 +1,6 @@
-﻿using YamlDotNet.Serialization;
-
-namespace Toscana.Domain
+﻿namespace Toscana.Domain
 {
-    public class Host : Capability
+    public class Host
     {
         public HostProperties Properties { get; set; }
     }

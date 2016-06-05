@@ -1,6 +1,6 @@
 ﻿namespace Toscana.Domain
 {
-    public class Os : Capability
+    public class Os
     {
         public OsProperties Properties { get; set; }
     }

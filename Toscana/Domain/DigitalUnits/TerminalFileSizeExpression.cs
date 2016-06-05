@@ -1,6 +1,4 @@
-﻿using Toscana.Domain.DigitalUnits;
-
-namespace Toscana.Domain
+﻿namespace Toscana.Domain.DigitalUnits
 {
     internal abstract class TerminalFileSizeExpression : FileSizeExpression
     {
