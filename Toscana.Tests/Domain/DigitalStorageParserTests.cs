@@ -5,7 +5,7 @@ using Toscana.Domain;
 namespace Toscana.Tests.Domain
 {
     [TestFixture]
-    public class DigitalStorageTests
+    public class DigitalStorageParserTests
     {
         [Test]
         public void Ctor_10MB_ParsedToTotalBytes()

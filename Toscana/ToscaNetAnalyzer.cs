@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Toscana.Domain;
+using Toscana.Domain.DigitalUnits;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -12,6 +13,7 @@ namespace Toscana
             using (var stringReader = new StringReader(tosca))
             {
                 var deserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
+                deserializer.RegisterTypeConverter(new DigitalStorageConverter());
                 return deserializer.Deserialize<Tosca>(stringReader);
             }
         }

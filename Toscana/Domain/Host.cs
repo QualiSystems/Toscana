@@ -13,9 +13,9 @@ namespace Toscana.Domain
         public object NumCpus { get; set; }
 
         [YamlAlias("disk_size")]
-        public string DiskSize { get; set; }
+        public DigitalStorage DiskSize { get; set; }
 
         [YamlAlias("mem_size")]
-        public string MemSize { get; set; }
+        public DigitalStorage MemSize { get; set; }
     }
 }

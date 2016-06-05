@@ -50,11 +50,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Capability.cs" />
+    <Compile Include="Domain\DigitalUnits\DigitalStorageConverter.cs" />
+    <Compile Include="Domain\DigitalUnits\DigitalStorageParser.cs" />
+    <Compile Include="Domain\DigitalUnits\DigitalStorageParsingContext.cs" />
+    <Compile Include="Domain\DigitalUnits\FileSizeExpression.cs" />
+    <Compile Include="Domain\DigitalUnits\GbFileSizeExpression.cs" />
+    <Compile Include="Domain\DigitalUnits\KbFileSizeExpression.cs" />
+    <Compile Include="Domain\DigitalUnits\MbFileSizeExpression.cs" />
+    <Compile Include="Domain\DigitalUnits\TbFileSizeExpression.cs" />
     <Compile Include="Domain\Host.cs" />
     <Compile Include="Domain\DigitalStorage.cs" />
     <Compile Include="Domain\NodeTemplate.cs" />
     <Compile Include="Domain\Os.cs" />
     <Compile Include="Domain\OsProperties.cs" />
+    <Compile Include="Domain\TerminalFileSizeExpression.cs" />
     <Compile Include="Domain\TopologyInput.cs" />
     <Compile Include="Domain\TopologyOutput.cs" />
     <Compile Include="Domain\TopologyTemplate.cs" />
@@ -66,6 +75,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

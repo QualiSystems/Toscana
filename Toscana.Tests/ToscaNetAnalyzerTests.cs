@@ -2,6 +2,7 @@
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Domain;
 
 namespace Toscana.Tests
 {
@@ -50,8 +51,8 @@ topology_template:
 
             var host = nodeTemplate.Capabilities.Host;
             host.Properties.NumCpus.Should().Be("1");
-            host.Properties.DiskSize.Should().Be("10 GB");
-            host.Properties.MemSize.Should().Be("4096 MB");
+            host.Properties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
+            host.Properties.MemSize.Should().Be(new DigitalStorage("4 GB"));
 
             var os = nodeTemplate.Capabilities.Os;
             os.Properties.Architecture.Should().Be("x86_64");
@@ -120,8 +121,8 @@ topology_template:
             nodeTemplate.Capabilities.Os.Should().BeNull();
             var hostProperties = nodeTemplate.Capabilities.Host.Properties;
             ((IDictionary<object, object>) hostProperties.NumCpus)["get_input"].Should().Be("cpus");
-            hostProperties.MemSize.Should().Be("2048  MB");
-            hostProperties.DiskSize.Should().Be("10 GB");
+            hostProperties.MemSize.Should().Be(new DigitalStorage("2 GB"));
+            hostProperties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
         }
     }
 }

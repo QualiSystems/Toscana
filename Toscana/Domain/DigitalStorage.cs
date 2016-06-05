@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Toscana.Domain.DigitalUnits;
 
 namespace Toscana.Domain
 {
@@ -8,36 +8,36 @@ namespace Toscana.Domain
     public struct DigitalStorage : ISerializable
     {
         private const string TotaBytesSerializationTag = "TotalBytes";
-        private readonly long m_TotalBytes;
+        private readonly long totalBytes;
 
-        public DigitalStorage(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        public DigitalStorage(SerializationInfo serializationInfo, StreamingContext streamingContext):
+            this(serializationInfo.GetInt64(TotaBytesSerializationTag))
         {
-            m_TotalBytes = serializationInfo.GetInt64(TotaBytesSerializationTag);
         }
 
         public DigitalStorage(string formattedMemorySize)
-            : this(new FileSizeParser().Parse(formattedMemorySize))
+            : this(new DigitalStorageParser().Parse(formattedMemorySize))
         {
         }
 
         public DigitalStorage(long totalBytes)
         {
-            m_TotalBytes = totalBytes;
+            this.totalBytes = totalBytes;
         }
 
         public long TotalBytes
         {
-            get { return m_TotalBytes; }
+            get { return totalBytes; }
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue(TotaBytesSerializationTag, m_TotalBytes);
+            info.AddValue(TotaBytesSerializationTag, totalBytes);
         }
 
         public bool Equals(DigitalStorage other)
         {
-            return m_TotalBytes == other.m_TotalBytes;
+            return totalBytes == other.totalBytes;
         }
 
         public override bool Equals(object obj)
@@ -48,12 +48,12 @@ namespace Toscana.Domain
 
         public override int GetHashCode()
         {
-            return m_TotalBytes.GetHashCode();
+            return totalBytes.GetHashCode();
         }
 
         public override string ToString()
         {
-            return FormatBytes(m_TotalBytes);
+            return FormatBytes(totalBytes);
         }
 
         private string FormatBytes(long bytes)
@@ -70,121 +70,6 @@ namespace Toscana.Domain
                 max /= scale;
             }
             return "0 Bytes";
-        }
-    }
-
-    public class DigitalStorageParsingContext
-    {
-        private string input;
-        private long output;
-
-        public DigitalStorageParsingContext(string input)
-        {
-            Input = input;
-        }
-
-        public string Input { get; set; }
-
-        public long Output { get; set; }
-    }
-
-    public abstract class FileSizeExpression
-    {
-        public abstract void Interpret(DigitalStorageParsingContext value);
-    }
-
-    public abstract class TerminalFileSizeExpression : FileSizeExpression
-    {
-        public override void Interpret(DigitalStorageParsingContext value)
-        {
-            if (value.Input.EndsWith(ThisPattern()))
-            {
-                var amount = double.Parse(value.Input.Replace(ThisPattern(), string.Empty));
-                var fileSize = (long) (amount*1024);
-                value.Input = string.Format("{0}{1}", fileSize, NextPattern());
-                value.Output = fileSize;
-            }
-        }
-
-        protected abstract string ThisPattern();
-        protected abstract string NextPattern();
-    }
-
-    public class KbFileSizeExpression : TerminalFileSizeExpression
-    {
-        protected override string ThisPattern()
-        {
-            return "KB";
-        }
-
-        protected override string NextPattern()
-        {
-            return "bytes";
-        }
-    }
-
-    public class MbFileSizeExpression : TerminalFileSizeExpression
-    {
-        protected override string ThisPattern()
-        {
-            return "MB";
-        }
-
-        protected override string NextPattern()
-        {
-            return "KB";
-        }
-    }
-
-    public class GbFileSizeExpression : TerminalFileSizeExpression
-    {
-        protected override string ThisPattern()
-        {
-            return "GB";
-        }
-
-        protected override string NextPattern()
-        {
-            return "MB";
-        }
-    }
-
-    public class TbFileSizeExpression : TerminalFileSizeExpression
-    {
-        protected override string ThisPattern()
-        {
-            return "TB";
-        }
-
-        protected override string NextPattern()
-        {
-            return "GB";
-        }
-    }
-
-    public class FileSizeParser : FileSizeExpression
-    {
-        private readonly List<FileSizeExpression> expressionTree = new List<FileSizeExpression>
-        {
-            new TbFileSizeExpression(),
-            new GbFileSizeExpression(),
-            new MbFileSizeExpression(),
-            new KbFileSizeExpression()
-        };
-
-        public override void Interpret(DigitalStorageParsingContext value)
-        {
-            foreach (var exp in expressionTree)
-            {
-                exp.Interpret(value);
-            }
-        }
-
-        public long Parse(string input)
-        {
-            var fileSizeContext = new DigitalStorageParsingContext(input);
-            Interpret(fileSizeContext);
-            return fileSizeContext.Output;
         }
     }
 }
