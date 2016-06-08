@@ -60,7 +60,10 @@
     <Compile Include="Domain\DigitalUnits\TerminalFileSizeExpression.cs" />
     <Compile Include="Domain\Host.cs" />
     <Compile Include="Domain\DigitalStorage.cs" />
+    <Compile Include="Domain\NodeAttribute.cs" />
+    <Compile Include="Domain\NodeProperty.cs" />
     <Compile Include="Domain\NodeTemplate.cs" />
+    <Compile Include="Domain\NodeType.cs" />
     <Compile Include="Domain\Os.cs" />
     <Compile Include="Domain\OsProperties.cs" />
     <Compile Include="Domain\TopologyInput.cs" />
@@ -74,7 +77,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

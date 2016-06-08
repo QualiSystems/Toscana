@@ -470,5 +470,53 @@ topology_template:
             hostProperties.MemSize.Should().Be(new DigitalStorage("2 GB"));
             hostProperties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
         }
+
+        [Test]
+        public void Analyze_Defining_a_Subsystem_Node_Type()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      mq_service_ip:
+        type: string
+      receiver_port:
+        type: integer
+    attributes:
+      receiver_ip:
+        type: string
+      receiver_port:
+        type: integer
+    capabilities:
+      message_receiver: tosca.capabilities.Endpoint
+    requirements:
+      - database_endpoint: tosca.capabilities.Endpoint.Database";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().BeNull();
+            tosca.NodeTypes.Should().HaveCount(1);
+
+            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+
+            nodeType.Properties.Should().HaveCount(2);
+            nodeType.Properties["mq_service_ip"].Type.Should().Be("string");
+            nodeType.Properties["receiver_port"].Type.Should().Be("integer");
+
+            nodeType.Attributes.Should().HaveCount(2);
+            nodeType.Attributes["receiver_ip"].Type.Should().Be("string");
+            nodeType.Attributes["receiver_port"].Type.Should().Be("integer");
+
+            nodeType.Capabilities.Should().HaveCount(1);
+            nodeType.Capabilities["message_receiver"].Should().Be("tosca.capabilities.Endpoint");
+
+            nodeType.Requirements.Should().HaveCount(1);
+            nodeType.Requirements.Single()["database_endpoint"].Should().Be("tosca.capabilities.Endpoint.Database");
+        }
+
     }
 }
