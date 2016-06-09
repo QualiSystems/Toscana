@@ -1,14 +1,63 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Domain;
+using Toscana.Exceptions;
 
 namespace Toscana.Tests
 {
     [TestFixture]
     public class ToscaNetAnalyzerTests
     {
+        [Test]
+        public void Analyze_Defining_a_Subsystem_Node_Type()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      mq_service_ip:
+        type: string
+      receiver_port:
+        type: integer
+    attributes:
+      receiver_ip:
+        type: string
+      receiver_port:
+        type: integer
+    capabilities:
+      message_receiver: tosca.capabilities.Endpoint
+    requirements:
+      - database_endpoint: tosca.capabilities.Endpoint.Database";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().BeNull();
+            tosca.NodeTypes.Should().HaveCount(1);
+
+            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+
+            nodeType.Properties.Should().HaveCount(2);
+            nodeType.Properties["mq_service_ip"].Type.Should().Be("string");
+            nodeType.Properties["receiver_port"].Type.Should().Be("integer");
+
+            nodeType.Attributes.Should().HaveCount(2);
+            nodeType.Attributes["receiver_ip"].Type.Should().Be("string");
+            nodeType.Attributes["receiver_port"].Type.Should().Be("integer");
+
+            nodeType.Capabilities.Should().HaveCount(1);
+            nodeType.Capabilities["message_receiver"].Should().Be("tosca.capabilities.Endpoint");
+
+            nodeType.Requirements.Should().HaveCount(1);
+            nodeType.Requirements.Single()["database_endpoint"].Should().Be("tosca.capabilities.Endpoint.Database");
+        }
+
         [Test]
         public void Analyze_HelloWorld_AllDataAnalyzed()
         {
@@ -112,6 +161,91 @@ topology_template:
         }
 
         [Test]
+        public void Analyze_All_Property_Keynames_Are_Set()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+        description: Number of CPUs requested for a software node instance.
+        default: 1
+        status: experimental
+        required: true
+        entry_schema: default
+        constraints:
+          - valid_values: [ 1, 2, 4, 8 ]";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().BeNull();
+            tosca.NodeTypes.Should().HaveCount(1);
+
+            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+
+            nodeType.Properties.Should().HaveCount(1);
+            var numCpusProperty = nodeType.Properties["num_cpus"];
+            numCpusProperty.Type.Should().Be("integer");
+            numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
+            numCpusProperty.Default.Should().Be("1");
+            numCpusProperty.Required.Should().BeTrue();
+            numCpusProperty.Status.Should().Be(PropertyStatus.experimental);
+            numCpusProperty.EntrySchema.Should().Be("default");
+            numCpusProperty.Constraints.Should().HaveCount(1);
+            numCpusProperty.Constraints.Single().Should().HaveCount(1);
+            var validValues = (List<object>)numCpusProperty.Constraints.Single()["valid_values"];
+            validValues.Should().BeEquivalentTo(new List<object> {"1", "2", "4", "8"});
+        }
+
+        [Test]
+        public void Analyze_Property_Keynames_Use_Defaults()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            var numCpusProperty = tosca.NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"];
+            numCpusProperty.Type.Should().Be("integer");
+            numCpusProperty.Description.Should().BeNull();
+            numCpusProperty.Default.Should().BeNull();
+            numCpusProperty.Required.Should().BeTrue();
+            numCpusProperty.Status.Should().Be(PropertyStatus.supported);
+            numCpusProperty.EntrySchema.Should().BeNull();
+            numCpusProperty.Constraints.Should().BeNull();
+        }
+
+        [Test]
+        public void Analyze_Validation_Fails_When_Property_Type_Missing()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        description: Property without type";
+
+            Action action = () => new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("The Type field is required.");
+        }
+
+        [Test]
         public void Analyze_Template_For_a_Simple_Software_Installation()
         {
             const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
@@ -157,87 +291,6 @@ topology_template:
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
             dbServerNodeTemplate.Capabilities.Should().BeNull();
             dbServerNodeTemplate.Requirements.Should().BeNull();
-        }
-
-        [Test]
-        public void Analyze_Template_For_Database_Content_Deployment()
-        {
-            const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
- 
-description: Template for deploying MySQL and database content.
- 
-topology_template:
-  inputs:
-    # omitted here for brevity
- 
-  node_templates:
-    my_db:
-      type: tosca.nodes.Database.MySQL
-      properties:
-        name: { get_input: database_name }
-        user: { get_input: database_user }
-        password: { get_input: database_password }
-        port: { get_input: database_port }
-      artifacts:
-        db_content:
-          file: files/my_db_content.txt
-          type: tosca.artifacts.File
-      requirements:
-        - host: mysql
-      interfaces:
-        Standard:
-          create:
-            implementation: db_create.sh
-            inputs:
-              # Copy DB file artifact to server’s staging area
-              db_data: { get_artifact: [ SELF, db_content ] }
- 
-    mysql:
-      type: tosca.nodes.DBMS.MySQL
-      properties:
-        root_password: { get_input: mysql_rootpw }
-        port: { get_input: mysql_port }
-      requirements:
-        - host: db_server
- 
-    db_server:
-      type: tosca.nodes.Compute
-      capabilities:
-        # omitted here for brevity";
-
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
-
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying MySQL and database content.");
-            var topologyTemplate = tosca.TopologyTemplate;
-
-            topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeNull();
-
-            topologyTemplate.NodeTemplates.Should().HaveCount(3);
-
-            var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
-            mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
-            var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
-            requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Should().Be("db_server");
-
-            var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
-            dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeNull();
-
-            var myDbNodeTemplate = topologyTemplate.NodeTemplates["my_db"];
-            myDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
-            myDbNodeTemplate.Capabilities.Should().BeNull();
-            myDbNodeTemplate.Requirements.Single()["host"].Should().Be("mysql");
-            myDbNodeTemplate.Properties.Should().HaveCount(4);
-
-            myDbNodeTemplate.Artifacts.Should().HaveCount(1);
-            var artifact = myDbNodeTemplate.Artifacts["db_content"];
-            artifact.File.Should().Be("files/my_db_content.txt");
-            artifact.Type.Should().Be("tosca.artifacts.File");
         }
 
         [Test]
@@ -412,6 +465,87 @@ topology_template:
         }
 
         [Test]
+        public void Analyze_Template_For_Database_Content_Deployment()
+        {
+            const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+description: Template for deploying MySQL and database content.
+ 
+topology_template:
+  inputs:
+    # omitted here for brevity
+ 
+  node_templates:
+    my_db:
+      type: tosca.nodes.Database.MySQL
+      properties:
+        name: { get_input: database_name }
+        user: { get_input: database_user }
+        password: { get_input: database_password }
+        port: { get_input: database_port }
+      artifacts:
+        db_content:
+          file: files/my_db_content.txt
+          type: tosca.artifacts.File
+      requirements:
+        - host: mysql
+      interfaces:
+        Standard:
+          create:
+            implementation: db_create.sh
+            inputs:
+              # Copy DB file artifact to server’s staging area
+              db_data: { get_artifact: [ SELF, db_content ] }
+ 
+    mysql:
+      type: tosca.nodes.DBMS.MySQL
+      properties:
+        root_password: { get_input: mysql_rootpw }
+        port: { get_input: mysql_port }
+      requirements:
+        - host: db_server
+ 
+    db_server:
+      type: tosca.nodes.Compute
+      capabilities:
+        # omitted here for brevity";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().Be("Template for deploying MySQL and database content.");
+            var topologyTemplate = tosca.TopologyTemplate;
+
+            topologyTemplate.Inputs.Should().BeNull();
+            topologyTemplate.Outputs.Should().BeNull();
+
+            topologyTemplate.NodeTemplates.Should().HaveCount(3);
+
+            var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
+            mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
+            var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
+            requirementKeyValue.Key.Should().Be("host");
+            requirementKeyValue.Value.Should().Be("db_server");
+
+            var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
+            dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+            dbServerNodeTemplate.Capabilities.Should().BeNull();
+            dbServerNodeTemplate.Requirements.Should().BeNull();
+
+            var myDbNodeTemplate = topologyTemplate.NodeTemplates["my_db"];
+            myDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
+            myDbNodeTemplate.Capabilities.Should().BeNull();
+            myDbNodeTemplate.Requirements.Single()["host"].Should().Be("mysql");
+            myDbNodeTemplate.Properties.Should().HaveCount(4);
+
+            myDbNodeTemplate.Artifacts.Should().HaveCount(1);
+            var artifact = myDbNodeTemplate.Artifacts["db_content"];
+            artifact.File.Should().Be("files/my_db_content.txt");
+            artifact.Type.Should().Be("tosca.artifacts.File");
+        }
+
+        [Test]
         public void Analyze_With_Inputs_AllDataAnalyzed()
         {
             const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
@@ -470,53 +604,5 @@ topology_template:
             hostProperties.MemSize.Should().Be(new DigitalStorage("2 GB"));
             hostProperties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
         }
-
-        [Test]
-        public void Analyze_Defining_a_Subsystem_Node_Type()
-        {
-            const string toscaString = @"
-tosca_definitions_version: tosca_simple_yaml_1_0
- 
-node_types:
-  example.TransactionSubsystem:
-    properties:
-      mq_service_ip:
-        type: string
-      receiver_port:
-        type: integer
-    attributes:
-      receiver_ip:
-        type: string
-      receiver_port:
-        type: integer
-    capabilities:
-      message_receiver: tosca.capabilities.Endpoint
-    requirements:
-      - database_endpoint: tosca.capabilities.Endpoint.Database";
-
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
-
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().BeNull();
-            tosca.NodeTypes.Should().HaveCount(1);
-
-            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
-
-            nodeType.Properties.Should().HaveCount(2);
-            nodeType.Properties["mq_service_ip"].Type.Should().Be("string");
-            nodeType.Properties["receiver_port"].Type.Should().Be("integer");
-
-            nodeType.Attributes.Should().HaveCount(2);
-            nodeType.Attributes["receiver_ip"].Type.Should().Be("string");
-            nodeType.Attributes["receiver_port"].Type.Should().Be("integer");
-
-            nodeType.Capabilities.Should().HaveCount(1);
-            nodeType.Capabilities["message_receiver"].Should().Be("tosca.capabilities.Endpoint");
-
-            nodeType.Requirements.Should().HaveCount(1);
-            nodeType.Requirements.Single()["database_endpoint"].Should().Be("tosca.capabilities.Endpoint.Database");
-        }
-
     }
 }

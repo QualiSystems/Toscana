@@ -1,33 +1,24 @@
-﻿using System.IO;
-using Toscana.Domain;
-using Toscana.Domain.DigitalUnits;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
+﻿using Toscana.Domain;
+using Toscana.Engine;
 
 namespace Toscana
 {
     public class ToscaNetAnalyzer
     {
-        private readonly Deserializer deserializer;
+        private readonly IToscaValidator toscaValidator;
+        private readonly IToscaParser toscaParser;
 
         public ToscaNetAnalyzer()
         {
-            deserializer = CreateDeserializer();
+            toscaValidator = new ToscaValidator();
+            toscaParser = new ToscaParser();
         }
 
         public Tosca Analyze(string tosca)
         {
-            using (var stringReader = new StringReader(tosca))
-            {
-                return deserializer.Deserialize<Tosca>(stringReader);
-            }
-        }
-
-        private static Deserializer CreateDeserializer()
-        {
-            var toscaDeserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
-            toscaDeserializer.RegisterTypeConverter(new DigitalStorageConverter());
-            return toscaDeserializer;
+            var toscaObject = toscaParser.Parse(tosca);
+            toscaValidator.Validate(toscaObject);
+            return toscaObject;
         }
     }
 }

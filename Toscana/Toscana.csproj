@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,6 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Artifact.cs" />
+    <Compile Include="Domain\ComputeCapabilities.cs" />
     <Compile Include="Domain\DigitalUnits\DigitalStorageConverter.cs" />
     <Compile Include="Domain\DigitalUnits\DigitalStorageParser.cs" />
     <Compile Include="Domain\DigitalUnits\DigitalStorageParsingContext.cs" />
@@ -66,12 +69,18 @@
     <Compile Include="Domain\NodeType.cs" />
     <Compile Include="Domain\Os.cs" />
     <Compile Include="Domain\OsProperties.cs" />
+    <Compile Include="Domain\PropertyStatus.cs" />
     <Compile Include="Domain\TopologyInput.cs" />
     <Compile Include="Domain\TopologyOutput.cs" />
     <Compile Include="Domain\TopologyTemplate.cs" />
     <Compile Include="Domain\Tosca.cs" />
+    <Compile Include="Engine\ObjectExtensions.cs" />
+    <Compile Include="Exceptions\ToscaValidationException.cs" />
+    <Compile Include="Exceptions\ToscanaBaseException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToscaNetAnalyzer.cs" />
+    <Compile Include="Engine\ToscaParser.cs" />
+    <Compile Include="Engine\ToscaValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,16 +13,4 @@ namespace Toscana.Domain
         public Dictionary<string, object> Interfaces { get; set; }
         public Dictionary<string, Artifact> Artifacts { get; set; }
     }
-
-    public class Artifact
-    {
-        public string Type { get; set; }
-        public string File { get; set; }
-    }
-
-    public class ComputeCapabilities
-    {
-        public Os Os { get; set; }
-        public Host Host { get; set; }
-    }
 }
