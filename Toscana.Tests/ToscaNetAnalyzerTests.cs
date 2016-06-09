@@ -604,5 +604,43 @@ topology_template:
             hostProperties.MemSize.Should().Be(new DigitalStorage("2 GB"));
             hostProperties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
         }
+
+        [Test]
+        public void Analyze_Cloudshell_Base_Standard()
+        {
+            const string toscaString = @"# CloudShell Base Standard
+# Suitable for modeling CloudShell Shells 
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+
+  cloudshell.standard.Shell:
+    properties:
+      ip:
+        type: string
+        default: ''
+    interfaces:
+      cloudshell.shell.core.resource_driver_interface:
+        get_inventory: {}
+        initialize: {}
+        cleanup: {}
+        backup: {}
+        restore: {}
+";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().BeNull();
+            tosca.NodeTypes.Should().HaveCount(1);
+            var nodeType = tosca.NodeTypes["cloudshell.standard.Shell"];
+            var resourceDriverInterface = nodeType.Interfaces["cloudshell.shell.core.resource_driver_interface"];
+            ((IDictionary<object, object>)resourceDriverInterface["get_inventory"]).Should().BeEmpty();
+            ((IDictionary<object, object>)resourceDriverInterface["initialize"]).Should().BeEmpty();
+            ((IDictionary<object, object>)resourceDriverInterface["cleanup"]).Should().BeEmpty();
+            ((IDictionary<object, object>)resourceDriverInterface["backup"]).Should().BeEmpty();
+            ((IDictionary<object, object>)resourceDriverInterface["restore"]).Should().BeEmpty();
+        }
     }
 }
