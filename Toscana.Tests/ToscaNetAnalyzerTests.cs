@@ -204,16 +204,16 @@ topology_template:
             var nodeTemplate = tosca.TopologyTemplate.NodeTemplates["my_server"];
             nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
 
-            var host = nodeTemplate.Capabilities.Host;
-            host.Properties.NumCpus.Should().Be("1");
-            host.Properties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
-            host.Properties.MemSize.Should().Be(new DigitalStorage("4 GB"));
+            var host = nodeTemplate.Capabilities["host"];
+            host.Properties["num_cpus"].Should().Be("1");
+            host.Properties["disk_size"].Should().Be("10 GB");
+            host.Properties["mem_size"].Should().Be("4096 MB");
 
-            var os = nodeTemplate.Capabilities.Os;
-            os.Properties.Architecture.Should().Be("x86_64");
-            os.Properties.Type.Should().Be("linux");
-            os.Properties.Distribution.Should().Be("rhel");
-            os.Properties.Version.Should().Be("6.5");
+            var os = nodeTemplate.Capabilities["os"];
+            os.Properties["architecture"].Should().Be("x86_64");
+            os.Properties["type"].Should().Be("linux");
+            os.Properties["distribution"].Should().Be("rhel");
+            os.Properties["version"].Should().Be("6.5");
         }
 
         [Test]
@@ -260,7 +260,7 @@ topology_template:
             mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
             var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
             requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Capability.Should().Be("db_server");
+            requirementKeyValue.Value.Node.Should().Be("db_server");
             var standardInterface = (IDictionary<object, object>) mysqlNodeTemplate.Interfaces["Standard"];
             standardInterface["configure"].Should().Be("scripts/my_own_configure.sh");
 
@@ -335,7 +335,7 @@ topology_template:
             mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
             var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
             requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Capability.Should().Be("db_server");
+            requirementKeyValue.Value.Node.Should().Be("db_server");
 
             var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
@@ -456,8 +456,8 @@ topology_template:
             wordpressNodeTemplate.Type.Should().Be("tosca.nodes.WebApplication.WordPress");
             wordpressNodeTemplate.Capabilities.Should().BeNull();
             wordpressNodeTemplate.Requirements.Should().HaveCount(2);
-            wordpressNodeTemplate.Requirements.First()["host"].Capability.Should().Be("apache");
-            wordpressNodeTemplate.Requirements.Last()["database_endpoint"].Capability.Should().Be("wordpress_db");
+            wordpressNodeTemplate.Requirements.First()["host"].Node.Should().Be("apache");
+            wordpressNodeTemplate.Requirements.Last()["database_endpoint"].Node.Should().Be("wordpress_db");
             wordpressNodeTemplate.Properties.Should().HaveCount(4);
 
             #endregion
@@ -468,7 +468,7 @@ topology_template:
             apacheNodeTemplate.Type.Should().Be("tosca.nodes.WebServer.Apache");
             apacheNodeTemplate.Capabilities.Should().BeNull();
             apacheNodeTemplate.Requirements.Should().HaveCount(1);
-            apacheNodeTemplate.Requirements.Single()["host"].Capability.Should().Be("web_server");
+            apacheNodeTemplate.Requirements.Single()["host"].Node.Should().Be("web_server");
             apacheNodeTemplate.Properties.Should().BeNull();
 
             #endregion
@@ -489,7 +489,7 @@ topology_template:
             wordpressDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
             wordpressDbNodeTemplate.Capabilities.Should().BeNull();
             wordpressDbNodeTemplate.Requirements.Should().HaveCount(1);
-            wordpressDbNodeTemplate.Requirements.Single()["host"].Capability.Should().Be("mysql");
+            wordpressDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
             wordpressDbNodeTemplate.Properties.Should().HaveCount(4);
 
             #endregion
@@ -500,7 +500,7 @@ topology_template:
             mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
             var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
             requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Capability.Should().Be("db_server");
+            requirementKeyValue.Value.Node.Should().Be("db_server");
 
             #endregion
 
@@ -576,7 +576,7 @@ topology_template:
             mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
             var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
             requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Capability.Should().Be("db_server");
+            requirementKeyValue.Value.Node.Should().Be("db_server");
 
             var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
@@ -586,7 +586,7 @@ topology_template:
             var myDbNodeTemplate = topologyTemplate.NodeTemplates["my_db"];
             myDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
             myDbNodeTemplate.Capabilities.Should().BeNull();
-            myDbNodeTemplate.Requirements.Single()["host"].Capability.Should().Be("mysql");
+            myDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
             myDbNodeTemplate.Properties.Should().HaveCount(4);
 
             myDbNodeTemplate.Artifacts.Should().HaveCount(1);
@@ -666,11 +666,11 @@ topology_template:
             nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
 
             nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            nodeTemplate.Capabilities.Os.Should().BeNull();
-            var hostProperties = nodeTemplate.Capabilities.Host.Properties;
-            ((IDictionary<object, object>) hostProperties.NumCpus)["get_input"].Should().Be("cpus");
-            hostProperties.MemSize.Should().Be(new DigitalStorage("2 GB"));
-            hostProperties.DiskSize.Should().Be(new DigitalStorage("10 GB"));
+            nodeTemplate.Capabilities.Should().NotContainKey("os");
+            var hostProperties = nodeTemplate.Capabilities["host"].Properties;
+            ((IDictionary<object, object>) hostProperties["num_cpus"])["get_input"].Should().Be("cpus");
+            hostProperties["mem_size"].Should().Be("2048  MB");
+            hostProperties["disk_size"].Should().Be("10 GB");
         }
 
         [Test]

@@ -51,28 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Artifact.cs" />
+    <Compile Include="Domain\AttributeAssignment.cs" />
     <Compile Include="Domain\Capability.cs" />
     <Compile Include="Domain\CapabilityType.cs" />
-    <Compile Include="Domain\ComputeCapabilities.cs" />
-    <Compile Include="Domain\DigitalUnits\DigitalStorageConverter.cs" />
-    <Compile Include="Domain\DigitalUnits\DigitalStorageParser.cs" />
-    <Compile Include="Domain\DigitalUnits\DigitalStorageParsingContext.cs" />
-    <Compile Include="Domain\DigitalUnits\FileSizeExpression.cs" />
-    <Compile Include="Domain\DigitalUnits\GbFileSizeExpression.cs" />
-    <Compile Include="Domain\DigitalUnits\KbFileSizeExpression.cs" />
-    <Compile Include="Domain\DigitalUnits\MbFileSizeExpression.cs" />
-    <Compile Include="Domain\DigitalUnits\TbFileSizeExpression.cs" />
-    <Compile Include="Domain\DigitalUnits\TerminalFileSizeExpression.cs" />
-    <Compile Include="Domain\Host.cs" />
-    <Compile Include="Domain\DigitalStorage.cs" />
     <Compile Include="Domain\NodeAttribute.cs" />
     <Compile Include="Domain\NodeProperty.cs" />
     <Compile Include="Domain\NodeTemplate.cs" />
+    <Compile Include="Domain\CapabilityAssignment.cs" />
     <Compile Include="Domain\NodeType.cs" />
-    <Compile Include="Domain\Os.cs" />
-    <Compile Include="Domain\OsProperties.cs" />
     <Compile Include="Domain\PropertyStatus.cs" />
     <Compile Include="Domain\Requirement.cs" />
+    <Compile Include="Domain\RequirementAssignment.cs" />
     <Compile Include="Domain\TopologyInput.cs" />
     <Compile Include="Domain\TopologyOutput.cs" />
     <Compile Include="Domain\TopologyTemplate.cs" />
