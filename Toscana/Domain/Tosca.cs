@@ -5,7 +5,7 @@ namespace Toscana.Domain
 {
     public class Tosca
     {
-        [Required(ErrorMessage = "tosca_definition_version is required on tosca definition")]
+        [Required(ErrorMessage = "tosca_definitions_version is required on tosca definition")]
         public string ToscaDefinitionsVersion { get; set; }
 
         public Dictionary<string, CapabilityType> CapabilityTypes { get; set; }

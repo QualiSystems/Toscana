@@ -12,5 +12,10 @@ namespace Toscana.Domain
         public string NamespaceUri { get; set; }
 
         public string NamespacePrefix { get; set; }
+
+        public static implicit operator ToscaImport(string val)
+        {
+            return new ToscaImport { File = val};
+        }
     }
 }

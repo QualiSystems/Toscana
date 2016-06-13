@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Artifact.cs" />
+    <Compile Include="Domain\Capability.cs" />
     <Compile Include="Domain\CapabilityType.cs" />
     <Compile Include="Domain\ComputeCapabilities.cs" />
     <Compile Include="Domain\DigitalUnits\DigitalStorageConverter.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Domain\Os.cs" />
     <Compile Include="Domain\OsProperties.cs" />
     <Compile Include="Domain\PropertyStatus.cs" />
+    <Compile Include="Domain\Requirement.cs" />
     <Compile Include="Domain\TopologyInput.cs" />
     <Compile Include="Domain\TopologyOutput.cs" />
     <Compile Include="Domain\TopologyTemplate.cs" />
