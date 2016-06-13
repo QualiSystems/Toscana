@@ -10,7 +10,7 @@ namespace Toscana.Domain
             Required = true;
         }
 
-        [Required]
+        [Required(ErrorMessage = "type is required on property")]
         public string Type { get; set; }
         public string Description { get; set; }
         public bool Required { get; set; }

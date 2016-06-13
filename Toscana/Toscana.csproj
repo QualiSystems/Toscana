@@ -44,13 +44,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="YamlDotNet, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.3.8.0\lib\net35\YamlDotNet.dll</HintPath>
+    <Reference Include="YamlDotNet, Version=3.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.3.9.0\lib\net35\YamlDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Artifact.cs" />
+    <Compile Include="Domain\CapabilityType.cs" />
     <Compile Include="Domain\ComputeCapabilities.cs" />
     <Compile Include="Domain\DigitalUnits\DigitalStorageConverter.cs" />
     <Compile Include="Domain\DigitalUnits\DigitalStorageParser.cs" />
@@ -74,7 +75,10 @@
     <Compile Include="Domain\TopologyOutput.cs" />
     <Compile Include="Domain\TopologyTemplate.cs" />
     <Compile Include="Domain\Tosca.cs" />
+    <Compile Include="Domain\ToscaImport.cs" />
+    <Compile Include="Domain\ToscaObject.cs" />
     <Compile Include="Engine\ObjectExtensions.cs" />
+    <Compile Include="Engine\StringExtensions.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />
     <Compile Include="Exceptions\ToscanaBaseException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

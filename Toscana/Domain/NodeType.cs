@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Toscana.Domain
 {
-    public class NodeType
+    public class NodeType : ToscaObject
     {
-        public string DerivedFrom { get; set; }
         public Version Version { get; set; }
         public string Description { get; set; }
         public Dictionary<string, NodeProperty> Properties { get; set; }

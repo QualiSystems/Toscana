@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Domain;
+using Toscana.Engine;
 using Toscana.Exceptions;
 
 namespace Toscana.Tests
@@ -11,6 +16,111 @@ namespace Toscana.Tests
     [TestFixture]
     public class ToscaNetAnalyzerTests
     {
+        private class GithubRepositoryTestCasesFactory
+        {
+            private const string GithubRepositoryZip = "https://github.com/QualiSystems/tosca/archive/master.zip";
+
+            public static IEnumerable TestCases
+            {
+                get
+                {
+                    using (var tempFile = new TempFile(Path.GetTempPath()))
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile(GithubRepositoryZip, tempFile.FilePath);
+
+                        var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open);
+                        var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read);
+                        foreach (var archiveEntry in archive.Entries.Where(a =>
+                            Path.GetExtension(a.Name).EqualsAny(".yaml", ".yml")))
+                        {
+                            yield return new TestCaseData(archiveEntry);
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public void Analyze_All_Property_Keynames_Are_Set()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+        description: Number of CPUs requested for a software node instance.
+        default: 1
+        status: experimental
+        required: true
+        entry_schema: default
+        constraints:
+          - valid_values: [ 1, 2, 4, 8 ]";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().BeNull();
+            tosca.NodeTypes.Should().HaveCount(1);
+
+            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+
+            nodeType.Properties.Should().HaveCount(1);
+            var numCpusProperty = nodeType.Properties["num_cpus"];
+            numCpusProperty.Type.Should().Be("integer");
+            numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
+            numCpusProperty.Default.Should().Be("1");
+            numCpusProperty.Required.Should().BeTrue();
+            numCpusProperty.Status.Should().Be(PropertyStatus.experimental);
+            numCpusProperty.EntrySchema.Should().Be("default");
+            numCpusProperty.Constraints.Should().HaveCount(1);
+            numCpusProperty.Constraints.Single().Should().HaveCount(1);
+            var validValues = (List<object>) numCpusProperty.Constraints.Single()["valid_values"];
+            validValues.Should().BeEquivalentTo(new List<object> {"1", "2", "4", "8"});
+        }
+
+        [Test]
+        public void Analyze_Cloudshell_Base_Standard()
+        {
+            const string toscaString = @"# CloudShell Base Standard
+# Suitable for modeling CloudShell Shells 
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+
+  cloudshell.standard.Shell:
+    properties:
+      ip:
+        type: string
+        default: ''
+    interfaces:
+      cloudshell.shell.core.resource_driver_interface:
+        get_inventory: {}
+        initialize: {}
+        cleanup: {}
+        backup: {}
+        restore: {}
+";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().BeNull();
+            tosca.NodeTypes.Should().HaveCount(1);
+            var nodeType = tosca.NodeTypes["cloudshell.standard.Shell"];
+            var resourceDriverInterface = nodeType.Interfaces["cloudshell.shell.core.resource_driver_interface"];
+            ((IDictionary<object, object>) resourceDriverInterface["get_inventory"]).Should().BeEmpty();
+            ((IDictionary<object, object>) resourceDriverInterface["initialize"]).Should().BeEmpty();
+            ((IDictionary<object, object>) resourceDriverInterface["cleanup"]).Should().BeEmpty();
+            ((IDictionary<object, object>) resourceDriverInterface["backup"]).Should().BeEmpty();
+            ((IDictionary<object, object>) resourceDriverInterface["restore"]).Should().BeEmpty();
+        }
+
         [Test]
         public void Analyze_Defining_a_Subsystem_Node_Type()
         {
@@ -161,48 +271,6 @@ topology_template:
         }
 
         [Test]
-        public void Analyze_All_Property_Keynames_Are_Set()
-        {
-            const string toscaString = @"
-tosca_definitions_version: tosca_simple_yaml_1_0
- 
-node_types:
-  example.TransactionSubsystem:
-    properties:
-      num_cpus:
-        type: integer
-        description: Number of CPUs requested for a software node instance.
-        default: 1
-        status: experimental
-        required: true
-        entry_schema: default
-        constraints:
-          - valid_values: [ 1, 2, 4, 8 ]";
-
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
-
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().BeNull();
-            tosca.NodeTypes.Should().HaveCount(1);
-
-            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
-
-            nodeType.Properties.Should().HaveCount(1);
-            var numCpusProperty = nodeType.Properties["num_cpus"];
-            numCpusProperty.Type.Should().Be("integer");
-            numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
-            numCpusProperty.Default.Should().Be("1");
-            numCpusProperty.Required.Should().BeTrue();
-            numCpusProperty.Status.Should().Be(PropertyStatus.experimental);
-            numCpusProperty.EntrySchema.Should().Be("default");
-            numCpusProperty.Constraints.Should().HaveCount(1);
-            numCpusProperty.Constraints.Single().Should().HaveCount(1);
-            var validValues = (List<object>)numCpusProperty.Constraints.Single()["valid_values"];
-            validValues.Should().BeEquivalentTo(new List<object> {"1", "2", "4", "8"});
-        }
-
-        [Test]
         public void Analyze_Property_Keynames_Use_Defaults()
         {
             const string toscaString = @"
@@ -225,24 +293,6 @@ node_types:
             numCpusProperty.Status.Should().Be(PropertyStatus.supported);
             numCpusProperty.EntrySchema.Should().BeNull();
             numCpusProperty.Constraints.Should().BeNull();
-        }
-
-        [Test]
-        public void Analyze_Validation_Fails_When_Property_Type_Missing()
-        {
-            const string toscaString = @"
-tosca_definitions_version: tosca_simple_yaml_1_0
- 
-node_types:
-  example.TransactionSubsystem:
-    properties:
-      num_cpus:
-        description: Property without type";
-
-            Action action = () => new ToscaNetAnalyzer().Analyze(toscaString);
-
-            // Assert
-            action.ShouldThrow<ToscaValidationException>().WithMessage("The Type field is required.");
         }
 
         [Test]
@@ -546,6 +596,24 @@ topology_template:
         }
 
         [Test]
+        public void Analyze_Validation_Fails_When_Property_Type_Missing()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        description: Property without type";
+
+            Action action = () => new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("type is required on property");
+        }
+
+        [Test]
         public void Analyze_With_Inputs_AllDataAnalyzed()
         {
             const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
@@ -606,41 +674,66 @@ topology_template:
         }
 
         [Test]
-        public void Analyze_Cloudshell_Base_Standard()
+        public void Analyze_Imports_Multiline_Grammar()
         {
-            const string toscaString = @"# CloudShell Base Standard
-# Suitable for modeling CloudShell Shells 
-tosca_definitions_version: tosca_simple_yaml_1_0
-
-node_types:
-
-  cloudshell.standard.Shell:
-    properties:
-      ip:
-        type: string
-        default: ''
-    interfaces:
-      cloudshell.shell.core.resource_driver_interface:
-        get_inventory: {}
-        initialize: {}
-        cleanup: {}
-        backup: {}
-        restore: {}
-";
+            const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+description: Template for deploying a single server with predefined properties.
+ 
+imports:
+  - some_definition_file:
+      file: path1/path2/file2.yaml
+      repository: my_service_catalog
+      namespace_uri: http://mycompany.com/tosca/1.0/platform
+      namespace_prefix: mycompany";
 
             var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().BeNull();
-            tosca.NodeTypes.Should().HaveCount(1);
-            var nodeType = tosca.NodeTypes["cloudshell.standard.Shell"];
-            var resourceDriverInterface = nodeType.Interfaces["cloudshell.shell.core.resource_driver_interface"];
-            ((IDictionary<object, object>)resourceDriverInterface["get_inventory"]).Should().BeEmpty();
-            ((IDictionary<object, object>)resourceDriverInterface["initialize"]).Should().BeEmpty();
-            ((IDictionary<object, object>)resourceDriverInterface["cleanup"]).Should().BeEmpty();
-            ((IDictionary<object, object>)resourceDriverInterface["backup"]).Should().BeEmpty();
-            ((IDictionary<object, object>)resourceDriverInterface["restore"]).Should().BeEmpty();
+            tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
+
+            tosca.Imports.Should().HaveCount(1);
+            tosca.Imports.Single().Should().HaveCount(1);
+            tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
+            var toscaImport = tosca.Imports.Single().Single().Value;
+            toscaImport.File.Should().Be("path1/path2/file2.yaml");
+            toscaImport.Repository.Should().Be("my_service_catalog");
+            toscaImport.NamespaceUri.Should().Be("http://mycompany.com/tosca/1.0/platform");
+            toscaImport.NamespacePrefix.Should().Be("mycompany");
+
+        }
+
+        [Test]
+        [Ignore("imports should be fixed")]
+        public void Analyze_Imports_Single_Line_Grammar()
+        {
+            const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+description: Template for deploying a single server with predefined properties.
+ 
+imports:
+  - some_definition_file: path1/path2/some_defs.yaml";
+
+            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
+
+            tosca.Imports.Should().HaveCount(1);
+            tosca.Imports.Single().Should().HaveCount(1);
+            tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
+            tosca.Imports.Single().Single().Value.File.Should().Be("path1/path2/some_defs.yaml");
+        }
+
+        [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
+        [Ignore("Pending type property and imports fix")]
+        public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(ZipArchiveEntry zipArchiveEntry)
+        {
+            var toscaNetAnalyzer = new ToscaNetAnalyzer();
+
+            toscaNetAnalyzer.Analyze(new StreamReader(zipArchiveEntry.Open()));
         }
     }
 }
