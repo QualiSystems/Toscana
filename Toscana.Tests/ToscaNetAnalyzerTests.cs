@@ -16,30 +16,7 @@ namespace Toscana.Tests
     [TestFixture]
     public class ToscaNetAnalyzerTests
     {
-        private class GithubRepositoryTestCasesFactory
-        {
-            private const string GithubRepositoryZip = "https://github.com/borismod/tosca/archive/master.zip";
-
-            public static IEnumerable TestCases
-            {
-                get
-                {
-                    using (var tempFile = new TempFile(Path.GetTempPath()))
-                    using (var client = new WebClient())
-                    {
-                        client.DownloadFile(GithubRepositoryZip, tempFile.FilePath);
-
-                        var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open);
-                        var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read);
-                        foreach (var archiveEntry in archive.Entries.Where(a =>
-                            Path.GetExtension(a.Name).EqualsAny(".yaml", ".yml")))
-                        {
-                            yield return new TestCaseData(archiveEntry);
-                        }
-                    }
-                }
-            }
-        }
+        private readonly GithubRepositoryTests githubRepositoryTests = new GithubRepositoryTests();
 
         [Test]
         public void Analyze_All_Property_Keynames_Are_Set()
@@ -725,14 +702,6 @@ imports:
             tosca.Imports.Single().Should().HaveCount(1);
             tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
             tosca.Imports.Single().Single().Value.File.Should().Be("path1/path2/some_defs.yaml");
-        }
-
-        [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
-        public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(ZipArchiveEntry zipArchiveEntry)
-        {
-            var toscaNetAnalyzer = new ToscaNetAnalyzer();
-
-            toscaNetAnalyzer.Analyze(new StreamReader(zipArchiveEntry.Open()));
         }
     }
 }
