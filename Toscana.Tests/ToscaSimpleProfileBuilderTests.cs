@@ -27,16 +27,37 @@ namespace Toscana.Tests
             derivedProfile.NodeTypes.Add("node1", derivedNodeType);
 
             // Act
-            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
-            toscaSimpleProfileBuilder.Append(baseProfile);
-            toscaSimpleProfileBuilder.Append(derivedProfile);
-            var combinedToscaProfile = toscaSimpleProfileBuilder.Build();
+            var combinedToscaProfile = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile)
+                .Build();
 
             // Assert
             var combinedNodeType = combinedToscaProfile.NodeTypes["node1"];
             combinedNodeType.Capabilities.Should().HaveCount(2);
             combinedNodeType.Capabilities["capability1"].Type.Should().Be("capability1_type");
             combinedNodeType.Capabilities["base_capability1"].Type.Should().Be("base_capability1_type");
+        }
+
+        [Test]
+        public void Exception_Thrown_When_Duplicate_Node_Types_Appear()
+        {
+            // Arrange
+            var nodeType = new NodeType();
+            var profile1 = new ToscaSimpleProfile();
+            profile1.NodeTypes.Add("duplicate_node", nodeType);
+
+            var profile2 = new ToscaSimpleProfile();
+            profile2.NodeTypes.Add("duplicate_node", nodeType);
+
+            // Act
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(profile1)
+                .Append(profile2);
+            Action action = () => toscaSimpleProfileBuilder.Build();
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Node type duplicate_node is duplicate");
         }
 
         [Test]
@@ -52,8 +73,8 @@ namespace Toscana.Tests
             derivedProfile.NodeTypes.Add("node1", derivedNodeType);
 
             // Act
-            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
-            toscaSimpleProfileBuilder.Append(derivedProfile);
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(derivedProfile);
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert

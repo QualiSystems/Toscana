@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Toscana.Common;
 using Toscana.Domain;
 using Toscana.Exceptions;
 
@@ -25,31 +23,45 @@ namespace Toscana
         public ToscaSimpleProfile Build()
         {
             var combinedTosca = new ToscaSimpleProfile();
+            CombineNodeTypes(combinedTosca);
+            BuildNodeTypeHierarchy(combinedTosca);
+            return combinedTosca;
+        }
+
+        private void CombineNodeTypes(ToscaSimpleProfile combinedTosca)
+        {
             foreach (var simpleProfile in toscaSimpleProfiles)
             {
                 foreach (var nodeType in simpleProfile.NodeTypes)
                 {
+                    if (combinedTosca.NodeTypes.ContainsKey(nodeType.Key))
+                    {
+                        throw new ToscaValidationException(string.Format("Node type {0} is duplicate", nodeType.Key));
+                    }
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
             }
+        }
+
+        private static void BuildNodeTypeHierarchy(ToscaSimpleProfile combinedTosca)
+        {
             foreach (var nodeType in combinedTosca.NodeTypes)
             {
-                for (string derivedFrom = nodeType.Value.DerivedFrom; 
-                    !string.IsNullOrEmpty(derivedFrom); 
-                    derivedFrom = combinedTosca.NodeTypes[derivedFrom].DerivedFrom)
+                for (var baseNodeType = nodeType.Value.DerivedFrom;
+                    !string.IsNullOrEmpty(baseNodeType);
+                    baseNodeType = combinedTosca.NodeTypes[baseNodeType].DerivedFrom)
                 {
-                    if (!combinedTosca.NodeTypes.ContainsKey(derivedFrom))
+                    if (!combinedTosca.NodeTypes.ContainsKey(baseNodeType))
                     {
-                        throw new ToscaValidationException(string.Format("Definition of Node Type {0} is missing", derivedFrom));
+                        throw new ToscaValidationException(string.Format("Definition of Node Type {0} is missing", baseNodeType));
                     }
 
-                    foreach (var capability in combinedTosca.NodeTypes[derivedFrom].Capabilities)
+                    foreach (var capability in combinedTosca.NodeTypes[baseNodeType].Capabilities)
                     {
                         nodeType.Value.Capabilities.Add(capability.Key, capability.Value);
                     }
                 }
             }
-            return combinedTosca;
         }
     }
 }

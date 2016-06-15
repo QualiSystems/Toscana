@@ -1,17 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using NUnit.Framework;
 using Toscana.Common;
-using Toscana.Engine;
 
 namespace Toscana.Tests
 {
     public class GithubRepositoryTests
     {
-        private const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/master.zip";
+        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/develop.zip";
 
         private class GithubRepositoryTestCasesFactory
         {
@@ -25,6 +25,11 @@ namespace Toscana.Tests
 
             private static IEnumerable GetYamlFilesFromZippedUrl(string repositoryUrl)
             {
+                return GetYamlFilesContentFromUrl(repositoryUrl);
+            }
+
+            public static IEnumerable<string> GetYamlFilesContentFromUrl(string repositoryUrl)
+            {
                 using (var tempFile = new TempFile(Path.GetTempPath()))
                 using (var client = new WebClient())
                 {
@@ -35,17 +40,40 @@ namespace Toscana.Tests
 
                     return archive.Entries.Where(a =>
                         Path.GetExtension(a.Name).EqualsAny(".yaml", ".yml"))
-                        .Select(archiveEntry => new TestCaseData(archiveEntry)).ToList();
+                        .Select(ReadFileContent)
+                        .ToList();
+                }
+            }
+
+            private static string ReadFileContent(ZipArchiveEntry archiveEntry)
+            {
+                using (var streamReader = new StreamReader(archiveEntry.Open()))
+                {
+                    return streamReader.ReadToEnd();
                 }
             }
         }
 
         [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
-        public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(ZipArchiveEntry zipArchiveEntry)
+        public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(string toscaFileContent)
         {
             var toscaNetAnalyzer = new ToscaNetAnalyzer();
 
-            toscaNetAnalyzer.Analyze(new StreamReader(zipArchiveEntry.Open()));
+            toscaNetAnalyzer.Analyze(toscaFileContent);
+        }
+
+        [Test]
+        public void Build_Combined_Tosca_Simple_Profile_From_Github_Repo()
+        {
+            var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip);
+            var toscaNetAnalyzer = new ToscaNetAnalyzer();
+            var toscaSimpleProfiles = filesContent.Select(fileContent => toscaNetAnalyzer.Analyze(fileContent)).ToArray();
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
+            foreach (var toscaSimpleProfile in toscaSimpleProfiles)
+            {
+                toscaSimpleProfileBuilder.Append(toscaSimpleProfile);
+            }
+            toscaSimpleProfileBuilder.Build();
         }
     }
 }
