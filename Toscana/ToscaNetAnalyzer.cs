@@ -15,14 +15,14 @@ namespace Toscana
             toscaParser = new ToscaParser();
         }
 
-        public Tosca Analyze(string tosca)
+        public ToscaSimpleProfile Analyze(string tosca)
         {
             var toscaObject = toscaParser.Parse(tosca);
             toscaValidator.Validate(toscaObject);
             return toscaObject;
         }
 
-        public Tosca Analyze(TextReader textReader)
+        public ToscaSimpleProfile Analyze(TextReader textReader)
         {
             var toscaObject = toscaParser.Parse(textReader);
             toscaValidator.Validate(toscaObject);

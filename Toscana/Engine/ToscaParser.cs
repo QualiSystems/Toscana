@@ -7,8 +7,8 @@ namespace Toscana.Engine
 {
     public interface IToscaParser
     {
-        Tosca Parse(string tosca);
-        Tosca Parse(TextReader textReader);
+        ToscaSimpleProfile Parse(string tosca);
+        ToscaSimpleProfile Parse(TextReader textReader);
     }
 
     public class ToscaParser : IToscaParser
@@ -20,7 +20,7 @@ namespace Toscana.Engine
             deserializer = CreateDeserializer();
         }
 
-        public Tosca Parse(string tosca)
+        public ToscaSimpleProfile Parse(string tosca)
         {
             using (var stringReader = new StringReader(tosca))
             {
@@ -28,9 +28,9 @@ namespace Toscana.Engine
             }
         }
 
-        public Tosca Parse(TextReader textReader)
+        public ToscaSimpleProfile Parse(TextReader textReader)
         {
-            return deserializer.Deserialize<Tosca>(textReader);
+            return deserializer.Deserialize<ToscaSimpleProfile>(textReader);
         }
 
         private static Deserializer CreateDeserializer()

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
 using System.Linq;
-using System.Net;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Domain;
-using Toscana.Engine;
 using Toscana.Exceptions;
 
 namespace Toscana.Tests
@@ -16,8 +11,6 @@ namespace Toscana.Tests
     [TestFixture]
     public class ToscaNetAnalyzerTests
     {
-        private readonly GithubRepositoryTests githubRepositoryTests = new GithubRepositoryTests();
-
         [Test]
         public void Analyze_All_Property_Keynames_Are_Set()
         {
