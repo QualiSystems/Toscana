@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Toscana.Common;
 using Toscana.Domain;
+using Toscana.Exceptions;
 
 namespace Toscana
 {
@@ -33,10 +35,14 @@ namespace Toscana
             foreach (var nodeType in combinedTosca.NodeTypes)
             {
                 for (string derivedFrom = nodeType.Value.DerivedFrom; 
-                    !string.IsNullOrEmpty(derivedFrom)
-                    && combinedTosca.NodeTypes.ContainsKey(derivedFrom); 
+                    !string.IsNullOrEmpty(derivedFrom); 
                     derivedFrom = combinedTosca.NodeTypes[derivedFrom].DerivedFrom)
                 {
+                    if (!combinedTosca.NodeTypes.ContainsKey(derivedFrom))
+                    {
+                        throw new ToscaValidationException(string.Format("Definition of Node Type {0} is missing", derivedFrom));
+                    }
+
                     foreach (var capability in combinedTosca.NodeTypes[derivedFrom].Capabilities)
                     {
                         nodeType.Value.Capabilities.Add(capability.Key, capability.Value);

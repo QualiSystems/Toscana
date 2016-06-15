@@ -5,6 +5,16 @@ namespace Toscana.Domain
 {
     public class NodeType : ToscaObject
     {
+        public NodeType()
+        {
+            Properties = new Dictionary<string, NodeProperty>();
+            Attributes = new Dictionary<string, NodeAttribute>();
+            Requirements = new List<Dictionary<string, Requirement>>();
+            Capabilities = new Dictionary<string, Capability>();
+            Interfaces = new Dictionary<string, Dictionary<string, object>>();
+            Artifacts = new Dictionary<string, Artifact>();
+        }
+
         public Version Version { get; set; }
         public string Description { get; set; }
         public Dictionary<string, NodeProperty> Properties { get; set; }
