@@ -11,6 +11,33 @@ namespace Toscana.Tests.Domain
     public class ToscaSimpleProfileTests
     {
         [Test]
+        public void Ctor_NodeTypes_Initialized_To_Empty()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+
+            toscaSimpleProfile.NodeTypes.Should().NotBeNull();
+            toscaSimpleProfile.NodeTypes.Should().HaveCount(0);
+        }
+
+        [Test]
+        public void Ctor_CapabilityTypes_Initialized_To_Empty()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+
+            toscaSimpleProfile.CapabilityTypes.Should().NotBeNull();
+            toscaSimpleProfile.CapabilityTypes.Should().HaveCount(0);
+        }
+
+        [Test]
+        public void Ctor_Imports_Initialized_To_Empty()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+
+            toscaSimpleProfile.Imports.Should().NotBeNull();
+            toscaSimpleProfile.Imports.Should().HaveCount(0);
+        }
+
+        [Test]
         public void ToscaDefinitionsVersion_Invalid_ValidationExceptionThrown()
         {
             // Arrange

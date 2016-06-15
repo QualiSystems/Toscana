@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ToscaObjectTests.cs" />
     <Compile Include="Domain\ToscaSimpleProfileTests.cs" />
     <Compile Include="Engine\ToscaParserTests.cs" />
     <Compile Include="GithubRepositoryTests.cs" />

@@ -7,6 +7,13 @@ namespace Toscana.Domain
 {
     public class ToscaSimpleProfile
     {
+        public ToscaSimpleProfile()
+        {
+            CapabilityTypes = new Dictionary<string, CapabilityType>();
+            NodeTypes = new Dictionary<string, NodeType>();
+            Imports = new List<Dictionary<string, ToscaImport>>();
+        }
+
         [Required(ErrorMessage = "tosca_definitions_version is required on tosca definition")]
         [RestrictedValues(new[] { "tosca_simple_yaml_1_0" }, "tosca_definitions_version shall be tosca_simple_yaml_1_0")]
         public string ToscaDefinitionsVersion { get; set; }
