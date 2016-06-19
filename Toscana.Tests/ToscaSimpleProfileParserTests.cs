@@ -9,7 +9,7 @@ using Toscana.Exceptions;
 namespace Toscana.Tests
 {
     [TestFixture]
-    public class ToscaNetAnalyzerTests
+    public class ToscaSimpleProfileParserTests
     {
         [Test]
         public void Analyze_All_Property_Keynames_Are_Set()
@@ -30,7 +30,7 @@ node_types:
         constraints:
           - valid_values: [ 1, 2, 4, 8 ]";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -76,7 +76,7 @@ node_types:
         restore: {}
 ";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -114,7 +114,7 @@ node_types:
     requirements:
       - database_endpoint: tosca.capabilities.Endpoint.Database";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -166,7 +166,7 @@ topology_template:
             distribution: rhel 
             version: 6.5 ";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -214,7 +214,7 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -252,7 +252,7 @@ node_types:
       num_cpus:
         type: integer";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             var numCpusProperty = tosca.NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"];
@@ -289,7 +289,7 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -397,7 +397,7 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -530,7 +530,7 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -577,7 +577,7 @@ node_types:
       num_cpus:
         description: Property without type";
 
-            Action action = () => new ToscaNetAnalyzer().Analyze(toscaString);
+            Action action = () => ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             action.ShouldThrow<ToscaValidationException>().WithMessage("type is required on property");
@@ -615,7 +615,7 @@ topology_template:
       description: The private IP address of the provisioned server.
       value: { get_attribute: [ my_server, private_address ] }";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -657,7 +657,7 @@ imports:
       namespace_uri: http://mycompany.com/tosca/1.0/platform
       namespace_prefix: mycompany";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -685,7 +685,7 @@ description: Template for deploying a single server with predefined properties.
 imports:
   - some_definition_file: path1/path2/some_defs.yaml";
 
-            var tosca = new ToscaNetAnalyzer().Analyze(toscaString);
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");

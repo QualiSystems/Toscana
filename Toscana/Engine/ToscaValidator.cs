@@ -9,17 +9,17 @@ namespace Toscana.Engine
 {
     public interface IToscaValidator
     {
-        void Validate(ToscaSimpleProfile toscaSimpleProfileObject);
+        void Validate(ToscaSimpleProfile toscaSimpleProfile);
     }
 
     public class ToscaValidator : IToscaValidator
     {
-        public void Validate(ToscaSimpleProfile toscaSimpleProfileObject)
+        public void Validate(ToscaSimpleProfile toscaSimpleProfile)
         {
             var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
             
             var validationResults = new List<ValidationResult>();
-            if (!dataAnnotationsValidator.TryValidateObjectRecursive(toscaSimpleProfileObject, validationResults))
+            if (!dataAnnotationsValidator.TryValidateObjectRecursive(toscaSimpleProfile, validationResults))
             {
                 var message = string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage).ToList());
 

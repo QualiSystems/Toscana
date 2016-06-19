@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using NUnit.Framework;
 using Toscana.Common;
+using Toscana.Domain;
 
 namespace Toscana.Tests
 {
@@ -57,17 +58,14 @@ namespace Toscana.Tests
         [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
         public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(string toscaFileContent)
         {
-            var toscaNetAnalyzer = new ToscaNetAnalyzer();
-
-            toscaNetAnalyzer.Analyze(toscaFileContent);
+            ToscaSimpleProfile.Parse(toscaFileContent);
         }
 
         [Test]
         public void Build_Combined_Tosca_Simple_Profile_From_Github_Repo()
         {
             var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip);
-            var toscaNetAnalyzer = new ToscaNetAnalyzer();
-            var toscaSimpleProfiles = filesContent.Select(fileContent => toscaNetAnalyzer.Analyze(fileContent)).ToArray();
+            var toscaSimpleProfiles = filesContent.Select(ToscaSimpleProfile.Parse).ToArray();
             var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
             foreach (var toscaSimpleProfile in toscaSimpleProfiles)
             {

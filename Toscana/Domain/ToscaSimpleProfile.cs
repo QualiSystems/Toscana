@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Toscana.Common;
+using Toscana.Engine;
 
 namespace Toscana.Domain
 {
@@ -23,6 +24,12 @@ namespace Toscana.Domain
         public TopologyTemplate TopologyTemplate { get; set; }
         public Dictionary<string, NodeType> NodeTypes { get; set; }
         public List<Dictionary<string, ToscaImport>> Imports { get; set; }
+
+        public static ToscaSimpleProfile Parse(string toscaAsString)
+        {
+            var toscaSimpleProfileParser = Bootstrapper.GetToscaSimpleProfileParser();
+            return toscaSimpleProfileParser.Parse(toscaAsString);
+        }
     }
 
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]

@@ -6,7 +6,7 @@ using Toscana.Engine;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class IToscaDeserializerlizerTests
+    public class ToscaDeserializerTests
     {
         [Test]
         public void Parse_Template_With_Single_Requirement()
