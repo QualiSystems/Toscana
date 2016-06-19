@@ -58,7 +58,7 @@
     <Compile Include="Domain\NodeTypeTests.cs" />
     <Compile Include="Domain\ToscaObjectTests.cs" />
     <Compile Include="Domain\ToscaSimpleProfileTests.cs" />
-    <Compile Include="Engine\ToscaParserTests.cs" />
+    <Compile Include="Engine\IToscaDeserializerlizerTests.cs" />
     <Compile Include="GithubRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempFile.cs" />

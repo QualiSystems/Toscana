@@ -6,15 +6,15 @@ using Toscana.Engine;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class ToscaParserTests
+    public class IToscaDeserializerlizerTests
     {
         [Test]
         public void Parse_Template_With_Single_Requirement()
         {
             // Arrange
-            var toscaParser = new ToscaParser();
+            var toscaParser = new ToscaDeserializer();
             // Act
-            var tosca = toscaParser.Parse(@"
+            var tosca = toscaParser.Deserialize(@"
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 node_types:

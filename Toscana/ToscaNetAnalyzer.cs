@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Toscana.Domain;
+﻿using Toscana.Domain;
 using Toscana.Engine;
 
 namespace Toscana
@@ -7,24 +6,17 @@ namespace Toscana
     public class ToscaNetAnalyzer
     {
         private readonly IToscaValidator toscaValidator;
-        private readonly IToscaParser toscaParser;
+        private readonly IToscaDeserializer toscaDeserializer;
 
         public ToscaNetAnalyzer()
         {
             toscaValidator = new ToscaValidator();
-            toscaParser = new ToscaParser();
+            toscaDeserializer = new ToscaDeserializer();
         }
 
         public ToscaSimpleProfile Analyze(string tosca)
         {
-            var toscaObject = toscaParser.Parse(tosca);
-            toscaValidator.Validate(toscaObject);
-            return toscaObject;
-        }
-
-        public ToscaSimpleProfile Analyze(TextReader textReader)
-        {
-            var toscaObject = toscaParser.Parse(textReader);
+            var toscaObject = toscaDeserializer.Deserialize(tosca);
             toscaValidator.Validate(toscaObject);
             return toscaObject;
         }

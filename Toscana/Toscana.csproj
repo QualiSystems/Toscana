@@ -85,7 +85,7 @@
     <Compile Include="Exceptions\ToscanaBaseException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToscaNetAnalyzer.cs" />
-    <Compile Include="Engine\ToscaParser.cs" />
+    <Compile Include="Engine\ToscaDeserializer.cs" />
     <Compile Include="Engine\ToscaValidator.cs" />
     <Compile Include="ToscaSimpleProfileBuilder.cs" />
   </ItemGroup>
