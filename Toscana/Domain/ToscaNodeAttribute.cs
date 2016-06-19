@@ -2,11 +2,11 @@
 
 namespace Toscana.Domain
 {
-    public class NodeAttribute
+    public class ToscaNodeAttribute
     {
-        public NodeAttribute()
+        public ToscaNodeAttribute()
         {
-            Status = PropertyStatus.supported;
+            Status = ToscaPropertyStatus.supported;
         }
 
         [Required(ErrorMessage = "type is required on attribute")]
@@ -16,7 +16,7 @@ namespace Toscana.Domain
 
         public object Default { get; set; }
 
-        public PropertyStatus Status { get; set; }
+        public ToscaPropertyStatus Status { get; set; }
 
         public string EntrySchema { get; set; }
     }

@@ -10,8 +10,8 @@ namespace Toscana.Domain
     {
         public ToscaSimpleProfile()
         {
-            CapabilityTypes = new Dictionary<string, CapabilityType>();
-            NodeTypes = new Dictionary<string, NodeType>();
+            CapabilityTypes = new Dictionary<string, ToscaCapabilityType>();
+            NodeTypes = new Dictionary<string, ToscaNodeType>();
             Imports = new List<Dictionary<string, ToscaImport>>();
         }
 
@@ -19,10 +19,10 @@ namespace Toscana.Domain
         [RestrictedValues(new[] { "tosca_simple_yaml_1_0" }, "tosca_definitions_version shall be tosca_simple_yaml_1_0")]
         public string ToscaDefinitionsVersion { get; set; }
 
-        public Dictionary<string, CapabilityType> CapabilityTypes { get; set; }
+        public Dictionary<string, ToscaCapabilityType> CapabilityTypes { get; set; }
         public string Description { get; set; }
-        public TopologyTemplate TopologyTemplate { get; set; }
-        public Dictionary<string, NodeType> NodeTypes { get; set; }
+        public ToscaTopologyTemplate TopologyTemplate { get; set; }
+        public Dictionary<string, ToscaNodeType> NodeTypes { get; set; }
         public List<Dictionary<string, ToscaImport>> Imports { get; set; }
 
         public static ToscaSimpleProfile Parse(string toscaAsString)

@@ -63,21 +63,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\StringExtensions.cs" />
-    <Compile Include="Domain\Artifact.cs" />
-    <Compile Include="Domain\AttributeAssignment.cs" />
-    <Compile Include="Domain\Capability.cs" />
-    <Compile Include="Domain\CapabilityType.cs" />
-    <Compile Include="Domain\NodeAttribute.cs" />
-    <Compile Include="Domain\NodeProperty.cs" />
-    <Compile Include="Domain\NodeTemplate.cs" />
-    <Compile Include="Domain\CapabilityAssignment.cs" />
-    <Compile Include="Domain\NodeType.cs" />
-    <Compile Include="Domain\PropertyStatus.cs" />
-    <Compile Include="Domain\Requirement.cs" />
-    <Compile Include="Domain\RequirementAssignment.cs" />
-    <Compile Include="Domain\TopologyInput.cs" />
-    <Compile Include="Domain\TopologyOutput.cs" />
-    <Compile Include="Domain\TopologyTemplate.cs" />
+    <Compile Include="Domain\ToscaArtifact.cs" />
+    <Compile Include="Domain\ToscaAttributeAssignment.cs" />
+    <Compile Include="Domain\ToscaCapability.cs" />
+    <Compile Include="Domain\ToscaCapabilityType.cs" />
+    <Compile Include="Domain\ToscaNodeAttribute.cs" />
+    <Compile Include="Domain\ToscaNodeProperty.cs" />
+    <Compile Include="Domain\ToscaNodeTemplate.cs" />
+    <Compile Include="Domain\ToscaCapabilityAssignment.cs" />
+    <Compile Include="Domain\ToscaNodeType.cs" />
+    <Compile Include="Domain\ToscaPropertyStatus.cs" />
+    <Compile Include="Domain\ToscaRequirement.cs" />
+    <Compile Include="Domain\ToscaRequirementAssignment.cs" />
+    <Compile Include="Domain\ToscaTopologyInput.cs" />
+    <Compile Include="Domain\ToscaTopologyOutput.cs" />
+    <Compile Include="Domain\ToscaTopologyTemplate.cs" />
     <Compile Include="Domain\ToscaSimpleProfile.cs" />
     <Compile Include="Domain\ToscaImport.cs" />
     <Compile Include="Domain\ToscaObject.cs" />

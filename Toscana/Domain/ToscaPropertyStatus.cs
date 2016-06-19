@@ -1,6 +1,6 @@
 ﻿namespace Toscana.Domain
 {
-    public enum PropertyStatus
+    public enum ToscaPropertyStatus
     {
         supported,
         unsupported,

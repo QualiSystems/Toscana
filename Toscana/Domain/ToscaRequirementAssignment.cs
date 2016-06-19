@@ -1,15 +1,15 @@
 ﻿namespace Toscana.Domain
 {
-    public class RequirementAssignment
+    public class ToscaRequirementAssignment
     {
         public string Capability { get; set; }
         public string Node { get; set; }
         public string Relationship { get; set; }
         public string NodeFilter { get; set; }
 
-        public static implicit operator RequirementAssignment(string val)
+        public static implicit operator ToscaRequirementAssignment(string val)
         {
-            return new RequirementAssignment {Node = val};
+            return new ToscaRequirementAssignment {Node = val};
         }
     }
 }

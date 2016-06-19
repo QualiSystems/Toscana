@@ -2,7 +2,7 @@
 
 namespace Toscana.Domain
 {
-    public class Artifact
+    public class ToscaArtifact
     {
         [Required(ErrorMessage = "type is required on artifact")]
         public string Type { get; set; }

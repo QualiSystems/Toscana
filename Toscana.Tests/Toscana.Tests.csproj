@@ -55,9 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\NodeTypeTests.cs" />
+    <Compile Include="Domain\ToscaCapabilityTypeTests.cs" />
+    <Compile Include="Domain\ToscaNodeTypeTests.cs" />
+    <Compile Include="Domain\ToscaCapabilityAssignmentTests.cs" />
+    <Compile Include="Domain\ToscaNodeAttributeTests.cs" />
+    <Compile Include="Domain\ToscaNodeTemplateTests.cs" />
     <Compile Include="Domain\ToscaObjectTests.cs" />
     <Compile Include="Domain\ToscaSimpleProfileTests.cs" />
+    <Compile Include="Domain\ToscaTopologyInputTests.cs" />
+    <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
     <Compile Include="GithubRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

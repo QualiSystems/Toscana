@@ -45,7 +45,7 @@ node_types:
             numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
             numCpusProperty.Default.Should().Be("1");
             numCpusProperty.Required.Should().BeTrue();
-            numCpusProperty.Status.Should().Be(PropertyStatus.experimental);
+            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
             numCpusProperty.EntrySchema.Should().Be("default");
             numCpusProperty.Constraints.Should().HaveCount(1);
             numCpusProperty.Constraints.Single().Should().HaveCount(1);
@@ -222,7 +222,7 @@ topology_template:
             var topologyTemplate = tosca.TopologyTemplate;
 
             topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeNull();
+            topologyTemplate.Outputs.Should().BeEmpty();
 
             topologyTemplate.NodeTemplates.Should().HaveCount(2);
 
@@ -237,7 +237,7 @@ topology_template:
             var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
             dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeNull();
+            dbServerNodeTemplate.Requirements.Should().BeEmpty();
         }
 
         [Test]
@@ -260,7 +260,7 @@ node_types:
             numCpusProperty.Description.Should().BeNull();
             numCpusProperty.Default.Should().BeNull();
             numCpusProperty.Required.Should().BeTrue();
-            numCpusProperty.Status.Should().Be(PropertyStatus.supported);
+            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.supported);
             numCpusProperty.EntrySchema.Should().BeNull();
             numCpusProperty.Constraints.Should().BeNull();
         }
@@ -297,7 +297,7 @@ topology_template:
             var topologyTemplate = tosca.TopologyTemplate;
 
             topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeNull();
+            topologyTemplate.Outputs.Should().BeEmpty();
 
             topologyTemplate.NodeTemplates.Should().HaveCount(2);
 
@@ -310,7 +310,7 @@ topology_template:
             var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
             dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeNull();
+            dbServerNodeTemplate.Requirements.Should().BeEmpty();
         }
 
         [Test]
@@ -414,7 +414,7 @@ topology_template:
             topologyTemplate.Inputs["mysql_root_password"].Type.Should().Be("string");
             topologyTemplate.Inputs["mysql_port"].Type.Should().Be("integer");
             topologyTemplate.Inputs["context_root"].Type.Should().Be("string");
-            topologyTemplate.Outputs.Should().BeNull();
+            topologyTemplate.Outputs.Should().BeEmpty();
 
             #endregion
 
@@ -424,7 +424,7 @@ topology_template:
 
             var wordpressNodeTemplate = topologyTemplate.NodeTemplates["wordpress"];
             wordpressNodeTemplate.Type.Should().Be("tosca.nodes.WebApplication.WordPress");
-            wordpressNodeTemplate.Capabilities.Should().BeNull();
+            wordpressNodeTemplate.Capabilities.Should().BeEmpty();
             wordpressNodeTemplate.Requirements.Should().HaveCount(2);
             wordpressNodeTemplate.Requirements.First()["host"].Node.Should().Be("apache");
             wordpressNodeTemplate.Requirements.Last()["database_endpoint"].Node.Should().Be("wordpress_db");
@@ -436,7 +436,7 @@ topology_template:
 
             var apacheNodeTemplate = topologyTemplate.NodeTemplates["apache"];
             apacheNodeTemplate.Type.Should().Be("tosca.nodes.WebServer.Apache");
-            apacheNodeTemplate.Capabilities.Should().BeNull();
+            apacheNodeTemplate.Capabilities.Should().BeEmpty();
             apacheNodeTemplate.Requirements.Should().HaveCount(1);
             apacheNodeTemplate.Requirements.Single()["host"].Node.Should().Be("web_server");
             apacheNodeTemplate.Properties.Should().BeNull();
@@ -448,8 +448,8 @@ topology_template:
             var webServerNodeTemplate = topologyTemplate.NodeTemplates["web_server"];
             webServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
             webServerNodeTemplate.Capabilities.Should().BeNull();
-            webServerNodeTemplate.Requirements.Should().BeNull();
-            webServerNodeTemplate.Properties.Should().BeNull();
+            webServerNodeTemplate.Requirements.Should().BeEmpty();
+            webServerNodeTemplate.Properties.Should().BeEmpty();
 
             #endregion
 
@@ -457,7 +457,7 @@ topology_template:
 
             var wordpressDbNodeTemplate = topologyTemplate.NodeTemplates["wordpress_db"];
             wordpressDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
-            wordpressDbNodeTemplate.Capabilities.Should().BeNull();
+            wordpressDbNodeTemplate.Capabilities.Should().BeEmpty();
             wordpressDbNodeTemplate.Requirements.Should().HaveCount(1);
             wordpressDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
             wordpressDbNodeTemplate.Properties.Should().HaveCount(4);
@@ -479,7 +479,7 @@ topology_template:
             var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
             dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeNull();
+            dbServerNodeTemplate.Requirements.Should().BeEmpty();
 
             #endregion
         }
@@ -538,7 +538,7 @@ topology_template:
             var topologyTemplate = tosca.TopologyTemplate;
 
             topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeNull();
+            topologyTemplate.Outputs.Should().BeEmpty();
 
             topologyTemplate.NodeTemplates.Should().HaveCount(3);
 
@@ -551,11 +551,11 @@ topology_template:
             var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
             dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
             dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeNull();
+            dbServerNodeTemplate.Requirements.Should().BeEmpty();
 
             var myDbNodeTemplate = topologyTemplate.NodeTemplates["my_db"];
             myDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
-            myDbNodeTemplate.Capabilities.Should().BeNull();
+            myDbNodeTemplate.Capabilities.Should().BeEmpty();
             myDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
             myDbNodeTemplate.Properties.Should().HaveCount(4);
 

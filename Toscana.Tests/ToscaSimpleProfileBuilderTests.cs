@@ -13,12 +13,12 @@ namespace Toscana.Tests
         public void Build_Capabilities_Of_Base_And_Derived_Node_Types_Are_Merged()
         {
             // Arrange
-            var nodeType = new NodeType();
+            var nodeType = new ToscaNodeType();
             nodeType.Capabilities.Add("base_capability1", "base_capability1_type");
             var baseProfile = new ToscaSimpleProfile();
             baseProfile.NodeTypes.Add("base_node", nodeType);
 
-            var derivedNodeType = new NodeType
+            var derivedNodeType = new ToscaNodeType
             {
                 DerivedFrom = "base_node"
             };
@@ -43,7 +43,7 @@ namespace Toscana.Tests
         public void Exception_Thrown_When_Duplicate_Node_Types_Appear()
         {
             // Arrange
-            var nodeType = new NodeType();
+            var nodeType = new ToscaNodeType();
             var profile1 = new ToscaSimpleProfile();
             profile1.NodeTypes.Add("duplicate_node", nodeType);
 
@@ -64,7 +64,7 @@ namespace Toscana.Tests
         public void Exception_Thrown_When_Base_NodeType_Is_Missing()
         {
             // Arrange
-            var derivedNodeType = new NodeType
+            var derivedNodeType = new ToscaNodeType
             {
                 DerivedFrom = "base_node"
             };

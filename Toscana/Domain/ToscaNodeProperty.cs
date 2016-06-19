@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Toscana.Domain
 {
-    public class NodeProperty
+    public class ToscaNodeProperty
     {
-        public NodeProperty()
+        public ToscaNodeProperty()
         {
             Required = true;
         }
@@ -15,7 +15,7 @@ namespace Toscana.Domain
         public string Description { get; set; }
         public bool Required { get; set; }
         public object Default { get; set; }
-        public PropertyStatus Status { get; set; }
+        public ToscaPropertyStatus Status { get; set; }
         public List<Dictionary<string, object>> Constraints { get; set; }
         public string EntrySchema { get; set; }
     }

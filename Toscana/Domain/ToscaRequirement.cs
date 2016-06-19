@@ -2,7 +2,7 @@
 
 namespace Toscana.Domain
 {
-    public class Requirement
+    public class ToscaRequirement
     {
         [Required(ErrorMessage = "capability is required on requirement")]
         public string Capability { get; set; }
@@ -10,9 +10,9 @@ namespace Toscana.Domain
         public string Relationship { get; set; }
         public object[] Occurrences { get; set; }
 
-        public static implicit operator Requirement(string val)
+        public static implicit operator ToscaRequirement(string val)
         {
-            return new Requirement { Capability = val };
+            return new ToscaRequirement { Capability = val };
         }
     }
 }
