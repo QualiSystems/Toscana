@@ -22,7 +22,7 @@ namespace Toscana.Engine
             {
                 var message = string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage).ToList());
 
-                throw new ToscaValidationException(message);
+                throw new ToscanaValidationException(message);
             }
         }
     }

@@ -579,7 +579,7 @@ node_types:
             Action action = () => ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
-            action.ShouldThrow<ToscaValidationException>().WithMessage("type is required on property");
+            action.ShouldThrow<ToscanaValidationException>().WithMessage("type is required on property");
         }
 
         [Test]

@@ -42,7 +42,7 @@ namespace Toscana
                 {
                     if (combinedTosca.NodeTypes.ContainsKey(nodeType.Key))
                     {
-                        throw new ToscaValidationException(string.Format("Node type {0} is duplicate", nodeType.Key));
+                        throw new ToscanaValidationException(string.Format("Node type {0} is duplicate", nodeType.Key));
                     }
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
@@ -59,11 +59,16 @@ namespace Toscana
                 {
                     if (!combinedTosca.NodeTypes.ContainsKey(baseNodeType))
                     {
-                        throw new ToscaValidationException(string.Format("Definition of Node Type {0} is missing", baseNodeType));
+                        throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing",
+                            baseNodeType));
                     }
 
                     foreach (var capability in combinedTosca.NodeTypes[baseNodeType].Capabilities)
                     {
+                        if (nodeType.Value.Capabilities.ContainsKey(capability.Key))
+                        {
+                            throw new ToscanaValidationException(string.Format("Duplicate capability definition of capability {0}", capability.Key));
+                        }
                         nodeType.Value.Capabilities.Add(capability.Key, capability.Value);
                     }
                 }

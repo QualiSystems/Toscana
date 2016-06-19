@@ -51,7 +51,7 @@ namespace Toscana.Tests.Domain
             Action action = () => toscaValidator.Validate(toscaSimpleProfile);
 
             // Assert
-            action.ShouldThrow<ToscaValidationException>()
+            action.ShouldThrow<ToscanaValidationException>()
                 .WithMessage("tosca_definitions_version shall be tosca_simple_yaml_1_0");
         }
 

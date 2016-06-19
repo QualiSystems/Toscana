@@ -39,6 +39,35 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void Exception_Thrown_When_Duplicate_Capability_Appear_On_Base_And_Derived_Node_Type()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Capabilities.Add("capability1", "capability1_type");
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            derivedNodeType.Capabilities.Add("capability1", "capability1_type");
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile);
+
+            Action action = () => toscaSimpleProfileBuilder.Build();
+
+            // Assert
+            action.ShouldThrow<ToscanaValidationException>().WithMessage("Duplicate capability definition of capability capability1");
+        }
+
+        [Test]
         public void Exception_Thrown_When_Duplicate_Node_Types_Appear()
         {
             // Arrange
@@ -56,7 +85,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscaValidationException>().WithMessage("Node type duplicate_node is duplicate");
+            action.ShouldThrow<ToscanaValidationException>().WithMessage("Node type duplicate_node is duplicate");
         }
 
         [Test]
@@ -77,7 +106,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscaValidationException>().WithMessage("Definition of Node Type base_node is missing");
+            action.ShouldThrow<ToscanaValidationException>().WithMessage("Definition of Node Type base_node is missing");
         }
     }
 }
