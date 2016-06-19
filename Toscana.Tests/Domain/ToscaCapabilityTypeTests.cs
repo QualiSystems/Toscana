@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using Toscana.Domain;
 
 namespace Toscana.Tests.Domain
 {

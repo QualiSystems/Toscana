@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Toscana.Domain;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -7,12 +6,19 @@ namespace Toscana
     public interface IToscaSimpleProfileBuilder
     {
         IToscaSimpleProfileBuilder Append(ToscaSimpleProfile toscaSimpleProfile);
+        IToscaSimpleProfileBuilder Append(string toscaAsString);
         ToscaSimpleProfile Build();
     }
 
     public class ToscaSimpleProfileBuilder : IToscaSimpleProfileBuilder
     {
         private readonly List<ToscaSimpleProfile> toscaSimpleProfiles = new List<ToscaSimpleProfile>();
+
+        public IToscaSimpleProfileBuilder Append(string toscaAsString)
+        {
+            toscaSimpleProfiles.Add(ToscaSimpleProfile.Parse(toscaAsString));
+            return this;
+        }
 
         public IToscaSimpleProfileBuilder Append(ToscaSimpleProfile toscaSimpleProfile)
         {

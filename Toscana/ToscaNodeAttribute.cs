@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Toscana.Domain
+namespace Toscana
 {
     public class ToscaNodeAttribute
     {

@@ -1,7 +1,6 @@
 using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Toscana.Domain;
 using Toscana.Exceptions;
 
 namespace Toscana.Tests

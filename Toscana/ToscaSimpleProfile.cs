@@ -1,10 +1,9 @@
-﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Toscana.Common;
 using Toscana.Engine;
 
-namespace Toscana.Domain
+namespace Toscana
 {
     public class ToscaSimpleProfile
     {
@@ -29,32 +28,6 @@ namespace Toscana.Domain
         {
             var toscaSimpleProfileParser = Bootstrapper.GetToscaSimpleProfileParser();
             return toscaSimpleProfileParser.Parse(toscaAsString);
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public class RestrictedValues : ValidationAttribute
-    {
-        private readonly string[] validValues;
-
-        public RestrictedValues(string[] validValues)
-        {
-            this.validValues = validValues;
-        }
-
-        public RestrictedValues(string[] validValues, string errorMessage) : base(errorMessage)
-        {
-            this.validValues = validValues;
-        }
-
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            if (((string) value).EqualsAny(validValues))
-            {
-                return ValidationResult.Success;
-            }
-
-            return new ValidationResult(ErrorMessage, new[] {validationContext.MemberName});
         }
     }
 }

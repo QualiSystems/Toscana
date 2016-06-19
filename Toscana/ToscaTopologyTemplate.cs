@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Toscana.Domain
+namespace Toscana
 {
     public class ToscaTopologyTemplate
     {

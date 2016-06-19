@@ -1,6 +1,4 @@
-﻿using Toscana.Domain;
-
-namespace Toscana.Engine
+﻿namespace Toscana.Engine
 {
     public interface IToscaSimpleProfileParser
     {

@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using Toscana.Domain;
 using Toscana.Exceptions;
 
-namespace Toscana.Tests
+namespace Toscana.Tests.Engine
 {
     [TestFixture]
     public class ToscaSimpleProfileParserTests
@@ -514,7 +513,7 @@ topology_template:
           create:
             implementation: db_create.sh
             inputs:
-              # Copy DB file artifact to server’s staging area
+              # Copy DB file artifact to server�s staging area
               db_data: { get_artifact: [ SELF, db_content ] }
  
     mysql:

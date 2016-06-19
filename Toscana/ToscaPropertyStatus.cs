@@ -1,4 +1,4 @@
-﻿namespace Toscana.Domain
+﻿namespace Toscana
 {
     public enum ToscaPropertyStatus
     {

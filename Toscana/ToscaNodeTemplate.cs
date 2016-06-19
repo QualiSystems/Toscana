@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 // ReSharper disable All
 
-namespace Toscana.Domain
+namespace Toscana
 {
     public class ToscaNodeTemplate
     {

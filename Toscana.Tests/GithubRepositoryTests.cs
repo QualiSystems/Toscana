@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using NUnit.Framework;
 using Toscana.Common;
-using Toscana.Domain;
 
 namespace Toscana.Tests
 {

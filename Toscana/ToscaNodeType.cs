@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Toscana.Domain
+namespace Toscana
 {
     public class ToscaNodeType : ToscaObject
     {

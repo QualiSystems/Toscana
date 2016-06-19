@@ -1,4 +1,4 @@
-﻿namespace Toscana.Domain
+﻿namespace Toscana
 {
     public class ToscaAttributeAssignment
     {

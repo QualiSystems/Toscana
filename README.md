@@ -18,5 +18,33 @@ standard for all programming languages". Like XML, it allows to represent about 
 platform-independent format. Unlike XML, it is "human friendly", which means that it is easy for a human to read 
 or produce a valid YAML document.
 
+## Getting started
+Install Toscana nuget package from from Manage Nuget packages
+
+Or from Nuget Package Manager Console: 
+
+```Batch
+> install-package Toscana
+```
+
+## Example
+
+### Parse TOSCA Simple Profile
+
+```C#
+ToscaSimpleProfile toscanSimpleProfile = new ToscaSimpleProfile.Parse(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+description: Template for deploying a single server with predefined properties.")
+```
+
+### Combine TOSCA Simple Profiles
+
+```C#
+ToscaSimpleProfileBuilder builder = new ToscaSimpleProfileBuilder();
+builder.Append(toscanSimpleProfile1);
+builder.Append(toscanSimpleProfile2);
+ToscaSimpleProfile combinedTosca = builder.Build();
+
+```
 ### License
 The software is released under [Apache License v2.0](LICENSE). 
