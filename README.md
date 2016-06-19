@@ -1,5 +1,8 @@
 # Toscana
 
+[![build status](http://teamcity.codebetter.com/app/rest/builds/buildType:id:Toscana/statusIcon)](http://teamcity.codebetter.com/viewType.html?buildTypeId=Toscana&guest=1) [![code coverage](https://img.shields.io/teamcity/coverage/Toscana.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=Toscana&guest=1) [![NuGet version](https://badge.fury.io/nu/Toscana.svg)](https://badge.fury.io/nu/Toscana) 
+
+
 ## What is Toscana?
 Toscana, which stands for TOSCA Net Analyzer, is a .NET library for validating, parsing and analyzing TOSCA YAML format.
 
