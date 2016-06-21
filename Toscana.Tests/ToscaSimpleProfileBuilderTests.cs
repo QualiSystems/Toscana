@@ -38,6 +38,57 @@ namespace Toscana.Tests
             combinedNodeType.Capabilities["base_capability1"].Type.Should().Be("base_capability1_type");
         }
 
+        /// <summary>
+        /// node_types:
+        ///      Root
+        ///     /    
+        ///    A     
+        ///   / \
+        ///  B   C
+        /// </summary>
+        [Test]
+        public void Node_Types_Capabilities_Should_Be_Successfully_Parsed_With_Several_Leaves_With_Same_Base_Node_Types()
+        {
+            // Arrange
+            var rootNode = new ToscaNodeType();
+            rootNode.Capabilities.Add("feature", "feature");
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+            toscaSimpleProfile.NodeTypes.Add("root", rootNode);
+
+            var nodeTypeA = new ToscaNodeType { DerivedFrom = "root" };
+            toscaSimpleProfile.NodeTypes.Add("A", nodeTypeA);
+
+            var nodeTypeB = new ToscaNodeType { DerivedFrom = "A" };
+            toscaSimpleProfile.NodeTypes.Add("B", nodeTypeB);
+
+            var nodeTypeC = new ToscaNodeType { DerivedFrom = "A" };
+            toscaSimpleProfile.NodeTypes.Add("C", nodeTypeC);
+
+            // Act
+            var combinedToscaProfile = new ToscaSimpleProfileBuilder()
+                .Append(toscaSimpleProfile)
+                .Build();
+
+            // Assert
+            combinedToscaProfile.NodeTypes.Should().HaveCount(4);
+
+            var rootNodeType = combinedToscaProfile.NodeTypes["root"];
+            rootNodeType.Capabilities.Should().HaveCount(1);
+            rootNodeType.Capabilities["feature"].Type.Should().Be("feature");
+
+            var combinedNodeTypeA = combinedToscaProfile.NodeTypes["A"];
+            combinedNodeTypeA.Capabilities.Should().HaveCount(1);
+            combinedNodeTypeA.Capabilities["feature"].Type.Should().Be("feature");
+
+            var combinedNodeTypeB = combinedToscaProfile.NodeTypes["B"];
+            combinedNodeTypeB.Capabilities.Should().HaveCount(1);
+            combinedNodeTypeB.Capabilities["feature"].Type.Should().Be("feature");
+
+            var combinedNodeTypeC = combinedToscaProfile.NodeTypes["C"];
+            combinedNodeTypeC.Capabilities.Should().HaveCount(1);
+            combinedNodeTypeC.Capabilities["feature"].Type.Should().Be("feature");
+        }
+
         [Test]
         public void Exception_Thrown_When_Duplicate_Capability_Appear_On_Base_And_Derived_Node_Type()
         {

@@ -10,9 +10,9 @@ namespace Toscana
 
         public string Description { get; set; }
 
-        public Dictionary<string, ToscaNodeProperty> Properties { get; set; }
+        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
 
-        public Dictionary<string, ToscaNodeAttribute> Attributes { get; set; }
+        public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
 
         public static implicit operator ToscaCapability(string val)
         {

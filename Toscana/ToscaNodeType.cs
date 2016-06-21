@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using QuickGraph;
 
 namespace Toscana
 {
@@ -7,8 +8,8 @@ namespace Toscana
     {
         public ToscaNodeType()
         {
-            Properties = new Dictionary<string, ToscaNodeProperty>();
-            Attributes = new Dictionary<string, ToscaNodeAttribute>();
+            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+            Attributes = new Dictionary<string, ToscaAttributeDefinition>();
             Requirements = new List<Dictionary<string, ToscaRequirement>>();
             Capabilities = new Dictionary<string, ToscaCapability>();
             Interfaces = new Dictionary<string, Dictionary<string, object>>();
@@ -17,8 +18,8 @@ namespace Toscana
 
         public Version Version { get; set; }
         public string Description { get; set; }
-        public Dictionary<string, ToscaNodeProperty> Properties { get; set; }
-        public Dictionary<string, ToscaNodeAttribute> Attributes { get; set; }
+        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
         public List<Dictionary<string, ToscaRequirement>> Requirements { get; set; }
         public Dictionary<string, ToscaCapability> Capabilities { get; set; }
         public Dictionary<string, Dictionary<string, object>> Interfaces { get; set; }

@@ -23,6 +23,8 @@ namespace Toscana
         public ToscaTopologyTemplate TopologyTemplate { get; set; }
         public Dictionary<string, ToscaNodeType> NodeTypes { get; set; }
         public List<Dictionary<string, ToscaImport>> Imports { get; set; }
+        public Dictionary<string, object> Metadata { get; set; }
+        public Dictionary<string, ToscaRelationshipType> RelationshipTypes { get; set; }
 
         public static ToscaSimpleProfile Parse(string toscaAsString)
         {

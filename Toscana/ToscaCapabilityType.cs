@@ -6,15 +6,15 @@ namespace Toscana
     {
         public ToscaCapabilityType()
         {
-            Attributes = new Dictionary<string, ToscaNodeAttribute>();
-            Properties = new Dictionary<string, ToscaNodeProperty>();
+            Attributes = new Dictionary<string, ToscaAttributeDefinition>();
+            Properties = new Dictionary<string, ToscaPropertyDefinition>();
             ValidSourceTypes = new string[0];
         }
 
         public string Version { get; set; }
         public string Description { get; set; }
-        public Dictionary<string, ToscaNodeProperty> Properties { get; set; }
-        public Dictionary<string, ToscaNodeAttribute> Attributes { get; set; }
+        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
         public string[] ValidSourceTypes { get; set; }
     }
 }

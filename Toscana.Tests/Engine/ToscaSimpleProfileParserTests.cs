@@ -674,7 +674,6 @@ imports:
         }
 
         [Test]
-        //[Ignore("imports should be fixed")]
         public void Analyze_Imports_Single_Line_Grammar()
         {
             const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
@@ -694,6 +693,46 @@ imports:
             tosca.Imports.Single().Should().HaveCount(1);
             tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
             tosca.Imports.Single().Single().Value.File.Should().Be("path1/path2/some_defs.yaml");
+        }
+
+        [Test]
+        public void Metadata_Should_Be_Successfully_Parsed()
+        {
+            const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+metadata:
+  template_name: nutshell
+  template_author: Anonymous
+  template_version: 1.0";
+
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.Metadata.Should().HaveCount(3);
+            tosca.Metadata["template_name"].Should().Be("nutshell");
+            tosca.Metadata["template_author"].Should().Be("Anonymous");
+            tosca.Metadata["template_version"].Should().Be("1.0");
+        }
+
+        [Test]
+        public void Relationship_Types_Should_Be_Successfully_Parsed()
+        {
+            const string toscaString = @"tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+relationship_types:
+  tosca.relationships.DependsOn:
+    derived_from: tosca.relationships.Root
+    valid_target_types: [ tosca.capabilities.Node ]";
+
+            var tosca = ToscaSimpleProfile.Parse(toscaString);
+
+            // Assert
+            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            tosca.RelationshipTypes.Should().HaveCount(1);
+            var relationshipType = tosca.RelationshipTypes["tosca.relationships.DependsOn"];
+            relationshipType.DerivedFrom.Should().Be("tosca.relationships.Root");
+            relationshipType.ValidTargetTypes.Should().BeEquivalentTo("tosca.capabilities.Node");
         }
     }
 }

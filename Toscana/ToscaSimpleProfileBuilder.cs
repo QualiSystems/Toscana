@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Toscana.Engine;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -47,32 +49,40 @@ namespace Toscana
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
             }
+            foreach (var nodeType in combinedTosca.NodeTypes)
+            {
+                var derivedFrom = nodeType.Value.DerivedFrom;
+                if (!nodeType.Value.IsRoot() && !combinedTosca.NodeTypes.ContainsKey(derivedFrom))
+                {
+                    throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing", derivedFrom));
+                }
+            }
         }
 
         private static void BuildNodeTypeHierarchy(ToscaSimpleProfile combinedTosca)
         {
-            foreach (var nodeType in combinedTosca.NodeTypes)
+            var nodeTypeWalker = new NodeTypeWalker(combinedTosca, nodeType =>
             {
-                for (var baseNodeType = nodeType.Value.DerivedFrom;
-                    !string.IsNullOrEmpty(baseNodeType);
-                    baseNodeType = combinedTosca.NodeTypes[baseNodeType].DerivedFrom)
+                if (!combinedTosca.NodeTypes.ContainsKey(nodeType))
                 {
-                    if (!combinedTosca.NodeTypes.ContainsKey(baseNodeType))
-                    {
-                        throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing",
-                            baseNodeType));
-                    }
-
-                    foreach (var capability in combinedTosca.NodeTypes[baseNodeType].Capabilities)
-                    {
-                        if (nodeType.Value.Capabilities.ContainsKey(capability.Key))
-                        {
-                            throw new ToscanaValidationException(string.Format("Duplicate capability definition of capability {0}", capability.Key));
-                        }
-                        nodeType.Value.Capabilities.Add(capability.Key, capability.Value);
-                    }
+                    throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing",
+                        nodeType));
                 }
-            }
+
+                var toscaNodeType = combinedTosca.NodeTypes[nodeType];
+                if (toscaNodeType.IsRoot()) return;
+
+                var parentNode = combinedTosca.NodeTypes[toscaNodeType.DerivedFrom];
+                foreach (var capability in parentNode.Capabilities)
+                {
+                    if (toscaNodeType.Capabilities.ContainsKey(capability.Key))
+                    {
+                        throw new ToscanaValidationException(string.Format("Duplicate capability definition of capability {0}", capability.Key));
+                    }
+                    toscaNodeType.Capabilities.Add(capability.Key, capability.Value);
+                }
+            });
+            nodeTypeWalker.Walk(combinedTosca.NodeTypes.First(a=>a.Value.IsRoot()).Key);
         }
     }
 }

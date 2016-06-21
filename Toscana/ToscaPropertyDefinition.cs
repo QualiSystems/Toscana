@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Toscana
 {
-    public class ToscaNodeProperty
+    public class ToscaPropertyDefinition
     {
-        public ToscaNodeProperty()
+        public ToscaPropertyDefinition()
         {
             Required = true;
         }

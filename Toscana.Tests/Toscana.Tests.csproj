@@ -66,6 +66,7 @@
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
     <Compile Include="Engine\ToscaSimpleProfileParserTests.cs" />
+    <Compile Include="FileContent.cs" />
     <Compile Include="GithubRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempFile.cs" />

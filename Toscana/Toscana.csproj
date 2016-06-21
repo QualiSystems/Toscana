@@ -48,6 +48,22 @@
       <HintPath>..\packages\DataAnnotationsValidator.1.0.0.1\lib\net40\DataAnnotationsValidator.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="QuickGraph, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Data, Version=3.6.61114.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz, Version=3.6.61114.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Graphviz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QuickGraph.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraph.3.6.61119.7\lib\net4\QuickGraph.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -64,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Common\RestrictedValues.cs" />
     <Compile Include="Common\StringExtensions.cs" />
+    <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
     <Compile Include="Engine\ToscaSimpleProfileParser.cs" />
     <Compile Include="Exceptions\ToscanaBuildException.cs" />
@@ -78,12 +95,14 @@
     <Compile Include="ToscaCapabilityAssignment.cs" />
     <Compile Include="ToscaCapabilityType.cs" />
     <Compile Include="ToscaImport.cs" />
-    <Compile Include="ToscaNodeAttribute.cs" />
-    <Compile Include="ToscaNodeProperty.cs" />
+    <Compile Include="ToscaAttributeDefinition.cs" />
+    <Compile Include="ToscaInterfaceDefinition.cs" />
+    <Compile Include="ToscaPropertyDefinition.cs" />
     <Compile Include="ToscaNodeTemplate.cs" />
     <Compile Include="ToscaNodeType.cs" />
     <Compile Include="ToscaObject.cs" />
     <Compile Include="ToscaPropertyStatus.cs" />
+    <Compile Include="ToscaRelationshipType.cs" />
     <Compile Include="ToscaRequirement.cs" />
     <Compile Include="ToscaRequirementAssignment.cs" />
     <Compile Include="ToscaSimpleProfile.cs" />

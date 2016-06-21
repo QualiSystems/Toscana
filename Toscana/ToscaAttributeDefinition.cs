@@ -2,9 +2,9 @@
 
 namespace Toscana
 {
-    public class ToscaNodeAttribute
+    public class ToscaAttributeDefinition
     {
-        public ToscaNodeAttribute()
+        public ToscaAttributeDefinition()
         {
             Status = ToscaPropertyStatus.supported;
         }

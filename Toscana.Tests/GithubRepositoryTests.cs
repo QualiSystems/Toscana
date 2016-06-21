@@ -11,7 +11,7 @@ namespace Toscana.Tests
 {
     public class GithubRepositoryTests
     {
-        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/develop.zip";
+        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/master.zip";
 
         private class GithubRepositoryTestCasesFactory
         {
@@ -28,7 +28,7 @@ namespace Toscana.Tests
                 return GetYamlFilesContentFromUrl(repositoryUrl);
             }
 
-            public static IEnumerable<string> GetYamlFilesContentFromUrl(string repositoryUrl)
+            public static List<FileContent> GetYamlFilesContentFromUrl(string repositoryUrl)
             {
                 using (var tempFile = new TempFile(Path.GetTempPath()))
                 using (var client = new WebClient())
@@ -45,26 +45,66 @@ namespace Toscana.Tests
                 }
             }
 
-            private static string ReadFileContent(ZipArchiveEntry archiveEntry)
+            private static FileContent ReadFileContent(ZipArchiveEntry archiveEntry)
             {
                 using (var streamReader = new StreamReader(archiveEntry.Open()))
                 {
-                    return streamReader.ReadToEnd();
+                    return new FileContent(archiveEntry.Name, streamReader.ReadToEnd());
+                }
+            }
+        }
+
+        private class LocalDirectoryTestCasesFactory
+        {
+            public static IEnumerable TestCases
+            {
+                get
+                {
+                    return GetYamlFilesFromLocalDirectory(@"C:\work\github\tosca");
+                }
+            }
+
+            private static IEnumerable GetYamlFilesFromLocalDirectory(string directoryPath)
+            {
+                return GetYamlFilesContentFromDirectory(directoryPath);
+            }
+
+            public static List<TestCaseData> GetYamlFilesContentFromDirectory(string directoryPath)
+            {
+                return Directory.EnumerateFiles(directoryPath).Where(a =>
+                    Path.GetExtension(a).EqualsAny(".yaml", ".yml"))
+                    .Select(ReadFileContent)
+                    .Select(_=>new TestCaseData(_))
+                    .ToList();
+            }
+
+            private static FileContent ReadFileContent(string filePath)
+            {
+                using (var streamReader = File.OpenText(filePath))
+                {
+                    return new FileContent(filePath, streamReader.ReadToEnd());
                 }
             }
         }
 
         [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
-        public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(string toscaFileContent)
+        public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(FileContent fileContent)
         {
-            ToscaSimpleProfile.Parse(toscaFileContent);
+            ToscaSimpleProfile.Parse(fileContent.Content);
+        }
+
+        [Test, TestCaseSource(typeof(LocalDirectoryTestCasesFactory), "TestCases")]
+        public void Validate_Tosca_Files_In_Local_Directory(FileContent fileContent)
+        {
+            ToscaSimpleProfile.Parse(fileContent.Content);
         }
 
         [Test]
+        [Ignore]
         public void Build_Combined_Tosca_Simple_Profile_From_Github_Repo()
         {
             var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip);
-            var toscaSimpleProfiles = filesContent.Select(ToscaSimpleProfile.Parse).ToArray();
+            var toscaSimpleProfiles = filesContent.Select(a=>ToscaSimpleProfile.Parse(a.Content)).ToArray();
             var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
             foreach (var toscaSimpleProfile in toscaSimpleProfiles)
             {
