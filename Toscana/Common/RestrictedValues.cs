@@ -9,11 +9,18 @@ namespace Toscana.Common
         private readonly string[] validValues;
 
         public RestrictedValues(string[] validValues)
+            : this(validValues, "Specified value is not one of the valid values: " + string.Join(", ", validValues))
         {
             this.validValues = validValues;
         }
 
-        public RestrictedValues(string[] validValues, string errorMessage) : base(errorMessage)
+        public RestrictedValues(string[] validValues, string errorMessage) : 
+            this(validValues, () => errorMessage)
+        {
+        }
+
+        protected RestrictedValues(string[] validValues, Func<string> errorMessageAccessor)
+            : base(errorMessageAccessor)
         {
             this.validValues = validValues;
         }
