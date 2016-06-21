@@ -68,12 +68,6 @@ namespace Toscana
         {
             var nodeTypeWalker = new NodeTypeWalker(combinedTosca, nodeTypeName =>
             {
-                if (!combinedTosca.NodeTypes.ContainsKey(nodeTypeName))
-                {
-                    throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing",
-                        nodeTypeName));
-                }
-
                 var nodeType = combinedTosca.NodeTypes[nodeTypeName];
                 if (nodeType.IsRoot()) return;
 

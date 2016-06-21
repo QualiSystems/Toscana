@@ -142,6 +142,36 @@ namespace Toscana.Tests
             combinedNodeType.Interfaces["interface1"]["method2"].Should().Be("code");
         }
 
+        [Test]
+        public void Exception_Thrown_When_Duplicate_Interface_Appears_On_Base_And_Derived_Node_Type()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Interfaces.Add("interface1", new Dictionary<string, object>());
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            derivedNodeType.Interfaces.Add("interface1", new Dictionary<string, object>());
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile);
+
+            Action action = () => toscaSimpleProfileBuilder.Build();
+
+            // Assert
+            action.ShouldThrow<ToscanaValidationException>()
+                .WithMessage("Duplicate interface definition of interface interface1");
+        }
+
+
         /// <summary>
         ///     node_types:
         ///     Root
@@ -227,6 +257,37 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void Exception_Thrown_When_Duplicate_Property_Appears_On_Base_And_Derived_Node_Type()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Properties.Add("property1", new ToscaPropertyDefinition { Type = "string"});
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            derivedNodeType.Properties.Add("property1", new ToscaPropertyDefinition() { Type = "string" });
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile);
+
+            Action action = () => toscaSimpleProfileBuilder.Build();
+
+            // Assert
+            action.ShouldThrow<ToscanaValidationException>()
+                .WithMessage("Duplicate property definition of property property1");
+        }
+
+
+        [Test]
         public void Requirements_Of_Base_And_Derived_Node_Types_Are_Merged()
         {
             // Arrange
@@ -265,6 +326,35 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void Exception_Thrown_When_Duplicate_Requirement_Appears_On_Base_And_Derived_Node_Type()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Requirements.Add(new Dictionary<string, ToscaRequirement>{{"requirement1", new ToscaRequirement()}});
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            nodeType.Requirements.Add(new Dictionary<string, ToscaRequirement> { { "requirement1", new ToscaRequirement() } });
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile);
+
+            Action action = () => toscaSimpleProfileBuilder.Build();
+
+            // Assert
+            action.ShouldThrow<ToscanaValidationException>()
+                .WithMessage("Duplicate requirement definition of requirement requirement1");
+        }
+
+        [Test]
         public void Attributes_Of_Base_And_Derived_Node_Types_Are_Merged()
         {
             // Arrange
@@ -292,6 +382,35 @@ namespace Toscana.Tests
             combinedNodeType.Attributes.Should().HaveCount(2);
             combinedNodeType.Attributes["base_attribute1"].Type.Should().Be("string");
             combinedNodeType.Attributes["attribute1"].Type.Should().Be("int");
+        }
+
+        [Test]
+        public void Exception_Thrown_When_Duplicate_Attribute_Appears_On_Base_And_Derived_Node_Type()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Attributes.Add("attribute1", new ToscaAttributeDefinition { Type = "string" });
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            derivedNodeType.Attributes.Add("attribute1", new ToscaAttributeDefinition { Type = "string" });
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile);
+
+            Action action = () => toscaSimpleProfileBuilder.Build();
+
+            // Assert
+            action.ShouldThrow<ToscanaValidationException>()
+                .WithMessage("Duplicate attribute definition of attribute attribute1");
         }
 
         [Test]
