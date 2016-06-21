@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Exceptions;
@@ -66,6 +67,36 @@ namespace Toscana.Tests
             combinedNodeType.Properties.Should().HaveCount(2);
             combinedNodeType.Properties["base_property1"].Type.Should().Be("string");
             combinedNodeType.Properties["property1"].Type.Should().Be("int");
+        }
+
+        [Test]
+        public void Interfaces_Of_Base_And_Derived_Node_Types_Are_Merged()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Interfaces.Add("base_interface1", new Dictionary<string, object> { { "method1", "code" } });
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            derivedNodeType.Interfaces.Add("interface1", new Dictionary<string, object>{{"method2", "code"}});
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var combinedToscaProfile = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile)
+                .Build();
+
+            // Assert
+            var combinedNodeType = combinedToscaProfile.NodeTypes["node1"];
+            combinedNodeType.Interfaces.Should().HaveCount(2);
+            combinedNodeType.Interfaces["base_interface1"]["method1"].Should().Be("code");
+            combinedNodeType.Interfaces["interface1"]["method2"].Should().Be("code");
         }
 
         /// <summary>
