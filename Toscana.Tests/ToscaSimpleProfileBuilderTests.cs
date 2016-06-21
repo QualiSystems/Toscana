@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Exceptions;
@@ -97,6 +98,36 @@ namespace Toscana.Tests
             combinedNodeType.Interfaces.Should().HaveCount(2);
             combinedNodeType.Interfaces["base_interface1"]["method1"].Should().Be("code");
             combinedNodeType.Interfaces["interface1"]["method2"].Should().Be("code");
+        }
+
+        [Test]
+        public void Requirements_Of_Base_And_Derived_Node_Types_Are_Merged()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Requirements.Add(new Dictionary<string, ToscaRequirement> { { "base_requirement1", new ToscaRequirement {Capability = "attachment1"} } });
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            nodeType.Requirements.Add(new Dictionary<string, ToscaRequirement> { { "requirement1", new ToscaRequirement { Capability = "attachment2" } } });
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var combinedToscaProfile = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile)
+                .Build();
+
+            // Assert
+            var combinedNodeType = combinedToscaProfile.NodeTypes["node1"];
+            combinedNodeType.Requirements.Should().HaveCount(2);
+            combinedNodeType.Requirements.Single(r=>r.ContainsKey("base_requirement1"))["base_requirement1"].Capability.Should().Be("attachment1");
+            combinedNodeType.Requirements.Single(r => r.ContainsKey("requirement1"))["requirement1"].Capability.Should().Be("attachment2");
         }
 
         /// <summary>

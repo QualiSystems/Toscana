@@ -76,6 +76,7 @@ namespace Toscana
                 MergeCapabilities(parentNode, nodeType);
                 MergeProperties(parentNode, nodeType);
                 MergeInterfaces(parentNode, nodeType);
+                MergeRequirements(parentNode, nodeType);
             });
             nodeTypeWalker.Walk(combinedTosca.NodeTypes.First(a=>a.Value.IsRoot()).Key);
         }
@@ -103,6 +104,22 @@ namespace Toscana
                         toscaInterface.Key));
                 }
                 toscaNodeType.Interfaces.Add(toscaInterface.Key, toscaInterface.Value);
+            }
+        }
+
+        private static void MergeRequirements(ToscaNodeType parentNode, ToscaNodeType toscaNodeType)
+        {
+            foreach (var requirements in parentNode.Requirements)
+            {
+                foreach (var requirement in requirements)
+                {
+                    if (toscaNodeType.Requirements.Any(r=>r.ContainsKey(requirement.Key)))
+                    {
+                        throw new ToscanaValidationException(string.Format("Duplicate requirement definition of requirement {0}",
+                            requirement.Key));
+                    }
+                    toscaNodeType.Requirements.Add(new Dictionary<string, ToscaRequirement>{{requirement.Key, requirement.Value}});
+                }
             }
         }
 
