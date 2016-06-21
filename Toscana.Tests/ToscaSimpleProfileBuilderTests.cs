@@ -38,6 +38,36 @@ namespace Toscana.Tests
             combinedNodeType.Capabilities["base_capability1"].Type.Should().Be("base_capability1_type");
         }
 
+        [Test]
+        public void Properties_Of_Base_And_Derived_Node_Types_Are_Merged()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Properties.Add("base_property1", new ToscaPropertyDefinition {Type = "string"});
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            derivedNodeType.Properties.Add("property1", new ToscaPropertyDefinition { Type = "int"});
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var combinedToscaProfile = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile)
+                .Build();
+
+            // Assert
+            var combinedNodeType = combinedToscaProfile.NodeTypes["node1"];
+            combinedNodeType.Properties.Should().HaveCount(2);
+            combinedNodeType.Properties["base_property1"].Type.Should().Be("string");
+            combinedNodeType.Properties["property1"].Type.Should().Be("int");
+        }
+
         /// <summary>
         /// node_types:
         ///      Root

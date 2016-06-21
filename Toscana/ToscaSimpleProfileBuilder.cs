@@ -61,28 +61,48 @@ namespace Toscana
 
         private static void BuildNodeTypeHierarchy(ToscaSimpleProfile combinedTosca)
         {
-            var nodeTypeWalker = new NodeTypeWalker(combinedTosca, nodeType =>
+            var nodeTypeWalker = new NodeTypeWalker(combinedTosca, nodeTypeName =>
             {
-                if (!combinedTosca.NodeTypes.ContainsKey(nodeType))
+                if (!combinedTosca.NodeTypes.ContainsKey(nodeTypeName))
                 {
                     throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing",
-                        nodeType));
+                        nodeTypeName));
                 }
 
-                var toscaNodeType = combinedTosca.NodeTypes[nodeType];
-                if (toscaNodeType.IsRoot()) return;
+                var nodeType = combinedTosca.NodeTypes[nodeTypeName];
+                if (nodeType.IsRoot()) return;
 
-                var parentNode = combinedTosca.NodeTypes[toscaNodeType.DerivedFrom];
-                foreach (var capability in parentNode.Capabilities)
-                {
-                    if (toscaNodeType.Capabilities.ContainsKey(capability.Key))
-                    {
-                        throw new ToscanaValidationException(string.Format("Duplicate capability definition of capability {0}", capability.Key));
-                    }
-                    toscaNodeType.Capabilities.Add(capability.Key, capability.Value);
-                }
+                var parentNode = combinedTosca.NodeTypes[nodeType.DerivedFrom];
+                MergeCapabilities(parentNode, nodeType);
+                MergeProperties(parentNode, nodeType);
             });
             nodeTypeWalker.Walk(combinedTosca.NodeTypes.First(a=>a.Value.IsRoot()).Key);
+        }
+
+        private static void MergeProperties(ToscaNodeType parentNode, ToscaNodeType toscaNodeType)
+        {
+            foreach (var property in parentNode.Properties)
+            {
+                if (toscaNodeType.Properties.ContainsKey(property.Key))
+                {
+                    throw new ToscanaValidationException(string.Format("Duplicate property definition of property {0}",
+                        property.Key));
+                }
+                toscaNodeType.Properties.Add(property.Key, property.Value);
+            }
+        }
+
+        private static void MergeCapabilities(ToscaNodeType parentNode, ToscaNodeType toscaNodeType)
+        {
+            foreach (var capability in parentNode.Capabilities)
+            {
+                if (toscaNodeType.Capabilities.ContainsKey(capability.Key))
+                {
+                    throw new ToscanaValidationException(string.Format("Duplicate capability definition of capability {0}",
+                        capability.Key));
+                }
+                toscaNodeType.Capabilities.Add(capability.Key, capability.Value);
+            }
         }
     }
 }
