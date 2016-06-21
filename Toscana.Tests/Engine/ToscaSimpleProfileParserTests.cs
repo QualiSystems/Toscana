@@ -734,5 +734,43 @@ relationship_types:
             relationshipType.DerivedFrom.Should().Be("tosca.relationships.Root");
             relationshipType.ValidTargetTypes.Should().BeEquivalentTo("tosca.capabilities.Node");
         }
+
+        [Test]
+        public void Capability_With_Property_Assignment_Should_Be_Parsed()
+        {
+            var toscaSimpleProfile = ToscaSimpleProfile.Parse(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+topology_template:
+    node_templates:
+      some_node_template:
+        type: server_node
+        capabilities:
+          some_capability:
+            properties:
+              limit: 100");
+
+            toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
+                .Properties["limit"].Should().Be("100");
+        }
+
+        [Test]
+        public void Capability_With_Attribute_Assignment_Should_Be_Parsed()
+        {
+            var toscaSimpleProfile = ToscaSimpleProfile.Parse(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+topology_template:
+    node_templates:
+      some_node_template:
+        type: server_node
+        capabilities:
+          some_capability:
+            attributes:
+              limit: 100");
+
+            toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
+                .Attributes["limit"].Value.Should().Be("100");
+        }
     }
 }

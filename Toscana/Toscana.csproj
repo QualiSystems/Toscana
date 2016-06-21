@@ -93,6 +93,7 @@
     <Compile Include="ToscaCapability.cs" />
     <Compile Include="ToscaCapabilityAssignment.cs" />
     <Compile Include="ToscaCapabilityType.cs" />
+    <Compile Include="ToscaDefaultNodeTypes.cs" />
     <Compile Include="ToscaImport.cs" />
     <Compile Include="ToscaAttributeDefinition.cs" />
     <Compile Include="ToscaInterfaceDefinition.cs" />

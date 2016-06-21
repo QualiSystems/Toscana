@@ -174,7 +174,10 @@ namespace Toscana.Tests
                 .Build();
 
             // Assert
-            combinedToscaProfile.NodeTypes.Should().HaveCount(4);
+            combinedToscaProfile.NodeTypes.Should().HaveCount(5);
+
+            var toscaRootNode = combinedToscaProfile.NodeTypes["tosca.nodes.Root"];
+            toscaRootNode.Attributes.Should().HaveCount(3);
 
             var rootNodeType = combinedToscaProfile.NodeTypes["root"];
             rootNodeType.Capabilities.Should().HaveCount(1);
@@ -259,6 +262,53 @@ namespace Toscana.Tests
                 .Capability.Should().Be("attachment1");
             combinedNodeType.Requirements.Single(r => r.ContainsKey("requirement1"))["requirement1"].Capability.Should()
                 .Be("attachment2");
+        }
+
+        [Test]
+        public void Attributes_Of_Base_And_Derived_Node_Types_Are_Merged()
+        {
+            // Arrange
+            var nodeType = new ToscaNodeType();
+            nodeType.Attributes.Add("base_attribute1", new ToscaAttributeDefinition { Type = "string" });
+            var baseProfile = new ToscaSimpleProfile();
+            baseProfile.NodeTypes.Add("base_node", nodeType);
+
+            var derivedNodeType = new ToscaNodeType
+            {
+                DerivedFrom = "base_node"
+            };
+            nodeType.Attributes.Add("attribute1", new ToscaAttributeDefinition { Type = "int" });
+            var derivedProfile = new ToscaSimpleProfile();
+            derivedProfile.NodeTypes.Add("node1", derivedNodeType);
+
+            // Act
+            var combinedToscaProfile = new ToscaSimpleProfileBuilder()
+                .Append(baseProfile)
+                .Append(derivedProfile)
+                .Build();
+
+            // Assert
+            var combinedNodeType = combinedToscaProfile.NodeTypes["node1"];
+            combinedNodeType.Attributes.Should().HaveCount(2);
+            combinedNodeType.Attributes["base_attribute1"].Type.Should().Be("string");
+            combinedNodeType.Attributes["attribute1"].Type.Should().Be("int");
+        }
+
+        [Test]
+        public void Node_Types_Derives_From_Tosca_Root_Node_Should_Be_Properly_Build()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+            toscaSimpleProfile.NodeTypes.Add("node1", new ToscaNodeType
+            {
+                DerivedFrom = "tosca.nodes.Root"
+            });
+
+            var verifiedProfile = new ToscaSimpleProfileBuilder().Append(toscaSimpleProfile).Build();
+
+            verifiedProfile.NodeTypes["node1"].Attributes.Should().HaveCount(3);
+            verifiedProfile.NodeTypes["node1"].Attributes["tosca_id"].Type.Should().Be("string");
+            verifiedProfile.NodeTypes["node1"].Attributes["tosca_name"].Type.Should().Be("string");
+            verifiedProfile.NodeTypes["node1"].Attributes["state"].Type.Should().Be("string");
         }
     }
 }

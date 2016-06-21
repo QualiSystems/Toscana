@@ -100,15 +100,13 @@ namespace Toscana.Tests
         }
 
         [Test]
-        [Ignore]
         public void Build_Combined_Tosca_Simple_Profile_From_Github_Repo()
         {
             var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip);
-            var toscaSimpleProfiles = filesContent.Select(a=>ToscaSimpleProfile.Parse(a.Content)).ToArray();
             var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
-            foreach (var toscaSimpleProfile in toscaSimpleProfiles)
+            foreach (var fileContent in filesContent)
             {
-                toscaSimpleProfileBuilder.Append(toscaSimpleProfile);
+                toscaSimpleProfileBuilder.Append(fileContent.Content);
             }
             toscaSimpleProfileBuilder.Build();
         }

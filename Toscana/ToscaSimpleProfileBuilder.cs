@@ -14,6 +14,7 @@ namespace Toscana
 
     public class ToscaSimpleProfileBuilder : IToscaSimpleProfileBuilder
     {
+        private const string ToscaNodesRoot = "tosca.nodes.Root";
         private readonly List<ToscaSimpleProfile> toscaSimpleProfiles = new List<ToscaSimpleProfile>();
 
         public IToscaSimpleProfileBuilder Append(string toscaAsString)
@@ -49,6 +50,10 @@ namespace Toscana
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
             }
+            if (!combinedTosca.NodeTypes.ContainsKey(ToscaNodesRoot))
+            {
+                combinedTosca.NodeTypes.Add(ToscaNodesRoot, ToscaDefaultNodeTypes.GetRootNode());
+            }
             foreach (var nodeType in combinedTosca.NodeTypes)
             {
                 var derivedFrom = nodeType.Value.DerivedFrom;
@@ -77,6 +82,7 @@ namespace Toscana
                 MergeProperties(parentNode, nodeType);
                 MergeInterfaces(parentNode, nodeType);
                 MergeRequirements(parentNode, nodeType);
+                MergeAttributes(parentNode, nodeType);
             });
             nodeTypeWalker.Walk(combinedTosca.NodeTypes.First(a=>a.Value.IsRoot()).Key);
         }
@@ -120,6 +126,19 @@ namespace Toscana
                     }
                     toscaNodeType.Requirements.Add(new Dictionary<string, ToscaRequirement>{{requirement.Key, requirement.Value}});
                 }
+            }
+        }
+
+        private static void MergeAttributes(ToscaNodeType parentNode, ToscaNodeType toscaNodeType)
+        {
+            foreach (var attribute in parentNode.Attributes)
+            {
+                if (toscaNodeType.Attributes.ContainsKey(attribute.Key))
+                {
+                    throw new ToscanaValidationException(string.Format("Duplicate attribute definition of attribute {0}",
+                        attribute.Key));
+                }
+                toscaNodeType.Attributes.Add(attribute.Key, attribute.Value);
             }
         }
 

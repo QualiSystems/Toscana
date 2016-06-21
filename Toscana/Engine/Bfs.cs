@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using QuickGraph;
 using QuickGraph.Algorithms.Search;
 
@@ -12,9 +13,9 @@ namespace Toscana.Engine
         public NodeTypeWalker(ToscaSimpleProfile toscaSimpleProfile, Action<string> action)
         {
             graph = new AdjacencyGraph<string, ToscaGraphEdge>();
+            graph.AddVertexRange(toscaSimpleProfile.NodeTypes.Select(_ => _.Key));
             foreach (var toscaNodeType in toscaSimpleProfile.NodeTypes)
             {
-                graph.AddVertex(toscaNodeType.Key);
                 if (!toscaNodeType.Value.IsRoot())
                 {
                     graph.AddEdge(new ToscaGraphEdge(toscaNodeType.Value.DerivedFrom, toscaNodeType.Key));
