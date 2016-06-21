@@ -14,10 +14,6 @@ namespace Toscana.Exceptions
         {
         }
 
-        public ToscanaBaseException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
         protected ToscanaBaseException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
