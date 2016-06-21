@@ -34,6 +34,11 @@ namespace Toscana
             var combinedTosca = new ToscaSimpleProfile();
             CombineNodeTypes(combinedTosca);
             BuildNodeTypeHierarchy(combinedTosca);
+            var firstProfile = toscaSimpleProfiles.FirstOrDefault();
+            if (firstProfile != null)
+            {
+                combinedTosca.Description = firstProfile.Description;
+            }
             return combinedTosca;
         }
 

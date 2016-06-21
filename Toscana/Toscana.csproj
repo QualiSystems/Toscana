@@ -67,6 +67,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Abstractions, Version=2.0.0.124, Culture=neutral, PublicKeyToken=d480b5b72fb413da, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Abstractions.2.0.0.124\lib\net40\System.IO.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -107,6 +111,7 @@
     <Compile Include="ToscaRequirementAssignment.cs" />
     <Compile Include="ToscaSimpleProfile.cs" />
     <Compile Include="ToscaSimpleProfileBuilder.cs" />
+    <Compile Include="ToscaSimpleProfileLoader.cs" />
     <Compile Include="ToscaTopologyInput.cs" />
     <Compile Include="ToscaTopologyOutput.cs" />
     <Compile Include="ToscaTopologyTemplate.cs" />
