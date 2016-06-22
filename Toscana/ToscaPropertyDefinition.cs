@@ -18,5 +18,6 @@ namespace Toscana
         public ToscaPropertyStatus Status { get; set; }
         public List<Dictionary<string, object>> Constraints { get; set; }
         public string EntrySchema { get; set; }
+        public List<string> Tags { get; set; }
     }
 }

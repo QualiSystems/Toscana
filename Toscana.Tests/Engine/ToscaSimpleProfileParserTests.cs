@@ -772,5 +772,23 @@ topology_template:
             toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
                 .Attributes["limit"].Value.Should().Be("100");
         }
+
+        [Test]
+        public void Property_With_Tags_Should_Be_Parsed()
+        {
+            var toscaAsString = @"tosca_definitions_version: tosca_simple_yaml_1_0
+node_types:
+  cloudshell.nodes.Shell:
+    derived_from: tosca.nodes.Root
+    properties:
+      vendor:
+        type: string
+        default: ''
+        tags: [configuration, setting, search_filter, abstract, bi_filter]";
+            var toscaSimpleProfile = ToscaSimpleProfile.Parse(toscaAsString);
+
+            toscaSimpleProfile.NodeTypes["cloudshell.nodes.Shell"].Properties["vendor"].Tags
+                .ShouldAllBeEquivalentTo(new [] {"configuration", "setting", "search_filter", "abstract", "bi_filter"});
+        }
     }
 }
