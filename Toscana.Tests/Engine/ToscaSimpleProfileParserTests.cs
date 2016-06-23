@@ -579,7 +579,7 @@ node_types:
             Action action = () => ToscaSimpleProfile.Parse(toscaString);
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>().WithMessage("type is required on property");
+            action.ShouldThrow<ToscaValidationException>().WithMessage("type is required on property");
         }
 
         [Test]
@@ -789,6 +789,17 @@ node_types:
 
             toscaSimpleProfile.NodeTypes["cloudshell.nodes.Shell"].Properties["vendor"].Tags
                 .ShouldAllBeEquivalentTo(new [] {"configuration", "setting", "search_filter", "abstract", "bi_filter"});
+        }
+
+        [Test]
+        public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
+        {
+            Action action = () => ToscaSimpleProfile.Parse(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+unsupported_something:");
+
+            action.ShouldThrow<ToscaParsingException>()
+                .WithMessage("(Line: 2, Col: 1, Idx: 2) - (Line: 2, Col: 1, Idx: 2): Exception during deserialization");
         }
     }
 }

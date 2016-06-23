@@ -86,9 +86,11 @@
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
+    <Compile Include="Engine\ToscaSimpleProfileLoader.cs" />
     <Compile Include="Engine\ToscaSimpleProfileParser.cs" />
-    <Compile Include="Exceptions\ToscanaValidationException.cs" />
-    <Compile Include="Exceptions\ToscanaBaseException.cs" />
+    <Compile Include="Exceptions\ToscaValidationException.cs" />
+    <Compile Include="Exceptions\ToscaBaseException.cs" />
+    <Compile Include="Exceptions\ToscaParsingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\ToscaDeserializer.cs" />
     <Compile Include="Engine\ToscaValidator.cs" />
@@ -111,7 +113,6 @@
     <Compile Include="ToscaRequirementAssignment.cs" />
     <Compile Include="ToscaSimpleProfile.cs" />
     <Compile Include="ToscaSimpleProfileBuilder.cs" />
-    <Compile Include="ToscaSimpleProfileLoader.cs" />
     <Compile Include="ToscaTopologyInput.cs" />
     <Compile Include="ToscaTopologyOutput.cs" />
     <Compile Include="ToscaTopologyTemplate.cs" />

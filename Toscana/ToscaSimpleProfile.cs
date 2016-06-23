@@ -31,5 +31,11 @@ namespace Toscana
             var toscaSimpleProfileParser = Bootstrapper.GetToscaSimpleProfileParser();
             return toscaSimpleProfileParser.Parse(toscaAsString);
         }
+
+        public static ToscaSimpleProfile Load(string filePath)
+        {
+            var toscaSimpleProfileLoader = Bootstrapper.GetToscaSimpleProfileLoader();
+            return toscaSimpleProfileLoader.Load(filePath);
+        }
     }
 }

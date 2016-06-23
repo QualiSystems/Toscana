@@ -15,6 +15,11 @@ namespace Toscana.Engine
     {
         public void Validate(ToscaSimpleProfile toscaSimpleProfile)
         {
+            if (toscaSimpleProfile == null)
+            {
+                throw new ToscaValidationException("Tosca is null or empty");
+            }
+
             var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
             
             var validationResults = new List<ValidationResult>();
@@ -22,7 +27,7 @@ namespace Toscana.Engine
             {
                 var message = string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage).ToList());
 
-                throw new ToscanaValidationException(message);
+                throw new ToscaValidationException(message);
             }
         }
     }

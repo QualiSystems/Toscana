@@ -75,15 +75,17 @@
     <Compile Include="Domain\ToscaTopologyInputTests.cs" />
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
+    <Compile Include="Engine\ToscaSimpleProfileLoaderTests.cs" />
     <Compile Include="Engine\ToscaSimpleProfileParserTests.cs" />
-    <Compile Include="Exceptions\ToscanaBaseExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscanaValidationExceptionTests.cs" />
+    <Compile Include="Engine\ToscaValidatorTests.cs" />
+    <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
+    <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />
+    <Compile Include="Exceptions\ToscaParsingExceptionTests.cs" />
     <Compile Include="FileContent.cs" />
     <Compile Include="GithubRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempFile.cs" />
     <Compile Include="ToscaSimpleProfileBuilderTests.cs" />
-    <Compile Include="ToscaSimpleProfileLoaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

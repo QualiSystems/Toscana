@@ -1,8 +1,9 @@
 ﻿using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Engine;
 
-namespace Toscana.Tests
+namespace Toscana.Tests.Engine
 {
     [TestFixture]
     public class ToscaSimpleProfileLoaderTests

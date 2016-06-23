@@ -50,7 +50,7 @@ namespace Toscana
                 {
                     if (combinedTosca.NodeTypes.ContainsKey(nodeType.Key))
                     {
-                        throw new ToscanaValidationException(string.Format("Node type {0} is duplicate", nodeType.Key));
+                        throw new ToscaValidationException(string.Format("Node type {0} is duplicate", nodeType.Key));
                     }
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
@@ -64,7 +64,7 @@ namespace Toscana
                 var derivedFrom = nodeType.Value.DerivedFrom;
                 if (!nodeType.Value.IsRoot() && !combinedTosca.NodeTypes.ContainsKey(derivedFrom))
                 {
-                    throw new ToscanaValidationException(string.Format("Definition of Node Type {0} is missing", derivedFrom));
+                    throw new ToscaValidationException(string.Format("Definition of Node Type {0} is missing", derivedFrom));
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace Toscana
             {
                 if (toscaNodeType.Properties.ContainsKey(property.Key))
                 {
-                    throw new ToscanaValidationException(string.Format("Duplicate property definition of property {0}",
+                    throw new ToscaValidationException(string.Format("Duplicate property definition of property {0}",
                         property.Key));
                 }
                 toscaNodeType.Properties.Add(property.Key, property.Value);
@@ -105,7 +105,7 @@ namespace Toscana
             {
                 if (toscaNodeType.Interfaces.ContainsKey(toscaInterface.Key))
                 {
-                    throw new ToscanaValidationException(string.Format("Duplicate interface definition of interface {0}",
+                    throw new ToscaValidationException(string.Format("Duplicate interface definition of interface {0}",
                         toscaInterface.Key));
                 }
                 toscaNodeType.Interfaces.Add(toscaInterface.Key, toscaInterface.Value);
@@ -120,7 +120,7 @@ namespace Toscana
                 {
                     if (toscaNodeType.Requirements.Any(r=>r.ContainsKey(requirement.Key)))
                     {
-                        throw new ToscanaValidationException(string.Format("Duplicate requirement definition of requirement {0}",
+                        throw new ToscaValidationException(string.Format("Duplicate requirement definition of requirement {0}",
                             requirement.Key));
                     }
                     toscaNodeType.Requirements.Add(new Dictionary<string, ToscaRequirement>{{requirement.Key, requirement.Value}});
@@ -134,7 +134,7 @@ namespace Toscana
             {
                 if (toscaNodeType.Attributes.ContainsKey(attribute.Key))
                 {
-                    throw new ToscanaValidationException(string.Format("Duplicate attribute definition of attribute {0}",
+                    throw new ToscaValidationException(string.Format("Duplicate attribute definition of attribute {0}",
                         attribute.Key));
                 }
                 toscaNodeType.Attributes.Add(attribute.Key, attribute.Value);
@@ -147,7 +147,7 @@ namespace Toscana
             {
                 if (toscaNodeType.Capabilities.ContainsKey(capability.Key))
                 {
-                    throw new ToscanaValidationException(string.Format("Duplicate capability definition of capability {0}",
+                    throw new ToscaValidationException(string.Format("Duplicate capability definition of capability {0}",
                         capability.Key));
                 }
                 toscaNodeType.Capabilities.Add(capability.Key, capability.Value);

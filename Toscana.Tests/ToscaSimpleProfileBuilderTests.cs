@@ -58,7 +58,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>().WithMessage("Definition of Node Type base_node is missing");
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Definition of Node Type base_node is missing");
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>()
+            action.ShouldThrow<ToscaValidationException>()
                 .WithMessage("Duplicate capability definition of capability capability1");
         }
 
@@ -109,7 +109,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>().WithMessage("Node type duplicate_node is duplicate");
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Node type duplicate_node is duplicate");
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>()
+            action.ShouldThrow<ToscaValidationException>()
                 .WithMessage("Duplicate interface definition of interface interface1");
         }
 
@@ -282,7 +282,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>()
+            action.ShouldThrow<ToscaValidationException>()
                 .WithMessage("Duplicate property definition of property property1");
         }
 
@@ -350,7 +350,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>()
+            action.ShouldThrow<ToscaValidationException>()
                 .WithMessage("Duplicate requirement definition of requirement requirement1");
         }
 
@@ -409,7 +409,7 @@ namespace Toscana.Tests
             Action action = () => toscaSimpleProfileBuilder.Build();
 
             // Assert
-            action.ShouldThrow<ToscanaValidationException>()
+            action.ShouldThrow<ToscaValidationException>()
                 .WithMessage("Duplicate attribute definition of attribute attribute1");
         }
 

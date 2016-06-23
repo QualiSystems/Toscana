@@ -5,12 +5,12 @@ using Toscana.Exceptions;
 namespace Toscana.Tests.Exceptions
 {
     [TestFixture]
-    public class ToscanaBaseExceptionTests
+    public class ToscaBaseExceptionTests
     {
         [Test]
         public void ToscanaBaseException_Should_Be_Binary_Serializable()
         {
-            var toscanaBaseException = new ToscanaBaseException();
+            var toscanaBaseException = new ToscaBaseException();
 
             toscanaBaseException.Should().BeBinarySerializable();
         }

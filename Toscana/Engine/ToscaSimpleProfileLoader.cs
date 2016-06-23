@@ -1,17 +1,12 @@
 ﻿using System.IO.Abstractions;
-using Toscana.Engine;
+using System.Linq;
 
-namespace Toscana
+namespace Toscana.Engine
 {
     public class ToscaSimpleProfileLoader
     {
         private readonly IFileSystem fileSystem;
         private readonly IToscaSimpleProfileParser toscaSimpleProfileParser;
-
-        public ToscaSimpleProfileLoader()
-            :this(new FileSystem())
-        {
-        }
 
         public ToscaSimpleProfileLoader(IFileSystem fileSystem)
             : this(fileSystem, Bootstrapper.GetToscaSimpleProfileParser())
@@ -39,12 +34,9 @@ namespace Toscana
             {
                 var toscaSimpleProfile = toscaSimpleProfileParser.Parse(streamReader.ReadToEnd());
                 toscaSimpleProfileBuilder.Append(toscaSimpleProfile);
-                foreach (var import in toscaSimpleProfile.Imports)
+                foreach (var importFile in toscaSimpleProfile.Imports.SelectMany(import => import.Values))
                 {
-                    foreach (var importFile in import.Values)
-                    {
-                        AppendFileToBuilder(toscaSimpleProfileBuilder, importFile.File);
-                    }
+                    AppendFileToBuilder(toscaSimpleProfileBuilder, importFile.File);
                 }
             }
         }

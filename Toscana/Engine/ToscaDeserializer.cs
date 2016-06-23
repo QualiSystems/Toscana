@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using Toscana.Exceptions;
+using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -22,7 +25,14 @@ namespace Toscana.Engine
         {
             using (var stringReader = new StringReader(tosca))
             {
-                return deserializer.Deserialize<ToscaSimpleProfile>(stringReader);
+                try
+                {
+                    return deserializer.Deserialize<ToscaSimpleProfile>(stringReader);
+                }
+                catch (YamlException yamlException)
+                {
+                    throw new ToscaParsingException(yamlException.Message);
+                }
             }
         }
     }

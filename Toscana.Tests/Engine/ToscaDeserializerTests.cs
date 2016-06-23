@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
+using Toscana.Exceptions;
 
 namespace Toscana.Tests.Engine
 {
@@ -48,6 +50,18 @@ node_types:
             portChannelsRequirement.Capability.Should().Be("tosca.capabilities.Attachment");
             portChannelsRequirement.Node.Should().Be("cloudshell.nodes.GenericPortChannel");
             portChannelsRequirement.Relationship.Should().Be("tosca.relationships.AttachesTo");
+        }
+
+        [Test]
+        public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
+        {
+            var toscaDeserializer = new ToscaDeserializer();
+            Action action = () => toscaDeserializer.Deserialize(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+unsupported_something:");
+
+            action.ShouldThrow<ToscaParsingException>()
+                .WithMessage("(Line: 2, Col: 1, Idx: 2) - (Line: 2, Col: 1, Idx: 2): Exception during deserialization");
         }
     }
 }
