@@ -8,17 +8,17 @@
     public class ToscaSimpleProfileParser : IToscaSimpleProfileParser
     {
         private readonly IToscaValidator toscaValidator;
-        private readonly IToscaDeserializer toscaDeserializer;
+        private readonly IToscaSimpleProfileDeserializer toscaSimpleProfileDeserializer;
 
-        public ToscaSimpleProfileParser(IToscaValidator validator, IToscaDeserializer deserializer)
+        public ToscaSimpleProfileParser(IToscaValidator validator, IToscaSimpleProfileDeserializer deserializer)
         {
             toscaValidator = validator;
-            toscaDeserializer = deserializer;
+            toscaSimpleProfileDeserializer = deserializer;
         }
 
         public ToscaSimpleProfile Parse(string tosca)
         {
-            var toscaObject = toscaDeserializer.Deserialize(tosca);
+            var toscaObject = toscaSimpleProfileDeserializer.Deserialize(tosca);
             toscaValidator.Validate(toscaObject);
             return toscaObject;
         }

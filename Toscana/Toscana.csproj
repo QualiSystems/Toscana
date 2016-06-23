@@ -71,6 +71,7 @@
       <HintPath>..\packages\System.IO.Abstractions.2.0.0.124\lib\net40\System.IO.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,27 +83,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\EnumerableExtensions.cs" />
+    <Compile Include="Common\ExceptionExtensions.cs" />
     <Compile Include="Common\RestrictedValues.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
+    <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
+    <Compile Include="Engine\ToscaMetadataDeserializer.cs" />
     <Compile Include="Engine\ToscaSimpleProfileLoader.cs" />
     <Compile Include="Engine\ToscaSimpleProfileParser.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />
     <Compile Include="Exceptions\ToscaBaseException.cs" />
     <Compile Include="Exceptions\ToscaParsingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\ToscaDeserializer.cs" />
+    <Compile Include="Engine\ToscaSimpleProfileDeserializer.cs" />
     <Compile Include="Engine\ToscaValidator.cs" />
     <Compile Include="ToscaArtifact.cs" />
     <Compile Include="ToscaAttributeAssignment.cs" />
     <Compile Include="ToscaCapability.cs" />
     <Compile Include="ToscaCapabilityAssignment.cs" />
     <Compile Include="ToscaCapabilityType.cs" />
+    <Compile Include="ToscaCloudServiceArchive.cs" />
     <Compile Include="ToscaDefaultNodeTypes.cs" />
     <Compile Include="ToscaImport.cs" />
     <Compile Include="ToscaAttributeDefinition.cs" />
     <Compile Include="ToscaInterfaceDefinition.cs" />
+    <Compile Include="ToscaMetadata.cs" />
     <Compile Include="ToscaPropertyDefinition.cs" />
     <Compile Include="ToscaNodeTemplate.cs" />
     <Compile Include="ToscaNodeType.cs" />

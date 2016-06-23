@@ -6,7 +6,7 @@ namespace Toscana.Engine
     {
         public static IToscaSimpleProfileParser GetToscaSimpleProfileParser()
         {
-            return new ToscaSimpleProfileParser(new ToscaValidator(), new ToscaDeserializer());
+            return new ToscaSimpleProfileParser(new ToscaValidator(), new ToscaSimpleProfileDeserializer());
         }
 
         public static ToscaSimpleProfileLoader GetToscaSimpleProfileLoader(
@@ -15,6 +15,11 @@ namespace Toscana.Engine
             fileSystem = fileSystem ?? new FileSystem();
             toscaSimpleProfileParser = toscaSimpleProfileParser ?? GetToscaSimpleProfileParser();
             return new ToscaSimpleProfileLoader(fileSystem,toscaSimpleProfileParser);
+        }
+
+        public static ToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        {
+            return new ToscaCloudServiceArchiveLoader(new FileSystem());
         }
     }
 }
