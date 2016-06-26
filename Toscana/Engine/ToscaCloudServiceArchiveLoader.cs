@@ -19,7 +19,6 @@ namespace Toscana.Engine
             using (var zipToOpen = fileSystem.File.OpenRead(archiveFilePath))
             {
                 var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read);
-
                 var zipArchiveEntry =
                     archive.Entries.FirstOrDefault(
                         a => string.Compare(a.Name, "TOSCA.meta", StringComparison.InvariantCultureIgnoreCase) == 0);

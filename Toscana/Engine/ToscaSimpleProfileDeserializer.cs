@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Toscana.Common;
 using Toscana.Exceptions;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
@@ -30,7 +31,7 @@ namespace Toscana.Engine
                 }
                 catch (YamlException yamlException)
                 {
-                    throw new ToscaParsingException(yamlException.Message);
+                    throw new ToscaParsingException(yamlException.GetaAllMessages());
                 }
             }
         }

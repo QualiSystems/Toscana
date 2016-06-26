@@ -8,7 +8,7 @@ using Toscana.Exceptions;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class IToscaSimpleProfileDeserializereDeserializerTests
+    public class ToscaSimpleProfileDeserializerTests
     {
         [Test]
         public void Parse_Template_With_Single_Requirement()
@@ -56,12 +56,11 @@ node_types:
         public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
         {
             var toscaDeserializer = new ToscaSimpleProfileDeserializer();
-            Action action = () => toscaDeserializer.Deserialize(@"
-tosca_definitions_version: tosca_simple_yaml_1_0
-unsupported_something:");
+            Action action = () => toscaDeserializer.Deserialize("unsupported_something:");
 
             action.ShouldThrow<ToscaParsingException>()
-                .WithMessage("(Line: 2, Col: 1, Idx: 2) - (Line: 2, Col: 1, Idx: 2): Exception during deserialization");
+                .WithMessage(@"(Line: 1, Col: 1, Idx: 0) - (Line: 1, Col: 1, Idx: 0): Exception during deserialization
+Property 'unsupported_something' not found on type 'Toscana.ToscaSimpleProfile'.");
         }
     }
 }
