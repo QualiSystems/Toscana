@@ -15,8 +15,10 @@ namespace Toscana
 
         public static ToscaCloudServiceArchive Load(string archiveFilePath)
         {
-            var toscaCloudServiceArchiveLoader = Bootstrapper.GetToscaCloudServiceArchiveLoader();
+            var toscaCloudServiceArchiveLoader = new Bootstrapper().GetToscaCloudServiceArchiveLoader();
             return toscaCloudServiceArchiveLoader.Load(archiveFilePath);
         }
+
+        public const string ToscaMetaFileName = "TOSCA.meta";
     }
 }

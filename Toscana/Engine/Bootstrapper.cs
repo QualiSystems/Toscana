@@ -2,24 +2,41 @@
 
 namespace Toscana.Engine
 {
-    public static class Bootstrapper
+    public class Bootstrapper
     {
-        public static IToscaSimpleProfileParser GetToscaSimpleProfileParser()
+        private readonly PoorManContainer poorManContainer;
+
+        public Bootstrapper()
         {
-            return new ToscaSimpleProfileParser(new ToscaValidator(), new ToscaSimpleProfileDeserializer());
+            poorManContainer = new PoorManContainer();
+            poorManContainer.Register<IFileSystem, FileSystem>();
+            poorManContainer.Register<IToscaValidator, ToscaValidator>();
+            poorManContainer.Register<IToscaSimpleProfileDeserializer, ToscaSimpleProfileDeserializer>();
+            poorManContainer.Register<IToscaMetadataDeserializer, ToscaMetadataDeserializer>();
+            poorManContainer.Register<IToscaSimpleProfileParser, ToscaSimpleProfileParser>();
+            poorManContainer.Register<IToscaSimpleProfileLoader, ToscaSimpleProfileLoader>();
+            poorManContainer.Register<IToscaCloudServiceArchiveLoader, ToscaCloudServiceArchiveLoader>();
         }
 
-        public static ToscaSimpleProfileLoader GetToscaSimpleProfileLoader(
-            IToscaSimpleProfileParser toscaSimpleProfileParser = null, IFileSystem fileSystem = null)
+        public IToscaSimpleProfileParser GetToscaSimpleProfileParser()
         {
-            fileSystem = fileSystem ?? new FileSystem();
-            toscaSimpleProfileParser = toscaSimpleProfileParser ?? GetToscaSimpleProfileParser();
-            return new ToscaSimpleProfileLoader(fileSystem,toscaSimpleProfileParser);
+            return poorManContainer.GetInstance<IToscaSimpleProfileParser>();
         }
 
-        public static ToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        public IToscaSimpleProfileLoader GetToscaSimpleProfileLoader()
         {
-            return new ToscaCloudServiceArchiveLoader(new FileSystem());
+            return poorManContainer.GetInstance<IToscaSimpleProfileLoader>();
+        }
+
+        public IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        {
+            return poorManContainer.GetInstance<IToscaCloudServiceArchiveLoader>();
+        }
+
+        public Bootstrapper Replace<T>(T instance)
+        {
+            poorManContainer.RegisterSingleton(instance);
+            return this;
         }
     }
 }

@@ -28,13 +28,13 @@ namespace Toscana
 
         public static ToscaSimpleProfile Parse(string toscaAsString)
         {
-            var toscaSimpleProfileParser = Bootstrapper.GetToscaSimpleProfileParser();
+            var toscaSimpleProfileParser = new Bootstrapper().GetToscaSimpleProfileParser();
             return toscaSimpleProfileParser.Parse(toscaAsString);
         }
 
         public static ToscaSimpleProfile Load(string filePath)
         {
-            var toscaSimpleProfileLoader = Bootstrapper.GetToscaSimpleProfileLoader();
+            var toscaSimpleProfileLoader = new Bootstrapper().GetToscaSimpleProfileLoader();
             return toscaSimpleProfileLoader.Load(filePath);
         }
     }

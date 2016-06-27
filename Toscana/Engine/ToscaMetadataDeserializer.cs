@@ -9,6 +9,7 @@ namespace Toscana.Engine
     public interface IToscaMetadataDeserializer
     {
         ToscaMetadata Deserialize(string tosca);
+        ToscaMetadata Deserialize(Stream stream);
     }
 
     public class ToscaMetadataDeserializer : IToscaMetadataDeserializer

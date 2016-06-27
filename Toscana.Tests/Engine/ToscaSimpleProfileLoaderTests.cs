@@ -1,4 +1,5 @@
-﻿using System.IO.Abstractions.TestingHelpers;
+﻿using System.IO.Abstractions;
+using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
@@ -29,7 +30,9 @@ description: User tosca description
 imports:
   - some_definition_file: some_defs.yaml"));
 
-            var toscaSimpleProfile = new ToscaSimpleProfileLoader(fileSystem)
+            var toscaSimpleProfile = new Bootstrapper()
+                .Replace<IFileSystem>(fileSystem)
+                .GetToscaSimpleProfileLoader()
                 .Load("user_tosca.yaml");
 
             // Assert

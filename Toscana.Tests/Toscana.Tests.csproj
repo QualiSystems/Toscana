@@ -74,6 +74,7 @@
     <Compile Include="Domain\ToscaSimpleProfileTests.cs" />
     <Compile Include="Domain\ToscaTopologyInputTests.cs" />
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
+    <Compile Include="Engine\PoorManContainerTests.cs" />
     <Compile Include="Engine\ToscaSimpleProfileDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
     <Compile Include="Engine\ToscaSimpleProfileLoaderTests.cs" />
