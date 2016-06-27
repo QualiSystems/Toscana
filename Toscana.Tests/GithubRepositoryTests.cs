@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Common;
 
@@ -11,7 +13,7 @@ namespace Toscana.Tests
 {
     public class GithubRepositoryTests
     {
-        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/master.zip";
+        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/develop.zip";
 
         private class GithubRepositoryTestCasesFactory
         {
@@ -25,10 +27,10 @@ namespace Toscana.Tests
 
             private static IEnumerable GetYamlFilesFromZippedUrl(string repositoryUrl)
             {
-                return GetYamlFilesContentFromUrl(repositoryUrl);
+                return GetYamlFilesContentFromUrl(repositoryUrl, IsYaml);
             }
 
-            public static List<FileContent> GetYamlFilesContentFromUrl(string repositoryUrl)
+            public static List<FileContent> GetYamlFilesContentFromUrl(string repositoryUrl, Func<ZipArchiveEntry, bool> filesFilter)
             {
                 using (var tempFile = new TempFile(Path.GetTempPath()))
                 using (var client = new WebClient())
@@ -38,11 +40,16 @@ namespace Toscana.Tests
                     var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open);
                     var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read);
 
-                    return archive.Entries.Where(a =>
-                        Path.GetExtension(a.Name).EqualsAny(".yaml", ".yml"))
+                    return archive.Entries
+                        .Where(filesFilter)
                         .Select(ReadFileContent)
                         .ToList();
                 }
+            }
+
+            public static bool IsYaml(ZipArchiveEntry a)
+            {
+                return Path.GetExtension(a.Name).EqualsAny(".yaml", ".yml");
             }
 
             private static FileContent ReadFileContent(ZipArchiveEntry archiveEntry)
@@ -102,13 +109,28 @@ namespace Toscana.Tests
         [Test]
         public void Build_Combined_Tosca_Simple_Profile_From_Github_Repo()
         {
-            var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip);
+            var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip, GithubRepositoryTestCasesFactory.IsYaml);
             var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
             foreach (var fileContent in filesContent)
             {
                 toscaSimpleProfileBuilder.Append(fileContent.Content);
             }
             toscaSimpleProfileBuilder.Build();
+        }
+
+        [Test]
+        [Ignore]
+        public void Load_Tosca_Cloud_Service_Archive_From_Github()
+        {
+            using (var tempFile = new TempFile(Path.GetTempPath()))
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(GithubRepositoryZip, tempFile.FilePath);
+
+                var toscaCloudServiceArchive = ToscaCloudServiceArchive.Load(tempFile.FilePath);
+
+                toscaCloudServiceArchive.ToscaSimpleProfiles.Should().HaveCount(1);
+            }
         }
     }
 }

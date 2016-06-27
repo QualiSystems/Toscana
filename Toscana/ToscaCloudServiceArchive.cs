@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Toscana.Engine;
 
 namespace Toscana
 {
     public class ToscaCloudServiceArchive
     {
+        public const string ToscaMetaFileName = "TOSCA.meta";
+
         public ToscaCloudServiceArchive()
         {
             ToscaSimpleProfiles = new Dictionary<string, ToscaSimpleProfile>();
@@ -19,6 +22,10 @@ namespace Toscana
             return toscaCloudServiceArchiveLoader.Load(archiveFilePath);
         }
 
-        public const string ToscaMetaFileName = "TOSCA.meta";
+        public static ToscaCloudServiceArchive Load(Stream archiveStream)
+        {
+            var toscaCloudServiceArchiveLoader = new Bootstrapper().GetToscaCloudServiceArchiveLoader();
+            return toscaCloudServiceArchiveLoader.Load(archiveStream);
+        }
     }
 }
