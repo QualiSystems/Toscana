@@ -11,6 +11,7 @@ namespace Toscana
         public ToscaCloudServiceArchive()
         {
             ToscaSimpleProfiles = new Dictionary<string, ToscaSimpleProfile>();
+            ToscaMetadata = new ToscaMetadata();
         }
 
         public Dictionary<string, ToscaSimpleProfile> ToscaSimpleProfiles { get; set; }
