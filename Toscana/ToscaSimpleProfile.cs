@@ -12,7 +12,7 @@ namespace Toscana
             CapabilityTypes = new Dictionary<string, ToscaCapabilityType>();
             NodeTypes = new Dictionary<string, ToscaNodeType>();
             Imports = new List<Dictionary<string, ToscaImport>>();
-            Metadata = new Dictionary<string, object>();
+            Metadata = new ToscaSimpleProfileMetadata();
             RelationshipTypes = new Dictionary<string, ToscaRelationshipType>();
             TopologyTemplate = new ToscaTopologyTemplate();
         }
@@ -26,7 +26,7 @@ namespace Toscana
         public ToscaTopologyTemplate TopologyTemplate { get; set; }
         public Dictionary<string, ToscaNodeType> NodeTypes { get; set; }
         public List<Dictionary<string, ToscaImport>> Imports { get; set; }
-        public Dictionary<string, object> Metadata { get; set; }
+        public ToscaSimpleProfileMetadata Metadata { get; set; }
         public Dictionary<string, ToscaRelationshipType> RelationshipTypes { get; set; }
 
         public static ToscaSimpleProfile Parse(string toscaAsString)

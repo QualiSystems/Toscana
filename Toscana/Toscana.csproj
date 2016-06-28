@@ -121,6 +121,7 @@
     <Compile Include="ToscaRequirementAssignment.cs" />
     <Compile Include="ToscaSimpleProfile.cs" />
     <Compile Include="ToscaSimpleProfileBuilder.cs" />
+    <Compile Include="ToscaSimpleProfileMetadata.cs" />
     <Compile Include="ToscaTopologyInput.cs" />
     <Compile Include="ToscaTopologyOutput.cs" />
     <Compile Include="ToscaTopologyTemplate.cs" />

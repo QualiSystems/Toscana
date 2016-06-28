@@ -710,9 +710,9 @@ metadata:
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
             tosca.Metadata.Should().HaveCount(3);
-            tosca.Metadata["template_name"].Should().Be("nutshell");
-            tosca.Metadata["template_author"].Should().Be("Anonymous");
-            tosca.Metadata["template_version"].Should().Be("1.0");
+            tosca.Metadata.TemplateName.Should().Be("nutshell");
+            tosca.Metadata.TemplateAuthor.Should().Be("Anonymous");
+            tosca.Metadata.TemplateVersion.Should().Be(new Version("1.0"));
         }
 
         [Test]

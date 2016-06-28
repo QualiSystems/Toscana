@@ -90,6 +90,7 @@
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />
     <Compile Include="ToscaSimpleProfileBuilderTests.cs" />
+    <Compile Include="ToscaSimpleProfileMetadataTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
