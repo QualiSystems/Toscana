@@ -35,10 +35,10 @@ namespace Toscana
             return toscaSimpleProfileParser.Parse(toscaAsString);
         }
 
-        public static ToscaSimpleProfile Load(string filePath)
+        public static ToscaSimpleProfile Load(string filePath, string alternativePath)
         {
             var toscaSimpleProfileLoader = new Bootstrapper().GetToscaSimpleProfileLoader();
-            return toscaSimpleProfileLoader.Load(filePath);
+            return toscaSimpleProfileLoader.Load(filePath, alternativePath);
         }
     }
 }
