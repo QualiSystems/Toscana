@@ -7,13 +7,14 @@ using System.IO.Compression;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
+using Toscana.Exceptions;
 
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
     public class ToscaCloudServiceArchiveLoaderTests
     {
-        private IFileSystem fileSystem;
+        private MockFileSystem fileSystem;
         private IToscaCloudServiceArchiveLoader toscaCloudServiceArchiveLoader;
 
         [SetUp]
@@ -21,7 +22,7 @@ namespace Toscana.Tests.Engine
         {
             fileSystem = new MockFileSystem();
             var bootstrapper = new Bootstrapper();
-            bootstrapper.Replace(fileSystem);
+            bootstrapper.Replace<IFileSystem>(fileSystem);
             toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
         }
 
@@ -93,6 +94,80 @@ node_types:
             // Assert
             toscaCloudServiceArchive.ToscaSimpleProfiles.Should().HaveCount(1);
             toscaCloudServiceArchive.ToscaSimpleProfiles[@"definitions\tosca_elk.yaml"].NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+        }
+
+        [Test] 
+        public void Exception_Should_Be_Thrown_When_Definition_File_Not_Valid()
+        {
+            // Arrange
+            var toscaMetaContent = "Entry-Definitions: tosca_elk.yaml";
+            var toscaSimpleProfileContent = @"tosca_definitions_version: tosca_simple_yaml_1_0
+INVALID";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca_elk.yaml", toscaSimpleProfileContent)
+            };
+
+            CreateArchive(fileSystem, "tosca.zip", fileContents);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaParsingException>().Where(a => a.Message.Contains("tosca_elk.yaml"));
+        }
+
+        [Test] 
+        public void Archive_With_Two_Profiles_One_Of_Them_Resides_In_Alternative_Path_Loaded()
+        {
+            var mockFileSystem = new MockFileSystem();
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Replace<IFileSystem>(mockFileSystem);
+            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
+
+            // Arrange
+            var toscaMetaContent = @"TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: definitions\tosca_elk.yaml";
+
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+    - base: base.yaml
+
+node_types:
+  example.TransactionSubsystem:
+    derived_from: tosca.base
+    properties:
+      num_cpus:
+        type: integer";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
+            };
+
+            CreateArchive(mockFileSystem, "tosca.zip", fileContents);
+            mockFileSystem.AddFile(@"c:\alternative\base.yaml", new MockFileData(
+@"tosca_definitions_version: tosca_simple_yaml_1_0
+node_types:
+  tosca.base:
+    properties:
+        storage:
+            type: string"));
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip", @"c:\alternative\");
+
+            // Assert
+            toscaCloudServiceArchive.ToscaSimpleProfiles.Should().HaveCount(1);
+            var toscaNodeTypes = toscaCloudServiceArchive.ToscaSimpleProfiles[@"definitions\tosca_elk.yaml"].NodeTypes;
+            toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+            toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+            toscaNodeTypes["tosca.base"].Properties["storage"].Type.Should().Be("string");
         }
 
         private static void CreateArchive(IFileSystem fileSystem, string archiveFilePath, IEnumerable<FileContent> fileContents)

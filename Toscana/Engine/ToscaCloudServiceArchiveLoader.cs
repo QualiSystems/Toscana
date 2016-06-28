@@ -4,13 +4,15 @@ using System.IO;
 using System.IO.Abstractions;
 using System.IO.Compression;
 using System.Linq;
+using Toscana.Common;
+using Toscana.Exceptions;
 
 namespace Toscana.Engine
 {
     public interface IToscaCloudServiceArchiveLoader
     {
-        ToscaCloudServiceArchive Load(string archiveFilePath);
-        ToscaCloudServiceArchive Load(Stream archiveStream);
+        ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null);
+        ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null);
     }
 
     public class ToscaCloudServiceArchiveLoader : IToscaCloudServiceArchiveLoader
@@ -27,15 +29,15 @@ namespace Toscana.Engine
             this.toscaSimpleProfileLoader = toscaSimpleProfileLoader;
         }
 
-        public ToscaCloudServiceArchive Load(string archiveFilePath)
+        public ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
         {
             using (var zipToOpen = fileSystem.File.OpenRead(archiveFilePath))
             {
-                return Load(zipToOpen);
+                return Load(zipToOpen, alternativePath);
             }
         }
 
-        public ToscaCloudServiceArchive Load(Stream archiveStream)
+        public ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null)
         {
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Read))
             {
@@ -47,11 +49,26 @@ namespace Toscana.Engine
                 {
                     ToscaMetadata = toscaMetadata
                 };
-                var archiveEntry = GetZipArchiveEntry(Path.Combine(relativePath, toscaMetadata.EntryDefinitions), fillZipArchivesDictionary);
-                var toscaSimpleProfile = toscaSimpleProfileLoader.Load(archiveEntry.Open());
+                var toscaSimpleProfile = LoadToscaSimpleProfile(alternativePath, relativePath, toscaMetadata, fillZipArchivesDictionary);
 
                 toscaCloudServiceArchive.ToscaSimpleProfiles.Add(toscaMetadata.EntryDefinitions, toscaSimpleProfile);
                 return toscaCloudServiceArchive;
+            }
+        }
+
+        private ToscaSimpleProfile LoadToscaSimpleProfile(string alternativePath, string relativePath,
+            ToscaMetadata toscaMetadata, Dictionary<string, ZipArchiveEntry> fillZipArchivesDictionary)
+        {
+            var zipEntryFileName = Path.Combine(relativePath, toscaMetadata.EntryDefinitions);
+            try
+            {
+                var archiveEntry = GetZipArchiveEntry(zipEntryFileName, fillZipArchivesDictionary);
+                return toscaSimpleProfileLoader.Load(archiveEntry.Open(), alternativePath);
+            }
+            catch (ToscaBaseException toscaBaseException)
+            {
+                throw new ToscaParsingException(
+                    string.Format("Failed to load definitions file {0} due to an error: {1}", zipEntryFileName, toscaBaseException.GetaAllMessages()));
             }
         }
 
