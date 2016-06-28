@@ -12,6 +12,9 @@ namespace Toscana
             CapabilityTypes = new Dictionary<string, ToscaCapabilityType>();
             NodeTypes = new Dictionary<string, ToscaNodeType>();
             Imports = new List<Dictionary<string, ToscaImport>>();
+            Metadata = new Dictionary<string, object>();
+            RelationshipTypes = new Dictionary<string, ToscaRelationshipType>();
+            TopologyTemplate = new ToscaTopologyTemplate();
         }
 
         [Required(ErrorMessage = "tosca_definitions_version is required on tosca definition")]

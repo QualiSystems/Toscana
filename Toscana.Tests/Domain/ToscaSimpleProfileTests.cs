@@ -37,6 +37,32 @@ namespace Toscana.Tests.Domain
         }
 
         [Test]
+        public void Metadata_Initialized_To_Empty_Dictionary()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+
+            toscaSimpleProfile.Metadata.Should().NotBeNull();
+            toscaSimpleProfile.Metadata.Should().HaveCount(0);
+        }
+
+        [Test]
+        public void RelationshipTypes_Initialized_To_Empty_Dictionary()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+
+            toscaSimpleProfile.RelationshipTypes.Should().NotBeNull();
+            toscaSimpleProfile.RelationshipTypes.Should().HaveCount(0);
+        }
+
+        [Test]
+        public void TopologyTemplate_Should_Be_Initialized()
+        {
+            var toscaSimpleProfile = new ToscaSimpleProfile();
+
+            toscaSimpleProfile.TopologyTemplate.Should().NotBeNull();
+        }
+
+        [Test]
         public void ToscaDefinitionsVersion_Invalid_ValidationExceptionThrown()
         {
             // Arrange
