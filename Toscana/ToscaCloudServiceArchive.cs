@@ -17,16 +17,21 @@ namespace Toscana
         public Dictionary<string, ToscaSimpleProfile> ToscaSimpleProfiles { get; set; }
         public ToscaMetadata ToscaMetadata { get; set; }
 
-        public static ToscaCloudServiceArchive Load(string archiveFilePath)
+        public static ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
         {
-            var toscaCloudServiceArchiveLoader = new Bootstrapper().GetToscaCloudServiceArchiveLoader();
-            return toscaCloudServiceArchiveLoader.Load(archiveFilePath);
+            var toscaCloudServiceArchiveLoader = GetToscaCloudServiceArchiveLoader();
+            return toscaCloudServiceArchiveLoader.Load(archiveFilePath, alternativePath);
         }
 
-        public static ToscaCloudServiceArchive Load(Stream archiveStream)
+        public static ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null)
         {
-            var toscaCloudServiceArchiveLoader = new Bootstrapper().GetToscaCloudServiceArchiveLoader();
-            return toscaCloudServiceArchiveLoader.Load(archiveStream);
+            var toscaCloudServiceArchiveLoader = GetToscaCloudServiceArchiveLoader();
+            return toscaCloudServiceArchiveLoader.Load(archiveStream, alternativePath);
+        }
+
+        private static IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        {
+            return new Bootstrapper().GetToscaCloudServiceArchiveLoader();
         }
     }
 }
