@@ -7,27 +7,27 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace Toscana.Engine
 {
-    public interface IToscaSimpleProfileDeserializer
+    public interface IToscaServiceTemplateDeserializer
     {
-        ToscaSimpleProfile Deserialize(string tosca);
+        ToscaServiceTemplate Deserialize(string tosca);
     }
 
-    public class ToscaSimpleProfileDeserializer : IToscaSimpleProfileDeserializer
+    public class ToscaServiceTemplateDeserializer : IToscaServiceTemplateDeserializer
     {
         private readonly Deserializer deserializer;
 
-        public ToscaSimpleProfileDeserializer()
+        public ToscaServiceTemplateDeserializer()
         {
             deserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
         }
 
-        public ToscaSimpleProfile Deserialize(string tosca)
+        public ToscaServiceTemplate Deserialize(string tosca)
         {
             using (var stringReader = new StringReader(tosca))
             {
                 try
                 {
-                    return deserializer.Deserialize<ToscaSimpleProfile>(stringReader);
+                    return deserializer.Deserialize<ToscaServiceTemplate>(stringReader);
                 }
                 catch (YamlException yamlException)
                 {

@@ -10,11 +10,11 @@ namespace Toscana.Engine
         private readonly Action<string> action;
         private readonly AdjacencyGraph<string, ToscaGraphEdge> graph;
 
-        public NodeTypeWalker(ToscaSimpleProfile toscaSimpleProfile, Action<string> action)
+        public NodeTypeWalker(ToscaServiceTemplate toscaServiceTemplate, Action<string> action)
         {
             graph = new AdjacencyGraph<string, ToscaGraphEdge>();
-            graph.AddVertexRange(toscaSimpleProfile.NodeTypes.Select(_ => _.Key));
-            foreach (var toscaNodeType in toscaSimpleProfile.NodeTypes)
+            graph.AddVertexRange(toscaServiceTemplate.NodeTypes.Select(_ => _.Key));
+            foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
             {
                 if (!toscaNodeType.Value.IsRoot())
                 {

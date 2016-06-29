@@ -71,14 +71,13 @@
     <Compile Include="Domain\ToscaNodeAttributeTests.cs" />
     <Compile Include="Domain\ToscaNodeTemplateTests.cs" />
     <Compile Include="Domain\ToscaObjectTests.cs" />
-    <Compile Include="Domain\ToscaSimpleProfileTests.cs" />
     <Compile Include="Domain\ToscaTopologyInputTests.cs" />
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
     <Compile Include="Engine\PoorManContainerTests.cs" />
-    <Compile Include="Engine\ToscaSimpleProfileDeserializerTests.cs" />
+    <Compile Include="Engine\IToscaServiceTemplateDeserializerrTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
-    <Compile Include="Engine\ToscaSimpleProfileLoaderTests.cs" />
-    <Compile Include="Engine\ToscaSimpleProfileParserTests.cs" />
+    <Compile Include="Engine\IToscaServiceTemplateLoaderrTests.cs" />
+    <Compile Include="Engine\ToscaServiceTemplateParserTests.cs" />
     <Compile Include="Engine\ToscaValidatorTests.cs" />
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />
@@ -89,8 +88,9 @@
     <Compile Include="TempFile.cs" />
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />
-    <Compile Include="ToscaSimpleProfileBuilderTests.cs" />
-    <Compile Include="ToscaSimpleProfileMetadataTests.cs" />
+    <Compile Include="ToscaServiceTemplateTests.cs" />
+    <Compile Include="IToscaServiceTemplateBuilderrTests.cs" />
+    <Compile Include="ToscaServiceTemplateMetadataTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -8,14 +8,14 @@ namespace Toscana.Engine
 {
     public interface IToscaValidator
     {
-        void Validate(ToscaSimpleProfile toscaSimpleProfile);
+        void Validate(ToscaServiceTemplate toscaServiceTemplate);
     }
 
     public class ToscaValidator : IToscaValidator
     {
-        public void Validate(ToscaSimpleProfile toscaSimpleProfile)
+        public void Validate(ToscaServiceTemplate toscaServiceTemplate)
         {
-            if (toscaSimpleProfile == null)
+            if (toscaServiceTemplate == null)
             {
                 throw new ToscaValidationException("Tosca is null or empty");
             }
@@ -23,7 +23,7 @@ namespace Toscana.Engine
             var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
             
             var validationResults = new List<ValidationResult>();
-            if (!dataAnnotationsValidator.TryValidateObjectRecursive(toscaSimpleProfile, validationResults))
+            if (!dataAnnotationsValidator.TryValidateObjectRecursive(toscaServiceTemplate, validationResults))
             {
                 var message = string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage).ToList());
 

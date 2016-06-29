@@ -166,7 +166,6 @@ node_types:
             toscaCloudServiceArchive.ToscaSimpleProfiles.Should().HaveCount(1);
             var toscaNodeTypes = toscaCloudServiceArchive.ToscaSimpleProfiles[@"definitions\tosca_elk.yaml"].NodeTypes;
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
-            toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
             toscaNodeTypes["tosca.base"].Properties["storage"].Type.Should().Be("string");
         }
 

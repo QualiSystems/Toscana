@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Toscana
 {
-    public class ToscaSimpleProfileMetadata : Dictionary<string, object>
+    public class ToscaServiceTemplateMetadata : Dictionary<string, object>
     {
         private const string TemplateAuthorKeyName = "template_author";
         private const string TemplateNameKeyName = "template_name";

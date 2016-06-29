@@ -5,14 +5,14 @@ using Toscana.Engine;
 
 namespace Toscana
 {
-    public class ToscaSimpleProfile
+    public class ToscaServiceTemplate
     {
-        public ToscaSimpleProfile()
+        public ToscaServiceTemplate()
         {
             CapabilityTypes = new Dictionary<string, ToscaCapabilityType>();
             NodeTypes = new Dictionary<string, ToscaNodeType>();
             Imports = new List<Dictionary<string, ToscaImport>>();
-            Metadata = new ToscaSimpleProfileMetadata();
+            Metadata = new ToscaServiceTemplateMetadata();
             RelationshipTypes = new Dictionary<string, ToscaRelationshipType>();
             TopologyTemplate = new ToscaTopologyTemplate();
         }
@@ -26,16 +26,16 @@ namespace Toscana
         public ToscaTopologyTemplate TopologyTemplate { get; set; }
         public Dictionary<string, ToscaNodeType> NodeTypes { get; set; }
         public List<Dictionary<string, ToscaImport>> Imports { get; set; }
-        public ToscaSimpleProfileMetadata Metadata { get; set; }
+        public ToscaServiceTemplateMetadata Metadata { get; set; }
         public Dictionary<string, ToscaRelationshipType> RelationshipTypes { get; set; }
 
-        public static ToscaSimpleProfile Parse(string toscaAsString)
+        public static ToscaServiceTemplate Parse(string toscaAsString)
         {
             var toscaSimpleProfileParser = new Bootstrapper().GetToscaSimpleProfileParser();
             return toscaSimpleProfileParser.Parse(toscaAsString);
         }
 
-        public static ToscaSimpleProfile Load(string filePath, string alternativePath)
+        public static ToscaServiceTemplate Load(string filePath, string alternativePath)
         {
             var toscaSimpleProfileLoader = new Bootstrapper().GetToscaSimpleProfileLoader();
             return toscaSimpleProfileLoader.Load(filePath, alternativePath);

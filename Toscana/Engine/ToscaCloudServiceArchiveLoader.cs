@@ -19,14 +19,14 @@ namespace Toscana.Engine
     {
         private readonly IFileSystem fileSystem;
         private readonly IToscaMetadataDeserializer toscaMetadataDeserializer;
-        private readonly IToscaSimpleProfileLoader toscaSimpleProfileLoader;
+        private readonly IToscaServiceTemplateLoader toscaServiceTemplateLoader;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
-            IToscaMetadataDeserializer toscaMetadataDeserializer, IToscaSimpleProfileLoader toscaSimpleProfileLoader)
+            IToscaMetadataDeserializer toscaMetadataDeserializer, IToscaServiceTemplateLoader toscaServiceTemplateLoader)
         {
             this.fileSystem = fileSystem;
             this.toscaMetadataDeserializer = toscaMetadataDeserializer;
-            this.toscaSimpleProfileLoader = toscaSimpleProfileLoader;
+            this.toscaServiceTemplateLoader = toscaServiceTemplateLoader;
         }
 
         public ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
@@ -56,14 +56,14 @@ namespace Toscana.Engine
             }
         }
 
-        private ToscaSimpleProfile LoadToscaSimpleProfile(string alternativePath, string relativePath,
+        private ToscaServiceTemplate LoadToscaSimpleProfile(string alternativePath, string relativePath,
             ToscaMetadata toscaMetadata, Dictionary<string, ZipArchiveEntry> fillZipArchivesDictionary)
         {
             var zipEntryFileName = Path.Combine(relativePath, toscaMetadata.EntryDefinitions);
             try
             {
                 var archiveEntry = GetZipArchiveEntry(zipEntryFileName, fillZipArchivesDictionary);
-                return toscaSimpleProfileLoader.Load(archiveEntry.Open(), alternativePath);
+                return toscaServiceTemplateLoader.Load(archiveEntry.Open(), alternativePath);
             }
             catch (ToscaBaseException toscaBaseException)
             {

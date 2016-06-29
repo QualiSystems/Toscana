@@ -97,20 +97,20 @@ namespace Toscana.Tests
         [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
         public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(FileContent fileContent)
         {
-            ToscaSimpleProfile.Parse(fileContent.Content);
+            ToscaServiceTemplate.Parse(fileContent.Content);
         }
 
         [Test, TestCaseSource(typeof(LocalDirectoryTestCasesFactory), "TestCases")]
         public void Validate_Tosca_Files_In_Local_Directory(FileContent fileContent)
         {
-            ToscaSimpleProfile.Parse(fileContent.Content);
+            ToscaServiceTemplate.Parse(fileContent.Content);
         }
 
         [Test]
         public void Build_Combined_Tosca_Simple_Profile_From_Github_Repo()
         {
             var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip, GithubRepositoryTestCasesFactory.IsYaml);
-            var toscaSimpleProfileBuilder = new ToscaSimpleProfileBuilder();
+            var toscaSimpleProfileBuilder = new ToscaServiceTemplateBuilder();
             foreach (var fileContent in filesContent)
             {
                 toscaSimpleProfileBuilder.Append(fileContent.Content);

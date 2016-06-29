@@ -7,12 +7,12 @@ using NUnit.Framework;
 namespace Toscana.Tests
 {
     [TestFixture]
-    public class ToscaSimpleProfileMetadataTests
+    public class ToscaServiceTemplateMetadataTests
     {
         [Test]
         public void Should_Be_Possible_To_Get_And_Set_Value_Of_TemplateAuthor()
         {
-            var toscaSimpleProfileMetadata = new ToscaSimpleProfileMetadata
+            var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata
             {
                 TemplateAuthor = "me"
             };
@@ -23,7 +23,7 @@ namespace Toscana.Tests
         [Test]
         public void Should_Be_Possible_To_Get_And_Set_Value_Of_TemplateVersion()
         {
-            var toscaSimpleProfileMetadata = new ToscaSimpleProfileMetadata
+            var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata
             {
                 TemplateVersion = new Version("123.45")
             };
@@ -34,7 +34,7 @@ namespace Toscana.Tests
         [Test]
         public void TemplateAuthor_Should_Be_Empty_If_Not_Set()
         {
-            var toscaSimpleProfileMetadata = new ToscaSimpleProfileMetadata();
+            var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata();
 
             toscaSimpleProfileMetadata.TemplateAuthor.Should().BeEmpty();
         }
@@ -42,7 +42,7 @@ namespace Toscana.Tests
         [Test]
         public void TemplateName_Should_Be_Empty_If_Not_Set()
         {
-            var toscaSimpleProfileMetadata = new ToscaSimpleProfileMetadata();
+            var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata();
 
             toscaSimpleProfileMetadata.TemplateName.Should().BeEmpty();
         }
@@ -50,7 +50,7 @@ namespace Toscana.Tests
         [Test]
         public void TemplateVersion_Should_Be_Null_If_Not_Set()
         {
-            var toscaSimpleProfileMetadata = new ToscaSimpleProfileMetadata();
+            var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata();
 
             toscaSimpleProfileMetadata.TemplateVersion.Should().BeNull();
         }

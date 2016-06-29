@@ -5,33 +5,33 @@ using Toscana.Exceptions;
 
 namespace Toscana
 {
-    public interface IToscaSimpleProfileBuilder
+    public interface IToscaServiceTemplateBuilder
     {
-        IToscaSimpleProfileBuilder Append(ToscaSimpleProfile toscaSimpleProfile);
-        IToscaSimpleProfileBuilder Append(string toscaAsString);
-        ToscaSimpleProfile Build();
+        IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate);
+        IToscaServiceTemplateBuilder Append(string toscaAsString);
+        ToscaServiceTemplate Build();
     }
 
-    public class ToscaSimpleProfileBuilder : IToscaSimpleProfileBuilder
+    public class ToscaServiceTemplateBuilder : IToscaServiceTemplateBuilder
     {
         private const string ToscaNodesRoot = "tosca.nodes.Root";
-        private readonly List<ToscaSimpleProfile> toscaSimpleProfiles = new List<ToscaSimpleProfile>();
+        private readonly List<ToscaServiceTemplate> toscaSimpleProfiles = new List<ToscaServiceTemplate>();
 
-        public IToscaSimpleProfileBuilder Append(string toscaAsString)
+        public IToscaServiceTemplateBuilder Append(string toscaAsString)
         {
-            toscaSimpleProfiles.Add(ToscaSimpleProfile.Parse(toscaAsString));
+            toscaSimpleProfiles.Add(ToscaServiceTemplate.Parse(toscaAsString));
             return this;
         }
 
-        public IToscaSimpleProfileBuilder Append(ToscaSimpleProfile toscaSimpleProfile)
+        public IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate)
         {
-            toscaSimpleProfiles.Add(toscaSimpleProfile);
+            toscaSimpleProfiles.Add(toscaServiceTemplate);
             return this;
         }
 
-        public ToscaSimpleProfile Build()
+        public ToscaServiceTemplate Build()
         {
-            var combinedTosca = new ToscaSimpleProfile();
+            var combinedTosca = new ToscaServiceTemplate();
             CombineNodeTypes(combinedTosca);
             BuildNodeTypeHierarchy(combinedTosca);
             var firstProfile = toscaSimpleProfiles.FirstOrDefault();
@@ -42,7 +42,7 @@ namespace Toscana
             return combinedTosca;
         }
 
-        private void CombineNodeTypes(ToscaSimpleProfile combinedTosca)
+        private void CombineNodeTypes(ToscaServiceTemplate combinedTosca)
         {
             foreach (var simpleProfile in toscaSimpleProfiles)
             {
@@ -69,7 +69,7 @@ namespace Toscana
             }
         }
 
-        private static void BuildNodeTypeHierarchy(ToscaSimpleProfile combinedTosca)
+        private static void BuildNodeTypeHierarchy(ToscaServiceTemplate combinedTosca)
         {
             var nodeTypeWalker = new NodeTypeWalker(combinedTosca, nodeTypeName =>
             {
