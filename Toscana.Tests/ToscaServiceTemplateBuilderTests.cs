@@ -8,7 +8,7 @@ using Toscana.Exceptions;
 namespace Toscana.Tests
 {
     [TestFixture]
-    public class IToscaServiceTemplateBuilderrTests
+    public class ToscaServiceTemplateBuilderTests
     {
         [Test]
         public void Build_Capabilities_Of_Base_And_Derived_Node_Types_Are_Merged()

@@ -8,7 +8,7 @@ using Toscana.Exceptions;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class IToscaServiceTemplateDeserializerrTests
+    public class ToscaServiceTemplateDeserializerTests
     {
         [Test]
         public void Parse_Template_With_Single_Requirement()

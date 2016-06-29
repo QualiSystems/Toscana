@@ -7,7 +7,7 @@ using Toscana.Engine;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class IToscaServiceTemplateLoaderrTests
+    public class ToscaServiceTemplateLoaderTests
     {
         [Test]
         public void Loading_Leaf_Tosca_File_With_Imports_Should_Load_Dependent_Files()

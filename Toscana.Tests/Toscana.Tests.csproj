@@ -74,9 +74,9 @@
     <Compile Include="Domain\ToscaTopologyInputTests.cs" />
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
     <Compile Include="Engine\PoorManContainerTests.cs" />
-    <Compile Include="Engine\IToscaServiceTemplateDeserializerrTests.cs" />
+    <Compile Include="Engine\ToscaServiceTemplateDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
-    <Compile Include="Engine\IToscaServiceTemplateLoaderrTests.cs" />
+    <Compile Include="Engine\ToscaServiceTemplateLoaderTests.cs" />
     <Compile Include="Engine\ToscaServiceTemplateParserTests.cs" />
     <Compile Include="Engine\ToscaValidatorTests.cs" />
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />
     <Compile Include="ToscaServiceTemplateTests.cs" />
-    <Compile Include="IToscaServiceTemplateBuilderrTests.cs" />
+    <Compile Include="ToscaServiceTemplateBuilderTests.cs" />
     <Compile Include="ToscaServiceTemplateMetadataTests.cs" />
   </ItemGroup>
   <ItemGroup>
