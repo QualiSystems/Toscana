@@ -10,6 +10,7 @@ namespace Toscana.Engine
     public interface IToscaServiceTemplateDeserializer
     {
         ToscaServiceTemplate Deserialize(string tosca);
+        ToscaServiceTemplate Deserialize(Stream stream);
     }
 
     public class ToscaServiceTemplateDeserializer : IToscaServiceTemplateDeserializer
@@ -25,14 +26,27 @@ namespace Toscana.Engine
         {
             using (var stringReader = new StringReader(tosca))
             {
-                try
-                {
-                    return deserializer.Deserialize<ToscaServiceTemplate>(stringReader);
-                }
-                catch (YamlException yamlException)
-                {
-                    throw new ToscaParsingException(yamlException.GetaAllMessages());
-                }
+                return Deserialize(stringReader);
+            }
+        }
+
+        public ToscaServiceTemplate Deserialize(Stream stream)
+        {
+            using (var streamReader = new StreamReader(stream))
+            {
+                return Deserialize(streamReader);
+            }
+        }
+
+        private ToscaServiceTemplate Deserialize(TextReader stringReader)
+        {
+            try
+            {
+                return deserializer.Deserialize<ToscaServiceTemplate>(stringReader);
+            }
+            catch (YamlException yamlException)
+            {
+                throw new ToscaParsingException(yamlException.GetaAllMessages());
             }
         }
     }

@@ -19,14 +19,14 @@ namespace Toscana.Engine
     {
         private readonly IFileSystem fileSystem;
         private readonly IToscaMetadataDeserializer toscaMetadataDeserializer;
-        private readonly IToscaServiceTemplateLoader toscaServiceTemplateLoader;
+        private readonly IToscaServiceTemplateParser toscaServiceTemplateParser;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
-            IToscaMetadataDeserializer toscaMetadataDeserializer, IToscaServiceTemplateLoader toscaServiceTemplateLoader)
+            IToscaMetadataDeserializer toscaMetadataDeserializer, IToscaServiceTemplateParser toscaServiceTemplateParser)
         {
             this.fileSystem = fileSystem;
             this.toscaMetadataDeserializer = toscaMetadataDeserializer;
-            this.toscaServiceTemplateLoader = toscaServiceTemplateLoader;
+            this.toscaServiceTemplateParser = toscaServiceTemplateParser;
         }
 
         public ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
@@ -41,29 +41,50 @@ namespace Toscana.Engine
         {
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Read))
             {
-                var fillZipArchivesDictionary = FillZipArchivesDictionary(archive);
-                var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(fillZipArchivesDictionary);
+                var archiveEntries = CreateArchiveEntriesDictionary(archive);
+                var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
                 var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? string.Empty;
                 var toscaMetadata = toscaMetadataDeserializer.Deserialize(toscaMetaArchiveEntry.Open());
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive
                 {
                     ToscaMetadata = toscaMetadata
                 };
-                var toscaSimpleProfile = LoadToscaServiceTemplate(alternativePath, relativePath, toscaMetadata, fillZipArchivesDictionary);
-
-                toscaCloudServiceArchive.ToscaServiceTemplates.Add(toscaMetadata.EntryDefinitions, toscaSimpleProfile);
+                LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath, relativePath);
+ 
                 return toscaCloudServiceArchive;
             }
         }
 
-        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, string relativePath,
-            ToscaMetadata toscaMetadata, Dictionary<string, ZipArchiveEntry> fillZipArchivesDictionary)
+        private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, Dictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath, string relativePath)
         {
-            var zipEntryFileName = Path.Combine(relativePath, toscaMetadata.EntryDefinitions);
+            var toscaServiceTemplate = LoadToscaServiceTemplate(alternativePath, relativePath, zipArchiveEntries, toscaServiceTemplateName);
+            toscaCloudServiceArchive.AddToscaServiceTemplate(toscaServiceTemplateName, toscaServiceTemplate);
+            foreach (var importFile in toscaServiceTemplate.Imports.SelectMany(import => import.Values))
+            {
+                LoadDependenciesRecursively(toscaCloudServiceArchive, zipArchiveEntries, importFile.File, alternativePath, relativePath);
+            }
+        }
+
+        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, string relativePath, Dictionary<string, ZipArchiveEntry> archiveEntries, string filePath)
+        {
+            var zipEntryFileName = Path.Combine(relativePath, filePath);
             try
             {
-                var archiveEntry = GetZipArchiveEntry(zipEntryFileName, fillZipArchivesDictionary);
-                return toscaServiceTemplateLoader.Load(archiveEntry.Open(), alternativePath);
+                ZipArchiveEntry zipArchiveEntry;
+                if (!archiveEntries.TryGetValue(zipEntryFileName, out zipArchiveEntry))
+                {
+                    if (!string.IsNullOrEmpty(alternativePath))
+                    {
+                        var alternativeFullPath = fileSystem.Path.Combine(alternativePath, zipEntryFileName);
+                        if ( !fileSystem.File.Exists(alternativeFullPath))
+                        {
+                            throw new FileNotFoundException(string.Format("{0} file neither found within TOSCA Cloud Service Archive nor at alternative location '{1}'.", zipEntryFileName , alternativePath));
+                        }
+                        return toscaServiceTemplateParser.Parse(fileSystem.File.OpenRead(alternativeFullPath));
+                    }
+                    throw new FileNotFoundException(string.Format("{0} file not found within TOSCA Cloud Service Archive file.", zipEntryFileName));
+                }
+                return toscaServiceTemplateParser.Parse(zipArchiveEntry.Open());
             }
             catch (ToscaBaseException toscaBaseException)
             {
@@ -86,7 +107,7 @@ namespace Toscana.Engine
             return toscaMetaArchiveEntry;
         }
 
-        private static Dictionary<string, ZipArchiveEntry> FillZipArchivesDictionary(ZipArchive archive)
+        private static Dictionary<string, ZipArchiveEntry> CreateArchiveEntriesDictionary(ZipArchive archive)
         {
             var zipArchiveEntries = new Dictionary<string, ZipArchiveEntry>(new PathEqualityComparer());
             foreach (var zipArchiveEntry in archive.Entries)
@@ -94,17 +115,6 @@ namespace Toscana.Engine
                 zipArchiveEntries.Add(zipArchiveEntry.FullName, zipArchiveEntry);
             }
             return zipArchiveEntries;
-        }
-
-        private static ZipArchiveEntry GetZipArchiveEntry(string zipEntryFileName, IReadOnlyDictionary<string, ZipArchiveEntry> zipArchivesDictionary)
-        {
-            ZipArchiveEntry zipArchiveEntry;
-            if (!zipArchivesDictionary.TryGetValue(zipEntryFileName, out zipArchiveEntry))
-            {
-                throw new FileNotFoundException(
-                    string.Format("{0} file not found within TOSCA Cloud Service Archive file.", zipEntryFileName));
-            }
-            return zipArchiveEntry;
         }
     }
 

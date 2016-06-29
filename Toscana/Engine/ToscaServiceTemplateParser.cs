@@ -1,8 +1,11 @@
-﻿namespace Toscana.Engine
+﻿using System.IO;
+
+namespace Toscana.Engine
 {
     public interface IToscaServiceTemplateParser
     {
         ToscaServiceTemplate Parse(string tosca);
+        ToscaServiceTemplate Parse(Stream stream);
     }
 
     public class ToscaServiceTemplateParser : IToscaServiceTemplateParser
@@ -19,6 +22,13 @@
         public ToscaServiceTemplate Parse(string tosca)
         {
             var toscaObject = toscaServiceTemplateDeserializer.Deserialize(tosca);
+            toscaValidator.Validate(toscaObject);
+            return toscaObject;
+        }
+
+        public ToscaServiceTemplate Parse(Stream stream)
+        {
+            var toscaObject = toscaServiceTemplateDeserializer.Deserialize(stream);
             toscaValidator.Validate(toscaObject);
             return toscaObject;
         }

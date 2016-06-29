@@ -163,10 +163,10 @@ node_types:
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip", @"c:\alternative\");
 
             // Assert
-            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
+            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(2);
             var toscaNodeTypes = toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes;
+            toscaNodeTypes.Should().HaveCount(1);
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
-            toscaNodeTypes["tosca.base"].Properties["storage"].Type.Should().Be("string");
         }
 
         private static void CreateArchive(IFileSystem fileSystem, string archiveFilePath, IEnumerable<FileContent> fileContents)

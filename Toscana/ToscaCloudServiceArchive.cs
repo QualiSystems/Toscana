@@ -33,5 +33,10 @@ namespace Toscana
         {
             return new Bootstrapper().GetToscaCloudServiceArchiveLoader();
         }
+
+        public void AddToscaServiceTemplate(string toscaServiceTemplateName, ToscaServiceTemplate toscaServiceTemplate)
+        {
+            ToscaServiceTemplates.Add(toscaServiceTemplateName, toscaServiceTemplate);
+        }
     }
 }
