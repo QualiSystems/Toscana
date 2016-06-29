@@ -73,6 +73,7 @@
     <Compile Include="Domain\ToscaObjectTests.cs" />
     <Compile Include="Domain\ToscaTopologyInputTests.cs" />
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
+    <Compile Include="Engine\BootstrapperTests.cs" />
     <Compile Include="Engine\PoorManContainerTests.cs" />
     <Compile Include="Engine\ToscaServiceTemplateDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />

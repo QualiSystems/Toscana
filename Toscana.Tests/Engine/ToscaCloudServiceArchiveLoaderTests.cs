@@ -64,7 +64,7 @@ namespace Toscana.Tests.Engine
         }
 
         [Test] 
-        public void Tosca_Cloud_Service_Archive_With_Single_Profile_Should_Be_Parsed()
+        public void Tosca_Cloud_Service_Archive_With_Single_Template_Should_Be_Parsed()
         {
             // Arrange
             var toscaMetaContent = @"TOSCA-Meta-File-Version: 1.0
@@ -92,8 +92,8 @@ node_types:
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
-            toscaCloudServiceArchive.ToscaSimpleProfiles.Should().HaveCount(1);
-            toscaCloudServiceArchive.ToscaSimpleProfiles[@"definitions\tosca_elk.yaml"].NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
+            toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
         }
 
         [Test] 
@@ -120,7 +120,7 @@ INVALID";
         }
 
         [Test] 
-        public void Archive_With_Two_Profiles_One_Of_Them_Resides_In_Alternative_Path_Loaded()
+        public void Archive_With_Two_Templates_One_Of_Them_Resides_In_Alternative_Path_Loaded()
         {
             var mockFileSystem = new MockFileSystem();
             var bootstrapper = new Bootstrapper();
@@ -163,8 +163,8 @@ node_types:
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip", @"c:\alternative\");
 
             // Assert
-            toscaCloudServiceArchive.ToscaSimpleProfiles.Should().HaveCount(1);
-            var toscaNodeTypes = toscaCloudServiceArchive.ToscaSimpleProfiles[@"definitions\tosca_elk.yaml"].NodeTypes;
+            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
+            var toscaNodeTypes = toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes;
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
             toscaNodeTypes["tosca.base"].Properties["storage"].Type.Should().Be("string");
         }

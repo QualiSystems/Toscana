@@ -32,7 +32,7 @@ imports:
 
             var toscaSimpleProfile = new Bootstrapper()
                 .Replace<IFileSystem>(fileSystem)
-                .GetToscaSimpleProfileLoader()
+                .GetToscaServiceTemplateLoader()
                 .Load("user_tosca.yaml");
 
             // Assert
@@ -62,7 +62,7 @@ imports:
 
             var toscaSimpleProfile = new Bootstrapper()
                 .Replace<IFileSystem>(fileSystem)
-                .GetToscaSimpleProfileLoader()
+                .GetToscaServiceTemplateLoader()
                 .Load("user_tosca.yaml", @"C:\alternative\tosca\");
 
             // Assert

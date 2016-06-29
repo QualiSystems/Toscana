@@ -15,17 +15,17 @@ namespace Toscana
     public class ToscaServiceTemplateBuilder : IToscaServiceTemplateBuilder
     {
         private const string ToscaNodesRoot = "tosca.nodes.Root";
-        private readonly List<ToscaServiceTemplate> toscaSimpleProfiles = new List<ToscaServiceTemplate>();
+        private readonly List<ToscaServiceTemplate> toscaServiceTemplates = new List<ToscaServiceTemplate>();
 
         public IToscaServiceTemplateBuilder Append(string toscaAsString)
         {
-            toscaSimpleProfiles.Add(ToscaServiceTemplate.Parse(toscaAsString));
+            toscaServiceTemplates.Add(ToscaServiceTemplate.Parse(toscaAsString));
             return this;
         }
 
         public IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate)
         {
-            toscaSimpleProfiles.Add(toscaServiceTemplate);
+            toscaServiceTemplates.Add(toscaServiceTemplate);
             return this;
         }
 
@@ -34,7 +34,7 @@ namespace Toscana
             var combinedTosca = new ToscaServiceTemplate();
             CombineNodeTypes(combinedTosca);
             BuildNodeTypeHierarchy(combinedTosca);
-            var firstProfile = toscaSimpleProfiles.FirstOrDefault();
+            var firstProfile = toscaServiceTemplates.FirstOrDefault();
             if (firstProfile != null)
             {
                 combinedTosca.Description = firstProfile.Description;
@@ -44,7 +44,7 @@ namespace Toscana
 
         private void CombineNodeTypes(ToscaServiceTemplate combinedTosca)
         {
-            foreach (var simpleProfile in toscaSimpleProfiles)
+            foreach (var simpleProfile in toscaServiceTemplates)
             {
                 foreach (var nodeType in simpleProfile.NodeTypes)
                 {

@@ -17,13 +17,13 @@ namespace Toscana.Tests
         }
 
         [Test]
-        public void ToscaSimpleProfiles_Should_Not_Be_Null_Upon_Initialization()
+        public void ToscaServiceTemplates_Should_Not_Be_Null_Upon_Initialization()
         {
             // Act
             var toscaCloudServiceArchive = new ToscaCloudServiceArchive();
 
             // Assert
-            toscaCloudServiceArchive.ToscaSimpleProfiles.Should().NotBeNull();
+            toscaCloudServiceArchive.ToscaServiceTemplates.Should().NotBeNull();
         }
     }
 }

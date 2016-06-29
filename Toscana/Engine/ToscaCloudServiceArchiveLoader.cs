@@ -49,14 +49,14 @@ namespace Toscana.Engine
                 {
                     ToscaMetadata = toscaMetadata
                 };
-                var toscaSimpleProfile = LoadToscaSimpleProfile(alternativePath, relativePath, toscaMetadata, fillZipArchivesDictionary);
+                var toscaSimpleProfile = LoadToscaServiceTemplate(alternativePath, relativePath, toscaMetadata, fillZipArchivesDictionary);
 
-                toscaCloudServiceArchive.ToscaSimpleProfiles.Add(toscaMetadata.EntryDefinitions, toscaSimpleProfile);
+                toscaCloudServiceArchive.ToscaServiceTemplates.Add(toscaMetadata.EntryDefinitions, toscaSimpleProfile);
                 return toscaCloudServiceArchive;
             }
         }
 
-        private ToscaServiceTemplate LoadToscaSimpleProfile(string alternativePath, string relativePath,
+        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, string relativePath,
             ToscaMetadata toscaMetadata, Dictionary<string, ZipArchiveEntry> fillZipArchivesDictionary)
         {
             var zipEntryFileName = Path.Combine(relativePath, toscaMetadata.EntryDefinitions);

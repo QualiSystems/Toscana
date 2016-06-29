@@ -18,12 +18,12 @@ namespace Toscana.Engine
             poorManContainer.Register<IToscaCloudServiceArchiveLoader, ToscaCloudServiceArchiveLoader>();
         }
 
-        public IToscaServiceTemplateParser GetToscaSimpleProfileParser()
+        public IToscaServiceTemplateParser GetToscaServiceTemplateParser()
         {
             return poorManContainer.GetInstance<IToscaServiceTemplateParser>();
         }
 
-        public IToscaServiceTemplateLoader GetToscaSimpleProfileLoader()
+        public IToscaServiceTemplateLoader GetToscaServiceTemplateLoader()
         {
             return poorManContainer.GetInstance<IToscaServiceTemplateLoader>();
         }

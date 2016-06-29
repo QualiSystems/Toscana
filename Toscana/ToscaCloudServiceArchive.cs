@@ -10,11 +10,11 @@ namespace Toscana
 
         public ToscaCloudServiceArchive()
         {
-            ToscaSimpleProfiles = new Dictionary<string, ToscaServiceTemplate>();
+            ToscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
             ToscaMetadata = new ToscaMetadata();
         }
 
-        public Dictionary<string, ToscaServiceTemplate> ToscaSimpleProfiles { get; set; }
+        public Dictionary<string, ToscaServiceTemplate> ToscaServiceTemplates { get; set; }
         public ToscaMetadata ToscaMetadata { get; set; }
 
         public static ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
