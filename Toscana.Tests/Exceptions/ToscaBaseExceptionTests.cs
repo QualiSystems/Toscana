@@ -14,5 +14,13 @@ namespace Toscana.Tests.Exceptions
 
             toscanaBaseException.Should().BeBinarySerializable();
         }
+
+        [Test]
+        public void ToscanaBaseException_With_Message_Should_Be_Binary_Serializable()
+        {
+            var toscanaBaseException = new ToscaBaseException("message");
+
+            toscanaBaseException.Should().BeBinarySerializable();
+        }
     }
 }

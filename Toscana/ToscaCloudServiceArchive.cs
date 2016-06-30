@@ -6,8 +6,6 @@ namespace Toscana
 {
     public class ToscaCloudServiceArchive
     {
-        public const string ToscaMetaFileName = "TOSCA.meta";
-
         public ToscaCloudServiceArchive()
         {
             ToscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();

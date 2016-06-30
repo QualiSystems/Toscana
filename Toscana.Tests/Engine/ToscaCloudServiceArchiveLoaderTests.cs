@@ -8,6 +8,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
 using Toscana.Exceptions;
+using Toscana.Tests.Exceptions;
 
 namespace Toscana.Tests.Engine
 {
@@ -33,7 +34,7 @@ namespace Toscana.Tests.Engine
             Action action = () => toscaCloudServiceArchiveLoader.Load("non_existing.zip");
 
             // Assert
-            action.ShouldThrow<FileNotFoundException>();
+            action.ShouldThrow<ToscaCloudServiceArchiveFileNotFoundException>().WithMessage("Cloud Service Archive (CSAR) file 'non_existing.zip' not found");
         }
 
         [Test]
@@ -51,7 +52,7 @@ Entry-Definitions: not_existing.yaml")};
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
-            action.ShouldThrow<FileNotFoundException>();
+            action.ShouldThrow<ToscaImportFileNotFoundException>().WithMessage("not_existing.yaml file not found within TOSCA Cloud Service Archive file.");
         }
 
         [Test]
@@ -64,7 +65,7 @@ Entry-Definitions: not_existing.yaml")};
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
-            action.ShouldThrow<FileNotFoundException>().WithMessage("TOSCA.meta file not found within TOSCA Cloud Service Archive file.");
+            action.ShouldThrow<ToscaMetadataFileNotFound>().WithMessage("TOSCA.meta file not found within TOSCA Cloud Service Archive file.");
         }
 
         [Test] 
