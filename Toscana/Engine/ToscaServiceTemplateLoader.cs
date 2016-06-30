@@ -38,10 +38,7 @@ namespace Toscana.Engine
 
         private void AppendFileToBuilder(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, Stream stream, string alternativePath)
         {
-            using (var streamReader = new StreamReader(stream))
-            {
-                ReadFromStreamReader(toscaServiceTemplateBuilder, streamReader, alternativePath);
-            }
+            ReadFromStreamReader(toscaServiceTemplateBuilder, stream, alternativePath);
         }
 
         private void AppendFileToBuilder(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, string filePath, string alternativePath = null)
@@ -54,15 +51,15 @@ namespace Toscana.Engine
                     filePath = alternativeFullPath;
                 }
             }
-            using (var streamReader = fileSystem.File.OpenText(filePath))
+            using (var stream = fileSystem.File.Open(filePath, FileMode.Open))
             {
-                ReadFromStreamReader(toscaServiceTemplateBuilder, streamReader, alternativePath);
+                ReadFromStreamReader(toscaServiceTemplateBuilder, stream, alternativePath);
             }
         }
 
-        private void ReadFromStreamReader(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, StreamReader streamReader, string alternativePath)
+        private void ReadFromStreamReader(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, Stream stream, string alternativePath)
         {
-            var toscaSimpleProfile = toscaParser.Parse(streamReader.ReadToEnd());
+            var toscaSimpleProfile = toscaParser.Parse(stream);
             toscaServiceTemplateBuilder.Append(toscaSimpleProfile);
             foreach (var importFile in toscaSimpleProfile.Imports.SelectMany(import => import.Values))
             {

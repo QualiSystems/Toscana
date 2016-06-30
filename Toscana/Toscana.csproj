@@ -91,7 +91,6 @@
     <Compile Include="Engine\Bootstrapper.cs" />
     <Compile Include="Engine\PoorManContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
-    <Compile Include="Engine\ToscaMetadataDeserializer.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />

@@ -40,7 +40,11 @@ namespace Toscana.Tests.Engine
         public void EntryPointNotFoundException_Should_Be_Thrown_When_EntryPoint_File_Does_Not_Exist()
         {
             // Arrange
-            var fileContents = new List<FileContent> {new FileContent("TOSCA.meta", "Entry-Definitions: not_existing.yaml")};
+            var fileContents = new List<FileContent> {new FileContent("TOSCA.meta", 
+                @"TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: not_existing.yaml")};
             CreateArchive(fileSystem, "tosca.zip", fileContents);
 
             // Act
@@ -100,7 +104,11 @@ node_types:
         public void Exception_Should_Be_Thrown_When_Definition_File_Not_Valid()
         {
             // Arrange
-            var toscaMetaContent = "Entry-Definitions: tosca_elk.yaml";
+            var toscaMetaContent =
+                @"TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca_elk.yaml";
             var toscaSimpleProfileContent = @"tosca_definitions_version: tosca_simple_yaml_1_0
 INVALID";
 

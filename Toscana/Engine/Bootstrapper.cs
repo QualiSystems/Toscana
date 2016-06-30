@@ -40,5 +40,10 @@ namespace Toscana.Engine
             poorManContainer.RegisterSingleton(instance);
             return this;
         }
+
+        public IToscaParser<ToscaMetadata> GetToscaMetadataParser()
+        {
+            return poorManContainer.GetInstance<IToscaParser<ToscaMetadata>>();
+        }
     }
 }
