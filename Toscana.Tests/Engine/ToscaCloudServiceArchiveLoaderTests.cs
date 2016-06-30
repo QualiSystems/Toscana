@@ -8,7 +8,6 @@ using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
 using Toscana.Exceptions;
-using Toscana.Tests.Exceptions;
 
 namespace Toscana.Tests.Engine
 {
@@ -28,7 +27,7 @@ namespace Toscana.Tests.Engine
         }
 
         [Test]
-        public void FileNotFoundException_Should_Be_Thrown_When_Archive_Does_Not_Exist()
+        public void ToscaCloudServiceArchiveFileNotFoundException_Should_Be_Thrown_When_Archive_Does_Not_Exist()
         {
             // Act
             Action action = () => toscaCloudServiceArchiveLoader.Load("non_existing.zip");
@@ -56,7 +55,7 @@ Entry-Definitions: not_existing.yaml")};
         }
 
         [Test]
-        public void Exception_Should_Be_Thrown_When_Tosca_Meta_File_Does_Not_Exist()
+        public void ToscaMetadataFileNotFound_Should_Be_Thrown_When_Tosca_Meta_File_Does_Not_Exist()
         {
             // Arrange
             CreateArchive(fileSystem, "tosca.zip", new FileContent[0]);
@@ -72,7 +71,8 @@ Entry-Definitions: not_existing.yaml")};
         public void Tosca_Cloud_Service_Archive_With_Single_Template_Should_Be_Parsed()
         {
             // Arrange
-            var toscaMetaContent = @"TOSCA-Meta-File-Version: 1.0
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
 Entry-Definitions: definitions\tosca_elk.yaml";
@@ -101,12 +101,12 @@ node_types:
             toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
         }
 
-        [Test] 
-        public void Exception_Should_Be_Thrown_When_Definition_File_Not_Valid()
+        [Test]
+        public void ToscaParsingException_Should_Be_Thrown_When_Definition_File_Not_Valid()
         {
             // Arrange
-            var toscaMetaContent =
-                @"TOSCA-Meta-File-Version: 1.0
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
 Entry-Definitions: tosca_elk.yaml";
@@ -137,7 +137,8 @@ INVALID";
             toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
 
             // Arrange
-            var toscaMetaContent = @"TOSCA-Meta-File-Version: 1.0
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
 Entry-Definitions: definitions\tosca_elk.yaml";
@@ -173,6 +174,7 @@ node_types:
 
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(2);
+            toscaCloudServiceArchive.NodeTypes.Should().HaveCount(2);
             var toscaNodeTypes = toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes;
             toscaNodeTypes.Should().HaveCount(1);
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");

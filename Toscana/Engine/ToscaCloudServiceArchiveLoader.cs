@@ -97,6 +97,10 @@ namespace Toscana.Engine
         private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, Dictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath, string relativePath)
         {
             var toscaServiceTemplate = LoadToscaServiceTemplate(alternativePath, relativePath, zipArchiveEntries, toscaServiceTemplateName);
+            foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
+            {
+                toscaCloudServiceArchive.AddToscaNodeType(toscaNodeType.Key, toscaNodeType.Value);
+            }
             toscaCloudServiceArchive.AddToscaServiceTemplate(toscaServiceTemplateName, toscaServiceTemplate);
             foreach (var importFile in toscaServiceTemplate.Imports.SelectMany(import => import.Values))
             {

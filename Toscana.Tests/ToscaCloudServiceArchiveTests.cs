@@ -17,6 +17,16 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void NodeTypes_Should_Not_Be_Null_Upon_Initialization()
+        {
+            // Act
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive();
+
+            // Assert
+            toscaCloudServiceArchive.NodeTypes.Should().NotBeNull();
+        }
+
+        [Test]
         public void ToscaServiceTemplates_Should_Not_Be_Null_Upon_Initialization()
         {
             // Act
