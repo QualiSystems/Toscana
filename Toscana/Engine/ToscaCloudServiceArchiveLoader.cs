@@ -18,15 +18,15 @@ namespace Toscana.Engine
     public class ToscaCloudServiceArchiveLoader : IToscaCloudServiceArchiveLoader
     {
         private readonly IFileSystem fileSystem;
-        private readonly IToscaMetadataDeserializer toscaMetadataDeserializer;
-        private readonly IToscaServiceTemplateParser toscaServiceTemplateParser;
+        private readonly IToscaParser<ToscaMetadata> metadataParser;
+        private readonly IToscaParser<ToscaServiceTemplate> serviceTemplateParser;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
-            IToscaMetadataDeserializer toscaMetadataDeserializer, IToscaServiceTemplateParser toscaServiceTemplateParser)
+            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser)
         {
             this.fileSystem = fileSystem;
-            this.toscaMetadataDeserializer = toscaMetadataDeserializer;
-            this.toscaServiceTemplateParser = toscaServiceTemplateParser;
+            this.metadataParser = metadataParser;
+            this.serviceTemplateParser = serviceTemplateParser;
         }
 
         public ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
@@ -44,7 +44,7 @@ namespace Toscana.Engine
                 var archiveEntries = CreateArchiveEntriesDictionary(archive);
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
                 var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? string.Empty;
-                var toscaMetadata = toscaMetadataDeserializer.Deserialize(toscaMetaArchiveEntry.Open());
+                var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive
                 {
                     ToscaMetadata = toscaMetadata
@@ -80,11 +80,11 @@ namespace Toscana.Engine
                         {
                             throw new FileNotFoundException(string.Format("{0} file neither found within TOSCA Cloud Service Archive nor at alternative location '{1}'.", zipEntryFileName , alternativePath));
                         }
-                        return toscaServiceTemplateParser.Parse(fileSystem.File.OpenRead(alternativeFullPath));
+                        return serviceTemplateParser.Parse(fileSystem.File.OpenRead(alternativeFullPath));
                     }
                     throw new FileNotFoundException(string.Format("{0} file not found within TOSCA Cloud Service Archive file.", zipEntryFileName));
                 }
-                return toscaServiceTemplateParser.Parse(zipArchiveEntry.Open());
+                return serviceTemplateParser.Parse(zipArchiveEntry.Open());
             }
             catch (ToscaBaseException toscaBaseException)
             {

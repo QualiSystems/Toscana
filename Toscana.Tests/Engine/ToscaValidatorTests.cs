@@ -12,7 +12,7 @@ namespace Toscana.Tests.Engine
         [Test]
         public void Validation_Exception_Should_Be_Thrown_When_Null_Validated()
         {
-            var toscaValidator = new ToscaValidator();
+            var toscaValidator = new ToscaValidator<ToscaServiceTemplate>();
 
             Action action = () => toscaValidator.Validate(null);
 

@@ -6,16 +6,16 @@ using Toscana.Exceptions;
 
 namespace Toscana.Engine
 {
-    public interface IToscaValidator
+    public interface IToscaValidator<in T>
     {
-        void Validate(ToscaServiceTemplate toscaServiceTemplate);
+        void Validate(T toscaObject);
     }
 
-    public class ToscaValidator : IToscaValidator
+    public class ToscaValidator<T> : IToscaValidator<T>
     {
-        public void Validate(ToscaServiceTemplate toscaServiceTemplate)
+        public void Validate(T toscaObject)
         {
-            if (toscaServiceTemplate == null)
+            if (toscaObject == null)
             {
                 throw new ToscaValidationException("Tosca is null or empty");
             }
@@ -23,7 +23,7 @@ namespace Toscana.Engine
             var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
             
             var validationResults = new List<ValidationResult>();
-            if (!dataAnnotationsValidator.TryValidateObjectRecursive(toscaServiceTemplate, validationResults))
+            if (!dataAnnotationsValidator.TryValidateObjectRecursive<T>(toscaObject, validationResults))
             {
                 var message = string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage).ToList());
 

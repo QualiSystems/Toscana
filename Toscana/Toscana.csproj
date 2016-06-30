@@ -93,12 +93,12 @@
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
     <Compile Include="Engine\ToscaMetadataDeserializer.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateParser.cs" />
+    <Compile Include="Engine\ToscaParser.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />
     <Compile Include="Exceptions\ToscaBaseException.cs" />
     <Compile Include="Exceptions\ToscaParsingException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateDeserializer.cs" />
+    <Compile Include="Engine\ToscaDeserializer.cs" />
     <Compile Include="Engine\ToscaValidator.cs" />
     <Compile Include="ToscaArtifact.cs" />
     <Compile Include="ToscaAttributeAssignment.cs" />

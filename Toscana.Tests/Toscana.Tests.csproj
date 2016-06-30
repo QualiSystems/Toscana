@@ -75,10 +75,10 @@
     <Compile Include="Domain\ToscaTopologyTemplateTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
     <Compile Include="Engine\PoorManContainerTests.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateDeserializerTests.cs" />
+    <Compile Include="Engine\ToscaDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoaderTests.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateParserTests.cs" />
+    <Compile Include="Engine\ToscaParserTests.cs" />
     <Compile Include="Engine\ToscaValidatorTests.cs" />
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />

@@ -8,13 +8,13 @@ using Toscana.Exceptions;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class ToscaServiceTemplateDeserializerTests
+    public class ToscaDeserializerTests
     {
         [Test]
         public void Parse_Template_With_Single_Requirement()
         {
             // Arrange
-            var toscaParser = new ToscaServiceTemplateDeserializer();
+            var toscaParser = new ToscaDeserializer<ToscaServiceTemplate>();
             // Act
             var tosca = toscaParser.Deserialize(@"
 tosca_definitions_version: tosca_simple_yaml_1_0
@@ -55,7 +55,7 @@ node_types:
         [Test]
         public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
         {
-            var toscaDeserializer = new ToscaServiceTemplateDeserializer();
+            var toscaDeserializer = new ToscaDeserializer<ToscaServiceTemplate>();
             Action action = () => toscaDeserializer.Deserialize("unsupported_something:");
 
             action.ShouldThrow<ToscaParsingException>()

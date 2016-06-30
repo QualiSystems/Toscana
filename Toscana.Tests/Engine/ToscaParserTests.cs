@@ -8,7 +8,7 @@ using Toscana.Exceptions;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class ToscaServiceTemplateParserTests
+    public class ToscaParserTests
     {
         [Test]
         public void Analyze_All_Property_Keynames_Are_Set()

@@ -10,17 +10,19 @@ namespace Toscana.Engine
         {
             poorManContainer = new PoorManContainer();
             poorManContainer.Register<IFileSystem, FileSystem>();
-            poorManContainer.Register<IToscaValidator, ToscaValidator>();
-            poorManContainer.Register<IToscaServiceTemplateDeserializer, ToscaServiceTemplateDeserializer>();
-            poorManContainer.Register<IToscaMetadataDeserializer, ToscaMetadataDeserializer>();
-            poorManContainer.Register<IToscaServiceTemplateParser, ToscaServiceTemplateParser>();
+            poorManContainer.Register<IToscaValidator<ToscaMetadata>, ToscaValidator<ToscaMetadata>>();
+            poorManContainer.Register<IToscaValidator<ToscaServiceTemplate>, ToscaValidator<ToscaServiceTemplate>>();
+            poorManContainer.Register<IToscaDeserializer<ToscaServiceTemplate>, ToscaDeserializer<ToscaServiceTemplate>>();
+            poorManContainer.Register<IToscaParser<ToscaServiceTemplate>, ToscaParser<ToscaServiceTemplate>>();
+            poorManContainer.Register<IToscaDeserializer<ToscaMetadata>, ToscaDeserializer<ToscaMetadata>>();
+            poorManContainer.Register<IToscaParser<ToscaMetadata>, ToscaParser<ToscaMetadata>>();
             poorManContainer.Register<IToscaServiceTemplateLoader, ToscaServiceTemplateLoader>();
             poorManContainer.Register<IToscaCloudServiceArchiveLoader, ToscaCloudServiceArchiveLoader>();
         }
 
-        public IToscaServiceTemplateParser GetToscaServiceTemplateParser()
+        public IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
         {
-            return poorManContainer.GetInstance<IToscaServiceTemplateParser>();
+            return poorManContainer.GetInstance<IToscaParser<ToscaServiceTemplate>>();
         }
 
         public IToscaServiceTemplateLoader GetToscaServiceTemplateLoader()

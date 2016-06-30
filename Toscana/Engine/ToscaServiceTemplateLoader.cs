@@ -13,13 +13,13 @@ namespace Toscana.Engine
     public class ToscaServiceTemplateLoader : IToscaServiceTemplateLoader
     {
         private readonly IFileSystem fileSystem;
-        private readonly IToscaServiceTemplateParser toscaServiceTemplateParser;
+        private readonly IToscaParser<ToscaServiceTemplate> toscaParser;
 
         public ToscaServiceTemplateLoader(IFileSystem fileSystem,
-            IToscaServiceTemplateParser toscaServiceTemplateParser)
+            IToscaParser<ToscaServiceTemplate> toscaParser)
         {
             this.fileSystem = fileSystem;
-            this.toscaServiceTemplateParser = toscaServiceTemplateParser;
+            this.toscaParser = toscaParser;
         }
 
         public ToscaServiceTemplate Load(string filePath, string alternativePath)
@@ -62,7 +62,7 @@ namespace Toscana.Engine
 
         private void ReadFromStreamReader(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, StreamReader streamReader, string alternativePath)
         {
-            var toscaSimpleProfile = toscaServiceTemplateParser.Parse(streamReader.ReadToEnd());
+            var toscaSimpleProfile = toscaParser.Parse(streamReader.ReadToEnd());
             toscaServiceTemplateBuilder.Append(toscaSimpleProfile);
             foreach (var importFile in toscaSimpleProfile.Imports.SelectMany(import => import.Values))
             {

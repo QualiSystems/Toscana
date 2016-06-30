@@ -7,22 +7,22 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace Toscana.Engine
 {
-    public interface IToscaServiceTemplateDeserializer
+    public interface IToscaDeserializer<out T>
     {
-        ToscaServiceTemplate Deserialize(string tosca);
-        ToscaServiceTemplate Deserialize(Stream stream);
+        T Deserialize(string tosca);
+        T Deserialize(Stream stream);
     }
 
-    public class ToscaServiceTemplateDeserializer : IToscaServiceTemplateDeserializer
+    public class ToscaDeserializer<T> : IToscaDeserializer<T>
     {
         private readonly Deserializer deserializer;
 
-        public ToscaServiceTemplateDeserializer()
+        public ToscaDeserializer()
         {
             deserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
         }
 
-        public ToscaServiceTemplate Deserialize(string tosca)
+        public T Deserialize(string tosca)
         {
             using (var stringReader = new StringReader(tosca))
             {
@@ -30,7 +30,7 @@ namespace Toscana.Engine
             }
         }
 
-        public ToscaServiceTemplate Deserialize(Stream stream)
+        public T Deserialize(Stream stream)
         {
             using (var streamReader = new StreamReader(stream))
             {
@@ -38,11 +38,11 @@ namespace Toscana.Engine
             }
         }
 
-        private ToscaServiceTemplate Deserialize(TextReader stringReader)
+        private T Deserialize(TextReader stringReader)
         {
             try
             {
-                return deserializer.Deserialize<ToscaServiceTemplate>(stringReader);
+                return deserializer.Deserialize<T>(stringReader);
             }
             catch (YamlException yamlException)
             {

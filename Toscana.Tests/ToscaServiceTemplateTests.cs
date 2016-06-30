@@ -71,7 +71,7 @@ namespace Toscana.Tests
                 ToscaDefinitionsVersion = "INVALID"
             };
 
-            var toscaValidator = new ToscaValidator();
+            var toscaValidator = new ToscaValidator<ToscaServiceTemplate>();
 
             // Act
             Action action = () => toscaValidator.Validate(toscaSimpleProfile);
@@ -90,7 +90,7 @@ namespace Toscana.Tests
                 ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
             };
 
-            var toscaValidator = new ToscaValidator();
+            var toscaValidator = new ToscaValidator<ToscaServiceTemplate>();
 
             // Act
             Action action = () => toscaValidator.Validate(toscaSimpleProfile);
