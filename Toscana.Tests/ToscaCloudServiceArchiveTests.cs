@@ -25,5 +25,20 @@ namespace Toscana.Tests
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().NotBeNull();
         }
+
+        [Test]
+        public void EntryPointServiceTemplate_Returns_EntryDefinitions_Template()
+        {
+            // Act
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive
+            {
+                ToscaMetadata = {EntryDefinitions = "tosca1.yaml"}
+            };
+            toscaCloudServiceArchive.AddToscaServiceTemplate("tosca1.yaml", new ToscaServiceTemplate {Description = "tosca1 description"});
+            toscaCloudServiceArchive.AddToscaServiceTemplate("base.yaml", new ToscaServiceTemplate {Description = "base description"});
+
+            // Assert
+            toscaCloudServiceArchive.EntryPointServiceTemplate.Description.Should().Be("tosca1 description");
+        }
     }
 }

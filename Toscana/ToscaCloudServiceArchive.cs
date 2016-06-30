@@ -14,6 +14,11 @@ namespace Toscana
             ToscaMetadata = new ToscaMetadata();
         }
 
+        public ToscaServiceTemplate EntryPointServiceTemplate
+        {
+            get { return ToscaServiceTemplates[ToscaMetadata.EntryDefinitions]; }
+        }
+
         public Dictionary<string, ToscaServiceTemplate> ToscaServiceTemplates { get; set; }
         public ToscaMetadata ToscaMetadata { get; set; }
 
