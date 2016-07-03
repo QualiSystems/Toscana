@@ -1,7 +1,7 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using NUnit.Framework;
 
-namespace Toscana.Tests.Domain
+namespace Toscana.Tests
 {
     [TestFixture]
     public class ToscaTopologyTemplateTests
