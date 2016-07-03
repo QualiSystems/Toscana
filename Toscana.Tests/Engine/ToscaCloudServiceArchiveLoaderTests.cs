@@ -180,6 +180,49 @@ node_types:
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
         }
 
+        [Test] 
+        public void GetEntryLeafNodeTypes_Returns_Derived_Node_Type_In_Archive_With_A_Template_Containing_Base_And_Derived_Node_Types()
+        {
+            var mockFileSystem = new MockFileSystem();
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Replace<IFileSystem>(mockFileSystem);
+            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
+
+            // Arrange
+            const string toscaMetaContent = 
+@"TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca.yaml";
+
+            const string derivedTosca = 
+@"tosca_definitions_version: tosca_simple_yaml_1_0
+node_types:
+  tosca.network_device:
+    derived_from: tosca.base
+    properties:
+      vendor:
+        type: string
+  tosca.base:
+    properties:
+      price:
+        type: integer";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca.yaml", derivedTosca)
+            };
+
+            CreateArchive(mockFileSystem, "tosca.zip", fileContents);
+           
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            toscaCloudServiceArchive.GetEntryLeafNodeTypes().Keys.ShouldAllBeEquivalentTo(new[] { "tosca.network_device" });
+        }
+
         private static void CreateArchive(IFileSystem fileSystem, string archiveFilePath, IEnumerable<FileContent> fileContents)
         {
             using (var stream = fileSystem.File.Create(archiveFilePath))

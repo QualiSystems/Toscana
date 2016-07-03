@@ -90,6 +90,7 @@
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
+    <Compile Include="Engine\PathEqualityComparer.cs" />
     <Compile Include="Engine\PoorManContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />

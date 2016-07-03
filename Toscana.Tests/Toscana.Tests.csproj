@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Common\RestrictedValuesTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
+    <Compile Include="Engine\PathEqualityComparerTests.cs" />
     <Compile Include="Engine\PoorManContainerTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />

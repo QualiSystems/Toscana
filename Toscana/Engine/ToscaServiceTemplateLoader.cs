@@ -7,7 +7,6 @@ namespace Toscana.Engine
     public interface IToscaServiceTemplateLoader
     {
         ToscaServiceTemplate Load(string filePath, string alternativePath = null);
-        ToscaServiceTemplate Load(Stream stream, string alternativePath = null);
     }
 
     public class ToscaServiceTemplateLoader : IToscaServiceTemplateLoader
@@ -27,18 +26,6 @@ namespace Toscana.Engine
             var toscaSimpleProfileBuilder = new ToscaServiceTemplateBuilder();
             AppendFileToBuilder(toscaSimpleProfileBuilder, filePath, alternativePath);
             return toscaSimpleProfileBuilder.Build();
-        }
-
-        public ToscaServiceTemplate Load(Stream stream, string alternativePath = null)
-        {
-            var toscaSimpleProfileBuilder = new ToscaServiceTemplateBuilder();
-            AppendFileToBuilder(toscaSimpleProfileBuilder, stream, alternativePath);
-            return toscaSimpleProfileBuilder.Build();
-        }
-
-        private void AppendFileToBuilder(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, Stream stream, string alternativePath)
-        {
-            ReadFromStreamReader(toscaServiceTemplateBuilder, stream, alternativePath);
         }
 
         private void AppendFileToBuilder(IToscaServiceTemplateBuilder toscaServiceTemplateBuilder, string filePath, string alternativePath = null)

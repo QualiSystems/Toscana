@@ -23,5 +23,10 @@ namespace Toscana.Common
         {
             return FromHierarchy(source, nextItem, s => s != null);
         }
+
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
+        {
+            return new HashSet<T>(source);
+        }
     }
 }

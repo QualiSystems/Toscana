@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using Toscana.Common;
 using Toscana.Engine;
 
 namespace Toscana
@@ -29,13 +32,16 @@ namespace Toscana
         }
 
         /// <summary>
-        /// Loads Cloud Service Archive (CSAR) file and all its dependencies
+        ///     Loads Cloud Service Archive (CSAR) file and all its dependencies
         /// </summary>
         /// <param name="archiveFilePath">Path to Cloud Service Archive (CSAR) zip file</param>
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
         /// <exception cref="Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException">Thrown when CSAR file not found.</exception>
         /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
-        /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
+        /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">
+        ///     Thrown when import file neither found in the
+        ///     archive nor at the alternative path.
+        /// </exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         public static ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
         {
@@ -44,12 +50,15 @@ namespace Toscana
         }
 
         /// <summary>
-        /// Loads Cloud Service Archive (CSAR) file and all its dependencies
+        ///     Loads Cloud Service Archive (CSAR) file and all its dependencies
         /// </summary>
         /// <param name="archiveStream">Stream to Cloud Service Archive (CSAR) zip file</param>
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
         /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
-        /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
+        /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">
+        ///     Thrown when import file neither found in the
+        ///     archive nor at the alternative path.
+        /// </exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         public static ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null)
         {
@@ -70,6 +79,22 @@ namespace Toscana
         public void AddToscaNodeType(string toscaNodeTypeName, ToscaNodeType toscaNodeType)
         {
             nodeTypes.Add(toscaNodeTypeName, toscaNodeType);
+        }
+
+        /// <summary>
+        ///     Returns ToscaNodeTypes from the Entry TOSCA YAML file that are not used in DerivedFrom of other node types,
+        ///     e.g. are leaves in node types inheritance.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IReadOnlyDictionary<string, ToscaNodeType> GetEntryLeafNodeTypes()
+        {
+            var baseNodeTypes =
+                EntryPointServiceTemplate.NodeTypes.Values.Where(n => !n.IsRoot())
+                    .Select(n => n.DerivedFrom)
+                    .ToHashSet();
+            return EntryPointServiceTemplate.NodeTypes.Where(n => !baseNodeTypes.Contains(n.Key))
+                .ToDictionary(_ => _.Key, _ => _.Value);
         }
     }
 }
