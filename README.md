@@ -37,7 +37,10 @@ Even if the file depends on other TOSCA YAML files via _imports_ parsing will su
 
 **Parse a tosca.yaml**
 ```C#
-ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Parse("tosca.yaml");
+using (Stream stream = File.Open("tosca.yaml"))
+{
+    ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Parse(stream);
+}
 ```
 
 ### TOSCA CSAR file

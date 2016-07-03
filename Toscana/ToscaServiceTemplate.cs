@@ -30,22 +30,26 @@ namespace Toscana
         public ToscaServiceTemplateMetadata Metadata { get; set; }
         public Dictionary<string, ToscaRelationshipType> RelationshipTypes { get; set; }
 
+        /// <summary>
+        /// Parses stream of TOSCA YAML file into an instance of ToscaServiceTemplate class
+        /// </summary>
+        /// <param name="toscaAsString">TOSCA YAML content</param>
+        /// <returns>Valid instance of ToscaServiceTemplate</returns>
         public static ToscaServiceTemplate Parse(string toscaAsString)
         {
             var toscaSimpleProfileParser = new Bootstrapper().GetToscaServiceTemplateParser();
             return toscaSimpleProfileParser.Parse(toscaAsString);
         }
 
+        /// <summary>
+        /// Parses stream of TOSCA YAML file into an instance of ToscaServiceTemplate class
+        /// </summary>
+        /// <param name="stream">Stream of TOSCA YAML file</param>
+        /// <returns>Valid instance of ToscaServiceTemplate</returns>
         public static ToscaServiceTemplate Parse(Stream stream)
         {
-            var toscaSimpleProfileParser = new Bootstrapper().GetToscaServiceTemplateParser();
-            return toscaSimpleProfileParser.Parse(stream);
-        }
-
-        public static ToscaServiceTemplate Load(string filePath, string alternativePath)
-        {
-            var toscaSimpleProfileLoader = new Bootstrapper().GetToscaServiceTemplateLoader();
-            return toscaSimpleProfileLoader.Load(filePath, alternativePath);
+            var toscaServiceTemplateParser = new Bootstrapper().GetToscaServiceTemplateParser();
+            return toscaServiceTemplateParser.Parse(stream);
         }
     }
 }
