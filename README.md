@@ -27,24 +27,36 @@ Or from Nuget Package Manager Console:
 > install-package Toscana
 ```
 
-## Example
+## Usage
 
-### Parse TOSCA Simple Profile
+### TOSCA YAML file
 
+TOSCA YAML file is represented by _ToscaServiceTemplate_ class in Toscana library. 
+Toscana allows parsing a single TOSCA YAML file into an instance of ToscaServiceTemplate class. 
+Even if the file depends on other TOSCA YAML files via _imports_ parsing will succeeds.
+
+**Parse a tosca.yaml**
 ```C#
-ToscaSimpleProfile toscanSimpleProfile = new ToscaSimpleProfile.Parse(@"
-tosca_definitions_version: tosca_simple_yaml_1_0
-description: Template for deploying a single server with predefined properties.")
+ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Parse("tosca.yaml");
 ```
 
-### Combine TOSCA Simple Profiles
+### TOSCA CSAR file:
+
+TOSCA CSAR file is a ZIP compressed file which contains set of TOSCA YAML files, drivers, icons etc, that represent cloud environment.
+The archive must contain the TOSCA.meta file, whcih points to the TOSCA YAML entry point file. If the enty point TOSCA YAML import 
+another YAML file that is missing in the archive, loading will fail.
+
+**Loading a tosca.zip with all the _imports_ included in the archive**
 
 ```C#
-ToscaSimpleProfileBuilder builder = new ToscaSimpleProfileBuilder();
-builder.Append(toscanSimpleProfile1);
-builder.Append(toscanSimpleProfile2);
-ToscaSimpleProfile combinedTosca = builder.Build();
-
+ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("tosca.zip");
 ```
+
+**Loading a tosca.zip when some of the _imports_ reside at alternative location**
+
+```C#
+ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("tosca.zip", @"C:\tosca_imports\");
+```
+
 ### License
 The software is released under [Apache License v2.0](LICENSE). 

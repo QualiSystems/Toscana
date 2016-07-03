@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using Toscana.Common;
 using Toscana.Engine;
 
@@ -33,6 +34,12 @@ namespace Toscana
         {
             var toscaSimpleProfileParser = new Bootstrapper().GetToscaServiceTemplateParser();
             return toscaSimpleProfileParser.Parse(toscaAsString);
+        }
+
+        public static ToscaServiceTemplate Parse(Stream stream)
+        {
+            var toscaSimpleProfileParser = new Bootstrapper().GetToscaServiceTemplateParser();
+            return toscaSimpleProfileParser.Parse(stream);
         }
 
         public static ToscaServiceTemplate Load(string filePath, string alternativePath)
