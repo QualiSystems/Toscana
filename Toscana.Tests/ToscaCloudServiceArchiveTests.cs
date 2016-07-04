@@ -52,7 +52,7 @@ namespace Toscana.Tests
 
             // Act
             toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
-            var artifactsBytes = toscaCloudServiceArchive.GetArtifactsBytes("device.png");
+            var artifactsBytes = toscaCloudServiceArchive.GetArtifactBytes("device.png");
 
             // Assert
             artifactsBytes.ShouldAllBeEquivalentTo("IMAGE_CONTENT".ToByteArray(Encoding.ASCII));

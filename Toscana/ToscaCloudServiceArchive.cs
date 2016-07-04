@@ -126,7 +126,7 @@ namespace Toscana
         /// </summary>
         /// <param name="fileName">File name to return content of</param>
         /// <returns>File content as byte array</returns>
-        public byte[] GetArtifactsBytes(string fileName)
+        public byte[] GetArtifactBytes(string fileName)
         {
             return fileContents[fileName];
         }
