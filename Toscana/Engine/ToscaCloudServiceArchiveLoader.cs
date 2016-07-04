@@ -80,7 +80,7 @@ namespace Toscana.Engine
         {
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Read))
             {
-                var archiveEntries = CreateArchiveEntriesDictionary(archive);
+                var archiveEntries = ZipArchiveExtensions.GetArchiveEntriesDictionary(archive);
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
                 var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? string.Empty;
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
@@ -151,16 +151,6 @@ namespace Toscana.Engine
                     string.Format("{0} file not found within TOSCA Cloud Service Archive file.", ToscaMetaFileName)); 
             }
             return toscaMetaArchiveEntry;
-        }
-
-        private static IReadOnlyDictionary<string, ZipArchiveEntry> CreateArchiveEntriesDictionary(ZipArchive archive)
-        {
-            var zipArchiveEntries = new Dictionary<string, ZipArchiveEntry>(new PathEqualityComparer());
-            foreach (var zipArchiveEntry in archive.Entries)
-            {
-                zipArchiveEntries.Add(zipArchiveEntry.FullName, zipArchiveEntry);
-            }
-            return zipArchiveEntries;
         }
 
         private const string ToscaMetaFileName = "TOSCA.meta";

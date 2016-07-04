@@ -89,6 +89,7 @@
     <Compile Include="Common\RestrictedValues.cs" />
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\StringExtensions.cs" />
+    <Compile Include="Common\ZipArchiveExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
     <Compile Include="Engine\PathEqualityComparer.cs" />

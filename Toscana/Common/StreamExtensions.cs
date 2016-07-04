@@ -18,10 +18,9 @@ namespace Toscana.Common
         {
             if (!stream.CanRead)
             {
-                throw new ArgumentException();
+                return new byte[0];
             }
 
-            // This is optional
             if (stream.CanSeek)
             {
                 stream.Seek(0, SeekOrigin.Begin);

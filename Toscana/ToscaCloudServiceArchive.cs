@@ -14,8 +14,8 @@ namespace Toscana
         private readonly Dictionary<string, ToscaNodeType> nodeTypes;
         private readonly ToscaMetadata toscaMetadata;
         private readonly Dictionary<string, ToscaServiceTemplate> toscaServiceTemplates;
-        private IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries;
-        private Dictionary<string, byte[]> fileContents;
+        private readonly IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries;
+        private readonly Dictionary<string, byte[]> fileContents;
 
         public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
         {
