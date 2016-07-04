@@ -82,25 +82,18 @@ namespace Toscana.Engine
             {
                 var archiveEntries = CreateArchiveEntriesDictionary(archive);
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
-                var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? String.Empty;
+                var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? string.Empty;
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
-                var toscaCloudServiceArchive = new ToscaCloudServiceArchive
-                {
-                    ToscaMetadata = toscaMetadata
-                };
+                var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntries);
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath, relativePath);
  
                 return toscaCloudServiceArchive;
             }
         }
 
-        private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, Dictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath, string relativePath)
+        private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, IReadOnlyDictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath, string relativePath)
         {
             var toscaServiceTemplate = LoadToscaServiceTemplate(alternativePath, relativePath, zipArchiveEntries, toscaServiceTemplateName);
-            foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
-            {
-                toscaCloudServiceArchive.AddToscaNodeType(toscaNodeType.Key, toscaNodeType.Value);
-            }
             toscaCloudServiceArchive.AddToscaServiceTemplate(toscaServiceTemplateName, toscaServiceTemplate);
             foreach (var importFile in toscaServiceTemplate.Imports.SelectMany(import => import.Values))
             {
@@ -108,7 +101,7 @@ namespace Toscana.Engine
             }
         }
 
-        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, string relativePath, Dictionary<string, ZipArchiveEntry> archiveEntries, string filePath)
+        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, string relativePath, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries, string filePath)
         {
             var zipEntryFileName = Path.Combine(relativePath, filePath);
             var importStream = GetImportStream(alternativePath, archiveEntries, zipEntryFileName);
@@ -123,7 +116,7 @@ namespace Toscana.Engine
             }
         }
 
-        private Stream GetImportStream(string alternativePath, Dictionary<string, ZipArchiveEntry> archiveEntries, string zipEntryFileName)
+        private Stream GetImportStream(string alternativePath, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries, string zipEntryFileName)
         {
             ZipArchiveEntry zipArchiveEntry;
             if (!archiveEntries.TryGetValue(zipEntryFileName, out zipArchiveEntry))
@@ -146,7 +139,7 @@ namespace Toscana.Engine
             return zipArchiveEntry.Open();
         }
 
-        private static ZipArchiveEntry GetToscaMetaArchiveEntry(Dictionary<string, ZipArchiveEntry> fillZipArchivesDictionary)
+        private static ZipArchiveEntry GetToscaMetaArchiveEntry(IReadOnlyDictionary<string, ZipArchiveEntry> fillZipArchivesDictionary)
         {
             var toscaMetaArchiveEntry = fillZipArchivesDictionary.Values.FirstOrDefault(
                 a =>
@@ -160,7 +153,7 @@ namespace Toscana.Engine
             return toscaMetaArchiveEntry;
         }
 
-        private static Dictionary<string, ZipArchiveEntry> CreateArchiveEntriesDictionary(ZipArchive archive)
+        private static IReadOnlyDictionary<string, ZipArchiveEntry> CreateArchiveEntriesDictionary(ZipArchive archive)
         {
             var zipArchiveEntries = new Dictionary<string, ZipArchiveEntry>(new PathEqualityComparer());
             foreach (var zipArchiveEntry in archive.Entries)

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using Toscana.Common;
 using Toscana.Engine;
@@ -10,21 +12,34 @@ namespace Toscana
     public class ToscaCloudServiceArchive
     {
         private readonly Dictionary<string, ToscaNodeType> nodeTypes;
+        private readonly ToscaMetadata toscaMetadata;
+        private readonly Dictionary<string, ToscaServiceTemplate> toscaServiceTemplates;
+        private IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries;
+        private Dictionary<string, byte[]> fileContents;
 
-        public ToscaCloudServiceArchive()
+        public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
         {
-            ToscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
-            ToscaMetadata = new ToscaMetadata();
+            toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
             nodeTypes = new Dictionary<string, ToscaNodeType>();
+            this.toscaMetadata = toscaMetadata;
+            this.archiveEntries = archiveEntries ?? new Dictionary<string, ZipArchiveEntry>();
+            fileContents = new Dictionary<string, byte[]>();
         }
 
         public ToscaServiceTemplate EntryPointServiceTemplate
         {
-            get { return ToscaServiceTemplates[ToscaMetadata.EntryDefinitions]; }
+            get { return toscaServiceTemplates[ToscaMetadata.EntryDefinitions]; }
         }
 
-        public Dictionary<string, ToscaServiceTemplate> ToscaServiceTemplates { get; set; }
-        public ToscaMetadata ToscaMetadata { get; set; }
+        public IReadOnlyDictionary<string, ToscaServiceTemplate> ToscaServiceTemplates
+        {
+            get { return toscaServiceTemplates; }
+        }
+
+        public ToscaMetadata ToscaMetadata
+        {
+            get { return toscaMetadata; }
+        }
 
         public IReadOnlyDictionary<string, ToscaNodeType> NodeTypes
         {
@@ -71,14 +86,23 @@ namespace Toscana
             return new Bootstrapper().GetToscaCloudServiceArchiveLoader();
         }
 
+        /// <summary>
+        /// Adds a ToscaServiceTemplate
+        /// </summary>
+        /// <param name="toscaServiceTemplateName">Service template name</param>
+        /// <param name="toscaServiceTemplate">An instance of ToscaServiceTemplate</param>
         public void AddToscaServiceTemplate(string toscaServiceTemplateName, ToscaServiceTemplate toscaServiceTemplate)
         {
-            ToscaServiceTemplates.Add(toscaServiceTemplateName, toscaServiceTemplate);
-        }
-
-        public void AddToscaNodeType(string toscaNodeTypeName, ToscaNodeType toscaNodeType)
-        {
-            nodeTypes.Add(toscaNodeTypeName, toscaNodeType);
+            toscaServiceTemplates.Add(toscaServiceTemplateName, toscaServiceTemplate);
+            foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
+            {
+                nodeTypes.Add(toscaNodeType.Key, toscaNodeType.Value);
+                foreach (var toscaArtifact in toscaNodeType.Value.Artifacts)
+                {
+                    fileContents.Add(toscaArtifact.Value.File,
+                        archiveEntries[toscaArtifact.Value.File].Open().ReadAllBytes());
+                }
+            }
         }
 
         /// <summary>
@@ -95,6 +119,16 @@ namespace Toscana
                     .ToHashSet();
             return EntryPointServiceTemplate.NodeTypes.Where(n => !baseNodeTypes.Contains(n.Key))
                 .ToDictionary(_ => _.Key, _ => _.Value);
+        }
+
+        /// <summary>
+        /// Gets file content as byte array
+        /// </summary>
+        /// <param name="fileName">File name to return content of</param>
+        /// <returns>File content as byte array</returns>
+        public byte[] GetArtifactsBytes(string fileName)
+        {
+            return fileContents[fileName];
         }
     }
 }

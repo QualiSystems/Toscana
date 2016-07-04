@@ -45,7 +45,7 @@ namespace Toscana.Tests.Engine
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
 Entry-Definitions: not_existing.yaml")};
-            CreateArchive(fileSystem, "tosca.zip", fileContents);
+            fileSystem.CreateArchive("tosca.zip", fileContents);
 
             // Act
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
@@ -58,7 +58,7 @@ Entry-Definitions: not_existing.yaml")};
         public void ToscaMetadataFileNotFound_Should_Be_Thrown_When_Tosca_Meta_File_Does_Not_Exist()
         {
             // Arrange
-            CreateArchive(fileSystem, "tosca.zip", new FileContent[0]);
+            fileSystem.CreateArchive("tosca.zip", new FileContent[0]);
 
             // Act
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
@@ -91,7 +91,7 @@ node_types:
                 new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
             };
 
-            CreateArchive(fileSystem, "tosca.zip", fileContents);
+            fileSystem.CreateArchive("tosca.zip", fileContents);
 
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
@@ -119,7 +119,7 @@ INVALID";
                 new FileContent("tosca_elk.yaml", toscaSimpleProfileContent)
             };
 
-            CreateArchive(fileSystem, "tosca.zip", fileContents);
+            fileSystem.CreateArchive("tosca.zip", fileContents);
 
             // Act
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
@@ -161,7 +161,7 @@ node_types:
                 new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
             };
 
-            CreateArchive(mockFileSystem, "tosca.zip", fileContents);
+            mockFileSystem.CreateArchive("tosca.zip", fileContents);
             mockFileSystem.AddFile(@"c:\alternative\base.yaml", new MockFileData(
 @"tosca_definitions_version: tosca_simple_yaml_1_0
 node_types:
@@ -214,31 +214,13 @@ node_types:
                 new FileContent("tosca.yaml", derivedTosca)
             };
 
-            CreateArchive(mockFileSystem, "tosca.zip", fileContents);
+            mockFileSystem.CreateArchive("tosca.zip", fileContents);
            
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
             toscaCloudServiceArchive.GetEntryLeafNodeTypes().Keys.ShouldAllBeEquivalentTo(new[] { "tosca.network_device" });
-        }
-
-        private static void CreateArchive(IFileSystem fileSystem, string archiveFilePath, IEnumerable<FileContent> fileContents)
-        {
-            using (var stream = fileSystem.File.Create(archiveFilePath))
-            {
-                using (var zipArchive = new ZipArchive(stream, ZipArchiveMode.Create))
-                {
-                    foreach (var fileContent in fileContents)
-                    {
-                        var zipArchiveEntry = zipArchive.CreateEntry(fileContent.Filename);
-                        using (var writer = new StreamWriter(zipArchiveEntry.Open()))
-                        {
-                            writer.Write(fileContent.Content);
-                        }
-                    }
-                }
-            }
         }
     }
 }

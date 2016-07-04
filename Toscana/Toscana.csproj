@@ -87,6 +87,7 @@
     <Compile Include="Common\EnumerableExtensions.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
     <Compile Include="Common\RestrictedValues.cs" />
+    <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />

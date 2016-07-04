@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Common\RestrictedValuesTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
+    <Compile Include="Engine\FileSystemExtentions.cs" />
     <Compile Include="Engine\PathEqualityComparerTests.cs" />
     <Compile Include="Engine\PoorManContainerTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="ToscaNodeTemplateTests.cs" />
     <Compile Include="ToscaNodeTypeTests.cs" />
     <Compile Include="ToscaObjectTests.cs" />
+    <Compile Include="ToscaPropertyDefinitionTests.cs" />
     <Compile Include="ToscaServiceTemplateTests.cs" />
     <Compile Include="ToscaServiceTemplateBuilderTests.cs" />
     <Compile Include="ToscaServiceTemplateMetadataTests.cs" />

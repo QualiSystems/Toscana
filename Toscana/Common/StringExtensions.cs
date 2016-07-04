@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Toscana.Common
 {
@@ -20,6 +21,17 @@ namespace Toscana.Common
             writer.Flush();
             stream.Position = 0;
             return stream;
+        }
+
+        /// <summary>
+        /// Returns byte array of given string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="encoding">Encoding to use for the conversion. Optional. Default is Unicode</param>
+        /// <returns>Byte array representing the string</returns>
+        public static byte[] ToByteArray(this string str, Encoding encoding = null)
+        {
+            return (encoding ?? Encoding.Unicode).GetBytes(str);
         }
     }
 }

@@ -19,5 +19,10 @@ namespace Toscana
         public List<Dictionary<string, object>> Constraints { get; set; }
         public string EntrySchema { get; set; }
         public List<string> Tags { get; set; }
+
+        public string StringValue
+        {
+            get { return Default == null ? string.Empty : Default.ToString(); }
+        }
     }
 }
