@@ -97,6 +97,7 @@
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
+    <Compile Include="Exceptions\ArtifactNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFound.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.IO.Compression;
@@ -7,6 +8,7 @@ using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Common;
+using Toscana.Exceptions;
 using Toscana.Tests.Engine;
 
 namespace Toscana.Tests
@@ -90,6 +92,55 @@ namespace Toscana.Tests
 
             // Assert
             artifactsBytes.ShouldAllBeEquivalentTo("IMAGE_CONTENT".ToByteArray(Encoding.ASCII));
+        }
+
+        [Test]
+        public void AddToscaServiceTemplate_Should_Throw_ArtifactNotFoundException_When_File_Missing_In_Archive()
+        {
+            // Act
+            var fileSystem = new MockFileSystem();
+            fileSystem.CreateArchive("tosca.zip", new FileContent[0]);
+            var zipArchive = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open));
+            var zipArchiveEntries = zipArchive.Entries.ToDictionary(e => e.FullName, e => e);
+
+            var toscaNodeType = new ToscaNodeType();
+            toscaNodeType.Artifacts.Add("icon", new ToscaArtifact
+            {
+                File = "device.png"
+            });
+            var toscaServiceTemplate = new ToscaServiceTemplate();
+            toscaServiceTemplate.NodeTypes.Add("device", toscaNodeType);
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                EntryDefinitions = "tosca.yaml"
+            }, zipArchiveEntries);
+
+            // Act
+            Action action = () => toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
+
+            // Assert
+            action.ShouldThrow<ArtifactNotFoundException>()
+                .WithMessage("Artifact 'device.png' not found in Cloud Service Archive.");
+        }
+
+        [Test]
+        public void GetArtifactBytes_Should_Throw_ArtifactNotFoundException_When_File_Missing_In_Archive()
+        {
+            // Act
+            var toscaServiceTemplate = new ToscaServiceTemplate();
+            var toscaNodeType = new ToscaNodeType();
+            toscaServiceTemplate.NodeTypes.Add("device", toscaNodeType);
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                EntryDefinitions = "tosca.yaml"
+            }, new Dictionary<string, ZipArchiveEntry>());
+
+            // Act
+            Action action = () => toscaCloudServiceArchive.GetArtifactBytes("NOT_EXISTING.png");
+
+            // Assert
+            action.ShouldThrow<ArtifactNotFoundException>()
+                .WithMessage("Artifact 'NOT_EXISTING.png' not found in Cloud Service Archive.");
         }
 
         [Test]

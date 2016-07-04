@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using Toscana.Common;
 using Toscana.Engine;
+using Toscana.Exceptions;
 
 namespace Toscana
 {
@@ -99,8 +100,13 @@ namespace Toscana
                 nodeTypes.Add(toscaNodeType.Key, toscaNodeType.Value);
                 foreach (var toscaArtifact in toscaNodeType.Value.Artifacts)
                 {
-                    fileContents.Add(toscaArtifact.Value.File,
-                        archiveEntries[toscaArtifact.Value.File].Open().ReadAllBytes());
+                    ZipArchiveEntry zipArchiveEntry;
+                    if (!archiveEntries.TryGetValue(toscaArtifact.Value.File, out zipArchiveEntry))
+                    {
+                        throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                            toscaArtifact.Value.File));
+                    }
+                    fileContents.Add(toscaArtifact.Value.File, zipArchiveEntry.Open().ReadAllBytes());
                 }
             }
         }
@@ -128,7 +134,13 @@ namespace Toscana
         /// <returns>File content as byte array</returns>
         public byte[] GetArtifactBytes(string fileName)
         {
-            return fileContents[fileName];
+            byte[] content;
+            if (!fileContents.TryGetValue(fileName, out content))
+            {
+                throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                    fileName));
+            }
+            return content;
         }
     }
 }

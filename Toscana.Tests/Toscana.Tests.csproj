@@ -74,6 +74,7 @@
     <Compile Include="Engine\ToscaServiceTemplateLoaderTests.cs" />
     <Compile Include="Engine\ToscaParserTests.cs" />
     <Compile Include="Engine\ToscaValidatorTests.cs" />
+    <Compile Include="Exceptions\ArtifactNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundExceptionTests.cs" />
