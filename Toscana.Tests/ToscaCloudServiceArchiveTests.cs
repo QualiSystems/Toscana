@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.IO.Compression;
@@ -31,11 +30,45 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void GetArtifactBytes_Should_Return_Empty_Array_When_File_Is_Empty()
+        {
+            // Arrange
+            var toscaMetadata = new ToscaMetadata
+            {
+                CreatedBy = "Devil",
+                CsarVersion = new Version(1, 1),
+                ToscaMetaFileVersion = new Version(1, 0),
+                EntryDefinitions = @"definitions/tosca_elk.yaml"
+            };
+
+            var fileSystem = new MockFileSystem();
+            using (var zipArchive = new ZipArchive(fileSystem.File.Create("tosca.zip"), ZipArchiveMode.Create))
+            {
+                zipArchive.CreateEntry("some_icon.png");
+            }
+
+            var archiveEntriesDictionary =
+                new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
+
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntriesDictionary);
+            var toscaServiceTemplate = new ToscaServiceTemplate {Description = "Devil created the world."};
+            var toscaNodeType = new ToscaNodeType();
+            toscaNodeType.Artifacts.Add("icon", new ToscaArtifact {File = "some_icon.png"});
+            toscaServiceTemplate.NodeTypes.Add("nut-shell", toscaNodeType);
+
+            // Act
+            toscaCloudServiceArchive.AddToscaServiceTemplate(@"definitions/tosca_elk.yaml", toscaServiceTemplate);
+
+            // Assert
+            toscaCloudServiceArchive.GetArtifactBytes("some_icon.png").Should().BeEmpty();
+        }
+
+        [Test]
         public void GetArtifactsBytes_Should_Return_Artifact_Content()
         {
             // Act
             var fileSystem = new MockFileSystem();
-            fileSystem.CreateArchive("tosca.zip", new []{new FileContent("device.png", "IMAGE_CONTENT")});
+            fileSystem.CreateArchive("tosca.zip", new[] {new FileContent("device.png", "IMAGE_CONTENT")});
             var zipArchive = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open));
             var zipArchiveEntries = zipArchive.Entries.ToDictionary(e => e.FullName, e => e);
 
@@ -97,39 +130,5 @@ namespace Toscana.Tests
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().NotBeNull();
         }
-
-        [Test]
-        public void GetArtifactBytes_Should_Return_Empty_Array_When_File_Is_Empty()
-        {
-            // Arrange
-            var toscaMetadata = new ToscaMetadata
-            {
-                CreatedBy = "Devil",
-                CsarVersion = new Version(1, 1),
-                ToscaMetaFileVersion = new Version(1, 0),
-                EntryDefinitions = @"definitions/tosca_elk.yaml"
-            };
-
-            var fileSystem = new MockFileSystem();
-            using (var zipArchive = new ZipArchive(fileSystem.File.Create("tosca.zip"), ZipArchiveMode.Create))
-            {
-                zipArchive.CreateEntry("some_icon.png");
-            }
-
-            var archiveEntriesDictionary = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
-
-            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntriesDictionary);
-            var toscaServiceTemplate = new ToscaServiceTemplate { Description = "Devil created the world." };
-            var toscaNodeType = new ToscaNodeType();
-            toscaNodeType.Artifacts.Add("icon", new ToscaArtifact { File = "some_icon.png" });
-            toscaServiceTemplate.NodeTypes.Add("nut-shell", toscaNodeType);
-            
-            // Act
-            toscaCloudServiceArchive.AddToscaServiceTemplate(@"definitions/tosca_elk.yaml", toscaServiceTemplate);
-
-            // Assert
-            toscaCloudServiceArchive.GetArtifactBytes("some_icon.png").Should().BeEmpty();
-        }
-
     }
 }

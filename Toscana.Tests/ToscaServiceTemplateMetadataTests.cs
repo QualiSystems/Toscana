@@ -10,6 +10,17 @@ namespace Toscana.Tests
     public class ToscaServiceTemplateMetadataTests
     {
         [Test]
+        public void Should_Be_Possible_To_Get_And_Set_Value_Of_TemplateName()
+        {
+            var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata
+            {
+                TemplateName = "nut shell"
+            };
+
+            toscaSimpleProfileMetadata.TemplateName.Should().Be("nut shell");
+        }
+
+        [Test]
         public void Should_Be_Possible_To_Get_And_Set_Value_Of_TemplateAuthor()
         {
             var toscaSimpleProfileMetadata = new ToscaServiceTemplateMetadata
