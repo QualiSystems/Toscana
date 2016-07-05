@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.IO.Compression;
-using System.Linq;
 using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
@@ -72,7 +71,7 @@ namespace Toscana.Tests
             var fileSystem = new MockFileSystem();
             fileSystem.CreateArchive("tosca.zip", new[] {new FileContent("device.png", "IMAGE_CONTENT")});
             var zipArchive = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open));
-            var zipArchiveEntries = zipArchive.Entries.ToDictionary(e => e.FullName, e => e);
+            var zipArchiveEntries = zipArchive.GetArchiveEntriesDictionary();
 
             var toscaNodeType = new ToscaNodeType();
             toscaNodeType.Artifacts.Add("icon", new ToscaArtifact
@@ -101,7 +100,7 @@ namespace Toscana.Tests
             var fileSystem = new MockFileSystem();
             fileSystem.CreateArchive("tosca.zip", new FileContent[0]);
             var zipArchive = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open));
-            var zipArchiveEntries = zipArchive.Entries.ToDictionary(e => e.FullName, e => e);
+            var zipArchiveEntries = zipArchive.GetArchiveEntriesDictionary();
 
             var toscaNodeType = new ToscaNodeType();
             toscaNodeType.Artifacts.Add("icon", new ToscaArtifact
@@ -180,6 +179,49 @@ namespace Toscana.Tests
 
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().NotBeNull();
+        }
+
+        [Test]
+        public void GetArtifactBytes_Should_Return_File_Content_Of_File_That_Is_Not_An_Artifact()
+        {
+            // Arrange
+            var fileSystem = new MockFileSystem();
+
+            var toscaMetadata = new ToscaMetadata
+            {
+                CreatedBy = "Devil",
+                CsarVersion = new Version(1, 1),
+                ToscaMetaFileVersion = new Version(1, 0),
+                EntryDefinitions = @"definitions/tosca_elk.yaml"
+            };
+
+            fileSystem.CreateArchive("tosca.zip", new[]
+            {
+                new FileContent("nut_shell.png", "IMAGE_CONTENT")
+            });
+
+            var archiveEntriesDictionary = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
+
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntriesDictionary);
+            var toscaServiceTemplate = new ToscaServiceTemplate();
+            toscaServiceTemplate.NodeTypes.Add("nut-shell", new ToscaNodeType());
+            toscaCloudServiceArchive.AddToscaServiceTemplate(@"definitions/tosca_elk.yaml", toscaServiceTemplate);
+
+            // Act
+            var artifactBytes = toscaCloudServiceArchive.GetArtifactBytes("nut_shell.png");
+
+            artifactBytes.ShouldAllBeEquivalentTo("IMAGE_CONTENT".ToByteArray(Encoding.ASCII));
+        }
+
+        [Test]
+        public void GetArtifactBytes_OnCloudServiceArchive_Without_Artifacts_Should_Throw_ArtifactNotFoundException()
+        {
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+
+            Action action = () => toscaCloudServiceArchive.GetArtifactBytes("not_existing_file.png");
+
+            action.ShouldThrow<ArtifactNotFoundException>()
+                .WithMessage("Artifact 'not_existing_file.png' not found in Cloud Service Archive.");
         }
     }
 }

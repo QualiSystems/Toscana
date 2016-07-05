@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -15,16 +14,21 @@ namespace Toscana
         private readonly Dictionary<string, ToscaNodeType> nodeTypes;
         private readonly ToscaMetadata toscaMetadata;
         private readonly Dictionary<string, ToscaServiceTemplate> toscaServiceTemplates;
-        private readonly IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries;
         private readonly Dictionary<string, byte[]> fileContents;
 
         public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
         {
+            this.toscaMetadata = toscaMetadata;
             toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
             nodeTypes = new Dictionary<string, ToscaNodeType>();
-            this.toscaMetadata = toscaMetadata;
-            this.archiveEntries = archiveEntries ?? new Dictionary<string, ZipArchiveEntry>();
-            fileContents = new Dictionary<string, byte[]>();
+            if (archiveEntries == null)
+            {
+                fileContents = new Dictionary<string, byte[]>();
+            }
+            else
+            {
+                fileContents = archiveEntries.ToDictionary(a => a.Key, a => a.Value.Open().ReadAllBytes());
+            }
         }
 
         public ToscaServiceTemplate EntryPointServiceTemplate
@@ -90,6 +94,7 @@ namespace Toscana
         /// <summary>
         /// Adds a ToscaServiceTemplate
         /// </summary>
+        /// <exception cref="ArtifactNotFoundException">Thrown when artifact not found in the Cloud Service Archive.</exception>
         /// <param name="toscaServiceTemplateName">Service template name</param>
         /// <param name="toscaServiceTemplate">An instance of ToscaServiceTemplate</param>
         public void AddToscaServiceTemplate(string toscaServiceTemplateName, ToscaServiceTemplate toscaServiceTemplate)
@@ -100,13 +105,11 @@ namespace Toscana
                 nodeTypes.Add(toscaNodeType.Key, toscaNodeType.Value);
                 foreach (var toscaArtifact in toscaNodeType.Value.Artifacts)
                 {
-                    ZipArchiveEntry zipArchiveEntry;
-                    if (!archiveEntries.TryGetValue(toscaArtifact.Value.File, out zipArchiveEntry))
+                    if (!fileContents.ContainsKey(toscaArtifact.Value.File))
                     {
                         throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
                             toscaArtifact.Value.File));
                     }
-                    fileContents.Add(toscaArtifact.Value.File, zipArchiveEntry.Open().ReadAllBytes());
                 }
             }
         }
