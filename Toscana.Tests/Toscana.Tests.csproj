@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\RestrictedValuesTests.cs" />
+    <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
     <Compile Include="Engine\FileSystemExtentions.cs" />
     <Compile Include="Engine\PathEqualityComparerTests.cs" />

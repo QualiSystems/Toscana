@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.IO.Compression;
-using System.Linq;
+using Toscana.Engine;
 
 namespace Toscana.Common
 {
@@ -17,7 +17,12 @@ namespace Toscana.Common
         public static IReadOnlyDictionary<string, ZipArchiveEntry> GetArchiveEntriesDictionary(
             this ZipArchive archive)
         {
-            return archive.Entries.ToDictionary(e => e.FullName, e => e);
+            var zipArchiveEntries = new Dictionary<string, ZipArchiveEntry>(new PathEqualityComparer());
+            foreach (var zipArchiveEntry in archive.Entries)
+            {
+                zipArchiveEntries.Add(zipArchiveEntry.FullName, zipArchiveEntry);
+            }
+            return zipArchiveEntries;
         }
     }
 }

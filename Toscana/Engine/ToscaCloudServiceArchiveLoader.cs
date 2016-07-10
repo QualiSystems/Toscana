@@ -80,7 +80,7 @@ namespace Toscana.Engine
         {
             using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Read))
             {
-                var archiveEntries = ZipArchiveExtensions.GetArchiveEntriesDictionary(archive);
+                var archiveEntries = archive.GetArchiveEntriesDictionary();
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
                 var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? string.Empty;
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());

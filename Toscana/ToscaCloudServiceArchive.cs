@@ -27,7 +27,11 @@ namespace Toscana
             }
             else
             {
-                fileContents = archiveEntries.ToDictionary(a => a.Key, a => a.Value.Open().ReadAllBytes());
+                fileContents = new Dictionary<string, byte[]>(new PathEqualityComparer());
+                foreach (var archiveEntry in archiveEntries)
+                {
+                    fileContents.Add(archiveEntry.Value.FullName, archiveEntry.Value.Open().ReadAllBytes());
+                }
             }
         }
 

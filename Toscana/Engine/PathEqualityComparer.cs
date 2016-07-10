@@ -25,7 +25,7 @@ namespace Toscana.Engine
 
         public int GetHashCode(string obj)
         {
-            return NormalizePath(obj).GetHashCode();
+            return (Path.GetFileName(obj) ?? obj).GetHashCode();
         }
 
         private static string NormalizePath(string unnormalized)

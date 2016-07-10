@@ -13,7 +13,7 @@ namespace Toscana.Tests
 {
     public class GithubRepositoryTests
     {
-        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/develop.zip";
+        public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/master.zip";
 
         private class GithubRepositoryTestCasesFactory
         {
@@ -119,7 +119,6 @@ namespace Toscana.Tests
         }
 
         [Test]
-        [Ignore]
         public void Load_Tosca_Cloud_Service_Archive_From_Github()
         {
             using (var tempFile = new TempFile(Path.GetTempPath()))
@@ -129,7 +128,10 @@ namespace Toscana.Tests
 
                 var toscaCloudServiceArchive = ToscaCloudServiceArchive.Load(tempFile.FilePath);
 
-                toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
+                var entryLeafNodeTypes = toscaCloudServiceArchive.GetEntryLeafNodeTypes();
+                entryLeafNodeTypes.Should().HaveCount(1);
+                var nxosNodeType = entryLeafNodeTypes.Single().Value;
+                nxosNodeType.Properties.Should().ContainKey("device_owner");
             }
         }
     }
