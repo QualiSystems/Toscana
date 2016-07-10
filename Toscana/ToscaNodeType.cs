@@ -23,5 +23,13 @@ namespace Toscana
         public Dictionary<string, ToscaCapability> Capabilities { get; set; }
         public Dictionary<string, Dictionary<string, object>> Interfaces { get; set; }
         public Dictionary<string, ToscaArtifact> Artifacts { get; set; }
+
+        public void AddRequirement(string name, ToscaRequirement toscaRequirement)
+        {
+            Requirements.Add(new Dictionary<string, ToscaRequirement>
+            {
+                {name, toscaRequirement}
+            });
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -52,6 +53,23 @@ namespace Toscana.Tests
             var nodeType = new ToscaNodeType();
 
             nodeType.Requirements.Should().HaveCount(0);
+        }
+
+        [Test]
+        public void AddRequirement_Requirement_Exist()
+        {
+            // Arrange
+            var toscaNodeType = new ToscaNodeType();
+            var toscaRequirement = new ToscaRequirement()
+            {
+                Node = "port"
+            };
+
+            // Act
+            toscaNodeType.AddRequirement("device", toscaRequirement);
+
+            // Assert
+            toscaNodeType.Requirements.Single()["device"].Node.Should().Be("port");
         }
     }
 }
