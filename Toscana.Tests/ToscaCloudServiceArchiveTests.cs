@@ -223,5 +223,24 @@ namespace Toscana.Tests
             action.ShouldThrow<ArtifactNotFoundException>()
                 .WithMessage("Artifact 'not_existing_file.png' not found in Cloud Service Archive.");
         }
+
+        [Test]
+        public void Base_Property_Set_To_NodeType_Instance_Of_Derived_From()
+        {
+            // Arrange
+            var deviceNodeType = new ToscaNodeType();
+            deviceNodeType.Properties.Add("vendor", new ToscaPropertyDefinition { Type = "string" });
+
+            var switchNodeType = new ToscaNodeType { DerivedFrom = "tosca.nodes.Device" };
+            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "integer" });
+
+            // Act
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+            cloudServiceArchive.AddNodeType("tosca.nodes.Switch", switchNodeType);
+            cloudServiceArchive.AddNodeType("tosca.nodes.Device", deviceNodeType);
+
+            // Assert
+            switchNodeType.Base.Properties.Should().ContainKey("vendor");
+        }
     }
 }

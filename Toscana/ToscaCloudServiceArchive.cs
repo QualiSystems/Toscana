@@ -119,6 +119,8 @@ namespace Toscana
         public void AddNodeType(string nodeTypeName, ToscaNodeType nodeType)
         {
             nodeTypes.Add(nodeTypeName, nodeType);
+            nodeType.SetToscaCloudServiceArchive(this);
+
             foreach (var toscaArtifact in nodeType.Artifacts)
             {
                 if (!fileContents.ContainsKey(toscaArtifact.Value.File))

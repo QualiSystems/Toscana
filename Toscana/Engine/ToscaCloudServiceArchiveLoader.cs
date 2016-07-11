@@ -110,12 +110,7 @@ namespace Toscana.Engine
             var importStream = GetImportStream(alternativePath, archiveEntries, zipEntryFileName);
             try
             {
-                var serviceTemplate = serviceTemplateParser.Parse(importStream);
-                foreach (var nodeType in serviceTemplate.NodeTypes)
-                {
-                    nodeType.Value.SetToscaCloudServiceArchive(toscaCloudServiceArchive);
-                }
-                return serviceTemplate;
+                return serviceTemplateParser.Parse(importStream);
             }
             catch (ToscaBaseException toscaBaseException)
             {
