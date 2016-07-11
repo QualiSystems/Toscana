@@ -174,7 +174,12 @@ node_types:
 
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(2);
-            toscaCloudServiceArchive.NodeTypes.Should().HaveCount(2);
+
+            toscaCloudServiceArchive.NodeTypes.Should().HaveCount(3);
+            toscaCloudServiceArchive.NodeTypes.Should().ContainSingle(_ => _.Key == "tosca.base");
+            toscaCloudServiceArchive.NodeTypes.Should().ContainSingle(_ => _.Key == "example.TransactionSubsystem");
+            toscaCloudServiceArchive.NodeTypes.Should().ContainSingle(_ => _.Key == "tosca.nodes.Root");
+
             var toscaNodeTypes = toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes;
             toscaNodeTypes.Should().HaveCount(1);
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
@@ -221,6 +226,51 @@ node_types:
 
             // Assert
             toscaCloudServiceArchive.GetEntryLeafNodeTypes().Keys.ShouldAllBeEquivalentTo(new[] { "tosca.network_device" });
+            toscaCloudServiceArchive.GetEntryLeafNodeTypes()["tosca.network_device"]
+                .Base.Properties.Should().ContainKey("price");
+        }
+
+        [Test] 
+        public void ToscaRootNode_Should_Be_Included()
+        {
+            var mockFileSystem = new MockFileSystem();
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Replace<IFileSystem>(mockFileSystem);
+            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
+
+            // Arrange
+            const string toscaMetaContent = 
+@"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca.yaml
+";
+
+            const string toscaTemplate =
+@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+node_types:
+  tosca.network_device:
+    derived_from: tosca.nodes.Root
+    properties:
+      vendor:
+        type: string
+";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca.yaml", toscaTemplate)
+            };
+
+            mockFileSystem.CreateArchive("tosca.zip", fileContents);
+           
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            toscaCloudServiceArchive.NodeTypes["tosca.network_device"].Base.Attributes.Should().ContainKey("tosca_name");
         }
     }
 }

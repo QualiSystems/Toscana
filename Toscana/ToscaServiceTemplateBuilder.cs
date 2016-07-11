@@ -14,7 +14,6 @@ namespace Toscana
 
     public class ToscaServiceTemplateBuilder : IToscaServiceTemplateBuilder
     {
-        private const string ToscaNodesRoot = "tosca.nodes.Root";
         private readonly List<ToscaServiceTemplate> toscaServiceTemplates = new List<ToscaServiceTemplate>();
 
         public IToscaServiceTemplateBuilder Append(string toscaAsString)
@@ -55,9 +54,9 @@ namespace Toscana
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
             }
-            if (!combinedTosca.NodeTypes.ContainsKey(ToscaNodesRoot))
+            if (!combinedTosca.NodeTypes.ContainsKey(ToscaDefaultNodeTypes.ToscaNodesRoot))
             {
-                combinedTosca.NodeTypes.Add(ToscaNodesRoot, ToscaDefaultNodeTypes.GetRootNode());
+                combinedTosca.NodeTypes.Add(ToscaDefaultNodeTypes.ToscaNodesRoot, ToscaDefaultNodeTypes.GetRootNodeType());
             }
             foreach (var nodeType in combinedTosca.NodeTypes)
             {

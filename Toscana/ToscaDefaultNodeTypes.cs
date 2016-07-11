@@ -2,21 +2,32 @@
 
 namespace Toscana
 {
+    /// <summary>
+    /// TOSCA built-in node types
+    /// </summary>
     public static class ToscaDefaultNodeTypes
     {
-        private static readonly ToscaNodeType RootNode;
+        /// <summary>
+        /// Name of the tosca.nodes.Root node type
+        /// </summary>
+        public const string ToscaNodesRoot = "tosca.nodes.Root";
 
-        static ToscaDefaultNodeTypes()
+        /// <summary>
+        /// Returns an instance of ToscaNodeType, 
+        /// which represents Node Type all other TOSCA base Node Types derive from
+        /// </summary>
+        /// <returns>The TOSCA Node Type all other TOSCA base Node Types derive from</returns>
+        public static ToscaNodeType GetRootNodeType()
         {
-            RootNode = new ToscaNodeType
+            var rootNode = new ToscaNodeType
             {
                 Description = "The TOSCA Node Type all other TOSCA base Node Types derive from"
             };
-            RootNode.Attributes.Add("tosca_id", new ToscaAttributeDefinition {Type = "string"});
-            RootNode.Attributes.Add("tosca_name", new ToscaAttributeDefinition {Type = "string"});
-            RootNode.Attributes.Add("state", new ToscaAttributeDefinition {Type = "string"});
-            RootNode.Capabilities.Add("feature", new ToscaCapability {Type = "tosca.capabilities.Node"});
-            RootNode.Requirements.Add(new Dictionary<string, ToscaRequirement>
+            rootNode.Attributes.Add("tosca_id", new ToscaAttributeDefinition { Type = "string" });
+            rootNode.Attributes.Add("tosca_name", new ToscaAttributeDefinition { Type = "string" });
+            rootNode.Attributes.Add("state", new ToscaAttributeDefinition { Type = "string" });
+            rootNode.Capabilities.Add("feature", new ToscaCapability { Type = "tosca.capabilities.Node" });
+            rootNode.Requirements.Add(new Dictionary<string, ToscaRequirement>
             {
                 {
                     "dependency",
@@ -29,11 +40,8 @@ namespace Toscana
                     }
                 }
             });
-        }
 
-        public static ToscaNodeType GetRootNode()
-        {
-            return RootNode;
+            return rootNode;
         }
     }
 }

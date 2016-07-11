@@ -106,14 +106,25 @@ namespace Toscana
             toscaServiceTemplates.Add(toscaServiceTemplateName, toscaServiceTemplate);
             foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
             {
-                nodeTypes.Add(toscaNodeType.Key, toscaNodeType.Value);
-                foreach (var toscaArtifact in toscaNodeType.Value.Artifacts)
+                AddNodeType(toscaNodeType.Key, toscaNodeType.Value);
+            }
+        }
+
+        /// <summary>
+        /// Adds a node type with its name
+        /// </summary>
+        /// <param name="nodeTypeName">Node type name</param>
+        /// <param name="nodeType">An instance of node type to add</param>
+        /// <exception cref="ArtifactNotFoundException"></exception>
+        public void AddNodeType(string nodeTypeName, ToscaNodeType nodeType)
+        {
+            nodeTypes.Add(nodeTypeName, nodeType);
+            foreach (var toscaArtifact in nodeType.Artifacts)
+            {
+                if (!fileContents.ContainsKey(toscaArtifact.Value.File))
                 {
-                    if (!fileContents.ContainsKey(toscaArtifact.Value.File))
-                    {
-                        throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
-                            toscaArtifact.Value.File));
-                    }
+                    throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                        toscaArtifact.Value.File));
                 }
             }
         }
