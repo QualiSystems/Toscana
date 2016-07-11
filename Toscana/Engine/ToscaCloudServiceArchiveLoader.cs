@@ -86,10 +86,7 @@ namespace Toscana.Engine
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntries);
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath, relativePath);
-                if (!toscaCloudServiceArchive.NodeTypes.ContainsKey(ToscaDefaultNodeTypes.ToscaNodesRoot))
-                {
-                    toscaCloudServiceArchive.AddNodeType(ToscaDefaultNodeTypes.ToscaNodesRoot, ToscaDefaultNodeTypes.GetRootNodeType());
-                }
+                toscaCloudServiceArchive.FillDefaults();
                 return toscaCloudServiceArchive;
             }
         }

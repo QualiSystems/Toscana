@@ -1,5 +1,7 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Exceptions;
 
 namespace Toscana.Tests
 {
@@ -28,6 +30,22 @@ namespace Toscana.Tests
             var toscaCapabilityType = new ToscaCapabilityType();
 
             toscaCapabilityType.ValidSourceTypes.Should().BeEmpty();
+        }
+
+        [Test]
+        public void CapabilityTypeNotFoundException_Should_Be_Thrown_When_DerivedFrom_Capability_Does_Not_Exist()
+        {
+            var toscaCapabilityType = new ToscaCapabilityType();
+
+            toscaCapabilityType.SetToscaCloudServiceArchive(new ToscaCloudServiceArchive(new ToscaMetadata()));
+            toscaCapabilityType.DerivedFrom = "base";
+
+            // Act
+            ToscaCapabilityType baseCapabilityType;
+            Action action = () => baseCapabilityType = toscaCapabilityType.Base;
+
+            // Assert
+            action.ShouldThrow<ToscaCapabilityTypeNotFoundException>().WithMessage("Capability type 'base' not found");
         }
     }
 }

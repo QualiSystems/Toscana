@@ -145,7 +145,7 @@ namespace Toscana
             {
                 if (!fileContents.ContainsKey(toscaArtifact.Value.File))
                 {
-                    throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                    throw new ArtifactNotFoundException(String.Format("Artifact '{0}' not found in Cloud Service Archive.",
                         toscaArtifact.Value.File));
                 }
             }
@@ -177,10 +177,25 @@ namespace Toscana
             byte[] content;
             if (!fileContents.TryGetValue(fileName, out content))
             {
-                throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                throw new ArtifactNotFoundException(String.Format("Artifact '{0}' not found in Cloud Service Archive.",
                     fileName));
             }
             return content;
+        }
+
+        /// <summary>
+        /// If needed adds built-in node types and capabilities
+        /// </summary>
+        public void FillDefaults()
+        {
+            if (!NodeTypes.ContainsKey(ToscaDefaults.ToscaNodesRoot))
+            {
+                AddNodeType(ToscaDefaults.ToscaNodesRoot, ToscaDefaults.GetRootNodeType());
+            }
+            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesRoot))
+            {
+                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesRoot, ToscaDefaults.GetRootCapabilityType());
+            }
         }
     }
 }

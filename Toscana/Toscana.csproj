@@ -98,6 +98,7 @@
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
     <Compile Include="Exceptions\ArtifactNotFoundException.cs" />
+    <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFound.cs" />
@@ -113,7 +114,7 @@
     <Compile Include="ToscaCapabilityAssignment.cs" />
     <Compile Include="ToscaCapabilityType.cs" />
     <Compile Include="ToscaCloudServiceArchive.cs" />
-    <Compile Include="ToscaDefaultNodeTypes.cs" />
+    <Compile Include="ToscaDefaults.cs" />
     <Compile Include="ToscaImport.cs" />
     <Compile Include="ToscaAttributeDefinition.cs" />
     <Compile Include="ToscaInterfaceDefinition.cs" />

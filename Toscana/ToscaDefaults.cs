@@ -5,7 +5,7 @@ namespace Toscana
     /// <summary>
     /// TOSCA built-in node types
     /// </summary>
-    public static class ToscaDefaultNodeTypes
+    public static class ToscaDefaults
     {
         /// <summary>
         /// Name of the tosca.nodes.Root node type
@@ -42,6 +42,13 @@ namespace Toscana
             });
 
             return rootNode;
+        }
+
+        public const string ToscaCapabilitiesRoot = "tosca.capabilities.Root";
+
+        public static ToscaCapabilityType GetRootCapabilityType()
+        {
+            return new ToscaCapabilityType();
         }
     }
 }

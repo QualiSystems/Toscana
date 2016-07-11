@@ -54,9 +54,9 @@ namespace Toscana
                     combinedTosca.NodeTypes.Add(nodeType.Key, nodeType.Value);
                 }
             }
-            if (!combinedTosca.NodeTypes.ContainsKey(ToscaDefaultNodeTypes.ToscaNodesRoot))
+            if (!combinedTosca.NodeTypes.ContainsKey(ToscaDefaults.ToscaNodesRoot))
             {
-                combinedTosca.NodeTypes.Add(ToscaDefaultNodeTypes.ToscaNodesRoot, ToscaDefaultNodeTypes.GetRootNodeType());
+                combinedTosca.NodeTypes.Add(ToscaDefaults.ToscaNodesRoot, ToscaDefaults.GetRootNodeType());
             }
             foreach (var nodeType in combinedTosca.NodeTypes)
             {

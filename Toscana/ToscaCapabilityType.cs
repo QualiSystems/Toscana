@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Toscana.Exceptions;
 
 namespace Toscana
 {
@@ -23,7 +24,13 @@ namespace Toscana
         {
             get
             {
-                return cloudServiceArchive == null || IsRoot() ? null : cloudServiceArchive.CapabilityTypes[DerivedFrom];
+                if (cloudServiceArchive == null || IsRoot()) return null;
+                ToscaCapabilityType baseCapabilityType;
+                if (cloudServiceArchive.CapabilityTypes.TryGetValue(DerivedFrom, out baseCapabilityType))
+                {
+                    return baseCapabilityType;
+                }
+                throw new ToscaCapabilityTypeNotFoundException(string.Format("Capability type '{0}' not found", DerivedFrom));
             }
         }
 

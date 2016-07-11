@@ -210,6 +210,8 @@ node_types:
             // Assert
             toscaCloudServiceArchive.CapabilityTypes.Should()
                 .Contain(a => a.Key == "cloudshell.capabilities.AutoDiscovery");
+            toscaCloudServiceArchive.CapabilityTypes["cloudshell.capabilities.AutoDiscovery"].Base.Should().NotBeNull();
+            toscaCloudServiceArchive.CapabilityTypes["tosca.capabilities.Root"].Base.Should().BeNull();
         }
 
         [Test]
