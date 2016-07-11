@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
-using System.IO.Compression;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
@@ -14,9 +12,6 @@ namespace Toscana.Tests.Engine
     [TestFixture]
     public class ToscaCloudServiceArchiveLoaderTests
     {
-        private MockFileSystem fileSystem;
-        private IToscaCloudServiceArchiveLoader toscaCloudServiceArchiveLoader;
-
         [SetUp]
         public void SetUp()
         {
@@ -26,109 +21,10 @@ namespace Toscana.Tests.Engine
             toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
         }
 
-        [Test]
-        public void ToscaCloudServiceArchiveFileNotFoundException_Should_Be_Thrown_When_Archive_Does_Not_Exist()
-        {
-            // Act
-            Action action = () => toscaCloudServiceArchiveLoader.Load("non_existing.zip");
-
-            // Assert
-            action.ShouldThrow<ToscaCloudServiceArchiveFileNotFoundException>().WithMessage("Cloud Service Archive (CSAR) file 'non_existing.zip' not found");
-        }
+        private MockFileSystem fileSystem;
+        private IToscaCloudServiceArchiveLoader toscaCloudServiceArchiveLoader;
 
         [Test]
-        public void EntryPointNotFoundException_Should_Be_Thrown_When_EntryPoint_File_Does_Not_Exist()
-        {
-            // Arrange
-            var fileContents = new List<FileContent> {new FileContent("TOSCA.meta", 
-                @"TOSCA-Meta-File-Version: 1.0
-CSAR-Version: 1.1
-Created-By: OASIS TOSCA TC
-Entry-Definitions: not_existing.yaml")};
-            fileSystem.CreateArchive("tosca.zip", fileContents);
-
-            // Act
-            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
-
-            // Assert
-            action.ShouldThrow<ToscaImportFileNotFoundException>().WithMessage("not_existing.yaml file not found within TOSCA Cloud Service Archive file.");
-        }
-
-        [Test]
-        public void ToscaMetadataFileNotFound_Should_Be_Thrown_When_Tosca_Meta_File_Does_Not_Exist()
-        {
-            // Arrange
-            fileSystem.CreateArchive("tosca.zip", new FileContent[0]);
-
-            // Act
-            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
-
-            // Assert
-            action.ShouldThrow<ToscaMetadataFileNotFound>().WithMessage("TOSCA.meta file not found within TOSCA Cloud Service Archive file.");
-        }
-
-        [Test] 
-        public void Tosca_Cloud_Service_Archive_With_Single_Template_Should_Be_Parsed()
-        {
-            // Arrange
-            var toscaMetaContent = @"
-TOSCA-Meta-File-Version: 1.0
-CSAR-Version: 1.1
-Created-By: OASIS TOSCA TC
-Entry-Definitions: definitions\tosca_elk.yaml";
-            var toscaSimpleProfileContent = @"
-tosca_definitions_version: tosca_simple_yaml_1_0
- 
-node_types:
-  example.TransactionSubsystem:
-    properties:
-      num_cpus:
-        type: integer";
-
-            var fileContents = new List<FileContent>
-            {
-                new FileContent("TOSCA.meta", toscaMetaContent),
-                new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
-            };
-
-            fileSystem.CreateArchive("tosca.zip", fileContents);
-
-            // Act
-            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
-
-            // Assert
-            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
-            toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
-        }
-
-        [Test]
-        public void ToscaParsingException_Should_Be_Thrown_When_Definition_File_Not_Valid()
-        {
-            // Arrange
-            var toscaMetaContent = @"
-TOSCA-Meta-File-Version: 1.0
-CSAR-Version: 1.1
-Created-By: OASIS TOSCA TC
-Entry-Definitions: tosca_elk.yaml";
-            var toscaSimpleProfileContent = @"tosca_definitions_version: tosca_simple_yaml_1_0
-INVALID";
-
-            var fileContents = new List<FileContent>
-            {
-                new FileContent("TOSCA.meta", toscaMetaContent),
-                new FileContent("tosca_elk.yaml", toscaSimpleProfileContent)
-            };
-
-            fileSystem.CreateArchive("tosca.zip", fileContents);
-
-            // Act
-            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
-
-            // Assert
-            action.ShouldThrow<ToscaParsingException>().Where(a => a.Message.Contains("tosca_elk.yaml"));
-        }
-
-        [Test] 
         public void Archive_With_Two_Templates_One_Of_Them_Resides_In_Alternative_Path_Loaded()
         {
             var mockFileSystem = new MockFileSystem();
@@ -163,7 +59,7 @@ node_types:
 
             mockFileSystem.CreateArchive("tosca.zip", fileContents);
             mockFileSystem.AddFile(@"c:\alternative\base.yaml", new MockFileData(
-@"tosca_definitions_version: tosca_simple_yaml_1_0
+                @"tosca_definitions_version: tosca_simple_yaml_1_0
 node_types:
   tosca.base:
     properties:
@@ -185,8 +81,32 @@ node_types:
             toscaNodeTypes["example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
         }
 
-        [Test] 
-        public void GetEntryLeafNodeTypes_Returns_Derived_Node_Type_In_Archive_With_A_Template_Containing_Base_And_Derived_Node_Types()
+        [Test]
+        public void EntryPointNotFoundException_Should_Be_Thrown_When_EntryPoint_File_Does_Not_Exist()
+        {
+            // Arrange
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta",
+                    @"TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: not_existing.yaml")
+            };
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaImportFileNotFoundException>()
+                .WithMessage("not_existing.yaml file not found within TOSCA Cloud Service Archive file.");
+        }
+
+        [Test]
+        public void
+            GetEntryLeafNodeTypes_Returns_Derived_Node_Type_In_Archive_With_A_Template_Containing_Base_And_Derived_Node_Types
+            ()
         {
             var mockFileSystem = new MockFileSystem();
             var bootstrapper = new Bootstrapper();
@@ -194,14 +114,14 @@ node_types:
             toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
 
             // Arrange
-            const string toscaMetaContent = 
-@"TOSCA-Meta-File-Version: 1.0
+            const string toscaMetaContent =
+                @"TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
 Entry-Definitions: tosca.yaml";
 
-            const string derivedTosca = 
-@"tosca_definitions_version: tosca_simple_yaml_1_0
+            const string derivedTosca =
+                @"tosca_definitions_version: tosca_simple_yaml_1_0
 node_types:
   tosca.network_device:
     derived_from: tosca.base
@@ -220,17 +140,166 @@ node_types:
             };
 
             mockFileSystem.CreateArchive("tosca.zip", fileContents);
-           
+
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
-            toscaCloudServiceArchive.GetEntryLeafNodeTypes().Keys.ShouldAllBeEquivalentTo(new[] { "tosca.network_device" });
+            toscaCloudServiceArchive.GetEntryLeafNodeTypes()
+                .Keys.ShouldAllBeEquivalentTo(new[] {"tosca.network_device"});
             toscaCloudServiceArchive.GetEntryLeafNodeTypes()["tosca.network_device"]
                 .Base.Properties.Should().ContainKey("price");
         }
 
-        [Test] 
+        [Test]
+        public void Shell_With_Auto_Discovery_Capability_Parsed_To_Resource_Template()
+        {
+            // Arrange
+            fileSystem.CreateArchive("tosca.zip", new[]
+            {
+                new FileContent("TOSCA.meta",
+                    @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca_elk.yaml
+"),
+                new FileContent("tosca_elk.yaml",
+                    @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  name: NXOS Shell
+  author: Meni Besso
+  version: 1.0.0
+capability_types:
+  cloudshell.capabilities.AutoDiscovery:
+    derived_from: tosca.capabilities.Root
+    properties:
+      inventory_description:
+        type: string
+        default: This is the inventory description
+      enable_auto_discovery:
+        type: boolean
+        default: true
+      auto_discovery_description:
+        type: string
+        default: This is the auto discovery description
+node_types:
+  vendor.switch.NXOS:
+    description: Description of NXOS switch
+    derived_from: tosca.nodes.Root
+    capabilities:
+      cloudshell_family:
+        type: cloudshell.families.Switch
+      auto_discovery:
+        type: cloudshell.capabilities.AutoDiscovery
+        properties:
+          user_name:
+            type: string
+          password:
+            type: boolean
+    properties:
+      device_owner:
+        type: string
+")
+            });
+
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            toscaCloudServiceArchive.CapabilityTypes.Should()
+                .Contain(a => a.Key == "cloudshell.capabilities.AutoDiscovery");
+        }
+
+        [Test]
+        public void Tosca_Cloud_Service_Archive_With_Single_Template_Should_Be_Parsed()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: definitions\tosca_elk.yaml";
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
+            toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes[
+                "example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+        }
+
+        [Test]
+        public void ToscaCloudServiceArchiveFileNotFoundException_Should_Be_Thrown_When_Archive_Does_Not_Exist()
+        {
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("non_existing.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaCloudServiceArchiveFileNotFoundException>()
+                .WithMessage("Cloud Service Archive (CSAR) file 'non_existing.zip' not found");
+        }
+
+        [Test]
+        public void ToscaMetadataFileNotFound_Should_Be_Thrown_When_Tosca_Meta_File_Does_Not_Exist()
+        {
+            // Arrange
+            fileSystem.CreateArchive("tosca.zip", new FileContent[0]);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaMetadataFileNotFound>()
+                .WithMessage("TOSCA.meta file not found within TOSCA Cloud Service Archive file.");
+        }
+
+        [Test]
+        public void ToscaParsingException_Should_Be_Thrown_When_Definition_File_Not_Valid()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca_elk.yaml";
+            var toscaSimpleProfileContent = @"tosca_definitions_version: tosca_simple_yaml_1_0
+INVALID";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca_elk.yaml", toscaSimpleProfileContent)
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaParsingException>().Where(a => a.Message.Contains("tosca_elk.yaml"));
+        }
+
+        [Test]
         public void ToscaRootNode_Should_Be_Included()
         {
             var mockFileSystem = new MockFileSystem();
@@ -239,8 +308,8 @@ node_types:
             toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
 
             // Arrange
-            const string toscaMetaContent = 
-@"
+            const string toscaMetaContent =
+                @"
 TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
@@ -248,7 +317,7 @@ Entry-Definitions: tosca.yaml
 ";
 
             const string toscaTemplate =
-@"
+                @"
 tosca_definitions_version: tosca_simple_yaml_1_0
 node_types:
   tosca.network_device:
@@ -265,7 +334,7 @@ node_types:
             };
 
             mockFileSystem.CreateArchive("tosca.zip", fileContents);
-           
+
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
 

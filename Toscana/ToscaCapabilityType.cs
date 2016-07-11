@@ -4,6 +4,8 @@ namespace Toscana
 {
     public class ToscaCapabilityType : ToscaObject
     {
+        private ToscaCloudServiceArchive cloudServiceArchive;
+
         public ToscaCapabilityType()
         {
             Attributes = new Dictionary<string, ToscaAttributeDefinition>();
@@ -16,5 +18,22 @@ namespace Toscana
         public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
         public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
         public string[] ValidSourceTypes { get; set; }
+
+        public ToscaCapabilityType Base
+        {
+            get
+            {
+                return cloudServiceArchive == null || IsRoot() ? null : cloudServiceArchive.CapabilityTypes[DerivedFrom];
+            }
+        }
+
+        /// <summary>
+        /// Sets archive that the node belongs to
+        /// </summary>
+        /// <param name="newCloudServiceArchive"></param>
+        public void SetToscaCloudServiceArchive(ToscaCloudServiceArchive newCloudServiceArchive)
+        {
+            cloudServiceArchive = newCloudServiceArchive;
+        }
     }
 }

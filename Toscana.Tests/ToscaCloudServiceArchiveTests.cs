@@ -242,5 +242,46 @@ namespace Toscana.Tests
             // Assert
             switchNodeType.Base.Properties.Should().ContainKey("vendor");
         }
+
+        [Test]
+        public void Base_Property_Of_Root_NodeType_Should_Be_Null()
+        {
+            // Arrange
+            var deviceNodeType = new ToscaNodeType();
+            deviceNodeType.Properties.Add("vendor", new ToscaPropertyDefinition { Type = "string" });
+
+            var switchNodeType = new ToscaNodeType { DerivedFrom = "tosca.nodes.Device" };
+            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "integer" });
+
+            // Act
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+            cloudServiceArchive.AddNodeType("tosca.nodes.Switch", switchNodeType);
+            cloudServiceArchive.AddNodeType("tosca.nodes.Device", deviceNodeType);
+
+            // Assert
+            deviceNodeType.Base.Should().BeNull();
+        }
+
+        [Test]
+        public void Base_Property_Of_Capability_Type_Is_Capability_Of_Derived_From()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate();
+            var basicCapabilityType = new ToscaCapabilityType();
+            basicCapabilityType.Properties.Add("username", new ToscaPropertyDefinition { Type = "string"});
+            serviceTemplate.CapabilityTypes.Add("basic", basicCapabilityType);
+            serviceTemplate.CapabilityTypes.Add("connectable", new ToscaCapabilityType
+            {
+                DerivedFrom = "basic"
+            });
+
+            // Act
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+
+            // Assert
+            cloudServiceArchive.CapabilityTypes["connectable"].Base.Properties.Should().ContainKey("username");
+        }
     }
 }

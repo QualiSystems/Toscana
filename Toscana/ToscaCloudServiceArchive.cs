@@ -15,12 +15,14 @@ namespace Toscana
         private readonly ToscaMetadata toscaMetadata;
         private readonly Dictionary<string, ToscaServiceTemplate> toscaServiceTemplates;
         private readonly Dictionary<string, byte[]> fileContents;
+        private readonly Dictionary<string, ToscaCapabilityType> capabilityTypes;
 
         public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
         {
             this.toscaMetadata = toscaMetadata;
             toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
             nodeTypes = new Dictionary<string, ToscaNodeType>();
+            capabilityTypes = new Dictionary<string, ToscaCapabilityType>();
             if (archiveEntries == null)
             {
                 fileContents = new Dictionary<string, byte[]>();
@@ -53,6 +55,14 @@ namespace Toscana
         public IReadOnlyDictionary<string, ToscaNodeType> NodeTypes
         {
             get { return nodeTypes; }
+        }
+
+        /// <summary>
+        /// Returns capability from all the Service Templates 
+        /// </summary>
+        public IReadOnlyDictionary<string, ToscaCapabilityType> CapabilityTypes
+        {
+            get { return capabilityTypes; }
         }
 
         /// <summary>
@@ -108,6 +118,16 @@ namespace Toscana
             {
                 AddNodeType(toscaNodeType.Key, toscaNodeType.Value);
             }
+            foreach (var capabilityType in toscaServiceTemplate.CapabilityTypes)
+            {
+                AddCapabilityType(capabilityType.Key, capabilityType.Value);
+            }
+        }
+
+        private void AddCapabilityType(string capabilityTypeName, ToscaCapabilityType capabilityType)
+        {
+            capabilityTypes.Add(capabilityTypeName, capabilityType);
+            capabilityType.SetToscaCloudServiceArchive(this);
         }
 
         /// <summary>

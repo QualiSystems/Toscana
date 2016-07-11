@@ -28,7 +28,7 @@ namespace Toscana
 
         public ToscaNodeType Base
         {
-            get { return cloudServiceArchive == null ? null : cloudServiceArchive.NodeTypes[DerivedFrom]; }
+            get { return cloudServiceArchive == null || IsRoot() ? null : cloudServiceArchive.NodeTypes[DerivedFrom]; }
         }
 
         /// <summary>
