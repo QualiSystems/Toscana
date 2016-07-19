@@ -302,7 +302,7 @@ INVALID";
         }
 
         [Test]
-        public void ToscaRootNode_Should_Be_Included()
+        public void Tosca_Defaults_Should_Be_Loaded()
         {
             var mockFileSystem = new MockFileSystem();
             var bootstrapper = new Bootstrapper();
@@ -342,6 +342,9 @@ node_types:
 
             // Assert
             toscaCloudServiceArchive.NodeTypes["tosca.network_device"].Base.Attributes.Should().ContainKey("tosca_name");
+            toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Root");
+            toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Root");
+            toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Node");
         }
     }
 }

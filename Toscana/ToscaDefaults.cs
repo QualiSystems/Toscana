@@ -13,6 +13,11 @@ namespace Toscana
         public const string ToscaNodesRoot = "tosca.nodes.Root";
 
         /// <summary>
+        /// Name of the tosca.capabilities.Root capability type
+        /// </summary>
+        public const string ToscaCapabilitiesRoot = "tosca.capabilities.Root";
+
+        /// <summary>
         /// Returns an instance of ToscaNodeType, 
         /// which represents Node Type all other TOSCA base Node Types derive from
         /// </summary>
@@ -44,11 +49,27 @@ namespace Toscana
             return rootNode;
         }
 
-        public const string ToscaCapabilitiesRoot = "tosca.capabilities.Root";
-
+        /// <summary>
+        /// Returns an instance of the tosca.capabilities.Root
+        /// </summary>
+        /// <returns></returns>
         public static ToscaCapabilityType GetRootCapabilityType()
         {
             return new ToscaCapabilityType();
         }
+
+        /// <summary>
+        /// Returns an instance of tosca.capabilities.Node
+        /// </summary>
+        /// <returns></returns>
+        public static ToscaCapabilityType GetNodeCapabilityType()
+        {
+            return new ToscaCapabilityType
+            {
+                DerivedFrom = ToscaCapabilitiesRoot
+            };
+        }
+
+        public const string ToscaCapabilitiesNode = "tosca.capabilities.Node";
     }
 }

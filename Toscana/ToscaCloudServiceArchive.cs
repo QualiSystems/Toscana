@@ -196,6 +196,10 @@ namespace Toscana
             {
                 AddCapabilityType(ToscaDefaults.ToscaCapabilitiesRoot, ToscaDefaults.GetRootCapabilityType());
             }
+            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesNode))
+            {
+                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
+            }
         }
     }
 }
