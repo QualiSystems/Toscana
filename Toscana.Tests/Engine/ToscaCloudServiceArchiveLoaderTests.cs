@@ -346,5 +346,45 @@ node_types:
             toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Root");
             toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Node");
         }
+
+        [Test]
+        public void Exception_Thron_When_Requirement_Type_Not_Found_In_Node_Types()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: definitions\tosca_elk.yaml";
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+    requirements:
+       - Chassis:
+                capability: tosca.capabilities.Attachment
+                node: cloudshell.nodes.GenericChassis
+                relationship: tosca.relationships.AttachesTo
+                occurrences: [0, UNBOUNDED]
+        ";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Node 'cloudshell.nodes.GenericChassis' of requirement 'Chassis' on node type 'example.TransactionSubsystem' not found.");
+        }
     }
 }

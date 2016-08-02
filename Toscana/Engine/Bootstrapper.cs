@@ -12,6 +12,7 @@ namespace Toscana.Engine
             poorManContainer.Register<IFileSystem, FileSystem>();
             poorManContainer.Register<IToscaValidator<ToscaMetadata>, ToscaValidator<ToscaMetadata>>();
             poorManContainer.Register<IToscaValidator<ToscaServiceTemplate>, ToscaValidator<ToscaServiceTemplate>>();
+            poorManContainer.Register<IToscaValidator<ToscaCloudServiceArchive>, ToscaValidator<ToscaCloudServiceArchive>>();
             poorManContainer.Register<IToscaDeserializer<ToscaServiceTemplate>, ToscaDeserializer<ToscaServiceTemplate>>();
             poorManContainer.Register<IToscaParser<ToscaServiceTemplate>, ToscaParser<ToscaServiceTemplate>>();
             poorManContainer.Register<IToscaDeserializer<ToscaMetadata>, ToscaDeserializer<ToscaMetadata>>();

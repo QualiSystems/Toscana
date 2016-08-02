@@ -38,13 +38,15 @@ namespace Toscana.Engine
         private readonly IFileSystem fileSystem;
         private readonly IToscaParser<ToscaMetadata> metadataParser;
         private readonly IToscaParser<ToscaServiceTemplate> serviceTemplateParser;
+        private IToscaValidator<ToscaCloudServiceArchive> validator;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
-            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser)
+            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser, IToscaValidator<ToscaCloudServiceArchive> validator)
         {
             this.fileSystem = fileSystem;
             this.metadataParser = metadataParser;
             this.serviceTemplateParser = serviceTemplateParser;
+            this.validator = validator;
         }
 
         /// <summary>
@@ -87,6 +89,7 @@ namespace Toscana.Engine
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntries);
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath, relativePath);
                 toscaCloudServiceArchive.FillDefaults();
+                validator.Validate(toscaCloudServiceArchive);
                 return toscaCloudServiceArchive;
             }
         }

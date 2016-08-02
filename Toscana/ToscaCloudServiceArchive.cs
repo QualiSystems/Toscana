@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -9,7 +10,7 @@ using Toscana.Exceptions;
 
 namespace Toscana
 {
-    public class ToscaCloudServiceArchive
+    public class ToscaCloudServiceArchive : IValidatableObject
     {
         private readonly Dictionary<string, ToscaNodeType> nodeTypes;
         private readonly ToscaMetadata toscaMetadata;
@@ -200,6 +201,30 @@ namespace Toscana
             {
                 AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
             }
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var validationResults = new List<ValidationResult>();
+            foreach (var nodeTypeKeyValue in NodeTypes)
+            {
+                foreach (var requirementKeyValue in nodeTypeKeyValue.Value.Requirements.SelectMany(r=>r).ToArray())
+                {
+                    if (!NodeTypes.ContainsKey(requirementKeyValue.Value.Node))
+                    {
+                        validationResults.Add(CreateValidationResult(requirementKeyValue, nodeTypeKeyValue));
+                    }
+                }
+            }
+            return validationResults;
+        }
+
+        private static ValidationResult CreateValidationResult(KeyValuePair<string, ToscaRequirement> requirementKeyValue, KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)
+        {
+            return new ValidationResult(string.Format("Node '{0}' of requirement '{1}' on node type '{2}' not found.", 
+                requirementKeyValue.Value.Node, 
+                requirementKeyValue.Key, 
+                nodeTypeKeyValue.Key));
         }
     }
 }

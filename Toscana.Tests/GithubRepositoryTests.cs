@@ -119,6 +119,7 @@ namespace Toscana.Tests
         }
 
         [Test]
+        [Ignore]
         public void Load_Tosca_Cloud_Service_Archive_From_Github()
         {
             using (var tempFile = new TempFile(Path.GetTempPath()))
