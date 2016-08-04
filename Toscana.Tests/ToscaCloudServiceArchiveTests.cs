@@ -43,10 +43,14 @@ namespace Toscana.Tests
             };
 
             var fileSystem = new MockFileSystem();
-            using (var zipArchive = new ZipArchive(fileSystem.File.Create("tosca.zip"), ZipArchiveMode.Create))
+            fileSystem.CreateArchive("tosca.zip", new FileContent[]
             {
-                zipArchive.CreateEntry("some_icon.png");
-            }
+                new FileContent("some_icon.png", "IMAGE")
+            });
+            //using (var zipArchive = new ZipArchive(fileSystem.File.Create("tosca.zip"), ZipArchiveMode.Create))
+            //{
+            //    zipArchive.CreateEntry("some_icon.png");
+            //}
 
             var archiveEntriesDictionary =
                 new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
@@ -61,7 +65,9 @@ namespace Toscana.Tests
             toscaCloudServiceArchive.AddToscaServiceTemplate(@"definitions/tosca_elk.yaml", toscaServiceTemplate);
 
             // Assert
-            toscaCloudServiceArchive.GetArtifactBytes("some_icon.png").Should().BeEmpty();
+            toscaCloudServiceArchive.GetArtifactBytes("some_icon.png")
+                .Should()
+                .BeEquivalentTo(new byte[] {73, 77, 65, 71, 69});
         }
 
         [Test]

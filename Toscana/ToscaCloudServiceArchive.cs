@@ -219,6 +219,12 @@ namespace Toscana
             return validationResults;
         }
 
+        public void TraverseNodeTypes(Action<ToscaNodeType> action)
+        {
+            var serviceArchiveWalker = new ToscaCloudServiceArchiveWalker(this, action);
+            serviceArchiveWalker.Walk();
+        }
+
         private static ValidationResult CreateValidationResult(KeyValuePair<string, ToscaRequirement> requirementKeyValue, KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)
         {
             return new ValidationResult(string.Format("Node '{0}' of requirement '{1}' on node type '{2}' not found.", 

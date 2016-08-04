@@ -386,5 +386,43 @@ node_types:
             // Assert
             action.ShouldThrow<ToscaValidationException>().WithMessage("Node 'cloudshell.nodes.GenericChassis' of requirement 'Chassis' on node type 'example.TransactionSubsystem' not found.");
         }
+
+        [Test]
+        public void Tosca_Cloud_Service_Archive_Contains_Directory_Should_Be_Parsed()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: definitions\tosca_elk.yaml";
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent),
+                new FileContent(@"files\image1.png", ""),
+                new FileContent(@"files\image2.png", "")
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
+            toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes[
+                "example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+        }
+
     }
 }
