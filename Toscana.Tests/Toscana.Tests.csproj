@@ -88,6 +88,7 @@
     <Compile Include="TempFile.cs" />
     <Compile Include="ToscaAttributeDefinitionTests.cs" />
     <Compile Include="ToscaCapabilityAssignmentTests.cs" />
+    <Compile Include="ToscaCapabilityTests.cs" />
     <Compile Include="ToscaCapabilityTypeTests.cs" />
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />

@@ -5,6 +5,12 @@ namespace Toscana
 {
     public class ToscaCapability
     {
+        public ToscaCapability()
+        {
+            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+            Attributes = new Dictionary<string, ToscaAttributeDefinition>();
+        }
+
         [Required(ErrorMessage = "type is required on capability")]
         public string Type { get; set; }
 
