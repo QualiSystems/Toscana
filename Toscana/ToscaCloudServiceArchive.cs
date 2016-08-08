@@ -203,6 +203,11 @@ namespace Toscana
             }
         }
 
+        /// <summary>
+        /// Implements Validate method from <see cref="IValidatableObject"/> interface
+        /// </summary>
+        /// <param name="validationContext">Context the validation runs in</param>
+        /// <returns>List of validation results if any</returns>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var validationResults = new List<ValidationResult>();
@@ -212,11 +217,27 @@ namespace Toscana
                 {
                     if (!NodeTypes.ContainsKey(requirementKeyValue.Value.Node))
                     {
-                        validationResults.Add(CreateValidationResult(requirementKeyValue, nodeTypeKeyValue));
+                        validationResults.Add(CreateRequirementValidationResult(requirementKeyValue, nodeTypeKeyValue));
+                    }
+                }
+                foreach (var capabilityKeyValue in nodeTypeKeyValue.Value.Capabilities)
+                {
+                    if (!CapabilityTypes.ContainsKey(capabilityKeyValue.Value.Type))
+                    {
+                        validationResults.Add(CreateCapabilityTypeValidationResult(nodeTypeKeyValue.Key, capabilityKeyValue.Value.Type, capabilityKeyValue.Key));
                     }
                 }
             }
             return validationResults;
+        }
+
+        private ValidationResult CreateCapabilityTypeValidationResult(string nodeTypeName, string capabilityType, string capability)
+        {
+            return new ValidationResult(
+                string.Format("Capability type '{0}' attached to node '{1}' as capability '{2}' not found.",
+                     capabilityType,
+                     nodeTypeName,
+                     capability)); 
         }
 
         public void TraverseNodeTypes(Action<ToscaNodeType> action)
@@ -225,7 +246,7 @@ namespace Toscana
             serviceArchiveWalker.Walk();
         }
 
-        private static ValidationResult CreateValidationResult(KeyValuePair<string, ToscaRequirement> requirementKeyValue, KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)
+        private static ValidationResult CreateRequirementValidationResult(KeyValuePair<string, ToscaRequirement> requirementKeyValue, KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)
         {
             return new ValidationResult(string.Format("Node '{0}' of requirement '{1}' on node type '{2}' not found.", 
                 requirementKeyValue.Value.Node, 

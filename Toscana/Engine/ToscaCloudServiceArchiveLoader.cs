@@ -38,7 +38,7 @@ namespace Toscana.Engine
         private readonly IFileSystem fileSystem;
         private readonly IToscaParser<ToscaMetadata> metadataParser;
         private readonly IToscaParser<ToscaServiceTemplate> serviceTemplateParser;
-        private IToscaValidator<ToscaCloudServiceArchive> validator;
+        private readonly IToscaValidator<ToscaCloudServiceArchive> validator;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
             IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser, IToscaValidator<ToscaCloudServiceArchive> validator)

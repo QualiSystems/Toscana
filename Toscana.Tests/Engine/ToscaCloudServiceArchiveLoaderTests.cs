@@ -184,6 +184,10 @@ capability_types:
       auto_discovery_description:
         type: string
         default: This is the auto discovery description
+  cloudshell.families.Switch:
+    properties:
+      family_name:
+        type: string
 node_types:
   vendor.switch.NXOS:
     description: Description of NXOS switch
@@ -348,7 +352,7 @@ node_types:
         }
 
         [Test]
-        public void Exception_Thron_When_Requirement_Type_Not_Found_In_Node_Types()
+        public void Exception_Thrown_When_Requirement_Type_Not_Found_In_Node_Types()
         {
             // Arrange
             var toscaMetaContent = @"
@@ -385,6 +389,50 @@ node_types:
 
             // Assert
             action.ShouldThrow<ToscaValidationException>().WithMessage("Node 'cloudshell.nodes.GenericChassis' of requirement 'Chassis' on node type 'example.TransactionSubsystem' not found.");
+        }
+
+        [Test]
+        public void Exception_Thrown_When_Capability_Type_Not_Found_In_Node_Types()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca_elk.yaml";
+
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+    capabilities:
+      auto_discovery:
+        type: cloudshell.capabilities.AutoDiscovery
+        properties:
+          user_name:
+            type: string
+          password:
+            type: boolean
+        ";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca_elk.yaml", toscaSimpleProfileContent)
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>()
+                .WithMessage("Capability type 'cloudshell.capabilities.AutoDiscovery' attached to node 'example.TransactionSubsystem' as capability 'auto_discovery' not found.");
         }
 
         [Test]
