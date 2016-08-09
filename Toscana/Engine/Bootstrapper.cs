@@ -46,5 +46,10 @@ namespace Toscana.Engine
         {
             return poorManContainer.GetInstance<IToscaParser<ToscaMetadata>>();
         }
+
+        public IToscaValidator<ToscaCloudServiceArchive> GetToscaCloudServiceValidator()
+        {
+            return poorManContainer.GetInstance<IToscaValidator<ToscaCloudServiceArchive>>();
+        }
     }
 }

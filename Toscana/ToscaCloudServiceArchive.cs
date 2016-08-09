@@ -38,19 +38,19 @@ namespace Toscana
             }
         }
 
-        public ToscaServiceTemplate EntryPointServiceTemplate
+        public ToscaMetadata ToscaMetadata
         {
-            get { return toscaServiceTemplates[ToscaMetadata.EntryDefinitions]; }
+            get { return toscaMetadata; }
+        }
+
+        public ToscaServiceTemplate GetEntryPointServiceTemplate()
+        {
+            return toscaServiceTemplates[ToscaMetadata.EntryDefinitions];
         }
 
         public IReadOnlyDictionary<string, ToscaServiceTemplate> ToscaServiceTemplates
         {
             get { return toscaServiceTemplates; }
-        }
-
-        public ToscaMetadata ToscaMetadata
-        {
-            get { return toscaMetadata; }
         }
 
         public IReadOnlyDictionary<string, ToscaNodeType> NodeTypes
@@ -161,10 +161,10 @@ namespace Toscana
         public IReadOnlyDictionary<string, ToscaNodeType> GetEntryLeafNodeTypes()
         {
             var baseNodeTypes =
-                EntryPointServiceTemplate.NodeTypes.Values.Where(n => !n.IsRoot())
+                GetEntryPointServiceTemplate().NodeTypes.Values.Where(n => !n.IsRoot())
                     .Select(n => n.DerivedFrom)
                     .ToHashSet();
-            return EntryPointServiceTemplate.NodeTypes.Where(n => !baseNodeTypes.Contains(n.Key))
+            return GetEntryPointServiceTemplate().NodeTypes.Where(n => !baseNodeTypes.Contains(n.Key))
                 .ToDictionary(_ => _.Key, _ => _.Value);
         }
 
@@ -214,6 +214,7 @@ namespace Toscana
         /// <returns>List of validation results if any</returns>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            //if ( GetEntryPointServiceTemplate() ToscaMetadata.EntryDefinitions)
             var validationResults = new List<ValidationResult>();
             foreach (var nodeTypeKeyValue in NodeTypes)
             {
@@ -235,6 +236,17 @@ namespace Toscana
             return validationResults;
         }
 
+        /// <summary>
+        /// Tries to validate the instance and populates list of validation results if any
+        /// </summary>
+        /// <param name="validationResults">List of validation results</param>
+        /// <returns>True if valid, false otherwise</returns>
+        public bool TryValidate(out List<ValidationResult> validationResults)
+        {
+            var cloudServiceValidator = new Bootstrapper().GetToscaCloudServiceValidator();
+            return cloudServiceValidator.TryValidateRecursively(this, out validationResults);
+        }
+
         private ValidationResult CreateCapabilityTypeValidationResult(string nodeTypeName, string capabilityType, string capability)
         {
             return new ValidationResult(
@@ -252,6 +264,21 @@ namespace Toscana
         {
             var serviceArchiveWalker = new ToscaNodeTypeInheritanceWalker(this, action);
             serviceArchiveWalker.Walk();
+        }
+
+        /// <summary>
+        /// Traverses node types starting from nodeTypeNameToStart, then to its requirements nodes types and so on
+        /// </summary>
+        /// <param name="nodeTypeNameToStart">Name of a node type to start the traversal</param>
+        /// <param name="action">Action to be executed on each node type when visiting a node type</param>
+        public void TraverseNodeTypesByRequirements(string nodeTypeNameToStart, Action<string, ToscaNodeType> action)
+        {
+            if (!NodeTypes.ContainsKey(nodeTypeNameToStart))
+            {
+                throw new ToscaNodeTypeNotFoundException(string.Format("Node type '{0}' not found", nodeTypeNameToStart));
+            }
+            var serviceArchiveWalker = new ToscaNodeTypeRequirementsWalker(this, action);
+            serviceArchiveWalker.Walk(nodeTypeNameToStart);
         }
 
         private static ValidationResult CreateRequirementValidationResult(KeyValuePair<string, ToscaRequirement> requirementKeyValue, KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)

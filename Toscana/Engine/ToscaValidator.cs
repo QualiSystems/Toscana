@@ -9,6 +9,7 @@ namespace Toscana.Engine
     public interface IToscaValidator<in T>
     {
         void Validate(T toscaObject);
+        bool TryValidateRecursively(T toscaObject, out List<ValidationResult> validationResults);
     }
 
     public class ToscaValidator<T> : IToscaValidator<T>
@@ -20,15 +21,21 @@ namespace Toscana.Engine
                 throw new ToscaValidationException("Tosca is null or empty");
             }
 
-            var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
-            
-            var validationResults = new List<ValidationResult>();
-            if (!dataAnnotationsValidator.TryValidateObjectRecursive<T>(toscaObject, validationResults))
+            List<ValidationResult> validationResults;
+            if (!TryValidateRecursively(toscaObject, out validationResults))
             {
                 var message = string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage).ToList());
 
                 throw new ToscaValidationException(message);
             }
+        }
+
+        public bool TryValidateRecursively(T toscaObject, out List<ValidationResult> validationResults)
+        {
+            validationResults = new List<ValidationResult>();
+            var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
+            dataAnnotationsValidator.TryValidateObjectRecursive(toscaObject, validationResults);
+            return !validationResults.Any();
         }
     }
 }

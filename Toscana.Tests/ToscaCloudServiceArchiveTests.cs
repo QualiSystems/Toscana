@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.IO.Abstractions.TestingHelpers;
 using System.IO.Compression;
+using System.Linq;
 using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
@@ -27,7 +29,7 @@ namespace Toscana.Tests
                 new ToscaServiceTemplate {Description = "base description"});
 
             // Assert
-            toscaCloudServiceArchive.EntryPointServiceTemplate.Description.Should().Be("tosca1 description");
+            toscaCloudServiceArchive.GetEntryPointServiceTemplate().Description.Should().Be("tosca1 description");
         }
 
         [Test]
@@ -313,16 +315,88 @@ namespace Toscana.Tests
             serviceTemplate.NodeTypes.Add("switch", new ToscaNodeType { DerivedFrom = "device"});
             serviceTemplate.NodeTypes.Add("router", new ToscaNodeType { DerivedFrom = "device"});
 
-            // Act
             var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
 
-            var discoveredNodeTypeNames = new List<string>();
             cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
             cloudServiceArchive.FillDefaults();
+            
+            // Act
+            var discoveredNodeTypeNames = new List<string>();
             cloudServiceArchive.TraverseNodeTypesInheritance((nodeTypeName, nodeType) => { discoveredNodeTypeNames.Add(nodeTypeName );});
 
             // Assert
             discoveredNodeTypeNames.ShouldBeEquivalentTo(new[] { "tosca.nodes.Root", "device", "switch", "router" });
+        }
+
+        [Test]
+        public void TraverseNodeTypesByRequirements_Traverses_Nodes_From_Specific_Node_Type_By_It_Requirements()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate{ ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+
+            var powerNodeType = new ToscaNodeType();
+            powerNodeType.AddRequirement("power.cable", new ToscaRequirement { Node = "tosca.nodes.cable", Capability = "cable" });
+            powerNodeType.AddRequirement("power.switch", new ToscaRequirement { Node = "tosca.nodes.switch", Capability = "cable" });
+
+            var deviceNodeType = new ToscaNodeType();
+            deviceNodeType.AddRequirement("power", new ToscaRequirement { Node = "tosca.nodes.power", Capability = "power"} );
+
+            var cableNodeType = new ToscaNodeType();
+
+            var switchNodeType = new ToscaNodeType();
+
+            serviceTemplate.NodeTypes.Add("tosca.nodes.mic", new ToscaNodeType());
+            serviceTemplate.NodeTypes.Add("tosca.nodes.cable", cableNodeType);
+            serviceTemplate.NodeTypes.Add("tosca.nodes.switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("tosca.nodes.power", powerNodeType);
+            serviceTemplate.NodeTypes.Add("tosca.nodes.device", deviceNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CsarVersion = new Version(1,1),
+                EntryDefinitions = "sample.yaml",
+                ToscaMetaFileVersion = new Version(1,1),
+                CreatedBy = "Anonymous"
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+            cloudServiceArchive.FillDefaults();
+
+            List<ValidationResult> validationResults;
+            cloudServiceArchive.TryValidate(out validationResults);
+            var validationErrors = string.Join(Environment.NewLine, validationResults.Select(a => a.ErrorMessage).ToArray());
+            validationErrors.Should().BeEmpty();
+
+            // Act
+            var discoveredNodeTypeNames = new List<string>();
+            cloudServiceArchive.TraverseNodeTypesByRequirements("tosca.nodes.device", (nodeTypeName, nodeType) => { discoveredNodeTypeNames.Add(nodeTypeName); });
+
+            // Assert
+            discoveredNodeTypeNames.ShouldBeEquivalentTo(new[] { "tosca.nodes.device", "tosca.nodes.power", "tosca.nodes.switch", "tosca.nodes.cable" });
+        }
+
+        [Test]
+        public void TraverseNodeTypesByRequirements_Should_Throw_Exception_When_NodeType_ToStart_NotFound()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate{ ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+
+            serviceTemplate.NodeTypes.Add("tosca.nodes.device", new ToscaNodeType());
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CsarVersion = new Version(1,1),
+                EntryDefinitions = "not_existing.yaml",
+                ToscaMetaFileVersion = new Version(1,1),
+                CreatedBy = "Anonymous"
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+            cloudServiceArchive.FillDefaults();
+
+            // Act
+            Action action = () => cloudServiceArchive.TraverseNodeTypesByRequirements("NOT_EXISTING", (nodeTypeName, nodeType) => { });
+
+            // Assert
+            action.ShouldThrow<ToscaNodeTypeNotFoundException>().WithMessage("Node type 'NOT_EXISTING' not found");
         }
     }
 }

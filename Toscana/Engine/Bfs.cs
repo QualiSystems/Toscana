@@ -59,19 +59,4 @@ namespace Toscana.Engine
             get { return target; }
         }
     }
-
-    //public class Graph<TK,TV> 
-    //{
-
-    //    private readonly List<Node> nodes = new List<Node>();
-
-    //    public IEnumerable<Node> Nodes
-    //    {
-    //        get { return this.nodes; }
-    //    }
-    //}
-
-    //internal class Node
-    //{
-    //}
 }
