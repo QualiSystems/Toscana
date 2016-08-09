@@ -43,14 +43,10 @@ namespace Toscana.Tests
             };
 
             var fileSystem = new MockFileSystem();
-            fileSystem.CreateArchive("tosca.zip", new FileContent[]
+            fileSystem.CreateArchive("tosca.zip", new[]
             {
                 new FileContent("some_icon.png", "IMAGE")
             });
-            //using (var zipArchive = new ZipArchive(fileSystem.File.Create("tosca.zip"), ZipArchiveMode.Create))
-            //{
-            //    zipArchive.CreateEntry("some_icon.png");
-            //}
 
             var archiveEntriesDictionary =
                 new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
@@ -288,6 +284,45 @@ namespace Toscana.Tests
 
             // Assert
             cloudServiceArchive.CapabilityTypes["connectable"].Base.Properties.Should().ContainKey("username");
+        }
+
+        [Test]
+        public void Node_Type_Without_Derived_From_Should_Have_Root_As_Their_Derived_From()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate();
+            serviceTemplate.NodeTypes.Add("device", new ToscaNodeType());
+
+            // Act
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+            cloudServiceArchive.FillDefaults();
+
+            // Assert
+            cloudServiceArchive.NodeTypes["device"].DerivedFrom.Should().Be("tosca.nodes.Root");
+            cloudServiceArchive.NodeTypes["device"].Base.Should().NotBeNull();
+        }
+
+        [Test]
+        public void TraverseNodeTypesInheritance_Traverses_Nodes_From_Root_To_Its_Derived_Node_Types()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate();
+            serviceTemplate.NodeTypes.Add("device", new ToscaNodeType());
+            serviceTemplate.NodeTypes.Add("switch", new ToscaNodeType { DerivedFrom = "device"});
+            serviceTemplate.NodeTypes.Add("router", new ToscaNodeType { DerivedFrom = "device"});
+
+            // Act
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+
+            var discoveredNodeTypeNames = new List<string>();
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+            cloudServiceArchive.FillDefaults();
+            cloudServiceArchive.TraverseNodeTypesInheritance((nodeTypeName, nodeType) => { discoveredNodeTypeNames.Add(nodeTypeName );});
+
+            // Assert
+            discoveredNodeTypeNames.ShouldBeEquivalentTo(new[] { "tosca.nodes.Root", "device", "switch", "router" });
         }
     }
 }

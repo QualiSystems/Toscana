@@ -95,7 +95,7 @@
     <Compile Include="Engine\PathEqualityComparer.cs" />
     <Compile Include="Engine\PoorManContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
-    <Compile Include="Engine\ToscaCloudServiceArchiveWalker.cs" />
+    <Compile Include="Engine\ToscaNodeTypeInheritanceWalker.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
     <Compile Include="Exceptions\ArtifactNotFoundException.cs" />

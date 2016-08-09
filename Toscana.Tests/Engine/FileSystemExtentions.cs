@@ -5,7 +5,7 @@ using System.IO.Compression;
 
 namespace Toscana.Tests.Engine
 {
-    internal static class FileSystemExtentions
+    public static class FileSystemExtentions
     {
         public static void CreateArchive(this IFileSystem fileSystem, string archiveFilePath, IEnumerable<FileContent> fileContents)
         {

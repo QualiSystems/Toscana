@@ -201,6 +201,10 @@ namespace Toscana
             {
                 AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
             }
+            foreach (var keyValuePair in NodeTypes.Where(n => n.Value.IsRoot() && n.Key != ToscaDefaults.ToscaNodesRoot))
+            {
+                keyValuePair.Value.DerivedFrom = ToscaDefaults.ToscaNodesRoot;
+            }
         }
 
         /// <summary>
@@ -240,9 +244,13 @@ namespace Toscana
                      capability)); 
         }
 
-        public void TraverseNodeTypes(Action<ToscaNodeType> action)
+        /// <summary>
+        /// Traverses node types starting from 'tosca.nodes.Root', then to its derived node types and so on 
+        /// </summary>
+        /// <param name="action">Action to be executed on each node type when visiting a node type</param>
+        public void TraverseNodeTypesInheritance(Action<string, ToscaNodeType> action)
         {
-            var serviceArchiveWalker = new ToscaCloudServiceArchiveWalker(this, action);
+            var serviceArchiveWalker = new ToscaNodeTypeInheritanceWalker(this, action);
             serviceArchiveWalker.Walk();
         }
 
