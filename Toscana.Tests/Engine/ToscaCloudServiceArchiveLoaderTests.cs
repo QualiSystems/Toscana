@@ -104,6 +104,42 @@ Entry-Definitions: not_existing.yaml")
         }
 
         [Test]
+        public void Should_Successfully_Load_Import_File_From_Alternative_Location()
+        {
+            // Arrange
+            var fileContents = new List<FileContent>
+            {
+                new FileContent("TOSCA-Metadata/TOSCA.meta", @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: shell.yaml"),
+                new FileContent("shell.yaml", @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - definitions: definitions.yaml
+node_types:
+  tosca.network_device:
+    derived_from: tosca.base
+    properties:
+      vendor:
+        type: string
+  tosca.base:
+    properties:
+      price:
+        type: integer" )
+            };
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+            fileSystem.AddFile(@"C:\alternative\location\definitions.yaml", new MockFileData(@"tosca_definitions_version: tosca_simple_yaml_1_0"));
+
+            // Act
+            var cloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip", @"C:\alternative\location\");
+
+            // Assert
+            cloudServiceArchive.ToscaServiceTemplates["definitions.yaml"].Should().NotBeNull();
+        }
+
+        [Test]
         public void
             GetEntryLeafNodeTypes_Returns_Derived_Node_Type_In_Archive_With_A_Template_Containing_Base_And_Derived_Node_Types
             ()

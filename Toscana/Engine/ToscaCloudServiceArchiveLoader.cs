@@ -84,30 +84,28 @@ namespace Toscana.Engine
             {
                 var archiveEntries = archive.GetArchiveEntriesDictionary();
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
-                var relativePath = Path.GetDirectoryName(toscaMetaArchiveEntry.FullName) ?? string.Empty;
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntries);
-                LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath, relativePath);
+                LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath);
                 toscaCloudServiceArchive.FillDefaults();
                 validator.Validate(toscaCloudServiceArchive);
                 return toscaCloudServiceArchive;
             }
         }
 
-        private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, IReadOnlyDictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath, string relativePath)
+        private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, IReadOnlyDictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath)
         {
-            var toscaServiceTemplate = LoadToscaServiceTemplate(alternativePath, relativePath, zipArchiveEntries, toscaServiceTemplateName, toscaCloudServiceArchive);
+            var toscaServiceTemplate = LoadToscaServiceTemplate(alternativePath, zipArchiveEntries, toscaServiceTemplateName, toscaCloudServiceArchive);
             toscaCloudServiceArchive.AddToscaServiceTemplate(toscaServiceTemplateName, toscaServiceTemplate);
             foreach (var importFile in toscaServiceTemplate.Imports.SelectMany(import => import.Values))
             {
-                LoadDependenciesRecursively(toscaCloudServiceArchive, zipArchiveEntries, importFile.File, alternativePath, relativePath);
+                LoadDependenciesRecursively(toscaCloudServiceArchive, zipArchiveEntries, importFile.File, alternativePath);
             }
         }
 
-        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, string relativePath, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries, string filePath, ToscaCloudServiceArchive toscaCloudServiceArchive)
+        private ToscaServiceTemplate LoadToscaServiceTemplate(string alternativePath, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries, string filePath, ToscaCloudServiceArchive toscaCloudServiceArchive)
         {
-            var zipEntryFileName = Path.Combine(relativePath, filePath);
-            var importStream = GetImportStream(alternativePath, archiveEntries, zipEntryFileName);
+            var importStream = GetImportStream(alternativePath, archiveEntries, filePath);
             try
             {
                 return serviceTemplateParser.Parse(importStream);
@@ -115,7 +113,7 @@ namespace Toscana.Engine
             catch (ToscaBaseException toscaBaseException)
             {
                 throw new ToscaParsingException(
-                    string.Format("Failed to load definitions file {0} due to an error: {1}", zipEntryFileName, toscaBaseException.GetaAllMessages()));
+                    string.Format("Failed to load definitions file {0} due to an error: {1}", filePath, toscaBaseException.GetaAllMessages()));
             }
         }
 
