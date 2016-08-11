@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
@@ -71,5 +74,34 @@ namespace Toscana.Tests
             // Assert
             toscaNodeType.Requirements.Single()["device"].Node.Should().Be("port");
         }
+
+        [Test]
+        public void When_Derived_From_Node_Type_Not_Found_Proper_Error_Message_Should_Be_In_Place()
+        {
+            // Arrange
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+            cloudServiceArchive.FillDefaults();
+
+            // Act
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults);
+
+            // Assert
+            validationResults.Should()
+                .Contain(r => r.ErrorMessage.Contains("Node type 'cloudshell.nodes.Switch' not found"));
+        }
+
     }
 }

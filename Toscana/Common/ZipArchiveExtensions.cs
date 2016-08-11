@@ -19,7 +19,7 @@ namespace Toscana.Common
             this ZipArchive archive)
         {
             var zipArchiveEntries = new Dictionary<string, ZipArchiveEntry>(new PathEqualityComparer());
-            foreach (var zipArchiveEntry in archive.Entries.Where(e=>e.Length > 0))
+            foreach (var zipArchiveEntry in archive.Entries)
             {
                 zipArchiveEntries.Add(zipArchiveEntry.FullName, zipArchiveEntry);
             }

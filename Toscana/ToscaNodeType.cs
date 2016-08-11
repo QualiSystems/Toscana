@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Toscana.Exceptions;
 
 namespace Toscana
 {
     public class ToscaNodeType : ToscaObject
     {
-        private ToscaCloudServiceArchive cloudServiceArchive;
-
         public ToscaNodeType()
         {
             Properties = new Dictionary<string, ToscaPropertyDefinition>();
@@ -28,16 +27,16 @@ namespace Toscana
 
         public ToscaNodeType Base
         {
-            get { return cloudServiceArchive == null || IsRoot() ? null : cloudServiceArchive.NodeTypes[DerivedFrom]; }
-        }
-
-        /// <summary>
-        /// Sets archive that the node belongs to
-        /// </summary>
-        /// <param name="newCloudServiceArchive"></param>
-        public void SetToscaCloudServiceArchive(ToscaCloudServiceArchive newCloudServiceArchive)
-        {
-            cloudServiceArchive = newCloudServiceArchive;
+            get
+            {
+                if (cloudServiceArchive == null || IsRoot()) return null;
+                ToscaNodeType baseNodeType;
+                if (cloudServiceArchive.NodeTypes.TryGetValue(DerivedFrom, out baseNodeType))
+                {
+                    return baseNodeType;
+                }
+                throw new ToscaNodeTypeNotFoundException(string.Format("Node type '{0}' not found", DerivedFrom));
+            }
         }
 
         /// <summary>

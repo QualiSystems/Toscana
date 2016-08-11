@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using Toscana.Exceptions;
 
 namespace Toscana.Engine
@@ -34,7 +35,15 @@ namespace Toscana.Engine
         {
             validationResults = new List<ValidationResult>();
             var dataAnnotationsValidator = new DataAnnotationsValidator.DataAnnotationsValidator();
-            dataAnnotationsValidator.TryValidateObjectRecursive(toscaObject, validationResults);
+
+            try
+            {
+                dataAnnotationsValidator.TryValidateObjectRecursive(toscaObject, validationResults);
+            }
+            catch (TargetInvocationException targetInvocationException)
+            {
+                validationResults.Add(new ValidationResult(targetInvocationException.InnerException.Message));
+            }
             return !validationResults.Any();
         }
     }

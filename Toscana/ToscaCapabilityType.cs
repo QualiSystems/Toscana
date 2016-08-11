@@ -5,8 +5,6 @@ namespace Toscana
 {
     public class ToscaCapabilityType : ToscaObject
     {
-        private ToscaCloudServiceArchive cloudServiceArchive;
-
         public ToscaCapabilityType()
         {
             Attributes = new Dictionary<string, ToscaAttributeDefinition>();
@@ -32,15 +30,6 @@ namespace Toscana
                 }
                 throw new ToscaCapabilityTypeNotFoundException(string.Format("Capability type '{0}' not found", DerivedFrom));
             }
-        }
-
-        /// <summary>
-        /// Sets archive that the node belongs to
-        /// </summary>
-        /// <param name="newCloudServiceArchive"></param>
-        public void SetToscaCloudServiceArchive(ToscaCloudServiceArchive newCloudServiceArchive)
-        {
-            cloudServiceArchive = newCloudServiceArchive;
         }
     }
 }

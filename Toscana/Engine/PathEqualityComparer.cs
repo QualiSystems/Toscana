@@ -16,16 +16,12 @@ namespace Toscana.Engine
             {
                 return true;
             }
-            if (string.Compare(Path.GetFileName(x), Path.GetFileName(y), StringComparison.InvariantCultureIgnoreCase) == 0)
-            {
-                return true;
-            }
             return false;
         }
 
         public int GetHashCode(string obj)
         {
-            return (Path.GetFileName(obj) ?? obj).GetHashCode();
+            return NormalizePath(obj).GetHashCode();
         }
 
         private static string NormalizePath(string unnormalized)

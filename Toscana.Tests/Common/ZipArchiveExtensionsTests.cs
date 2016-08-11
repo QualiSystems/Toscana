@@ -28,25 +28,6 @@ namespace Toscana.Tests.Common
             };
 
             action.ShouldNotThrow();
-        }        
-        
-        [Test]
-        public void Directories_Should_Not_Return()
-        {
-            var fileSystem = new MockFileSystem();
-            fileSystem.CreateArchive("tosca.zip", new[]
-            {
-                new FileContent(@"location/file.yaml", "some yaml content"),
-                new FileContent(@"spec/", ""),
-                new FileContent(@"icons/", "")
-            });
-            var archiveEntriesDictionary =
-                new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
-
-            // Assert
-            var zipArchiveEntries = archiveEntriesDictionary.ToDictionary(a=>a.Key, b=>b.Value);
-            zipArchiveEntries.Should().ContainKey("location/file.yaml");
-            zipArchiveEntries.Should().HaveCount(1);
-        }
+        }               
     }
 }

@@ -12,8 +12,6 @@ namespace Toscana.Tests.Engine
         [TestCase("file.yaml", "FiLe.yaMl", true)]
         [TestCase("dir\\file.yaml", "dir/file.yaml", true)]
         [TestCase("dir\\file.yaml", "dir/FILE.yaml", true)]
-        [TestCase("dir\\file.yaml", "door/file.yaml", true)]
-        [TestCase("dir\\file.yaml", "door/FILE.yaml", true)]
         [TestCase("file.yaml", "fail.yaml", false)]
         public void Equals_Should_Be_Case_Insensitive_And_Dir_Separator_Agnostic(string x, string y, bool result)
         {

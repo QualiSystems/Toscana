@@ -506,6 +506,7 @@ node_types:
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(1);
             toscaCloudServiceArchive.ToscaServiceTemplates[@"definitions\tosca_elk.yaml"].NodeTypes[
                 "example.TransactionSubsystem"].Properties["num_cpus"].Type.Should().Be("integer");
+            toscaCloudServiceArchive.GetArtifactBytes(@"files\image1.png").Should().BeEmpty();
         }
 
     }
