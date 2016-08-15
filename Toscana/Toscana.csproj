@@ -43,7 +43,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Toscana.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\Toscana.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DataAnnotationsValidator, Version=1.0.0.1, Culture=neutral, PublicKeyToken=cd9c89f8de08f74c, processorArchitecture=MSIL">
@@ -141,10 +141,12 @@
     <Compile Include="ToscaTopologyTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Toscana.snk">
+      <Link>Toscana.snk</Link>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Toscana.nuspec" />
-    <None Include="Toscana.snk" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

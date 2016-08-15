@@ -10,15 +10,36 @@ using Toscana.Exceptions;
 
 namespace Toscana
 {
+    /// <summary>
+    /// Represents Tosca Cloud Service Archive (CSAR), which is an archive containing 
+    /// TOSCA Simple Profile definitions along with all accompanying artifacts (e.g. scripts, binaries, configuration files)
+    /// 
+    /// A CSAR zip file is required to contain a TOSCA-Metadata directory, 
+    /// which in turn contains the TOSCA.meta metadata file that provides entry information 
+    /// for a TOSCA orchestrator processing the CSAR file.
+    /// The CSAR file may contain other directories with arbitrary names and contents.
+    /// </summary>
     public class ToscaCloudServiceArchive : IValidatableObject
     {
+        #region Private fields
+
         private readonly Dictionary<string, ToscaNodeType> nodeTypes;
         private readonly ToscaMetadata toscaMetadata;
         private readonly Dictionary<string, ToscaServiceTemplate> toscaServiceTemplates;
         private readonly Dictionary<string, byte[]> fileContents;
         private readonly Dictionary<string, ToscaCapabilityType> capabilityTypes;
 
-        public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata, IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
+        #endregion
+
+        #region Public ctor
+        /// <summary>
+        /// Instantiate an instance of <see cref="ToscaCloudServiceArchive"/> from a ToscaMetadata and an optional list of archive 
+        /// entries of its content.
+        /// </summary>
+        /// <param name="toscaMetadata">An instance of Tosca Metadata</param>
+        /// <param name="archiveEntries">Optional list of archive entries containing TOSCA yaml file and other artifacts</param>
+        public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata,
+            IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
         {
             this.toscaMetadata = toscaMetadata;
             toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
@@ -36,23 +57,32 @@ namespace Toscana
                     fileContents.Add(archiveEntry.Value.FullName, archiveEntry.Value.Open().ReadAllBytes());
                 }
             }
+            FillDefaults();
         }
 
+        #endregion
+
+        #region Public properties
+
+        /// <summary>
+        /// TOSCA Metadata 
+        /// </summary>
         public ToscaMetadata ToscaMetadata
         {
             get { return toscaMetadata; }
         }
 
-        public ToscaServiceTemplate GetEntryPointServiceTemplate()
-        {
-            return toscaServiceTemplates[ToscaMetadata.EntryDefinitions];
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public IReadOnlyDictionary<string, ToscaServiceTemplate> ToscaServiceTemplates
         {
             get { return toscaServiceTemplates; }
         }
 
+        /// <summary>
+        /// An aggregated dictionary of the node types from all Tosca Service Templates 
+        /// </summary>
         public IReadOnlyDictionary<string, ToscaNodeType> NodeTypes
         {
             get { return nodeTypes; }
@@ -64,6 +94,19 @@ namespace Toscana
         public IReadOnlyDictionary<string, ToscaCapabilityType> CapabilityTypes
         {
             get { return capabilityTypes; }
+        }
+
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// Returns ToscaServiceTemplate that is pointed by Entry-Definitions from TOSCA.meta file
+        /// </summary>
+        /// <returns></returns>
+        public ToscaServiceTemplate GetEntryPointServiceTemplate()
+        {
+            return toscaServiceTemplates[ToscaMetadata.EntryDefinitions];
         }
 
         /// <summary>
@@ -101,11 +144,6 @@ namespace Toscana
             return toscaCloudServiceArchiveLoader.Load(archiveStream, alternativePath);
         }
 
-        private static IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
-        {
-            return new Bootstrapper().GetToscaCloudServiceArchiveLoader();
-        }
-
         /// <summary>
         /// Adds a ToscaServiceTemplate
         /// </summary>
@@ -122,33 +160,6 @@ namespace Toscana
             foreach (var capabilityType in toscaServiceTemplate.CapabilityTypes)
             {
                 AddCapabilityType(capabilityType.Key, capabilityType.Value);
-            }
-        }
-
-        private void AddCapabilityType(string capabilityTypeName, ToscaCapabilityType capabilityType)
-        {
-            capabilityTypes.Add(capabilityTypeName, capabilityType);
-            capabilityType.SetToscaCloudServiceArchive(this);
-        }
-
-        /// <summary>
-        /// Adds a node type with its name
-        /// </summary>
-        /// <param name="nodeTypeName">Node type name</param>
-        /// <param name="nodeType">An instance of node type to add</param>
-        /// <exception cref="ArtifactNotFoundException"></exception>
-        public void AddNodeType(string nodeTypeName, ToscaNodeType nodeType)
-        {
-            nodeTypes.Add(nodeTypeName, nodeType);
-            nodeType.SetToscaCloudServiceArchive(this);
-
-            foreach (var toscaArtifact in nodeType.Artifacts)
-            {
-                if (!fileContents.ContainsKey(toscaArtifact.Value.File))
-                {
-                    throw new ArtifactNotFoundException(String.Format("Artifact '{0}' not found in Cloud Service Archive.",
-                        toscaArtifact.Value.File));
-                }
             }
         }
 
@@ -185,58 +196,6 @@ namespace Toscana
         }
 
         /// <summary>
-        /// If needed adds built-in node types and capabilities
-        /// </summary>
-        public void FillDefaults()
-        {
-            if (!NodeTypes.ContainsKey(ToscaDefaults.ToscaNodesRoot))
-            {
-                AddNodeType(ToscaDefaults.ToscaNodesRoot, ToscaDefaults.GetRootNodeType());
-            }
-            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesRoot))
-            {
-                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesRoot, ToscaDefaults.GetRootCapabilityType());
-            }
-            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesNode))
-            {
-                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
-            }
-            foreach (var keyValuePair in NodeTypes.Where(n => n.Value.IsRoot() && n.Key != ToscaDefaults.ToscaNodesRoot))
-            {
-                keyValuePair.Value.DerivedFrom = ToscaDefaults.ToscaNodesRoot;
-            }
-        }
-
-        /// <summary>
-        /// Implements Validate method from <see cref="IValidatableObject"/> interface
-        /// </summary>
-        /// <param name="validationContext">Context the validation runs in</param>
-        /// <returns>List of validation results if any</returns>
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            //if ( GetEntryPointServiceTemplate() ToscaMetadata.EntryDefinitions)
-            var validationResults = new List<ValidationResult>();
-            foreach (var nodeTypeKeyValue in NodeTypes)
-            {
-                foreach (var requirementKeyValue in nodeTypeKeyValue.Value.Requirements.SelectMany(r=>r).ToArray())
-                {
-                    if (!NodeTypes.ContainsKey(requirementKeyValue.Value.Node))
-                    {
-                        validationResults.Add(CreateRequirementValidationResult(requirementKeyValue, nodeTypeKeyValue));
-                    }
-                }
-                foreach (var capabilityKeyValue in nodeTypeKeyValue.Value.Capabilities)
-                {
-                    if (!CapabilityTypes.ContainsKey(capabilityKeyValue.Value.Type))
-                    {
-                        validationResults.Add(CreateCapabilityTypeValidationResult(nodeTypeKeyValue.Key, capabilityKeyValue.Value.Type, capabilityKeyValue.Key));
-                    }
-                }
-            }
-            return validationResults;
-        }
-
-        /// <summary>
         /// Tries to validate the instance and populates list of validation results if any
         /// </summary>
         /// <param name="validationResults">List of validation results</param>
@@ -245,15 +204,6 @@ namespace Toscana
         {
             var cloudServiceValidator = new Bootstrapper().GetToscaCloudServiceValidator();
             return cloudServiceValidator.TryValidateRecursively(this, out validationResults);
-        }
-
-        private ValidationResult CreateCapabilityTypeValidationResult(string nodeTypeName, string capabilityType, string capability)
-        {
-            return new ValidationResult(
-                string.Format("Capability type '{0}' attached to node '{1}' as capability '{2}' not found.",
-                     capabilityType,
-                     nodeTypeName,
-                     capability)); 
         }
 
         /// <summary>
@@ -281,12 +231,127 @@ namespace Toscana
             serviceArchiveWalker.Walk(nodeTypeNameToStart);
         }
 
-        private static ValidationResult CreateRequirementValidationResult(KeyValuePair<string, ToscaRequirement> requirementKeyValue, KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)
+        #endregion
+
+        #region IValidatableObject implementation
+
+        /// <summary>
+        /// Implements Validate method from <see cref="IValidatableObject"/> interface
+        /// </summary>
+        /// <param name="validationContext">Context the validation runs in</param>
+        /// <returns>List of validation results if any</returns>
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            return new ValidationResult(string.Format("Node '{0}' of requirement '{1}' on node type '{2}' not found.", 
-                requirementKeyValue.Value.Node, 
-                requirementKeyValue.Key, 
+            SetNodeTypeRoots();
+
+            //if ( GetEntryPointServiceTemplate() ToscaMetadata.EntryDefinitions)
+            var validationResults = new List<ValidationResult>();
+            foreach (var nodeTypeKeyValue in NodeTypes)
+            {
+                foreach (var requirementKeyValue in nodeTypeKeyValue.Value.Requirements.SelectMany(r => r).ToArray())
+                {
+                    if (!NodeTypes.ContainsKey(requirementKeyValue.Value.Node))
+                    {
+                        validationResults.Add(CreateRequirementValidationResult(requirementKeyValue, nodeTypeKeyValue));
+                    }
+                }
+                foreach (var capabilityKeyValue in nodeTypeKeyValue.Value.Capabilities)
+                {
+                    if (!CapabilityTypes.ContainsKey(capabilityKeyValue.Value.Type))
+                    {
+                        validationResults.Add(CreateCapabilityTypeValidationResult(nodeTypeKeyValue.Key,
+                            capabilityKeyValue.Value.Type, capabilityKeyValue.Key));
+                    }
+                }
+            }
+            return validationResults;
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private static IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        {
+            return new Bootstrapper().GetToscaCloudServiceArchiveLoader();
+        }
+
+        private ValidationResult CreateCapabilityTypeValidationResult(string nodeTypeName, string capabilityType, string capability)
+        {
+            return new ValidationResult(
+                string.Format("Capability type '{0}' attached to node '{1}' as capability '{2}' not found.",
+                     capabilityType,
+                     nodeTypeName,
+                     capability));
+        }
+
+        private static ValidationResult CreateRequirementValidationResult(
+            KeyValuePair<string, ToscaRequirement> requirementKeyValue,
+            KeyValuePair<string, ToscaNodeType> nodeTypeKeyValue)
+        {
+            return new ValidationResult(string.Format("Node '{0}' of requirement '{1}' on node type '{2}' not found.",
+                requirementKeyValue.Value.Node,
+                requirementKeyValue.Key,
                 nodeTypeKeyValue.Key));
         }
+
+        private void AddCapabilityType(string capabilityTypeName, ToscaCapabilityType capabilityType)
+        {
+            capabilityTypes.Add(capabilityTypeName, capabilityType);
+            capabilityType.SetToscaCloudServiceArchive(this);
+            capabilityType.SetDerivedFromToRoot(capabilityTypeName);
+        }
+
+        /// <summary>
+        /// Adds a node type with its name
+        /// </summary>
+        /// <param name="nodeTypeName">Node type name</param>
+        /// <param name="nodeType">An instance of node type to add</param>
+        /// <exception cref="ArtifactNotFoundException"></exception>
+        private void AddNodeType(string nodeTypeName, ToscaNodeType nodeType)
+        {
+            nodeTypes.Add(nodeTypeName, nodeType);
+            nodeType.SetToscaCloudServiceArchive(this);
+            nodeType.SetDerivedFromToRoot(nodeTypeName);
+
+            foreach (var toscaArtifact in nodeType.Artifacts)
+            {
+                if (!fileContents.ContainsKey(toscaArtifact.Value.File))
+                {
+                    throw new ArtifactNotFoundException(
+                        string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                            toscaArtifact.Value.File));
+                }
+            }
+        }
+
+        /// <summary>
+        /// If needed adds built-in node types and capabilities
+        /// </summary>
+        private void FillDefaults()
+        {
+            if (!NodeTypes.ContainsKey(ToscaDefaults.ToscaNodesRoot))
+            {
+                AddNodeType(ToscaDefaults.ToscaNodesRoot, ToscaDefaults.GetRootNodeType());
+            }
+            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesRoot))
+            {
+                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesRoot, ToscaDefaults.GetRootCapabilityType());
+            }
+            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesNode))
+            {
+                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
+            }
+        }
+
+        private void SetNodeTypeRoots()
+        {
+            foreach (var nodeTypeKeyPair in NodeTypes)
+            {
+                nodeTypeKeyPair.Value.SetDerivedFromToRoot(nodeTypeKeyPair.Key);
+            }
+        }
+
+        #endregion
     }
 }

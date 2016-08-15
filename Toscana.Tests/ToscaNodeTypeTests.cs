@@ -92,13 +92,13 @@ namespace Toscana.Tests
                 ToscaMetaFileVersion = new Version(1, 1)
             });
             cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
-            cloudServiceArchive.FillDefaults();
 
             // Act
             var validationResults = new List<ValidationResult>();
-            cloudServiceArchive.TryValidate(out validationResults);
+            var validationSuccess = cloudServiceArchive.TryValidate(out validationResults);
 
             // Assert
+            validationSuccess.Should().BeFalse();
             validationResults.Should()
                 .Contain(r => r.ErrorMessage.Contains("Node type 'cloudshell.nodes.Switch' not found"));
         }

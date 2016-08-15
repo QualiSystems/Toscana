@@ -35,7 +35,7 @@ namespace Toscana
                 {
                     return baseNodeType;
                 }
-                throw new ToscaNodeTypeNotFoundException(string.Format("Node type '{0}' not found", DerivedFrom));
+                throw new ToscaNodeTypeNotFoundException(String.Format("Node type '{0}' not found", DerivedFrom));
             }
         }
 
@@ -50,6 +50,18 @@ namespace Toscana
             {
                 {name, toscaRequirement}
             });
+        }
+
+        /// <summary>
+        /// Sets DerivedFrom to point to tosca.nodes.Root if it's not set
+        /// </summary>
+        /// <param name="name">Node type name</param>
+        public override void SetDerivedFromToRoot(string name)
+        {
+            if (name != ToscaDefaults.ToscaNodesRoot && IsRoot())
+            {
+                DerivedFrom = ToscaDefaults.ToscaNodesRoot;
+            }
         }
     }
 }

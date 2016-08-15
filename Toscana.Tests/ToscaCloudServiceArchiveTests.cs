@@ -238,10 +238,13 @@ namespace Toscana.Tests
             var switchNodeType = new ToscaNodeType { DerivedFrom = "tosca.nodes.Device" };
             switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "integer" });
 
+            var serviceTemplate = new ToscaServiceTemplate {ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"};
+            serviceTemplate.NodeTypes.Add("tosca.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("tosca.nodes.Device", deviceNodeType);
+
             // Act
             var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
-            cloudServiceArchive.AddNodeType("tosca.nodes.Switch", switchNodeType);
-            cloudServiceArchive.AddNodeType("tosca.nodes.Device", deviceNodeType);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
 
             // Assert
             switchNodeType.Base.Properties.Should().ContainKey("vendor");
@@ -257,13 +260,17 @@ namespace Toscana.Tests
             var switchNodeType = new ToscaNodeType { DerivedFrom = "tosca.nodes.Device" };
             switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "integer" });
 
+            var serviceTemplate = new ToscaServiceTemplate {ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("tosca.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("tosca.nodes.Device", deviceNodeType);
+
             // Act
             var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
-            cloudServiceArchive.AddNodeType("tosca.nodes.Switch", switchNodeType);
-            cloudServiceArchive.AddNodeType("tosca.nodes.Device", deviceNodeType);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
 
             // Assert
-            deviceNodeType.Base.Should().BeNull();
+            deviceNodeType.DerivedFrom.Should().Be(ToscaDefaults.ToscaNodesRoot);
+            deviceNodeType.Base.Attributes.Should().ContainKey("tosca_id", "tosca.nodes.Root has tosca_id property");
         }
 
         [Test]
@@ -299,11 +306,27 @@ namespace Toscana.Tests
             var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
 
             cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
-            cloudServiceArchive.FillDefaults();
 
             // Assert
             cloudServiceArchive.NodeTypes["device"].DerivedFrom.Should().Be("tosca.nodes.Root");
             cloudServiceArchive.NodeTypes["device"].Base.Should().NotBeNull();
+        }
+
+        [Test]
+        public void Capability_Type_Without_Derived_From_Should_Have_Root_As_Their_Derived_From()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate();
+            serviceTemplate.CapabilityTypes.Add("connectable", new ToscaCapabilityType());
+
+            // Act
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
+
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+
+            // Assert
+            cloudServiceArchive.CapabilityTypes["connectable"].DerivedFrom.Should().Be("tosca.capabilities.Root");
+            cloudServiceArchive.CapabilityTypes["connectable"].Base.Should().NotBeNull();
         }
 
         [Test]
@@ -318,7 +341,6 @@ namespace Toscana.Tests
             var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata());
 
             cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
-            cloudServiceArchive.FillDefaults();
             
             // Act
             var discoveredNodeTypeNames = new List<string>();
@@ -359,7 +381,6 @@ namespace Toscana.Tests
                 CreatedBy = "Anonymous"
             });
             cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
-            cloudServiceArchive.FillDefaults();
 
             List<ValidationResult> validationResults;
             cloudServiceArchive.TryValidate(out validationResults);
@@ -390,7 +411,6 @@ namespace Toscana.Tests
                 CreatedBy = "Anonymous"
             });
             cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
-            cloudServiceArchive.FillDefaults();
 
             // Act
             Action action = () => cloudServiceArchive.TraverseNodeTypesByRequirements("NOT_EXISTING", (nodeTypeName, nodeType) => { });

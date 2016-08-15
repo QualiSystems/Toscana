@@ -9,7 +9,7 @@ namespace Toscana.Tests
         [Test]
         public void IsRoot_Should_Be_True_When_DerivedFrom_Not_Initialized()
         {
-            var toscaObject = new ToscaObject();
+            var toscaObject = new TestToscaObject();
 
             toscaObject.IsRoot().Should().BeTrue();
         }
@@ -17,12 +17,20 @@ namespace Toscana.Tests
         [Test]
         public void IsRoot_Should_Be_False_When_DerivedFrom_Not_Empty()
         {
-            var toscaObject = new ToscaObject()
+            var toscaObject = new TestToscaObject()
             {
                 DerivedFrom = "base"
             };
 
             toscaObject.IsRoot().Should().BeFalse();
+        }
+
+        public class TestToscaObject : ToscaObject
+        {
+            public override void SetDerivedFromToRoot(string name)
+            {
+                throw new System.NotImplementedException();
+            }
         }
     }
 }

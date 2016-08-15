@@ -31,5 +31,18 @@ namespace Toscana
                 throw new ToscaCapabilityTypeNotFoundException(string.Format("Capability type '{0}' not found", DerivedFrom));
             }
         }
+
+        /// <summary>
+        /// Sets DerivedFrom to point to tosca.nodes.Root if it's not set
+        /// </summary>
+        /// <param name="name">Node type name</param>
+        public override void SetDerivedFromToRoot(string name)
+        {
+            if (name != ToscaDefaults.ToscaCapabilitiesRoot && IsRoot())
+            {
+                DerivedFrom = ToscaDefaults.ToscaCapabilitiesRoot;
+            }
+        }
+
     }
 }

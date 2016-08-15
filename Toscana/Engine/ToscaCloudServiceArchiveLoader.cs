@@ -87,7 +87,6 @@ namespace Toscana.Engine
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntries);
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath);
-                toscaCloudServiceArchive.FillDefaults();
                 validator.Validate(toscaCloudServiceArchive);
                 return toscaCloudServiceArchive;
             }
