@@ -41,7 +41,7 @@ namespace Toscana
         }
 
         /// <summary>
-        /// Returns requirements of the ToscaNodeType and its ansectors
+        /// Returns requirements of the ToscaNodeType and its ancestors
         /// </summary>
         /// <returns></returns>
         public Dictionary<string, ToscaRequirement> GetAllRequirements()
@@ -55,6 +55,23 @@ namespace Toscana
                 }
             }
             return requirements;
+        }
+        /// <summary>
+        /// Returns capability types of the ToscaNodeType and its ancestors
+        /// </summary>
+        /// <returns>Caapbility types of node type and its ancestors</returns>
+        public Dictionary<string, ToscaCapabilityType> GetAllCapabilityTypes()
+        {
+            var allCapabilityTypes = new Dictionary<string, ToscaCapabilityType>();
+
+            for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.Base)
+            {
+                foreach (var capability in currNodeType.Capabilities.Values)
+                {
+                    allCapabilityTypes.Add(capability.Type, cloudServiceArchive.CapabilityTypes[capability.Type]);
+                }
+            }
+            return allCapabilityTypes;
         }
 
         /// <summary>

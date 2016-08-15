@@ -137,5 +137,43 @@ namespace Toscana.Tests
             allRequirements.Should().ContainKey("storage");
         }
 
+        [Test]
+        public void GetAllCapabilityTypes_Return_Capability_Types_Of_Base_Node_Type()
+        {
+            // Arrange
+            var switchNodeType = new ToscaNodeType();
+            switchNodeType.Capabilities.Add("internet", new ToscaCapability { Type = "capabilities.internet" });
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+            nxosNodeType.Capabilities.Add("storage", new ToscaCapability {Type = "capability.storage"});
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+            serviceTemplate.CapabilityTypes.Add("capabilities.internet", new ToscaCapabilityType());
+            serviceTemplate.CapabilityTypes.Add("capability.storage", new ToscaCapabilityType());
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allCapabilityTypes = nxosNodeType.GetAllCapabilityTypes();
+
+            // Assert
+            allCapabilityTypes.Should().HaveCount(3);
+            allCapabilityTypes.Should().ContainKey("capability.storage");
+            allCapabilityTypes.Should().ContainKey("capabilities.internet");
+            allCapabilityTypes.Should().ContainKey("tosca.capabilities.Node");
+        }
+
     }
 }

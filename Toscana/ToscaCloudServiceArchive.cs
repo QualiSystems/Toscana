@@ -242,12 +242,11 @@ namespace Toscana
         /// <returns>List of validation results if any</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            SetNodeTypeRoots();
-
-            //if ( GetEntryPointServiceTemplate() ToscaMetadata.EntryDefinitions)
             var validationResults = new List<ValidationResult>();
             foreach (var nodeTypeKeyValue in NodeTypes)
             {
+                nodeTypeKeyValue.Value.SetDerivedFromToRoot(nodeTypeKeyValue.Key);
+
                 foreach (var requirementKeyValue in nodeTypeKeyValue.Value.Requirements.SelectMany(r => r).ToArray())
                 {
                     if (!string.IsNullOrEmpty(requirementKeyValue.Value.Node) && 
@@ -256,6 +255,7 @@ namespace Toscana
                         validationResults.Add(CreateRequirementValidationResult(requirementKeyValue, nodeTypeKeyValue));
                     }
                 }
+
                 foreach (var capabilityKeyValue in nodeTypeKeyValue.Value.Capabilities)
                 {
                     if (!CapabilityTypes.ContainsKey(capabilityKeyValue.Value.Type))
@@ -342,14 +342,6 @@ namespace Toscana
             if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesNode))
             {
                 AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
-            }
-        }
-
-        private void SetNodeTypeRoots()
-        {
-            foreach (var nodeTypeKeyPair in NodeTypes)
-            {
-                nodeTypeKeyPair.Value.SetDerivedFromToRoot(nodeTypeKeyPair.Key);
             }
         }
 
