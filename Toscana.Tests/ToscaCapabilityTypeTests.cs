@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Exceptions;
@@ -46,6 +49,28 @@ namespace Toscana.Tests
 
             // Assert
             action.ShouldThrow<ToscaCapabilityTypeNotFoundException>().WithMessage("Capability type 'base' not found");
+        }
+
+        [Test]
+        public void IsDerivedFrom_Returns_True_When_Derived_From_Another_Capability_Type()
+        {
+            // Arrange
+            var derivedCapabilityType = new ToscaCapabilityType { DerivedFrom = "base"};
+            var baseCapabilityType = new ToscaCapabilityType();
+
+            var serviceTemplate = new ToscaServiceTemplate() { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.CapabilityTypes.Add("base", baseCapabilityType);
+            serviceTemplate.CapabilityTypes.Add("derived", derivedCapabilityType);
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata { CreatedBy = "Anonymous", CsarVersion = new Version(1,1), EntryDefinitions = "tosca.yaml", ToscaMetaFileVersion = new Version(1,1)});
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            List<ValidationResult> validationResults;
+            cloudServiceArchive.TryValidate(out validationResults)
+                .Should().BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            // Assert
+            derivedCapabilityType.IsDerivedFrom("base").Should().BeTrue();
         }
     }
 }

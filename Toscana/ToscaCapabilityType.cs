@@ -33,6 +33,20 @@ namespace Toscana
         }
 
         /// <summary>
+        /// Determinses whether the ToscaCapabilityType is derived from another capability type 
+        /// </summary>
+        /// <param name="capabilityTypeName">Name of the capability type to check</param>
+        /// <returns>True if derives rom, false otherwise</returns>
+        public bool IsDerivedFrom(string capabilityTypeName)
+        {
+            for (var currCaptype = this; !currCaptype.IsRoot(); currCaptype = currCaptype.Base)
+            {
+                if (currCaptype.DerivedFrom == capabilityTypeName) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Sets DerivedFrom to point to tosca.nodes.Root if it's not set
         /// </summary>
         /// <param name="name">Node type name</param>
