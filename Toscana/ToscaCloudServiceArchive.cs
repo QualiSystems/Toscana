@@ -250,7 +250,8 @@ namespace Toscana
             {
                 foreach (var requirementKeyValue in nodeTypeKeyValue.Value.Requirements.SelectMany(r => r).ToArray())
                 {
-                    if (!NodeTypes.ContainsKey(requirementKeyValue.Value.Node))
+                    if (!string.IsNullOrEmpty(requirementKeyValue.Value.Node) && 
+                        !NodeTypes.ContainsKey(requirementKeyValue.Value.Node))
                     {
                         validationResults.Add(CreateRequirementValidationResult(requirementKeyValue, nodeTypeKeyValue));
                     }

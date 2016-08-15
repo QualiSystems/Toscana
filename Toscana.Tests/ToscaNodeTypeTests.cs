@@ -103,5 +103,39 @@ namespace Toscana.Tests
                 .Contain(r => r.ErrorMessage.Contains("Node type 'cloudshell.nodes.Switch' not found"));
         }
 
+        [Test]
+        public void GetAllRequirements_Return_Requirements_Of_Base_Node_Type()
+        {
+            // Arrange
+            var switchNodeType = new ToscaNodeType();
+            switchNodeType.AddRequirement("internet", new ToscaRequirement { Capability = "wi-fi"});
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+            nxosNodeType.AddRequirement("storage", new ToscaRequirement { Capability = "ssd"});
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allRequirements = nxosNodeType.GetAllRequirements();
+
+            // Assert
+            allRequirements.Should().ContainKey("internet");
+            allRequirements.Should().ContainKey("storage");
+        }
+
     }
 }

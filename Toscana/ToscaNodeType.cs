@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -37,6 +38,23 @@ namespace Toscana
                 }
                 throw new ToscaNodeTypeNotFoundException(String.Format("Node type '{0}' not found", DerivedFrom));
             }
+        }
+
+        /// <summary>
+        /// Returns requirements of the ToscaNodeType and its ansectors
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, ToscaRequirement> GetAllRequirements()
+        {
+            var requirements = new Dictionary<string, ToscaRequirement>();
+            for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.Base)
+            {
+                foreach (var requirementKeyValue in currNodeType.Requirements.SelectMany(r => r))
+                {
+                    requirements.Add(requirementKeyValue.Key, requirementKeyValue.Value);
+                }
+            }
+            return requirements;
         }
 
         /// <summary>
