@@ -3,9 +3,15 @@ using System.Runtime.Serialization;
 
 namespace Toscana.Exceptions
 {
+    /// <summary>
+    /// Thrown when an artifact not found
+    /// </summary>
     [Serializable]
     public class ArtifactNotFoundException : ToscaBaseException
     {
+        /// <summary>
+        /// Default constructor 
+        /// </summary>
         public ArtifactNotFoundException()
         {
         }

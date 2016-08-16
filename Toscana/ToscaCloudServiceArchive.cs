@@ -168,7 +168,6 @@ namespace Toscana
         ///     e.g. are leaves in node types inheritance.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public IReadOnlyDictionary<string, ToscaNodeType> GetEntryLeafNodeTypes()
         {
             var baseNodeTypes =
@@ -184,12 +183,13 @@ namespace Toscana
         /// </summary>
         /// <param name="fileName">File name to return content of</param>
         /// <returns>File content as byte array</returns>
+        /// <exception cref="ArtifactNotFoundException">Thrown when artifact with fileName is not found.</exception>
         public byte[] GetArtifactBytes(string fileName)
         {
             byte[] content;
             if (!fileContents.TryGetValue(fileName, out content))
             {
-                throw new ArtifactNotFoundException(String.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
                     fileName));
             }
             return content;
@@ -221,6 +221,7 @@ namespace Toscana
         /// </summary>
         /// <param name="nodeTypeNameToStart">Name of a node type to start the traversal</param>
         /// <param name="action">Action to be executed on each node type when visiting a node type</param>
+        /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when nodeTypeNameToStart is not found in NodeTypes dictionary.</exception>
         public void TraverseNodeTypesByRequirements(string nodeTypeNameToStart, Action<string, ToscaNodeType> action)
         {
             if (!NodeTypes.ContainsKey(nodeTypeNameToStart))

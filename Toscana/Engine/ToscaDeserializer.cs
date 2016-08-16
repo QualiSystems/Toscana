@@ -30,6 +30,11 @@ namespace Toscana.Engine
             }
         }
 
+        /// <summary>
+        /// Deserializes a stream of YAML to an instance of T
+        /// </summary>
+        /// <param name="stream">Stream </param>
+        /// <returns></returns>
         public T Deserialize(Stream stream)
         {
             using (var streamReader = new StreamReader(stream))
@@ -46,7 +51,7 @@ namespace Toscana.Engine
             }
             catch (YamlException yamlException)
             {
-                throw new ToscaParsingException(yamlException.GetaAllMessages());
+                throw new ToscaParsingException(yamlException.GetaAllMessages(), yamlException);
             }
         }
     }

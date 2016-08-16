@@ -13,7 +13,6 @@ namespace Toscana
         private readonly AdjacencyGraph<string, ToscaGraphEdge> graph;
         private readonly IReadOnlyDictionary<string, ToscaNodeType> nodeTypes;
 
-
         public ToscaNodeTypeRequirementsWalker(ToscaCloudServiceArchive cloudServiceArchive,
             Action<string, ToscaNodeType> action)
         {
@@ -22,12 +21,13 @@ namespace Toscana
             graph.AddVertexRange(cloudServiceArchive.NodeTypes.Select(_ => _.Key));
             foreach (var toscaNodeType in cloudServiceArchive.NodeTypes)
             {
-                if (!toscaNodeType.Value.IsRoot())
+                if (toscaNodeType.Value.IsRoot()) continue;
+
+                foreach (var requirement in toscaNodeType.Value.GetAllRequirements().Values)
                 {
-                    foreach (var requirement in toscaNodeType.Value.Requirements.SelectMany(r=>r))
-                    {
-                        graph.AddEdge(new ToscaGraphEdge(toscaNodeType.Key, requirement.Value.Node));
-                    }
+                    if (requirement.Node == ToscaDefaults.ToscaNodesRoot) continue;
+
+                    graph.AddEdge(new ToscaGraphEdge(toscaNodeType.Key, requirement.Node));
                 }
             }
 

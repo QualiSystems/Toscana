@@ -396,6 +396,42 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void TraverseNodeTypesByRequirements_Traverses_Nodes_From_Specific_Node_Type_By_Requirements_Of_Its_Base_Node_Type()
+        {
+            // Arrange
+            var serviceTemplate = new ToscaServiceTemplate{ ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+
+            var deviceNodeType = new ToscaNodeType();
+            deviceNodeType.AddRequirement("power", new ToscaRequirement { Node = "tosca.nodes.port", Capability = "port"} );
+
+            var switchNodeType = new ToscaNodeType { DerivedFrom = "tosca.nodes.device" };
+
+            serviceTemplate.NodeTypes.Add("tosca.nodes.port", new ToscaNodeType());
+            serviceTemplate.NodeTypes.Add("tosca.nodes.device", deviceNodeType);
+            serviceTemplate.NodeTypes.Add("tosca.nodes.switch", switchNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CsarVersion = new Version(1,1),
+                EntryDefinitions = "sample.yaml",
+                ToscaMetaFileVersion = new Version(1,1),
+                CreatedBy = "Anonymous"
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
+
+            List<ValidationResult> validationResults;
+            cloudServiceArchive.TryValidate(out validationResults)
+                .Should().BeTrue(string.Join(Environment.NewLine, validationResults.Select(a => a.ErrorMessage)));
+
+            // Act
+            var discoveredNodeTypeNames = new List<string>();
+            cloudServiceArchive.TraverseNodeTypesByRequirements("tosca.nodes.switch", (nodeTypeName, nodeType) => { discoveredNodeTypeNames.Add(nodeTypeName); });
+
+            // Assert
+            discoveredNodeTypeNames.ShouldBeEquivalentTo(new[] { "tosca.nodes.port", "tosca.nodes.switch" });
+        }
+
+        [Test]
         public void TraverseNodeTypesByRequirements_Should_Throw_Exception_When_NodeType_ToStart_NotFound()
         {
             // Arrange
