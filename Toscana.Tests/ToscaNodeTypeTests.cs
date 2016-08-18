@@ -104,6 +104,39 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void GetAllProperties_Return_Properties_Of_Base_Node_Types()
+        {
+            // Arrange
+            var switchNodeType = new ToscaNodeType();
+            switchNodeType.Properties.Add("speed",new ToscaPropertyDefinition { Type = "string"} );
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+            nxosNodeType.Properties.Add("storage", new ToscaPropertyDefinition { Type = "string"});
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allProperties = nxosNodeType.GetAllProperties();
+
+            // Assert
+            allProperties.Should().Contain(a => a.Key == "speed");
+            allProperties.Should().Contain(a => a.Key == "storage");
+        }
+        [Test]
         public void GetAllRequirements_Return_Requirements_Of_Base_Node_Type()
         {
             // Arrange

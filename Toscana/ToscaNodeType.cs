@@ -98,5 +98,22 @@ namespace Toscana
                 DerivedFrom = ToscaDefaults.ToscaNodesRoot;
             }
         }
+
+        /// <summary>
+        /// Returns all the properties of the node type and its ancestors
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
+        {
+            var properties = new Dictionary<string, ToscaPropertyDefinition>();
+            for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.Base)
+            {
+                foreach (var propertyKeyValue in currNodeType.Properties)
+                {
+                    properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                }
+            }
+            return properties;
+        }
     }
 }
