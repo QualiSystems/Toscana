@@ -5,14 +5,14 @@ using Toscana.Exceptions;
 
 namespace Toscana
 {
-    public interface IToscaServiceTemplateBuilder
+    internal interface IToscaServiceTemplateBuilder
     {
         IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate);
         IToscaServiceTemplateBuilder Append(string toscaAsString);
         ToscaServiceTemplate Build();
     }
 
-    public class ToscaServiceTemplateBuilder : IToscaServiceTemplateBuilder
+    internal class ToscaServiceTemplateBuilder : IToscaServiceTemplateBuilder
     {
         private readonly List<ToscaServiceTemplate> toscaServiceTemplates = new List<ToscaServiceTemplate>();
 
