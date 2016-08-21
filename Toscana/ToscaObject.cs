@@ -8,12 +8,13 @@
         protected ToscaCloudServiceArchive cloudServiceArchive;
 
         /// <summary>
-        /// Denotes the base object it derives from
+        /// An optional name of parent entity this new entity derives from.
         /// </summary>
         public string DerivedFrom { get; set; }
 
         /// <summary>
-        /// 
+        /// Returns True if this entity is the root, which other entities derive from it.
+        /// False otherwise
         /// </summary>
         /// <returns></returns>
         public bool IsRoot()

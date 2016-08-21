@@ -3,8 +3,14 @@ using Toscana.Exceptions;
 
 namespace Toscana
 {
+    /// <summary>
+    /// Represents TOSCA Capability type
+    /// </summary>
     public class ToscaCapabilityType : ToscaObject
     {
+        /// <summary>
+        /// Instantiates an instance of ToscaCapabilityType
+        /// </summary>
         public ToscaCapabilityType()
         {
             Attributes = new Dictionary<string, ToscaAttributeDefinition>();
@@ -12,12 +18,37 @@ namespace Toscana
             ValidSourceTypes = new string[0];
         }
 
+        /// <summary>
+        /// An optional version for the Capability Type definition.
+        /// </summary>
         public string Version { get; set; }
+        
+        /// <summary>
+        /// An optional description for the Capability Type.
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// An optional list of property definitions for the Capability Type.
+        /// </summary>
         public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+
+        /// <summary>
+        /// An optional list of attribute definitions for the Capability Type.
+        /// </summary>
         public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
+
+        /// <summary>
+        /// An optional list of one or more valid names of Node Types that are supported as valid sources of any relationship established to the declared Capability Type.
+        /// </summary>
         public string[] ValidSourceTypes { get; set; }
 
+        /// <summary>
+        /// Returns CapabilityType that this Capability Type derives from.
+        /// If this Capability Type is root, null will be returned
+        /// If this Capability Type derives from a non existing Capability Type <see cref="ToscaCapabilityTypeNotFoundException"/> will be thrown
+        /// </summary>
+        /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
         public ToscaCapabilityType Base
         {
             get
