@@ -6,8 +6,14 @@ using Toscana.Engine;
 
 namespace Toscana
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ToscaServiceTemplate
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ToscaServiceTemplate()
         {
             CapabilityTypes = new Dictionary<string, ToscaCapabilityType>();

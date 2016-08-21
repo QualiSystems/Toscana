@@ -20,6 +20,7 @@ namespace Toscana
         {
             toscaServiceTemplates.Add(ToscaServiceTemplate.Parse(toscaAsString));
             return this;
+
         }
 
         public IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate)
