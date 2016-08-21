@@ -7,13 +7,13 @@ using Toscana.Exceptions;
 
 namespace Toscana.Engine
 {
-    public interface IToscaValidator<in T>
+    internal interface IToscaValidator<in T>
     {
         void Validate(T toscaObject);
         bool TryValidateRecursively(T toscaObject, out List<ValidationResult> validationResults);
     }
 
-    public class ToscaValidator<T> : IToscaValidator<T>
+    internal class ToscaValidator<T> : IToscaValidator<T>
     {
         public void Validate(T toscaObject)
         {

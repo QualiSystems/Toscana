@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace Toscana.Engine
 {
-    public interface IToscaServiceTemplateLoader
+    internal interface IToscaServiceTemplateLoader
     {
         ToscaServiceTemplate Load(string filePath, string alternativePath = null);
     }
 
-    public class ToscaServiceTemplateLoader : IToscaServiceTemplateLoader
+    internal class ToscaServiceTemplateLoader : IToscaServiceTemplateLoader
     {
         private readonly IFileSystem fileSystem;
         private readonly IToscaParser<ToscaServiceTemplate> toscaParser;

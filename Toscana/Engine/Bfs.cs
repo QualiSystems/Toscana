@@ -5,7 +5,7 @@ using QuickGraph.Algorithms.Search;
 
 namespace Toscana.Engine
 {
-    public class NodeTypeWalker
+    internal class NodeTypeWalker
     {
         private readonly Action<string> action;
         private readonly AdjacencyGraph<string, ToscaGraphEdge> graph;

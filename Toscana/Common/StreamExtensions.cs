@@ -6,7 +6,7 @@ namespace Toscana.Common
     /// <summary>
     ///     Stream extensions
     /// </summary>
-    public static class StreamExtensions
+    internal static class StreamExtensions
     {
         /// <summary>
         ///     Reads a stream into byte array

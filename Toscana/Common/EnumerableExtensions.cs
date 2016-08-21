@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Toscana.Common
 {
-    public static class EnumerableExtensions
+    internal static class EnumerableExtensions
     {
         public static IEnumerable<TSource> FromHierarchy<TSource>(
             this TSource source,

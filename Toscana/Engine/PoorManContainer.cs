@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Toscana.Engine
 {
-    public class PoorManContainer
+    internal class PoorManContainer
     {
         private readonly Dictionary<Type, Func<object>> registrations = new Dictionary<Type, Func<object>>();
 

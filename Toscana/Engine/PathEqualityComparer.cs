@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Toscana.Engine
 {
-    public class PathEqualityComparer : IEqualityComparer<string>
+    internal class PathEqualityComparer : IEqualityComparer<string>
     {
         public bool Equals(string x, string y)
         {

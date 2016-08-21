@@ -8,7 +8,7 @@ namespace Toscana.Common
     /// <summary>
     /// Extensions for ZipArhive
     /// </summary>
-    public static class ZipArchiveExtensions
+    internal static class ZipArchiveExtensions
     {
         /// <summary>
         /// Gets a dictionary of ZipArchiveEntry

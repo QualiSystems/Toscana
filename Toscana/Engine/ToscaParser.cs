@@ -2,13 +2,13 @@
 
 namespace Toscana.Engine
 {
-    public interface IToscaParser<out T>
+    internal interface IToscaParser<out T>
     {
         T Parse(string tosca);
         T Parse(Stream stream);
     }
 
-    public class ToscaParser<T> : IToscaParser<T>
+    internal class ToscaParser<T> : IToscaParser<T>
     {
         private readonly IToscaDeserializer<T> toscaDeserializer;
         private readonly IToscaValidator<T> toscaValidator;

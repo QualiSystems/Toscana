@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Toscana.Common
 {
-    public static class StringExtensions
+    internal static class StringExtensions
     {
         public static bool EqualsAny(this string str, params string[] args)
         {

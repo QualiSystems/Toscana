@@ -7,13 +7,13 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace Toscana.Engine
 {
-    public interface IToscaDeserializer<out T>
+    internal interface IToscaDeserializer<out T>
     {
         T Deserialize(string tosca);
         T Deserialize(Stream stream);
     }
 
-    public class ToscaDeserializer<T> : IToscaDeserializer<T>
+    internal class ToscaDeserializer<T> : IToscaDeserializer<T>
     {
         private readonly Deserializer deserializer;
 

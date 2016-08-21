@@ -9,7 +9,7 @@ using Toscana.Exceptions;
 
 namespace Toscana.Engine
 {
-    public interface IToscaCloudServiceArchiveLoader
+    internal interface IToscaCloudServiceArchiveLoader
     {
         /// <summary>
         /// Loads Cloud Service Archive (CSAR) file and all its dependencies
@@ -33,7 +33,7 @@ namespace Toscana.Engine
         ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null);
     }
 
-    public class ToscaCloudServiceArchiveLoader : IToscaCloudServiceArchiveLoader
+    internal class ToscaCloudServiceArchiveLoader : IToscaCloudServiceArchiveLoader
     {
         private readonly IFileSystem fileSystem;
         private readonly IToscaParser<ToscaMetadata> metadataParser;

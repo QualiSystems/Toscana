@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Toscana.Common
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public class RestrictedValues : ValidationAttribute
+    internal class RestrictedValues : ValidationAttribute
     {
         private readonly string[] validValues;
 

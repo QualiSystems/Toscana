@@ -2,7 +2,7 @@
 
 namespace Toscana.Engine
 {
-    public class Bootstrapper
+    internal class Bootstrapper
     {
         private readonly PoorManContainer poorManContainer;
 

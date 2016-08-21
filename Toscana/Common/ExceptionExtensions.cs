@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Toscana.Common
 {
-    public static class ExceptionExtensions
+    internal static class ExceptionExtensions
     {
         public static string GetaAllMessages(this Exception exception)
         {
