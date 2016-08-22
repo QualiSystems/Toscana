@@ -74,7 +74,6 @@
     <Content Include="articles\error_handling.md" />
     <Content Include="articles\getting_started.md" />
     <Content Include="articles\intro.md" />
-    <Content Include="articles\toc.md" />
     <Content Include="articles\toc.yml" />
     <Content Include="articles\tosca_cloud_service_archive.md" />
     <Content Include="articles\tosca_service_template.md" />

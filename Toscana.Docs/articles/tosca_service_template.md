@@ -8,7 +8,7 @@ From [TOSCA Simple Profile in YAML Version 1.0](http://docs.oasis-open.org/tosca
 
 >Specifically, TOSCA Service Templates optionally allow definitions of a TOSCA Topology Template, TOSCA types (e.g., Node, Relationship, Capability, Artifact, etc.), groupings, policies and constraints along with any input or output declarations.
  
-In Toscana, Service Template is represented by [ToscaServiceTemplate](../api/Toscana.ToscaServiceTemplate.md) class.
+In Toscana, Service Template is represented by **ToscaServiceTemplate** class.
 
 Toscana allows parsing YAML from an external file or from a stream.
 

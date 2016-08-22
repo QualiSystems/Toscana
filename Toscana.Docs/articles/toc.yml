@@ -1,8 +1,10 @@
 - name: Quickstart
+  href: getting_started.md
   items:
     - name: Getting Started
       href: getting_started.md
 - name: Usage
+  href: tosca_service_template.md
   items: 
     - name: TOSCA Service Template
       href: tosca_service_template.md

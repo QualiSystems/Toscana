@@ -33,4 +33,4 @@ ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Loa
 ```
 
 ### License
-The software is released under [Apache License v2.0](LICENSE). 
+The software is released under Apache License v2.0. 

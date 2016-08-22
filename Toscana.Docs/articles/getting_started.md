@@ -43,4 +43,4 @@ using (Stream stream = File.Open("tosca.yaml", FileMode.Open))
 
 
 ### License
-The software is released under [Apache License v2.0](LICENSE). 
+The software is released under Apache License v2.0. 
