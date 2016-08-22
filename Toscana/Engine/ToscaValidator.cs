@@ -15,6 +15,11 @@ namespace Toscana.Engine
 
     internal class ToscaValidator<T> : IToscaValidator<T>
     {
+        /// <summary>
+        /// Validates a TOSCA entity and throws exception if validation fails
+        /// </summary>
+        /// <param name="toscaObject"></param>
+        /// <exception cref="ToscaValidationException">Tosca is null or empty</exception>
         public void Validate(T toscaObject)
         {
             if (toscaObject == null)
@@ -39,6 +44,7 @@ namespace Toscana.Engine
             try
             {
                 dataAnnotationsValidator.TryValidateObjectRecursive(toscaObject, validationResults);
+                validationResults = validationResults.Distinct(new ValidationResultEqualityComparer()).ToList();
             }
             catch (TargetInvocationException targetInvocationException)
             {

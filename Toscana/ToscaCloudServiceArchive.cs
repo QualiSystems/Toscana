@@ -170,6 +170,10 @@ namespace Toscana
             foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
             {
                 AddNodeType(toscaNodeType.Key, toscaNodeType.Value);
+                //foreach (var artifact in toscaNodeType.Value.Artifacts)
+                //{
+                //    artifact.Value.File
+                //}
             }
             foreach (var capabilityType in toscaServiceTemplate.CapabilityTypes)
             {
@@ -329,16 +333,6 @@ namespace Toscana
             nodeTypes.Add(nodeTypeName, nodeType);
             nodeType.SetToscaCloudServiceArchive(this);
             nodeType.SetDerivedFromToRoot(nodeTypeName);
-
-            foreach (var toscaArtifact in nodeType.Artifacts)
-            {
-                if (!fileContents.ContainsKey(toscaArtifact.Value.File))
-                {
-                    throw new ArtifactNotFoundException(
-                        string.Format("Artifact '{0}' not found in Cloud Service Archive.",
-                            toscaArtifact.Value.File));
-                }
-            }
         }
 
         /// <summary>
@@ -361,5 +355,25 @@ namespace Toscana
         }
 
         #endregion
+
+        /// <summary>
+        /// Determines whether <see cref="ToscaCloudServiceArchive"/> contains a file
+        /// </summary>
+        /// <param name="artifactPath">Artifact path to check</param>
+        /// <returns>True is contains, false otherwise</returns>
+        public bool ContainsArtifact(string artifactPath)
+        {
+            return fileContents.ContainsKey(artifactPath);
+        }
+
+        /// <summary>
+        /// Adds an artifact to Cloud Service Archive
+        /// </summary>
+        /// <param name="artifactPath">Relative path to file path</param>
+        /// <param name="bytes">Byte array of the artifact</param>
+        public void AddArtifact(string artifactPath, byte[] bytes)
+        {
+            fileContents.Add(artifactPath, bytes);
+        }
     }
 }

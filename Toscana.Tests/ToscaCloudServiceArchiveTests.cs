@@ -109,21 +109,27 @@ namespace Toscana.Tests
             var toscaNodeType = new ToscaNodeType();
             toscaNodeType.Artifacts.Add("icon", new ToscaArtifact
             {
-                File = "device.png"
+                File = "device.png",
+                Type = "image"
             });
-            var toscaServiceTemplate = new ToscaServiceTemplate();
+            var toscaServiceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" } ;
             toscaServiceTemplate.NodeTypes.Add("device", toscaNodeType);
             var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
             {
-                EntryDefinitions = "tosca.yaml"
+                EntryDefinitions = "tosca.yaml", CreatedBy = "Anonymous", CsarVersion = new Version(1,1), ToscaMetaFileVersion = new Version(1,1)
             }, zipArchiveEntries);
 
             // Act
-            Action action = () => toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
+            toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
+            List<ValidationResult> validationResults;
+            toscaCloudServiceArchive.TryValidate(out validationResults);
 
             // Assert
-            action.ShouldThrow<ArtifactNotFoundException>()
-                .WithMessage("Artifact 'device.png' not found in Cloud Service Archive.");
+            validationResults.Select(a=>a.ErrorMessage).ToArray()
+                .ShouldAllBeEquivalentTo(new[] { "Artifact 'device.png' not found in Cloud Service Archive." });
+
+            //action.ShouldThrow<ArtifactNotFoundException>()
+            //    .WithMessage("Artifact 'device.png' not found in Cloud Service Archive.");
         }
 
         [Test]

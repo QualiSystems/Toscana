@@ -509,5 +509,44 @@ node_types:
             toscaCloudServiceArchive.GetArtifactBytes(@"files\image1.png").Should().BeEmpty();
         }
 
+        [Test]
+        public void Artifact_Loaded_From_Alternative_Location()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca.yaml";
+
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    artifacts:
+      icon:
+        type: image
+        file: icon.png
+    properties:
+      num_cpus:
+        type: integer";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca.yaml", toscaSimpleProfileContent),
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            fileSystem.AddFile(@"C:\alternative\icon.png", new MockFileData("IMAGE"));
+
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip", @"C:\alternative");
+
+            // Assert
+            toscaCloudServiceArchive.GetArtifactBytes(@"icon.png").ShouldAllBeEquivalentTo(new byte[] { 73, 77, 65, 71, 69 });
+        }
     }
 }

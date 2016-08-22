@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Toscana.Exceptions;
 
@@ -9,7 +10,7 @@ namespace Toscana
     /// A Node Type is a reusable entity that defines the type of one or more Node Templates. 
     /// As such, a Node Type defines the structure of observable properties via a Properties Definition, the Requirements and Capabilities of the node as well as its supported interfaces.
     /// </summary>
-    public class ToscaNodeType : ToscaObject<ToscaNodeType>
+    public class ToscaNodeType : ToscaObject<ToscaNodeType>, IValidatableObject
     {
         /// <summary>
         /// Initializes a instance of ToscaNodeType
@@ -157,6 +158,15 @@ namespace Toscana
                 }
             }
             return properties;
+        }
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            if (CloudServiceArchive == null) return Enumerable.Empty<ValidationResult>();
+
+            return Artifacts.Where(toscaArtifact => !CloudServiceArchive.ContainsArtifact(toscaArtifact.Value.File))
+                .Select(artifact => new ValidationResult(string.Format("Artifact '{0}' not found in Cloud Service Archive.", artifact.Value.File)))
+                .ToList();
         }
     }
 }

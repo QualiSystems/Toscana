@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
+    <Compile Include="Engine\ValidationResultEqualityComparer.cs" />
     <Compile Include="Exceptions\ArtifactNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />

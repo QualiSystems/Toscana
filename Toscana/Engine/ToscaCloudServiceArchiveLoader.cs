@@ -92,13 +92,33 @@ namespace Toscana.Engine
             }
         }
 
-        private void LoadDependenciesRecursively(ToscaCloudServiceArchive toscaCloudServiceArchive, IReadOnlyDictionary<string, ZipArchiveEntry> zipArchiveEntries, string toscaServiceTemplateName, string alternativePath)
+        private void LoadDependenciesRecursively(ToscaCloudServiceArchive cloudServiceArchive, IReadOnlyDictionary<string, ZipArchiveEntry> zipArchiveEntries, string serviceTemplateName, string alternativePath)
         {
-            var toscaServiceTemplate = LoadToscaServiceTemplate(alternativePath, zipArchiveEntries, toscaServiceTemplateName, toscaCloudServiceArchive);
-            toscaCloudServiceArchive.AddToscaServiceTemplate(toscaServiceTemplateName, toscaServiceTemplate);
-            foreach (var importFile in toscaServiceTemplate.Imports.SelectMany(import => import.Values))
+            var serviceTemplate = LoadToscaServiceTemplate(alternativePath, zipArchiveEntries, serviceTemplateName, cloudServiceArchive);
+            cloudServiceArchive.AddToscaServiceTemplate(serviceTemplateName, serviceTemplate);
+            foreach (var nodeType in serviceTemplate.NodeTypes)
             {
-                LoadDependenciesRecursively(toscaCloudServiceArchive, zipArchiveEntries, importFile.File, alternativePath);
+                foreach (var artifact in nodeType.Value.Artifacts)
+                {
+                    ZipArchiveEntry zipArchiveEntry;
+                    var artifactPath = artifact.Value.File;
+                    if (zipArchiveEntries.TryGetValue(artifactPath, out zipArchiveEntry))
+                    {
+                        cloudServiceArchive.AddArtifact(artifactPath, zipArchiveEntry.Open().ReadAllBytes());
+                    }
+                    var artifactFullPath = fileSystem.Path.Combine(alternativePath, artifactPath);
+                    if (fileSystem.File.Exists(artifactFullPath))
+                    {
+                        using (var stream = fileSystem.File.Open(artifactFullPath, FileMode.Open))
+                        {
+                            cloudServiceArchive.AddArtifact(artifactPath, stream.ReadAllBytes());
+                        }
+                    }
+                }
+            }
+            foreach (var importFile in serviceTemplate.Imports.SelectMany(import => import.Values))
+            {
+                LoadDependenciesRecursively(cloudServiceArchive, zipArchiveEntries, importFile.File, alternativePath);
             }
         }
 
