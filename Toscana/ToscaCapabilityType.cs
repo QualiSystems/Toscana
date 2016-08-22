@@ -6,7 +6,7 @@ namespace Toscana
     /// <summary>
     /// Represents TOSCA Capability type
     /// </summary>
-    public class ToscaCapabilityType : ToscaObject
+    public class ToscaCapabilityType : ToscaObject<ToscaCapabilityType>
     {
         /// <summary>
         /// Instantiates an instance of ToscaCapabilityType
@@ -49,13 +49,13 @@ namespace Toscana
         /// If this Capability Type derives from a non existing Capability Type <see cref="ToscaCapabilityTypeNotFoundException"/> will be thrown
         /// </summary>
         /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
-        public ToscaCapabilityType Base
+        public override ToscaCapabilityType Base
         {
             get
             {
-                if (cloudServiceArchive == null || IsRoot()) return null;
+                if (CloudServiceArchive == null || IsRoot()) return null;
                 ToscaCapabilityType baseCapabilityType;
-                if (cloudServiceArchive.CapabilityTypes.TryGetValue(DerivedFrom, out baseCapabilityType))
+                if (CloudServiceArchive.CapabilityTypes.TryGetValue(DerivedFrom, out baseCapabilityType))
                 {
                     return baseCapabilityType;
                 }

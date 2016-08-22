@@ -24,10 +24,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRequirementAssignment
     path: Toscana/ToscaRequirementAssignment.cs
-    startLine: 2
+    startLine: 7
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nA Requirement assignment allows template authors to provide either concrete names of TOSCA templates \nor provide abstract selection criteria for providers to use to find matching TOSCA templates \nthat are used to fulfill a named requirement’s declared TOSCA Node Type.\n"
+  example: []
   syntax:
     content: public class ToscaRequirementAssignment
     content.vb: Public Class ToscaRequirementAssignment
@@ -68,10 +70,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capability
     path: Toscana/ToscaRequirementAssignment.cs
-    startLine: 4
+    startLine: 15
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional reserved keyname used to provide the name of either a: \n* Capability definition within a target node template that can fulfill the requirement.\n* Capability Type that the provider will use to select a type-compatible target node template \nto fulfill the requirement at runtime.\n"
+  example: []
   syntax:
     content: public string Capability { get; set; }
     content.vb: Public Property Capability As String
@@ -102,10 +106,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Node
     path: Toscana/ToscaRequirementAssignment.cs
-    startLine: 5
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional reserved keyname used to identify the target node of a relationship.specifically, it is used to provide either a: \n* Node Template name that can fulfill the target node requirement. \n* Node Type name that the provider will use to select a type-compatible node template to fulfill the requirement at runtime.\n"
+  example: []
   syntax:
     content: public string Node { get; set; }
     content.vb: Public Property Node As String
@@ -136,10 +142,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Relationship
     path: Toscana/ToscaRequirementAssignment.cs
-    startLine: 6
+    startLine: 30
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional reserved keyname used to provide the name of either a: \n* Relationship Template to use to relate the source node to the(capability in the) target node when fulfilling the requirement. \n* Relationship Type that the provider will use to select a type-compatible relationship template to relate the source node to the target node at runtime.\n"
+  example: []
   syntax:
     content: public string Relationship { get; set; }
     content.vb: Public Property Relationship As String
@@ -170,10 +178,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeFilter
     path: Toscana/ToscaRequirementAssignment.cs
-    startLine: 7
+    startLine: 36
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional filter definition that TOSCA orchestrators or providers would use to select \na type-compatible target node that can fulfill the associated abstract requirement at runtime.\n"
+  example: []
   syntax:
     content: public string NodeFilter { get; set; }
     content.vb: Public Property NodeFilter As String
@@ -204,18 +214,22 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaRequirementAssignment.cs
-    startLine: 9
+    startLine: 43
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaRequirementAssignment\" data-throw-if-not-resolved=\"false\"></xref> and set Node property\n"
+  example: []
   syntax:
-    content: public static implicit operator ToscaRequirementAssignment(string val)
-    content.vb: Public Shared Widening Operator CType(val As String) As ToscaRequirementAssignment
+    content: public static implicit operator ToscaRequirementAssignment(string node)
+    content.vb: Public Shared Widening Operator CType(node As String) As ToscaRequirementAssignment
     parameters:
-    - id: val
+    - id: node
       type: System.String
+      description: Node value to set
     return:
       type: Toscana.ToscaRequirementAssignment
+      description: An instance of <xref href="Toscana.ToscaRequirementAssignment" data-throw-if-not-resolved="false"></xref>
   nameWithType.vb: ToscaRequirementAssignment.Widening(String to ToscaRequirementAssignment)
   modifiers.csharp:
   - public

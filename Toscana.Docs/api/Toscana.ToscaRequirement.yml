@@ -24,10 +24,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRequirement
     path: Toscana/ToscaRequirement.cs
-    startLine: 4
+    startLine: 12
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe Requirement definition describes a named requirement (dependencies) \nof a TOSCA Node Type or Node template which needs to be fulfilled by a matching \nCapability definition declared by another TOSCA modelable entity.  \nThe requirement definition may itself include the specific name of the fulfilling entity \n(explicitly) or provide an abstract type, along with additional filtering characteristics, \nthat a TOSCA orchestrator can use to fulfill the capability at runtime (implicitly).\n"
+  example: []
   syntax:
     content: public class ToscaRequirement
     content.vb: Public Class ToscaRequirement
@@ -68,10 +70,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capability
     path: Toscana/ToscaRequirement.cs
-    startLine: 6
+    startLine: 18
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required reserved keyname used that can be used to provide the name of a valid \nCapability Type  that can fulfill the requirement.\n"
+  example: []
   syntax:
     content: >-
       [Required(ErrorMessage = "capability is required on requirement")]
@@ -116,10 +120,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Node
     path: Toscana/ToscaRequirement.cs
-    startLine: 8
+    startLine: 25
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional reserved keyname used to provide the name of a valid Node Type that contains \nthe capability definition that can be used to fulfill the requirement.\n"
+  example: []
   syntax:
     content: public string Node { get; set; }
     content.vb: Public Property Node As String
@@ -150,10 +156,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Relationship
     path: Toscana/ToscaRequirement.cs
-    startLine: 9
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional reserved keyname used to provide the name of a valid Relationship Type to \nconstruct when fulfilling the requirement.\n"
+  example: []
   syntax:
     content: public string Relationship { get; set; }
     content.vb: Public Property Relationship As String
@@ -184,10 +192,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Occurrences
     path: Toscana/ToscaRequirement.cs
-    startLine: 10
+    startLine: 37
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional minimum and maximum occurrences for the requirement. \nNote: the keyword UNBOUNDED is also supported to represent any positive integer.\n"
+  example: []
   syntax:
     content: public object[] Occurrences { get; set; }
     content.vb: Public Property Occurrences As Object()
@@ -218,18 +228,22 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaRequirement.cs
-    startLine: 12
+    startLine: 44
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of ToscaRequirement and set Capability property value\n"
+  example: []
   syntax:
-    content: public static implicit operator ToscaRequirement(string val)
-    content.vb: Public Shared Widening Operator CType(val As String) As ToscaRequirement
+    content: public static implicit operator ToscaRequirement(string capability)
+    content.vb: Public Shared Widening Operator CType(capability As String) As ToscaRequirement
     parameters:
-    - id: val
+    - id: capability
       type: System.String
+      description: Capability to set
     return:
       type: Toscana.ToscaRequirement
+      description: An instance of <xref href="Toscana.ToscaRequirement" data-throw-if-not-resolved="false"></xref>
   nameWithType.vb: ToscaRequirement.Widening(String to ToscaRequirement)
   modifiers.csharp:
   - public

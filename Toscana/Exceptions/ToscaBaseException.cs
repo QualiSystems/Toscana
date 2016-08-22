@@ -36,10 +36,10 @@ namespace Toscana.Exceptions
         }
 
         /// <summary>
-        /// 
+        /// Initializes the exception with a message and inner exception
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="exception"></param>
+        /// <param name="message">Error message</param>
+        /// <param name="exception">Inner exception</param>
         public ToscaBaseException(string message, Exception exception): base(message, exception)
         {
             

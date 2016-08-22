@@ -24,10 +24,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaArtifact
     path: Toscana/ToscaArtifact.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn artifact definition defines a named, typed file that can be associated with Node Type or Node Template \nand used by orchestration engine to facilitate deployment and implementation of interface operations.\n"
+  example: []
   syntax:
     content: public class ToscaArtifact
     content.vb: Public Class ToscaArtifact
@@ -68,10 +70,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaArtifact.cs
-    startLine: 6
+    startLine: 13
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required artifact type for the artifact definition.\n"
+  example: []
   syntax:
     content: >-
       [Required(ErrorMessage = "type is required on artifact")]
@@ -116,10 +120,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: File
     path: Toscana/ToscaArtifact.cs
-    startLine: 9
+    startLine: 19
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required URI string (relative or absolute) which can be used to locate the artifact’s file.\n"
+  example: []
   syntax:
     content: >-
       [Required(ErrorMessage = "file is required on artifact")]
@@ -164,10 +170,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Repository
     path: Toscana/ToscaArtifact.cs
-    startLine: 12
+    startLine: 26
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional name of the repository definition which contains the location of the external repository that contains the artifact.  \nThe artifact is expected to be referenceable by its file URI within the repository.\n"
+  example: []
   syntax:
     content: public string Repository { get; set; }
     content.vb: Public Property Repository As String
@@ -198,10 +206,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaArtifact.cs
-    startLine: 13
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional description for the artifact definition.\n"
+  example: []
   syntax:
     content: public string Description { get; set; }
     content.vb: Public Property Description As String
@@ -232,10 +242,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: DeployPath
     path: Toscana/ToscaArtifact.cs
-    startLine: 14
+    startLine: 36
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe file path the associated file would be deployed into within the target node’s container.\n"
+  example: []
   syntax:
     content: public string DeployPath { get; set; }
     content.vb: Public Property DeployPath As String

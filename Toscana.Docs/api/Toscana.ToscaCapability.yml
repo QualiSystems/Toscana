@@ -25,10 +25,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapability
     path: Toscana/ToscaCapability.cs
-    startLine: 5
+    startLine: 10
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nA capability definition defines a named, typed set of data that can be associated with \nNode Type or Node Template to describe a transparent capability or feature of the software \ncomponent the node describes.\n"
+  example: []
   syntax:
     content: public class ToscaCapability
     content.vb: Public Class ToscaCapability
@@ -69,10 +71,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCapability.cs
-    startLine: 7
+    startLine: 15
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of ToscaCapability class\n"
+  example: []
   syntax:
     content: public ToscaCapability()
     content.vb: Public Sub New
@@ -98,17 +102,19 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaCapability.cs
-    startLine: 13
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required name of the Capability Type the capability definition is based upon.\n"
+  example: []
   syntax:
     content: >-
-      [Required(ErrorMessage = "type is required on capability")]
+      [Required(ErrorMessage = "type is required on capability", AllowEmptyStrings = false)]
 
       public string Type { get; set; }
     content.vb: >-
-      <Required(ErrorMessage:="type is required on capability")>
+      <Required(ErrorMessage:="type is required on capability", AllowEmptyStrings:=False)>
 
       Public Property Type As String
     parameters: []
@@ -122,6 +128,9 @@ items:
     - name: ErrorMessage
       type: System.String
       value: type is required on capability
+    - name: AllowEmptyStrings
+      type: System.Boolean
+      value: false
   modifiers.csharp:
   - public
   - get
@@ -146,10 +155,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaCapability.cs
-    startLine: 16
+    startLine: 30
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional description of the Capability definition.\n"
+  example: []
   syntax:
     content: public string Description { get; set; }
     content.vb: Public Property Description As String
@@ -180,10 +191,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaCapability.cs
-    startLine: 18
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of property definitions for the Capability definition.\n"
+  example: []
   syntax:
     content: public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
     content.vb: Public Property Properties As Dictionary(Of String, ToscaPropertyDefinition)
@@ -214,10 +227,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaCapability.cs
-    startLine: 20
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of attribute definitions for the Capability definition.\n"
+  example: []
   syntax:
     content: public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
     content.vb: Public Property Attributes As Dictionary(Of String, ToscaAttributeDefinition)
@@ -248,18 +263,22 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaCapability.cs
-    startLine: 22
+    startLine: 47
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of of <xref href=\"Toscana.ToscaCapability\" data-throw-if-not-resolved=\"false\"></xref> and set its Type property\n"
+  example: []
   syntax:
     content: public static implicit operator ToscaCapability(string val)
     content.vb: Public Shared Widening Operator CType(val As String) As ToscaCapability
     parameters:
     - id: val
       type: System.String
+      description: Value to set to Type property
     return:
       type: Toscana.ToscaCapability
+      description: An instance of ToscaCapability
   nameWithType.vb: ToscaCapability.Widening(String to ToscaCapability)
   modifiers.csharp:
   - public

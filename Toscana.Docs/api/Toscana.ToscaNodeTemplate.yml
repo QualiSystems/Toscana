@@ -31,10 +31,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodeTemplate
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 7
+    startLine: 10
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nA Node Template specifies the occurrence of a manageable software component as part of an application’s topology model which is \ndefined in a TOSCA Service Template.  A Node template is an instance of a specified Node Type and can provide customized properties, \nconstraints or operations which override the defaults provided by its Node Type and its implementations.\n"
+  example: []
   syntax:
     content: public class ToscaNodeTemplate
     content.vb: Public Class ToscaNodeTemplate
@@ -75,10 +77,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 9
+    startLine: 15
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitalizes an instance of ToscaNodeTemplate\n"
+  example: []
   syntax:
     content: public ToscaNodeTemplate()
     content.vb: Public Sub New
@@ -104,10 +108,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 20
+    startLine: 29
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required name of the Node Type the Node Template is based upon.\n"
+  example: []
   syntax:
     content: >-
       [Required(ErrorMessage = "type is required on node_template")]
@@ -152,10 +158,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 23
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional description for the Node Template.\n"
+  example: []
   syntax:
     content: public string Description { get; set; }
     content.vb: Public Property Description As String
@@ -186,10 +194,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Directives
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 25
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of directive values to provide processing instructions to orchestrators and tooling.\n"
+  example: []
   syntax:
     content: public string[] Directives { get; set; }
     content.vb: Public Property Directives As String()
@@ -220,10 +230,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 27
+    startLine: 45
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of property value assignments for the Node Template.\n"
+  example: []
   syntax:
     content: public Dictionary<string, object> Properties { get; set; }
     content.vb: Public Property Properties As Dictionary(Of String, Object)
@@ -254,10 +266,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 28
+    startLine: 50
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of attribute value assignments for the Node Template.\n"
+  example: []
   syntax:
     content: public Dictionary<string, ToscaAttributeAssignment> Attributes { get; set; }
     content.vb: Public Property Attributes As Dictionary(Of String, ToscaAttributeAssignment)
@@ -288,10 +302,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Requirements
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 29
+    startLine: 55
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional sequenced list of requirement assignments for the Node Template.\n"
+  example: []
   syntax:
     content: public List<Dictionary<string, ToscaRequirementAssignment>> Requirements { get; set; }
     content.vb: Public Property Requirements As List(Of Dictionary(Of String, ToscaRequirementAssignment))
@@ -322,10 +338,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capabilities
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 30
+    startLine: 60
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of capability assignments for the Node Template.\n"
+  example: []
   syntax:
     content: public Dictionary<string, ToscaCapabilityAssignment> Capabilities { get; set; }
     content.vb: Public Property Capabilities As Dictionary(Of String, ToscaCapabilityAssignment)
@@ -356,10 +374,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 31
+    startLine: 65
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of named interface definitions for the Node Template.\n"
+  example: []
   syntax:
     content: public Dictionary<string, object> Interfaces { get; set; }
     content.vb: Public Property Interfaces As Dictionary(Of String, Object)
@@ -390,10 +410,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Artifacts
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 32
+    startLine: 70
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of named artifact definitions for the Node Template.\n"
+  example: []
   syntax:
     content: public Dictionary<string, ToscaArtifact> Artifacts { get; set; }
     content.vb: Public Property Artifacts As Dictionary(Of String, ToscaArtifact)
@@ -424,10 +446,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeFilter
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 33
+    startLine: 75
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional filter definition that TOSCA orchestrators would use to select the correct target node.  This keyname is only valid if the directive has the value of “selectable” set.\n"
+  example: []
   syntax:
     content: public object NodeFilter { get; set; }
     content.vb: Public Property NodeFilter As Object
@@ -458,10 +482,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Copy
     path: Toscana/ToscaNodeTemplate.cs
-    startLine: 34
+    startLine: 80
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional (symbolic) name of another node template to copy into (all keynames and values) and use as a basis for this node template.\n"
+  example: []
   syntax:
     content: public string Copy { get; set; }
     content.vb: Public Property Copy As String

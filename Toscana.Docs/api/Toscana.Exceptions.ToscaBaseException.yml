@@ -212,7 +212,7 @@ items:
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\n\n"
+  summary: "\nInitializes the exception with a message and inner exception\n"
   example: []
   syntax:
     content: public ToscaBaseException(string message, Exception exception)
@@ -220,10 +220,10 @@ items:
     parameters:
     - id: message
       type: System.String
-      description: ''
+      description: Error message
     - id: exception
       type: System.Exception
-      description: ''
+      description: Inner exception
   modifiers.csharp:
   - public
   modifiers.vb:

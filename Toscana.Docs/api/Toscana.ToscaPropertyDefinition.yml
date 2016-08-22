@@ -29,10 +29,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaPropertyDefinition
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 5
+    startLine: 13
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nA property definition defines a named, typed value and related data that \ncan be associated with an entity defined in this specification (e.g., Node Types, \nRelationship Types, Capability Types, etc.).  \nProperties are used by template authors to provide input values to TOSCA entities which \nindicate their “desired state” when they are instantiated.  The value of a property can be \nretrieved using the get_property function within TOSCA Service Templates.\n"
+  example: []
   syntax:
     content: public class ToscaPropertyDefinition
     content.vb: Public Class ToscaPropertyDefinition
@@ -73,10 +75,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 7
+    startLine: 18
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of ToscaPropertyDefinition\n"
+  example: []
   syntax:
     content: public ToscaPropertyDefinition()
     content.vb: Public Sub New
@@ -102,17 +106,19 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 12
+    startLine: 26
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required data type for the property.\n"
+  example: []
   syntax:
     content: >-
-      [Required(ErrorMessage = "type is required on property")]
+      [Required(ErrorMessage = "type is required on property", AllowEmptyStrings = false)]
 
       public string Type { get; set; }
     content.vb: >-
-      <Required(ErrorMessage:="type is required on property")>
+      <Required(ErrorMessage:="type is required on property", AllowEmptyStrings:=False)>
 
       Public Property Type As String
     parameters: []
@@ -126,6 +132,9 @@ items:
     - name: ErrorMessage
       type: System.String
       value: type is required on property
+    - name: AllowEmptyStrings
+      type: System.Boolean
+      value: false
   modifiers.csharp:
   - public
   - get
@@ -150,10 +159,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 14
+    startLine: 32
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional description for the property.\n"
+  example: []
   syntax:
     content: public string Description { get; set; }
     content.vb: Public Property Description As String
@@ -184,10 +195,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Required
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 15
+    startLine: 37
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional key that declares a property as required (true) or not (false).\n"
+  example: []
   syntax:
     content: public bool Required { get; set; }
     content.vb: Public Property Required As Boolean
@@ -218,10 +231,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Default
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 16
+    startLine: 42
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional key that may provide a value to be used as a default if not provided by another means.\n"
+  example: []
   syntax:
     content: public object Default { get; set; }
     content.vb: Public Property Default As Object
@@ -252,10 +267,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Status
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 17
+    startLine: 47
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional status of the property relative to the specification or implementation. \n"
+  example: []
   syntax:
     content: public ToscaPropertyStatus Status { get; set; }
     content.vb: Public Property Status As ToscaPropertyStatus
@@ -286,10 +303,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 18
+    startLine: 52
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional list of sequenced constraint clauses for the property.\n"
+  example: []
   syntax:
     content: public List<Dictionary<string, object>> Constraints { get; set; }
     content.vb: Public Property Constraints As List(Of Dictionary(Of String, Object))
@@ -320,10 +339,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntrySchema
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 19
+    startLine: 57
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional key that is used to declare the name of the Datatype definition for entries of set types such as the TOSCA list or map.\n"
+  example: []
   syntax:
     content: public string EntrySchema { get; set; }
     content.vb: Public Property EntrySchema As String
@@ -354,10 +375,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Tags
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 20
+    startLine: 62
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional list of tags\n"
+  example: []
   syntax:
     content: public List<string> Tags { get; set; }
     content.vb: Public Property Tags As List(Of String)
@@ -388,10 +411,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: StringValue
     path: Toscana/ToscaPropertyDefinition.cs
-    startLine: 22
+    startLine: 68
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nString representation of Default property.\nReturns empty string when default is null\n"
+  example: []
   syntax:
     content: public string StringValue { get; }
     content.vb: Public ReadOnly Property StringValue As String

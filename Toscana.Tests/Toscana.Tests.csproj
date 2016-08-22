@@ -106,7 +106,6 @@
     <Compile Include="ToscaServiceTemplateTests.cs" />
     <Compile Include="ToscaServiceTemplateBuilderTests.cs" />
     <Compile Include="ToscaServiceTemplateMetadataTests.cs" />
-    <Compile Include="ToscaTopologyInputTests.cs" />
     <Compile Include="ToscaTopologyTemplateTests.cs" />
   </ItemGroup>
   <ItemGroup>

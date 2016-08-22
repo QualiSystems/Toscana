@@ -8,6 +8,7 @@ items:
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException.#ctor
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException.#ctor(System.String)
+  - Toscana.Exceptions.ToscaNodeTypeNotFoundException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
@@ -22,10 +23,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodeTypeNotFoundException
     path: Toscana/Exceptions/ToscaNodeTypeNotFoundException.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nThrown when Node Type not found\n"
+  example: []
   syntax:
     content: >-
       [Serializable]
@@ -95,10 +98,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaNodeTypeNotFoundException.cs
-    startLine: 8
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception\n"
+  example: []
   syntax:
     content: public ToscaNodeTypeNotFoundException()
     content.vb: Public Sub New
@@ -124,16 +129,57 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaNodeTypeNotFoundException.cs
-    startLine: 12
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception with a message\n"
+  example: []
   syntax:
     content: public ToscaNodeTypeNotFoundException(string message)
     content.vb: Public Sub New(message As String)
     parameters:
     - id: message
       type: System.String
+      description: ''
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Toscana.Exceptions.ToscaNodeTypeNotFoundException.#ctor(System.String,System.Exception)
+  commentId: M:Toscana.Exceptions.ToscaNodeTypeNotFoundException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Toscana.Exceptions.ToscaNodeTypeNotFoundException
+  langs:
+  - csharp
+  - vb
+  name: ToscaNodeTypeNotFoundException(String, Exception)
+  nameWithType: ToscaNodeTypeNotFoundException.ToscaNodeTypeNotFoundException(String, Exception)
+  fullName: Toscana.Exceptions.ToscaNodeTypeNotFoundException.ToscaNodeTypeNotFoundException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/Exceptions/ToscaNodeTypeNotFoundException.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/Exceptions/ToscaNodeTypeNotFoundException.cs
+    startLine: 31
+  assemblies:
+  - Toscana
+  namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception with a message an an inner exception\n"
+  example: []
+  syntax:
+    content: public ToscaNodeTypeNotFoundException(string message, Exception exception)
+    content.vb: Public Sub New(message As String, exception As Exception)
+    parameters:
+    - id: message
+      type: System.String
+      description: ''
+    - id: exception
+      type: System.Exception
+      description: ''
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -156,18 +202,29 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaNodeTypeNotFoundException.cs
-    startLine: 16
+    startLine: 42
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception with serialization info and streaming context\n"
+  example: []
   syntax:
     content: protected ToscaNodeTypeNotFoundException(SerializationInfo info, StreamingContext context)
     content.vb: Protected Sub New(info As SerializationInfo, context As StreamingContext)
     parameters:
     - id: info
       type: System.Runtime.Serialization.SerializationInfo
+      description: Serialization info
     - id: context
       type: System.Runtime.Serialization.StreamingContext
+      description: Streaming context
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: 'The <em>info</em> parameter is null. '
+  - type: System.Runtime.Serialization.SerializationException
+    commentId: T:System.Runtime.Serialization.SerializationException
+    description: 'The class name is null or <xref href="System.Exception.HResult" data-throw-if-not-resolved="false"></xref> is zero (0). '
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -1176,6 +1233,10 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+- uid: System.Runtime.Serialization.SerializationException
+  commentId: T:System.Runtime.Serialization.SerializationException
 - uid: System.Runtime.Serialization.SerializationInfo
   commentId: T:System.Runtime.Serialization.SerializationInfo
   parent: System.Runtime.Serialization

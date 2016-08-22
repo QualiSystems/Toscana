@@ -25,10 +25,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaAttributeDefinition
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 4
+    startLine: 12
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn attribute definition defines a named, typed value that can be associated with an entity \ndefined in this specification (e.g., a Node, Relationship or Capability Type).  \nSpecifically, it is used to expose the “actual state” of some property of a TOSCA entity \nafter it has been deployed and instantiated (as set by the TOSCA orchestrator).  \nAttribute values can be retrieved via the get_attribute function from the instance model \nand used as values to other entities within TOSCA Service Templates.\n"
+  example: []
   syntax:
     content: public class ToscaAttributeDefinition
     content.vb: Public Class ToscaAttributeDefinition
@@ -69,10 +71,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 6
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaAttributeDefinition\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public ToscaAttributeDefinition()
     content.vb: Public Sub New
@@ -98,10 +102,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 11
+    startLine: 25
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required data type for the attribute.\n"
+  example: []
   syntax:
     content: >-
       [Required(ErrorMessage = "type is required on attribute")]
@@ -146,10 +152,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 14
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional description for the attribute.\n"
+  example: []
   syntax:
     content: public string Description { get; set; }
     content.vb: Public Property Description As String
@@ -180,10 +188,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Default
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 16
+    startLine: 37
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional key that may provide a value to be used as a default if not provided by another means. \nThis value SHALL be type compatible with the type declared by the property definition’s type keyname.\n"
+  example: []
   syntax:
     content: public object Default { get; set; }
     content.vb: Public Property Default As Object
@@ -214,10 +224,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Status
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 18
+    startLine: 42
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional status of the attribute relative to the specification or implementation.  \n"
+  example: []
   syntax:
     content: public ToscaPropertyStatus Status { get; set; }
     content.vb: Public Property Status As ToscaPropertyStatus
@@ -248,10 +260,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntrySchema
     path: Toscana/ToscaAttributeDefinition.cs
-    startLine: 20
+    startLine: 47
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional key that is used to declare the name of the Datatype definition for entries of set types such as the TOSCA list or map.\n"
+  example: []
   syntax:
     content: public string EntrySchema { get; set; }
     content.vb: Public Property EntrySchema As String
@@ -996,6 +1010,12 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.ToscaAttributeDefinition
+  commentId: T:Toscana.ToscaAttributeDefinition
+  isExternal: false
+  name: ToscaAttributeDefinition
+  nameWithType: ToscaAttributeDefinition
+  fullName: Toscana.ToscaAttributeDefinition
 - uid: System.String
   commentId: T:System.String
   parent: System

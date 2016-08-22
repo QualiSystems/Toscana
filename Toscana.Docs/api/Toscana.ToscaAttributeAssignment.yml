@@ -22,10 +22,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaAttributeAssignment
     path: Toscana/ToscaAttributeAssignment.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nRepresents TOSCA Assignment that allows assigning values to attributes\n"
+  example: []
   syntax:
     content: public class ToscaAttributeAssignment
     content.vb: Public Class ToscaAttributeAssignment
@@ -66,10 +68,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaAttributeAssignment.cs
-    startLine: 4
+    startLine: 10
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nRepresents the optional description of the attribute.\n"
+  example: []
   syntax:
     content: public string Description { get; set; }
     content.vb: Public Property Description As String
@@ -100,10 +104,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Value
     path: Toscana/ToscaAttributeAssignment.cs
-    startLine: 5
+    startLine: 16
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nRepresent the type-compatible value to assign to the named attribute.  \nAttribute values may be provided as the result from the evaluation of an expression or a function.\n"
+  example: []
   syntax:
     content: public object Value { get; set; }
     content.vb: Public Property Value As Object
@@ -134,18 +140,22 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaAttributeAssignment.cs
-    startLine: 7
+    startLine: 23
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of ToscaAttributeAssignment and set its value to val\n"
+  example: []
   syntax:
     content: public static implicit operator ToscaAttributeAssignment(string val)
     content.vb: Public Shared Widening Operator CType(val As String) As ToscaAttributeAssignment
     parameters:
     - id: val
       type: System.String
+      description: string value to set to the Value property
     return:
       type: Toscana.ToscaAttributeAssignment
+      description: ''
   nameWithType.vb: ToscaAttributeAssignment.Widening(String to ToscaAttributeAssignment)
   modifiers.csharp:
   - public

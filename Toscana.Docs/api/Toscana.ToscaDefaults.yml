@@ -8,9 +8,11 @@ items:
   - Toscana.ToscaDefaults.GetNodeCapabilityType
   - Toscana.ToscaDefaults.GetRootCapabilityType
   - Toscana.ToscaDefaults.GetRootNodeType
+  - Toscana.ToscaDefaults.ToscaArtifactRoot
   - Toscana.ToscaDefaults.ToscaCapabilitiesNode
   - Toscana.ToscaDefaults.ToscaCapabilitiesRoot
   - Toscana.ToscaDefaults.ToscaNodesRoot
+  - Toscana.ToscaDefaults.ToscaRelationshipTypeRoot
   langs:
   - csharp
   - vb
@@ -51,6 +53,41 @@ items:
   modifiers.vb:
   - Public
   - Module
+- uid: Toscana.ToscaDefaults.ToscaRelationshipTypeRoot
+  commentId: F:Toscana.ToscaDefaults.ToscaRelationshipTypeRoot
+  id: ToscaRelationshipTypeRoot
+  parent: Toscana.ToscaDefaults
+  langs:
+  - csharp
+  - vb
+  name: ToscaRelationshipTypeRoot
+  nameWithType: ToscaDefaults.ToscaRelationshipTypeRoot
+  fullName: Toscana.ToscaDefaults.ToscaRelationshipTypeRoot
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaDefaults.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ToscaRelationshipTypeRoot
+    path: Toscana/ToscaDefaults.cs
+    startLine: 12
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nName of the tosca.relationships.Root\n"
+  example: []
+  syntax:
+    content: public const string ToscaRelationshipTypeRoot = "tosca.relationships.Root"
+    content.vb: Public Const ToscaRelationshipTypeRoot As String = "tosca.relationships.Root"
+    return:
+      type: System.String
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
 - uid: Toscana.ToscaDefaults.ToscaNodesRoot
   commentId: F:Toscana.ToscaDefaults.ToscaNodesRoot
   id: ToscaNodesRoot
@@ -69,7 +106,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodesRoot
     path: Toscana/ToscaDefaults.cs
-    startLine: 12
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
@@ -104,7 +141,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapabilitiesRoot
     path: Toscana/ToscaDefaults.cs
-    startLine: 17
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana
@@ -113,6 +150,76 @@ items:
   syntax:
     content: public const string ToscaCapabilitiesRoot = "tosca.capabilities.Root"
     content.vb: Public Const ToscaCapabilitiesRoot As String = "tosca.capabilities.Root"
+    return:
+      type: System.String
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Toscana.ToscaDefaults.ToscaArtifactRoot
+  commentId: F:Toscana.ToscaDefaults.ToscaArtifactRoot
+  id: ToscaArtifactRoot
+  parent: Toscana.ToscaDefaults
+  langs:
+  - csharp
+  - vb
+  name: ToscaArtifactRoot
+  nameWithType: ToscaDefaults.ToscaArtifactRoot
+  fullName: Toscana.ToscaDefaults.ToscaArtifactRoot
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaDefaults.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ToscaArtifactRoot
+    path: Toscana/ToscaDefaults.cs
+    startLine: 27
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nName of the tosca.artifact.Root\n"
+  example: []
+  syntax:
+    content: public const string ToscaArtifactRoot = "tosca.artifact.Root"
+    content.vb: Public Const ToscaArtifactRoot As String = "tosca.artifact.Root"
+    return:
+      type: System.String
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Toscana.ToscaDefaults.ToscaCapabilitiesNode
+  commentId: F:Toscana.ToscaDefaults.ToscaCapabilitiesNode
+  id: ToscaCapabilitiesNode
+  parent: Toscana.ToscaDefaults
+  langs:
+  - csharp
+  - vb
+  name: ToscaCapabilitiesNode
+  nameWithType: ToscaDefaults.ToscaCapabilitiesNode
+  fullName: Toscana.ToscaDefaults.ToscaCapabilitiesNode
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaDefaults.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ToscaCapabilitiesNode
+    path: Toscana/ToscaDefaults.cs
+    startLine: 32
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nName of the root capability\n"
+  example: []
+  syntax:
+    content: public const string ToscaCapabilitiesNode = "tosca.capabilities.Node"
+    content.vb: Public Const ToscaCapabilitiesNode As String = "tosca.capabilities.Node"
     return:
       type: System.String
   modifiers.csharp:
@@ -139,7 +246,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootNodeType
     path: Toscana/ToscaDefaults.cs
-    startLine: 24
+    startLine: 39
   assemblies:
   - Toscana
   namespace: Toscana
@@ -175,7 +282,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootCapabilityType
     path: Toscana/ToscaDefaults.cs
-    startLine: 55
+    startLine: 70
   assemblies:
   - Toscana
   namespace: Toscana
@@ -211,7 +318,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetNodeCapabilityType
     path: Toscana/ToscaDefaults.cs
-    startLine: 64
+    startLine: 79
   assemblies:
   - Toscana
   namespace: Toscana
@@ -229,39 +336,6 @@ items:
   modifiers.vb:
   - Public
   - Shared
-- uid: Toscana.ToscaDefaults.ToscaCapabilitiesNode
-  commentId: F:Toscana.ToscaDefaults.ToscaCapabilitiesNode
-  id: ToscaCapabilitiesNode
-  parent: Toscana.ToscaDefaults
-  langs:
-  - csharp
-  - vb
-  name: ToscaCapabilitiesNode
-  nameWithType: ToscaDefaults.ToscaCapabilitiesNode
-  fullName: Toscana.ToscaDefaults.ToscaCapabilitiesNode
-  type: Field
-  source:
-    remote:
-      path: Toscana/ToscaDefaults.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaCapabilitiesNode
-    path: Toscana/ToscaDefaults.cs
-    startLine: 72
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  syntax:
-    content: public const string ToscaCapabilitiesNode = "tosca.capabilities.Node"
-    content.vb: Public Const ToscaCapabilitiesNode As String = "tosca.capabilities.Node"
-    return:
-      type: System.String
-  modifiers.csharp:
-  - public
-  - const
-  modifiers.vb:
-  - Public
-  - Const
 references:
 - uid: Toscana
   commentId: N:Toscana

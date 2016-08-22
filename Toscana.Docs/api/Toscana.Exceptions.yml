@@ -12,6 +12,7 @@ items:
   - Toscana.Exceptions.ToscaMetadataFileNotFound
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException
   - Toscana.Exceptions.ToscaParsingException
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFound
   - Toscana.Exceptions.ToscaValidationException
   langs:
   - csharp
@@ -59,6 +60,12 @@ references:
   name: ToscaNodeTypeNotFoundException
   nameWithType: ToscaNodeTypeNotFoundException
   fullName: Toscana.Exceptions.ToscaNodeTypeNotFoundException
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  isExternal: false
+  name: ToscaRelationshipTypeNotFound
+  nameWithType: ToscaRelationshipTypeNotFound
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
 - uid: Toscana.Exceptions.ToscaValidationException
   commentId: T:Toscana.Exceptions.ToscaValidationException
   isExternal: false

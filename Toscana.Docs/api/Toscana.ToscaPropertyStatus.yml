@@ -23,10 +23,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaPropertyStatus
     path: Toscana/ToscaPropertyStatus.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nDefines status of property valid values\n"
+  example: []
   syntax:
     content: public enum ToscaPropertyStatus
     content.vb: Public Enum ToscaPropertyStatus
@@ -56,10 +58,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: supported
     path: Toscana/ToscaPropertyStatus.cs
-    startLine: 4
+    startLine: 10
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nIndicates the property is supported.  This is the default value for all property definitions.\n"
+  example: []
   syntax:
     content: supported = 0
     return:
@@ -88,10 +92,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: unsupported
     path: Toscana/ToscaPropertyStatus.cs
-    startLine: 5
+    startLine: 16
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nIndicates the property is not supported.\n"
+  example: []
   syntax:
     content: unsupported = 1
     return:
@@ -120,10 +126,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: experimental
     path: Toscana/ToscaPropertyStatus.cs
-    startLine: 6
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nIndicates the property is experimental and has no official standing.\n"
+  example: []
   syntax:
     content: experimental = 2
     return:
@@ -152,10 +160,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: deprecated
     path: Toscana/ToscaPropertyStatus.cs
-    startLine: 7
+    startLine: 28
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nIndicates the property has been deprecated by a new specification version.\n"
+  example: []
   syntax:
     content: deprecated = 3
     return:

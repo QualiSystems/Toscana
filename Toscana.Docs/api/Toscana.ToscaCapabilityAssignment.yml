@@ -22,10 +22,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapabilityAssignment
     path: Toscana/ToscaCapabilityAssignment.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nA capability assignment allows node template authors to assign values to properties \nand attributes for a named capability definition that is part of a Node Template’s type definition.\n"
+  example: []
   syntax:
     content: public class ToscaCapabilityAssignment
     content.vb: Public Class ToscaCapabilityAssignment
@@ -66,10 +68,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCapabilityAssignment.cs
-    startLine: 6
+    startLine: 13
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nIninializes an instance of <xref href=\"Toscana.ToscaCapabilityAssignment\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
   syntax:
     content: public ToscaCapabilityAssignment()
     content.vb: Public Sub New
@@ -95,10 +99,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaCapabilityAssignment.cs
-    startLine: 12
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of property definitions for the Capability definition.\n"
+  example: []
   syntax:
     content: public Dictionary<string, object> Properties { get; set; }
     content.vb: Public Property Properties As Dictionary(Of String, Object)
@@ -129,10 +135,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaCapabilityAssignment.cs
-    startLine: 13
+    startLine: 27
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of attribute definitions for the Capability definition.\n"
+  example: []
   syntax:
     content: public Dictionary<string, ToscaAttributeAssignment> Attributes { get; set; }
     content.vb: Public Property Attributes As Dictionary(Of String, ToscaAttributeAssignment)
@@ -877,6 +885,12 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.ToscaCapabilityAssignment
+  commentId: T:Toscana.ToscaCapabilityAssignment
+  isExternal: false
+  name: ToscaCapabilityAssignment
+  nameWithType: ToscaCapabilityAssignment
+  fullName: Toscana.ToscaCapabilityAssignment
 - uid: System.Collections.Generic.Dictionary{System.String,System.Object}
   commentId: T:System.Collections.Generic.Dictionary{System.String,System.Object}
   parent: System.Collections.Generic

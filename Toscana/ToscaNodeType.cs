@@ -5,8 +5,15 @@ using Toscana.Exceptions;
 
 namespace Toscana
 {
-    public class ToscaNodeType : ToscaObject
+    /// <summary>
+    /// A Node Type is a reusable entity that defines the type of one or more Node Templates. 
+    /// As such, a Node Type defines the structure of observable properties via a Properties Definition, the Requirements and Capabilities of the node as well as its supported interfaces.
+    /// </summary>
+    public class ToscaNodeType : ToscaObject<ToscaNodeType>
     {
+        /// <summary>
+        /// Initializes a instance of ToscaNodeType
+        /// </summary>
         public ToscaNodeType()
         {
             Properties = new Dictionary<string, ToscaPropertyDefinition>();
@@ -17,26 +24,62 @@ namespace Toscana
             Artifacts = new Dictionary<string, ToscaArtifact>();
         }
 
+        /// <summary>
+        /// An optional version for the Node Type definition.
+        /// </summary>
         public Version Version { get; set; }
+
+        /// <summary>
+        /// An optional description for the Node Type.
+        /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// An optional list of property definitions for the Node Type.
+        /// </summary>
         public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+
+        /// <summary>
+        /// An optional list of attribute definitions for the Node Type.
+        /// </summary>
         public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
+
+        /// <summary>
+        /// An optional sequenced list of requirement definitions for the Node Type.
+        /// </summary>
         public List<Dictionary<string, ToscaRequirement>> Requirements { get; set; }
+
+        /// <summary>
+        /// An optional list of capability definitions for the Node Type.
+        /// </summary>
         public Dictionary<string, ToscaCapability> Capabilities { get; set; }
+
+        /// <summary>
+        /// An optional list of interface definitions supported by the Node Type.
+        /// </summary>
         public Dictionary<string, Dictionary<string, object>> Interfaces { get; set; }
+
+        /// <summary>
+        /// An optional list of named artifact definitions for the Node Type.
+        /// </summary>
         public Dictionary<string, ToscaArtifact> Artifacts { get; set; }
 
-        public ToscaNodeType Base
+        /// <summary>
+        /// Returns ToscaNodetype this Node type derives from.
+        /// For root node type, null is returned
+        /// </summary>
+        /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
+        public override ToscaNodeType Base
         {
             get
             {
-                if (cloudServiceArchive == null || IsRoot()) return null;
+                if (CloudServiceArchive == null || IsRoot()) return null;
                 ToscaNodeType baseNodeType;
-                if (cloudServiceArchive.NodeTypes.TryGetValue(DerivedFrom, out baseNodeType))
+                if (CloudServiceArchive.NodeTypes.TryGetValue(DerivedFrom, out baseNodeType))
                 {
                     return baseNodeType;
                 }
-                throw new ToscaNodeTypeNotFoundException(String.Format("Node type '{0}' not found", DerivedFrom));
+                throw new ToscaNodeTypeNotFoundException(string.Format("Node type '{0}' not found", DerivedFrom));
             }
         }
 
@@ -68,7 +111,7 @@ namespace Toscana
             {
                 foreach (var capability in currNodeType.Capabilities.Values)
                 {
-                    allCapabilityTypes.Add(capability.Type, cloudServiceArchive.CapabilityTypes[capability.Type]);
+                    allCapabilityTypes.Add(capability.Type, CloudServiceArchive.CapabilityTypes[capability.Type]);
                 }
             }
             return allCapabilityTypes;

@@ -34,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Toscana.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>
@@ -107,6 +108,7 @@
     <Compile Include="Exceptions\ToscaImportFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFound.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundException.cs" />
+    <Compile Include="Exceptions\ToscaRelationshipTypeNotFound.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />
     <Compile Include="Exceptions\ToscaBaseException.cs" />
     <Compile Include="Exceptions\ToscaParsingException.cs" />
@@ -114,30 +116,36 @@
     <Compile Include="Engine\ToscaDeserializer.cs" />
     <Compile Include="Engine\ToscaValidator.cs" />
     <Compile Include="ToscaArtifact.cs" />
+    <Compile Include="ToscaArtifactType.cs" />
     <Compile Include="ToscaAttributeAssignment.cs" />
     <Compile Include="ToscaCapability.cs" />
     <Compile Include="ToscaCapabilityAssignment.cs" />
     <Compile Include="ToscaCapabilityType.cs" />
     <Compile Include="ToscaCloudServiceArchive.cs" />
+    <Compile Include="ToscaCredential.cs" />
     <Compile Include="ToscaDefaults.cs" />
+    <Compile Include="ToscaGroup.cs" />
     <Compile Include="ToscaImport.cs" />
     <Compile Include="ToscaAttributeDefinition.cs" />
     <Compile Include="ToscaInterfaceDefinition.cs" />
     <Compile Include="ToscaMetadata.cs" />
     <Compile Include="ToscaNodeTypeRequirementsWalker.cs" />
+    <Compile Include="ToscaParameter.cs" />
+    <Compile Include="ToscaPolicy.cs" />
+    <Compile Include="ToscaPropertyAssignment.cs" />
     <Compile Include="ToscaPropertyDefinition.cs" />
     <Compile Include="ToscaNodeTemplate.cs" />
     <Compile Include="ToscaNodeType.cs" />
     <Compile Include="ToscaObject.cs" />
     <Compile Include="ToscaPropertyStatus.cs" />
+    <Compile Include="ToscaRelationshipTemplate.cs" />
     <Compile Include="ToscaRelationshipType.cs" />
+    <Compile Include="ToscaRepository.cs" />
     <Compile Include="ToscaRequirement.cs" />
     <Compile Include="ToscaRequirementAssignment.cs" />
     <Compile Include="ToscaServiceTemplate.cs" />
     <Compile Include="ToscaServiceTemplateBuilder.cs" />
     <Compile Include="ToscaServiceTemplateMetadata.cs" />
-    <Compile Include="ToscaTopologyInput.cs" />
-    <Compile Include="ToscaTopologyOutput.cs" />
     <Compile Include="ToscaTopologyTemplate.cs" />
   </ItemGroup>
   <ItemGroup>

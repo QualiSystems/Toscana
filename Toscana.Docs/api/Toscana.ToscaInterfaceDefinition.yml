@@ -20,10 +20,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaInterfaceDefinition
     path: Toscana/ToscaInterfaceDefinition.cs
-    startLine: 4
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn interface definition defines a named interface that can be associated \nwith a Node or Relationship Type\n"
+  example: []
   syntax:
     content: public class ToscaInterfaceDefinition
     content.vb: Public Class ToscaInterfaceDefinition
@@ -64,10 +66,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Inputs
     path: Toscana/ToscaInterfaceDefinition.cs
-    startLine: 6
+    startLine: 20
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional list of input property definitions available to all defined operations for \ninterface definitions that are within TOSCA Node or Relationship Type definitions. \nThis includes when interface definitions are included as part of a Requirement definition in a Node Type.\n\n\nThe optional list of input property assignments (i.e., parameters assignments) for \ninterface definitions that are within TOSCA Node or Relationship Template definitions. \nThis includes when interface definitions are referenced as part of a Requirement assignment in a Node Template.\n"
+  example: []
   syntax:
     content: public Dictionary<string, object> Inputs { get; set; }
     content.vb: Public Property Inputs As Dictionary(Of String, Object)

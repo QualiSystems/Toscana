@@ -8,6 +8,11 @@ namespace Toscana
     public static class ToscaDefaults
     {
         /// <summary>
+        /// Name of the tosca.relationships.Root
+        /// </summary>
+        public const string ToscaRelationshipTypeRoot = "tosca.relationships.Root";
+
+        /// <summary>
         /// Name of the tosca.nodes.Root node type
         /// </summary>
         public const string ToscaNodesRoot = "tosca.nodes.Root";
@@ -16,6 +21,16 @@ namespace Toscana
         /// Name of the tosca.capabilities.Root capability type
         /// </summary>
         public const string ToscaCapabilitiesRoot = "tosca.capabilities.Root";
+
+        /// <summary>
+        /// Name of the tosca.artifact.Root
+        /// </summary>
+        public const string ToscaArtifactRoot = "tosca.artifact.Root";
+
+        /// <summary>
+        /// Name of the root capability
+        /// </summary>
+        public const string ToscaCapabilitiesNode = "tosca.capabilities.Node";
 
         /// <summary>
         /// Returns an instance of ToscaNodeType, 
@@ -69,7 +84,5 @@ namespace Toscana
                 DerivedFrom = ToscaCapabilitiesRoot
             };
         }
-
-        public const string ToscaCapabilitiesNode = "tosca.capabilities.Node";
     }
 }

@@ -24,10 +24,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaImport
     path: Toscana/ToscaImport.cs
-    startLine: 4
+    startLine: 9
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn import definition is used within a TOSCA Service Template to locate and uniquely \nname another TOSCA Service Template file which has type and template definitions \nto be imported (included) and referenced within another Service Template.\n"
+  example: []
   syntax:
     content: public class ToscaImport
     content.vb: Public Class ToscaImport
@@ -68,17 +70,19 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: File
     path: Toscana/ToscaImport.cs
-    startLine: 6
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe required symbolic name for the imported file.\n"
+  example: []
   syntax:
     content: >-
-      [Required(ErrorMessage = "file is required on import")]
+      [Required(ErrorMessage = "file is required on import", AllowEmptyStrings = false)]
 
       public string File { get; set; }
     content.vb: >-
-      <Required(ErrorMessage:="file is required on import")>
+      <Required(ErrorMessage:="file is required on import", AllowEmptyStrings:=False)>
 
       Public Property File As String
     parameters: []
@@ -92,6 +96,9 @@ items:
     - name: ErrorMessage
       type: System.String
       value: file is required on import
+    - name: AllowEmptyStrings
+      type: System.Boolean
+      value: false
   modifiers.csharp:
   - public
   - get
@@ -116,10 +123,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Repository
     path: Toscana/ToscaImport.cs
-    startLine: 9
+    startLine: 20
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional symbolic name of the repository definition where the imported file can be found as a string.\n"
+  example: []
   syntax:
     content: public string Repository { get; set; }
     content.vb: Public Property Repository As String
@@ -150,10 +159,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: NamespaceUri
     path: Toscana/ToscaImport.cs
-    startLine: 11
+    startLine: 25
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional namespace URI to that will be applied to type definitions found within the imported file as a string\n"
+  example: []
   syntax:
     content: public string NamespaceUri { get; set; }
     content.vb: Public Property NamespaceUri As String
@@ -184,10 +195,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: NamespacePrefix
     path: Toscana/ToscaImport.cs
-    startLine: 13
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional namespace prefix (alias) that will be used to indicate the namespace_uri \nwhen forming a qualified name (i.e., qname) when referencing type definitions from the imported file.\n"
+  example: []
   syntax:
     content: public string NamespacePrefix { get; set; }
     content.vb: Public Property NamespacePrefix As String
@@ -218,18 +231,22 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaImport.cs
-    startLine: 15
+    startLine: 38
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of ToscaImport and set File property\n"
+  example: []
   syntax:
     content: public static implicit operator ToscaImport(string val)
     content.vb: Public Shared Widening Operator CType(val As String) As ToscaImport
     parameters:
     - id: val
       type: System.String
+      description: value to set to File property
     return:
       type: Toscana.ToscaImport
+      description: An instance of ToscaImport with the File value set
   nameWithType.vb: ToscaImport.Widening(String to ToscaImport)
   modifiers.csharp:
   - public

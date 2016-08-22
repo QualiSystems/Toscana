@@ -8,6 +8,7 @@ items:
   - Toscana.Exceptions.ToscaMetadataFileNotFound.#ctor
   - Toscana.Exceptions.ToscaMetadataFileNotFound.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   - Toscana.Exceptions.ToscaMetadataFileNotFound.#ctor(System.String)
+  - Toscana.Exceptions.ToscaMetadataFileNotFound.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
@@ -22,10 +23,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetadataFileNotFound
     path: Toscana/Exceptions/ToscaMetadataFileNotFound.cs
-    startLine: 5
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nThrown when TOSCA.meta file is not found inside TOSCA Cloud Service Archive (CSAR) ZIP file\n"
+  example: []
   syntax:
     content: >-
       [Serializable]
@@ -95,10 +98,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFound.cs
-    startLine: 8
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception\n"
+  example: []
   syntax:
     content: public ToscaMetadataFileNotFound()
     content.vb: Public Sub New
@@ -124,16 +129,57 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFound.cs
-    startLine: 12
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception with a message\n"
+  example: []
   syntax:
     content: public ToscaMetadataFileNotFound(string message)
     content.vb: Public Sub New(message As String)
     parameters:
     - id: message
       type: System.String
+      description: ''
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Toscana.Exceptions.ToscaMetadataFileNotFound.#ctor(System.String,System.Exception)
+  commentId: M:Toscana.Exceptions.ToscaMetadataFileNotFound.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Toscana.Exceptions.ToscaMetadataFileNotFound
+  langs:
+  - csharp
+  - vb
+  name: ToscaMetadataFileNotFound(String, Exception)
+  nameWithType: ToscaMetadataFileNotFound.ToscaMetadataFileNotFound(String, Exception)
+  fullName: Toscana.Exceptions.ToscaMetadataFileNotFound.ToscaMetadataFileNotFound(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/Exceptions/ToscaMetadataFileNotFound.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/Exceptions/ToscaMetadataFileNotFound.cs
+    startLine: 31
+  assemblies:
+  - Toscana
+  namespace: Toscana.Exceptions
+  summary: "\nInitializes the exception with a message and an inner exception\n"
+  example: []
+  syntax:
+    content: public ToscaMetadataFileNotFound(string message, Exception exception)
+    content.vb: Public Sub New(message As String, exception As Exception)
+    parameters:
+    - id: message
+      type: System.String
+      description: ''
+    - id: exception
+      type: System.Exception
+      description: ''
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -156,18 +202,26 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFound.cs
-    startLine: 16
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\n"
+  example: []
   syntax:
     content: protected ToscaMetadataFileNotFound(SerializationInfo info, StreamingContext context)
     content.vb: Protected Sub New(info As SerializationInfo, context As StreamingContext)
     parameters:
     - id: info
       type: System.Runtime.Serialization.SerializationInfo
+      description: ''
     - id: context
       type: System.Runtime.Serialization.StreamingContext
+      description: ''
+  exceptions:
+  - type: System.Runtime.Serialization.SerializationException
+    commentId: T:System.Runtime.Serialization.SerializationException
+    description: 'The class name is null or <xref href="System.Exception.HResult" data-throw-if-not-resolved="false"></xref> is zero (0). '
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -1176,6 +1230,8 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.Runtime.Serialization.SerializationException
+  commentId: T:System.Runtime.Serialization.SerializationException
 - uid: System.Runtime.Serialization.SerializationInfo
   commentId: T:System.Runtime.Serialization.SerializationInfo
   parent: System.Runtime.Serialization

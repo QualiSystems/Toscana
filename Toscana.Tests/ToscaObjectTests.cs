@@ -25,8 +25,13 @@ namespace Toscana.Tests
             toscaObject.IsRoot().Should().BeFalse();
         }
 
-        public class TestToscaObject : ToscaObject
+        public class TestToscaObject : ToscaObject<TestToscaObject>
         {
+            public override TestToscaObject Base
+            {
+                get { throw new System.NotImplementedException(); }
+            }
+
             public override void SetDerivedFromToRoot(string name)
             {
                 throw new System.NotImplementedException();

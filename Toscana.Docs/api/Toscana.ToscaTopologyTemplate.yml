@@ -6,9 +6,14 @@ items:
   parent: Toscana
   children:
   - Toscana.ToscaTopologyTemplate.#ctor
+  - Toscana.ToscaTopologyTemplate.Description
+  - Toscana.ToscaTopologyTemplate.Groups
   - Toscana.ToscaTopologyTemplate.Inputs
   - Toscana.ToscaTopologyTemplate.NodeTemplates
   - Toscana.ToscaTopologyTemplate.Outputs
+  - Toscana.ToscaTopologyTemplate.Policies
+  - Toscana.ToscaTopologyTemplate.RelationshipTemplates
+  - Toscana.ToscaTopologyTemplate.SubstitutionMappings
   langs:
   - csharp
   - vb
@@ -23,10 +28,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaTopologyTemplate
     path: Toscana/ToscaTopologyTemplate.cs
-    startLine: 4
+    startLine: 9
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nA Topology Template defines the structure of a service in the context of a Service Template. \nA Topology Template consists of a set of Node Template and Relationship Template definitions \nthat together define the topology model of a service as a (not necessarily connected) directed graph.\n"
+  example: []
   syntax:
     content: public class ToscaTopologyTemplate
     content.vb: Public Class ToscaTopologyTemplate
@@ -67,10 +74,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaTopologyTemplate.cs
-    startLine: 6
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nInitializes an instance of ToscaTopologyTemplate\n"
+  example: []
   syntax:
     content: public ToscaTopologyTemplate()
     content.vb: Public Sub New
@@ -78,34 +87,36 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaTopologyTemplate.NodeTemplates
-  commentId: P:Toscana.ToscaTopologyTemplate.NodeTemplates
-  id: NodeTemplates
+- uid: Toscana.ToscaTopologyTemplate.Description
+  commentId: P:Toscana.ToscaTopologyTemplate.Description
+  id: Description
   parent: Toscana.ToscaTopologyTemplate
   langs:
   - csharp
   - vb
-  name: NodeTemplates
-  nameWithType: ToscaTopologyTemplate.NodeTemplates
-  fullName: Toscana.ToscaTopologyTemplate.NodeTemplates
+  name: Description
+  nameWithType: ToscaTopologyTemplate.Description
+  fullName: Toscana.ToscaTopologyTemplate.Description
   type: Property
   source:
     remote:
       path: Toscana/ToscaTopologyTemplate.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: NodeTemplates
+    id: Description
     path: Toscana/ToscaTopologyTemplate.cs
-    startLine: 13
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nThe optional description for the Topology Template.\n"
+  example: []
   syntax:
-    content: public Dictionary<string, ToscaNodeTemplate> NodeTemplates { get; set; }
-    content.vb: Public Property NodeTemplates As Dictionary(Of String, ToscaNodeTemplate)
+    content: public string Description { get; set; }
+    content.vb: Public Property Description As String
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaNodeTemplate}
+      type: System.String
   modifiers.csharp:
   - public
   - get
@@ -130,16 +141,162 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Inputs
     path: Toscana/ToscaTopologyTemplate.cs
-    startLine: 15
+    startLine: 29
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of input parameters (i.e., as parameter definitions) for the Topology Template.\n"
+  example: []
   syntax:
-    content: public Dictionary<string, ToscaTopologyInput> Inputs { get; set; }
-    content.vb: Public Property Inputs As Dictionary(Of String, ToscaTopologyInput)
+    content: public Dictionary<string, ToscaParameter> Inputs { get; set; }
+    content.vb: Public Property Inputs As Dictionary(Of String, ToscaParameter)
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaTopologyInput}
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaParameter}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaTopologyTemplate.NodeTemplates
+  commentId: P:Toscana.ToscaTopologyTemplate.NodeTemplates
+  id: NodeTemplates
+  parent: Toscana.ToscaTopologyTemplate
+  langs:
+  - csharp
+  - vb
+  name: NodeTemplates
+  nameWithType: ToscaTopologyTemplate.NodeTemplates
+  fullName: Toscana.ToscaTopologyTemplate.NodeTemplates
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaTopologyTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: NodeTemplates
+    path: Toscana/ToscaTopologyTemplate.cs
+    startLine: 34
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nAn optional list of node template definitions for the Topology Template.\n"
+  example: []
+  syntax:
+    content: public Dictionary<string, ToscaNodeTemplate> NodeTemplates { get; set; }
+    content.vb: Public Property NodeTemplates As Dictionary(Of String, ToscaNodeTemplate)
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaNodeTemplate}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaTopologyTemplate.RelationshipTemplates
+  commentId: P:Toscana.ToscaTopologyTemplate.RelationshipTemplates
+  id: RelationshipTemplates
+  parent: Toscana.ToscaTopologyTemplate
+  langs:
+  - csharp
+  - vb
+  name: RelationshipTemplates
+  nameWithType: ToscaTopologyTemplate.RelationshipTemplates
+  fullName: Toscana.ToscaTopologyTemplate.RelationshipTemplates
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaTopologyTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: RelationshipTemplates
+    path: Toscana/ToscaTopologyTemplate.cs
+    startLine: 39
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nAn optional list of relationship templates for the Topology Template.\n"
+  example: []
+  syntax:
+    content: public Dictionary<string, ToscaRelationshipTemplate> RelationshipTemplates { get; set; }
+    content.vb: Public Property RelationshipTemplates As Dictionary(Of String, ToscaRelationshipTemplate)
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaRelationshipTemplate}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaTopologyTemplate.Groups
+  commentId: P:Toscana.ToscaTopologyTemplate.Groups
+  id: Groups
+  parent: Toscana.ToscaTopologyTemplate
+  langs:
+  - csharp
+  - vb
+  name: Groups
+  nameWithType: ToscaTopologyTemplate.Groups
+  fullName: Toscana.ToscaTopologyTemplate.Groups
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaTopologyTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Groups
+    path: Toscana/ToscaTopologyTemplate.cs
+    startLine: 44
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nAn optional list of Group definitions whose members are node templates defined within this same Topology Template.\n"
+  example: []
+  syntax:
+    content: public Dictionary<string, ToscaGroup> Groups { get; set; }
+    content.vb: Public Property Groups As Dictionary(Of String, ToscaGroup)
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaGroup}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaTopologyTemplate.Policies
+  commentId: P:Toscana.ToscaTopologyTemplate.Policies
+  id: Policies
+  parent: Toscana.ToscaTopologyTemplate
+  langs:
+  - csharp
+  - vb
+  name: Policies
+  nameWithType: ToscaTopologyTemplate.Policies
+  fullName: Toscana.ToscaTopologyTemplate.Policies
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaTopologyTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Policies
+    path: Toscana/ToscaTopologyTemplate.cs
+    startLine: 49
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nAn optional list of Policy definitions for the Topology Template.\n"
+  example: []
+  syntax:
+    content: public Dictionary<string, ToscaPolicy> Policies { get; set; }
+    content.vb: Public Property Policies As Dictionary(Of String, ToscaPolicy)
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPolicy}
   modifiers.csharp:
   - public
   - get
@@ -164,16 +321,54 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Outputs
     path: Toscana/ToscaTopologyTemplate.cs
-    startLine: 17
+    startLine: 54
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nAn optional list of output parameters (i.e., as parameter definitions) for the Topology Template.\n"
+  example: []
   syntax:
-    content: public Dictionary<string, ToscaTopologyOutput> Outputs { get; set; }
-    content.vb: Public Property Outputs As Dictionary(Of String, ToscaTopologyOutput)
+    content: public Dictionary<string, ToscaParameter> Outputs { get; set; }
+    content.vb: Public Property Outputs As Dictionary(Of String, ToscaParameter)
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaTopologyOutput}
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaParameter}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaTopologyTemplate.SubstitutionMappings
+  commentId: P:Toscana.ToscaTopologyTemplate.SubstitutionMappings
+  id: SubstitutionMappings
+  parent: Toscana.ToscaTopologyTemplate
+  langs:
+  - csharp
+  - vb
+  name: SubstitutionMappings
+  nameWithType: ToscaTopologyTemplate.SubstitutionMappings
+  fullName: Toscana.ToscaTopologyTemplate.SubstitutionMappings
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaTopologyTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: SubstitutionMappings
+    path: Toscana/ToscaTopologyTemplate.cs
+    startLine: 61
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nAn optional declaration that exports the topology template as an implementation of a Node type. \nThis also includes the mappings between the external Node Types named capabilities and requirements \nto existing implementations of those capabilities and requirements on Node templates declared within the topology template.\n"
+  example: []
+  syntax:
+    content: public object SubstitutionMappings { get; set; }
+    content.vb: Public Property SubstitutionMappings As Object
+    parameters: []
+    return:
+      type: System.Object
   modifiers.csharp:
   - public
   - get
@@ -912,16 +1107,23 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaNodeTemplate}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaNodeTemplate}
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaParameter}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaParameter}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaNodeTemplate>
-  nameWithType: Dictionary<String, ToscaNodeTemplate>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaNodeTemplate>
-  nameWithType.vb: Dictionary(Of String, ToscaNodeTemplate)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaNodeTemplate)
-  name.vb: Dictionary(Of String, ToscaNodeTemplate)
+  name: Dictionary<String, ToscaParameter>
+  nameWithType: Dictionary<String, ToscaParameter>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaParameter>
+  nameWithType.vb: Dictionary(Of String, ToscaParameter)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaParameter)
+  name.vb: Dictionary(Of String, ToscaParameter)
   spec.csharp:
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
@@ -939,10 +1141,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaNodeTemplate
-    name: ToscaNodeTemplate
-    nameWithType: ToscaNodeTemplate
-    fullName: Toscana.ToscaNodeTemplate
+  - uid: Toscana.ToscaParameter
+    name: ToscaParameter
+    nameWithType: ToscaParameter
+    fullName: Toscana.ToscaParameter
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -963,10 +1165,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaNodeTemplate
-    name: ToscaNodeTemplate
-    nameWithType: ToscaNodeTemplate
-    fullName: Toscana.ToscaNodeTemplate
+  - uid: Toscana.ToscaParameter
+    name: ToscaParameter
+    nameWithType: ToscaParameter
+    fullName: Toscana.ToscaParameter
   - name: )
     nameWithType: )
     fullName: )
@@ -1027,16 +1229,16 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaTopologyInput}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaTopologyInput}
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaNodeTemplate}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaNodeTemplate}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaTopologyInput>
-  nameWithType: Dictionary<String, ToscaTopologyInput>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaTopologyInput>
-  nameWithType.vb: Dictionary(Of String, ToscaTopologyInput)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaTopologyInput)
-  name.vb: Dictionary(Of String, ToscaTopologyInput)
+  name: Dictionary<String, ToscaNodeTemplate>
+  nameWithType: Dictionary<String, ToscaNodeTemplate>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaNodeTemplate>
+  nameWithType.vb: Dictionary(Of String, ToscaNodeTemplate)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaNodeTemplate)
+  name.vb: Dictionary(Of String, ToscaNodeTemplate)
   spec.csharp:
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
@@ -1054,10 +1256,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaTopologyInput
-    name: ToscaTopologyInput
-    nameWithType: ToscaTopologyInput
-    fullName: Toscana.ToscaTopologyInput
+  - uid: Toscana.ToscaNodeTemplate
+    name: ToscaNodeTemplate
+    nameWithType: ToscaNodeTemplate
+    fullName: Toscana.ToscaNodeTemplate
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1078,23 +1280,23 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaTopologyInput
-    name: ToscaTopologyInput
-    nameWithType: ToscaTopologyInput
-    fullName: Toscana.ToscaTopologyInput
+  - uid: Toscana.ToscaNodeTemplate
+    name: ToscaNodeTemplate
+    nameWithType: ToscaNodeTemplate
+    fullName: Toscana.ToscaNodeTemplate
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaTopologyOutput}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaTopologyOutput}
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaRelationshipTemplate}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaRelationshipTemplate}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaTopologyOutput>
-  nameWithType: Dictionary<String, ToscaTopologyOutput>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaTopologyOutput>
-  nameWithType.vb: Dictionary(Of String, ToscaTopologyOutput)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaTopologyOutput)
-  name.vb: Dictionary(Of String, ToscaTopologyOutput)
+  name: Dictionary<String, ToscaRelationshipTemplate>
+  nameWithType: Dictionary<String, ToscaRelationshipTemplate>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaRelationshipTemplate>
+  nameWithType.vb: Dictionary(Of String, ToscaRelationshipTemplate)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaRelationshipTemplate)
+  name.vb: Dictionary(Of String, ToscaRelationshipTemplate)
   spec.csharp:
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
@@ -1112,10 +1314,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaTopologyOutput
-    name: ToscaTopologyOutput
-    nameWithType: ToscaTopologyOutput
-    fullName: Toscana.ToscaTopologyOutput
+  - uid: Toscana.ToscaRelationshipTemplate
+    name: ToscaRelationshipTemplate
+    nameWithType: ToscaRelationshipTemplate
+    fullName: Toscana.ToscaRelationshipTemplate
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1136,10 +1338,126 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaTopologyOutput
-    name: ToscaTopologyOutput
-    nameWithType: ToscaTopologyOutput
-    fullName: Toscana.ToscaTopologyOutput
+  - uid: Toscana.ToscaRelationshipTemplate
+    name: ToscaRelationshipTemplate
+    nameWithType: ToscaRelationshipTemplate
+    fullName: Toscana.ToscaRelationshipTemplate
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaGroup}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaGroup}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, ToscaGroup>
+  nameWithType: Dictionary<String, ToscaGroup>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaGroup>
+  nameWithType.vb: Dictionary(Of String, ToscaGroup)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaGroup)
+  name.vb: Dictionary(Of String, ToscaGroup)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaGroup
+    name: ToscaGroup
+    nameWithType: ToscaGroup
+    fullName: Toscana.ToscaGroup
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaGroup
+    name: ToscaGroup
+    nameWithType: ToscaGroup
+    fullName: Toscana.ToscaGroup
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPolicy}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPolicy}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, ToscaPolicy>
+  nameWithType: Dictionary<String, ToscaPolicy>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaPolicy>
+  nameWithType.vb: Dictionary(Of String, ToscaPolicy)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaPolicy)
+  name.vb: Dictionary(Of String, ToscaPolicy)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaPolicy
+    name: ToscaPolicy
+    nameWithType: ToscaPolicy
+    fullName: Toscana.ToscaPolicy
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaPolicy
+    name: ToscaPolicy
+    nameWithType: ToscaPolicy
+    fullName: Toscana.ToscaPolicy
   - name: )
     nameWithType: )
     fullName: )

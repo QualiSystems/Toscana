@@ -624,7 +624,8 @@ topology_template:
             var topologyInputCpus = topologyTemplate.Inputs["cpus"];
             topologyInputCpus.Type.Should().Be("integer");
             topologyInputCpus.Description.Should().Be("Number of CPUs for the server.");
-            topologyInputCpus.Constraints.Single()["valid_values"].ShouldAllBeEquivalentTo(new[] {1, 2, 4, 8});
+            var validValues = (List<object>) topologyInputCpus.Constraints.Single()["valid_values"];
+            validValues.ShouldAllBeEquivalentTo(new[] {1, 2, 4, 8});
 
             var topologyOutput = topologyTemplate.Outputs["server_ip"];
             topologyOutput.Description.Should().Be("The private IP address of the provisioned server.");

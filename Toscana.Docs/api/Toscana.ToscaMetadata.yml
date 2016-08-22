@@ -23,10 +23,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetadata
     path: Toscana/ToscaMetadata.cs
-    startLine: 6
+    startLine: 10
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nRepresents the content of TOSCA.met file which provides entry information for a TOSCA orchestrator \nprocessing the CSAR file.\n"
+  example: []
   syntax:
     content: public class ToscaMetadata
     content.vb: Public Class ToscaMetadata
@@ -67,10 +69,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetaFileVersion
     path: Toscana/ToscaMetadata.cs
-    startLine: 8
+    startLine: 15
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nSpecifies TOSCA.meta file version\n"
+  example: []
   syntax:
     content: >-
       [YamlMember(Alias = "TOSCA-Meta-File-Version")]
@@ -129,10 +133,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: CsarVersion
     path: Toscana/ToscaMetadata.cs
-    startLine: 12
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nDenotes the verison of CSAR\nDue to the simplified structure of the CSAR file and TOSCA.meta file compared to TOSCA 1.0, \nthe CSAR-Version keyword listed in block_0 of the meta-file is required to denote version 1.1.\n"
+  example: []
   syntax:
     content: >-
       [YamlMember(Alias = "CSAR-Version")]
@@ -191,10 +197,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: CreatedBy
     path: Toscana/ToscaMetadata.cs
-    startLine: 16
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nSpecifies who created the CSAR  \n"
+  example: []
   syntax:
     content: >-
       [YamlMember(Alias = "Created-By")]
@@ -253,10 +261,12 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntryDefinitions
     path: Toscana/ToscaMetadata.cs
-    startLine: 20
+    startLine: 39
   assemblies:
   - Toscana
   namespace: Toscana
+  summary: "\nEntry-Definitions keyword pointing to a valid TOSCA definitions YAML file that a TOSCA \norchestrator should use as entry for parsing the contents of the overall CSAR file.\n"
+  example: []
   syntax:
     content: >-
       [YamlMember(Alias = "Entry-Definitions")]

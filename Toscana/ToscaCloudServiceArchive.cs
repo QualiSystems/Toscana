@@ -28,6 +28,8 @@ namespace Toscana
         private readonly Dictionary<string, ToscaServiceTemplate> toscaServiceTemplates;
         private readonly Dictionary<string, byte[]> fileContents;
         private readonly Dictionary<string, ToscaCapabilityType> capabilityTypes;
+        private readonly Dictionary<string, ToscaArtifactType> artifactTypes;
+        private readonly Dictionary<string, ToscaRelationshipType> relationshipTypes;
 
         #endregion
 
@@ -45,6 +47,8 @@ namespace Toscana
             toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
             nodeTypes = new Dictionary<string, ToscaNodeType>();
             capabilityTypes = new Dictionary<string, ToscaCapabilityType>();
+            artifactTypes = new Dictionary<string, ToscaArtifactType>();
+            relationshipTypes = new Dictionary<string, ToscaRelationshipType>();
             if (archiveEntries == null)
             {
                 fileContents = new Dictionary<string, byte[]>();
@@ -94,6 +98,22 @@ namespace Toscana
         public IReadOnlyDictionary<string, ToscaCapabilityType> CapabilityTypes
         {
             get { return capabilityTypes; }
+        }
+
+        /// <summary>
+        /// Returns artifact types from all the Service Templates
+        /// </summary>
+        public IReadOnlyDictionary<string, ToscaArtifactType> ArtifactTypes
+        {
+            get { return artifactTypes; }
+        }
+
+        /// <summary>
+        /// Returns relationship types from all the Service Templates
+        /// </summary>
+        public IReadOnlyDictionary<string, ToscaRelationshipType> RelationshipTypes
+        {
+            get { return relationshipTypes; }
         }
 
         #endregion

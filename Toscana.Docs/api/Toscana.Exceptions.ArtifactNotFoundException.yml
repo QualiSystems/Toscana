@@ -8,6 +8,7 @@ items:
   - Toscana.Exceptions.ArtifactNotFoundException.#ctor
   - Toscana.Exceptions.ArtifactNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   - Toscana.Exceptions.ArtifactNotFoundException.#ctor(System.String)
+  - Toscana.Exceptions.ArtifactNotFoundException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
@@ -101,7 +102,7 @@ items:
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\nDefault constructor \n"
+  summary: "\nInitialize an instance of the exception \n"
   example: []
   syntax:
     content: public ArtifactNotFoundException()
@@ -128,16 +129,57 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ArtifactNotFoundException.cs
-    startLine: 18
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes an instance of an exception with a message\n"
+  example: []
   syntax:
     content: public ArtifactNotFoundException(string message)
     content.vb: Public Sub New(message As String)
     parameters:
     - id: message
       type: System.String
+      description: ''
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Toscana.Exceptions.ArtifactNotFoundException.#ctor(System.String,System.Exception)
+  commentId: M:Toscana.Exceptions.ArtifactNotFoundException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Toscana.Exceptions.ArtifactNotFoundException
+  langs:
+  - csharp
+  - vb
+  name: ArtifactNotFoundException(String, Exception)
+  nameWithType: ArtifactNotFoundException.ArtifactNotFoundException(String, Exception)
+  fullName: Toscana.Exceptions.ArtifactNotFoundException.ArtifactNotFoundException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/Exceptions/ArtifactNotFoundException.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/Exceptions/ArtifactNotFoundException.cs
+    startLine: 31
+  assemblies:
+  - Toscana
+  namespace: Toscana.Exceptions
+  summary: "\nInitializes an instance of the exception with a message and an inner exception\n"
+  example: []
+  syntax:
+    content: public ArtifactNotFoundException(string message, Exception exception)
+    content.vb: Public Sub New(message As String, exception As Exception)
+    parameters:
+    - id: message
+      type: System.String
+      description: Error message
+    - id: exception
+      type: System.Exception
+      description: Inner exception
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -160,18 +202,29 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ArtifactNotFoundException.cs
-    startLine: 22
+    startLine: 42
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
+  summary: "\nInitializes and instance of exception\n"
+  example: []
   syntax:
     content: protected ArtifactNotFoundException(SerializationInfo info, StreamingContext context)
     content.vb: Protected Sub New(info As SerializationInfo, context As StreamingContext)
     parameters:
     - id: info
       type: System.Runtime.Serialization.SerializationInfo
+      description: Serialization info
     - id: context
       type: System.Runtime.Serialization.StreamingContext
+      description: Streaming context
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: 'The <em>info</em> parameter is null. '
+  - type: System.Runtime.Serialization.SerializationException
+    commentId: T:System.Runtime.Serialization.SerializationException
+    description: 'The class name is null or <xref href="System.Exception.HResult" data-throw-if-not-resolved="false"></xref> is zero (0). '
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -1180,6 +1233,10 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+- uid: System.Runtime.Serialization.SerializationException
+  commentId: T:System.Runtime.Serialization.SerializationException
 - uid: System.Runtime.Serialization.SerializationInfo
   commentId: T:System.Runtime.Serialization.SerializationInfo
   parent: System.Runtime.Serialization

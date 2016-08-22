@@ -4,6 +4,8 @@
   items:
   - uid: Toscana.ToscaArtifact
     name: ToscaArtifact
+  - uid: Toscana.ToscaArtifactType
+    name: ToscaArtifactType
   - uid: Toscana.ToscaAttributeAssignment
     name: ToscaAttributeAssignment
   - uid: Toscana.ToscaAttributeDefinition
@@ -16,8 +18,12 @@
     name: ToscaCapabilityType
   - uid: Toscana.ToscaCloudServiceArchive
     name: ToscaCloudServiceArchive
+  - uid: Toscana.ToscaCredential
+    name: ToscaCredential
   - uid: Toscana.ToscaDefaults
     name: ToscaDefaults
+  - uid: Toscana.ToscaGroup
+    name: ToscaGroup
   - uid: Toscana.ToscaImport
     name: ToscaImport
   - uid: Toscana.ToscaInterfaceDefinition
@@ -28,14 +34,25 @@
     name: ToscaNodeTemplate
   - uid: Toscana.ToscaNodeType
     name: ToscaNodeType
-  - uid: Toscana.ToscaObject
-    name: ToscaObject
+  - uid: Toscana.ToscaObject`1
+    name: ToscaObject<T>
+    name.vb: ToscaObject(Of T)
+  - uid: Toscana.ToscaParameter
+    name: ToscaParameter
+  - uid: Toscana.ToscaPolicy
+    name: ToscaPolicy
+  - uid: Toscana.ToscaPropertyAssignment
+    name: ToscaPropertyAssignment
   - uid: Toscana.ToscaPropertyDefinition
     name: ToscaPropertyDefinition
   - uid: Toscana.ToscaPropertyStatus
     name: ToscaPropertyStatus
+  - uid: Toscana.ToscaRelationshipTemplate
+    name: ToscaRelationshipTemplate
   - uid: Toscana.ToscaRelationshipType
     name: ToscaRelationshipType
+  - uid: Toscana.ToscaRepository
+    name: ToscaRepository
   - uid: Toscana.ToscaRequirement
     name: ToscaRequirement
   - uid: Toscana.ToscaRequirementAssignment
@@ -44,10 +61,6 @@
     name: ToscaServiceTemplate
   - uid: Toscana.ToscaServiceTemplateMetadata
     name: ToscaServiceTemplateMetadata
-  - uid: Toscana.ToscaTopologyInput
-    name: ToscaTopologyInput
-  - uid: Toscana.ToscaTopologyOutput
-    name: ToscaTopologyOutput
   - uid: Toscana.ToscaTopologyTemplate
     name: ToscaTopologyTemplate
 - uid: Toscana.Exceptions
@@ -69,5 +82,7 @@
     name: ToscaNodeTypeNotFoundException
   - uid: Toscana.Exceptions.ToscaParsingException
     name: ToscaParsingException
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+    name: ToscaRelationshipTypeNotFound
   - uid: Toscana.Exceptions.ToscaValidationException
     name: ToscaValidationException
