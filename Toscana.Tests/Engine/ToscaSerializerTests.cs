@@ -12,25 +12,27 @@ namespace Toscana.Tests.Engine
         [Test]
         public void Service_Template_Can_Be_Serialized_And_Deserialized()
         {
-            using (var stream = new MemoryStream())
+            byte[] bytes;
+            using (var readingStream = new MemoryStream())
             {
                 var serviceTemplateSerializer = new ToscaSerializer<ToscaServiceTemplate>(new TypeConvertersFactory());
-                var serviceTemplateDeserializer = ToscaDeserializerTests.CreateToscaDeserializer();
 
                 var serviceTemplate = new ToscaServiceTemplate();
                 serviceTemplate.ToscaDefinitionsVersion = "tosca_simple_yaml_1_0";
                 serviceTemplate.NodeTypes.Add("node", new ToscaNodeType { Version = new Version(1, 2, 3, 4) });
 
-                using (var writer = new StreamWriter(stream))
-                {
-                    serviceTemplateSerializer.Serialize(writer, serviceTemplate);
-                    writer.Flush();
-                    stream.Position = 0;
-                    var deserializedServiceTemplate = serviceTemplateDeserializer.Deserialize(stream);
+                serviceTemplateSerializer.Serialize(readingStream, serviceTemplate);
 
-                    // Assert
-                    deserializedServiceTemplate.NodeTypes["node"].Version.Should().Be(new Version(1, 2, 3, 4));
-                }
+                bytes = readingStream.GetBuffer();
+            }
+
+            var serviceTemplateDeserializer = ToscaDeserializerTests.CreateToscaDeserializer();
+            using (var writingStream = new MemoryStream(bytes))
+            {
+                var deserializedServiceTemplate = serviceTemplateDeserializer.Deserialize(writingStream);
+
+                // Assert
+                deserializedServiceTemplate.NodeTypes["node"].Version.Should().Be(new Version(1, 2, 3, 4));
             }
         }
     }

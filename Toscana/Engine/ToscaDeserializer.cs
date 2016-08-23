@@ -15,12 +15,10 @@ namespace Toscana.Engine
 
     internal class ToscaDeserializer<T> : IToscaDeserializer<T>
     {
-        private readonly Deserializer deserializer;
+        private readonly Deserializer deserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
 
         public ToscaDeserializer(ITypeConvertersFactory typeConvertersFactory)
         {
-            deserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
-
             foreach (var yamlTypeConverter in typeConvertersFactory.GetTypeConverter())
             {
                 deserializer.RegisterTypeConverter(yamlTypeConverter);

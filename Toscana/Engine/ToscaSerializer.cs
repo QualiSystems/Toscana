@@ -6,7 +6,7 @@ namespace Toscana.Engine
 {
     internal interface IToscaSerializer<in T>
     {
-        void Serialize(TextWriter writer, T toscaObject);
+        void Serialize(Stream stream, T toscaObject);
     }
 
     internal class ToscaSerializer<T> : IToscaSerializer<T>
@@ -21,9 +21,13 @@ namespace Toscana.Engine
             }
         }
 
-        public void Serialize(TextWriter writer, T toscaObject)
+        public void Serialize(Stream stream, T toscaObject)
         {
-            serializer.Serialize(writer, toscaObject);
+            using (var writer = new StreamWriter(stream))
+            {
+                serializer.Serialize(writer, toscaObject);
+                writer.Flush();
+            }
         }
     }
 }

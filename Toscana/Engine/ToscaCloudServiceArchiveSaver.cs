@@ -57,19 +57,13 @@ namespace Toscana.Engine
         private void SaveServiceTemplates(ZipArchive zipArchive, KeyValuePair<string, ToscaServiceTemplate> serviceTemplate)
         {
             var serviceTemplateEntry = zipArchive.CreateEntry(serviceTemplate.Key);
-            using (var writer = new StreamWriter(serviceTemplateEntry.Open()))
-            {
-                serviceTemplateSerializer.Serialize(writer, serviceTemplate.Value);
-            }
+            serviceTemplateSerializer.Serialize(serviceTemplateEntry.Open(), serviceTemplate.Value);
         }
 
         private void SaveMetadata(ToscaCloudServiceArchive toscaCloudServiceArchive, ZipArchive zipArchive)
         {
             var metadataEntry = zipArchive.CreateEntry(ToscaCloudServiceArchiveLoader.ToscaMetaFileName);
-            using (var writer = new StreamWriter(metadataEntry.Open()))
-            {
-                metadataSerializer.Serialize(writer, toscaCloudServiceArchive.ToscaMetadata);
-            }
+            metadataSerializer.Serialize(metadataEntry.Open(), toscaCloudServiceArchive.ToscaMetadata);
         }
     }
 }
