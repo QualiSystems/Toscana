@@ -126,6 +126,10 @@
     <Error Condition="!Exists('..\packages\docfx.msbuild.2.3.0\build\docfx.msbuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\docfx.msbuild.2.3.0\build\docfx.msbuild.targets'))" />
   </Target>
   <Import Project="..\packages\docfx.msbuild.2.3.0\build\docfx.msbuild.targets" Condition="Exists('..\packages\docfx.msbuild.2.3.0\build\docfx.msbuild.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(WebProjectOutputDir)\docs" md "$(WebProjectOutputDir)\docs"
+start /MIN xcopy /s /y /R "$(MSBuildProjectDirectory)\_site\*.*" "$(WebProjectOutputDir)\docs"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
