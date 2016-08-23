@@ -94,15 +94,19 @@
     <Compile Include="Common\ZipArchiveExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
+    <Compile Include="Engine\ToscaSerializer.cs" />
     <Compile Include="Engine\PathEqualityComparer.cs" />
     <Compile Include="Engine\PoorManContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
+    <Compile Include="Engine\ToscaCloudServiceArchiveSaver.cs" />
     <Compile Include="Engine\ToscaNodeTypeInheritanceWalker.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
+    <Compile Include="Engine\TypeConvertersFactory.cs" />
     <Compile Include="Engine\ValidationResultEqualityComparer.cs" />
+    <Compile Include="Engine\VersionTypeConverter.cs" />
     <Compile Include="Exceptions\ArtifactNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />

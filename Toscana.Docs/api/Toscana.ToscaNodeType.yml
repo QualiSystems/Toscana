@@ -19,6 +19,7 @@ items:
   - Toscana.ToscaNodeType.Properties
   - Toscana.ToscaNodeType.Requirements
   - Toscana.ToscaNodeType.SetDerivedFromToRoot(System.String)
+  - Toscana.ToscaNodeType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
   - Toscana.ToscaNodeType.Version
   langs:
   - csharp
@@ -34,20 +35,23 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodeType
     path: Toscana/ToscaNodeType.cs
-    startLine: 11
+    startLine: 12
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nA Node Type is a reusable entity that defines the type of one or more Node Templates. \nAs such, a Node Type defines the structure of observable properties via a Properties Definition, the Requirements and Capabilities of the node as well as its supported interfaces.\n"
   example: []
   syntax:
-    content: 'public class ToscaNodeType : ToscaObject<ToscaNodeType>'
+    content: 'public class ToscaNodeType : ToscaObject<ToscaNodeType>, IValidatableObject'
     content.vb: >-
       Public Class ToscaNodeType
           Inherits ToscaObject(Of ToscaNodeType)
+          Implements IValidatableObject
   inheritance:
   - System.Object
   - Toscana.ToscaObject{Toscana.ToscaNodeType}
+  implements:
+  - System.ComponentModel.DataAnnotations.IValidatableObject
   inheritedMembers:
   - Toscana.ToscaObject{Toscana.ToscaNodeType}.CloudServiceArchive
   - Toscana.ToscaObject{Toscana.ToscaNodeType}.DerivedFrom
@@ -86,7 +90,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaNodeType.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
@@ -117,7 +121,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaNodeType.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - Toscana
   namespace: Toscana
@@ -153,7 +157,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaNodeType.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
@@ -189,7 +193,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaNodeType.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
@@ -225,7 +229,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaNodeType.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - Toscana
   namespace: Toscana
@@ -261,7 +265,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Requirements
     path: Toscana/ToscaNodeType.cs
-    startLine: 49
+    startLine: 50
   assemblies:
   - Toscana
   namespace: Toscana
@@ -297,7 +301,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capabilities
     path: Toscana/ToscaNodeType.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - Toscana
   namespace: Toscana
@@ -333,7 +337,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaNodeType.cs
-    startLine: 59
+    startLine: 60
   assemblies:
   - Toscana
   namespace: Toscana
@@ -369,7 +373,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Artifacts
     path: Toscana/ToscaNodeType.cs
-    startLine: 64
+    startLine: 65
   assemblies:
   - Toscana
   namespace: Toscana
@@ -405,7 +409,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaNodeType.cs
-    startLine: 71
+    startLine: 72
   assemblies:
   - Toscana
   namespace: Toscana
@@ -448,7 +452,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllRequirements
     path: Toscana/ToscaNodeType.cs
-    startLine: 89
+    startLine: 90
   assemblies:
   - Toscana
   namespace: Toscana
@@ -482,7 +486,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllCapabilityTypes
     path: Toscana/ToscaNodeType.cs
-    startLine: 105
+    startLine: 106
   assemblies:
   - Toscana
   namespace: Toscana
@@ -516,7 +520,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddRequirement
     path: Toscana/ToscaNodeType.cs
-    startLine: 124
+    startLine: 125
   assemblies:
   - Toscana
   namespace: Toscana
@@ -554,7 +558,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaNodeType.cs
-    startLine: 136
+    startLine: 137
   assemblies:
   - Toscana
   namespace: Toscana
@@ -592,7 +596,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllProperties
     path: Toscana/ToscaNodeType.cs
-    startLine: 148
+    startLine: 149
   assemblies:
   - Toscana
   namespace: Toscana
@@ -608,6 +612,41 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: Toscana.ToscaNodeType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  commentId: M:Toscana.ToscaNodeType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  id: System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  isEii: true
+  parent: Toscana.ToscaNodeType
+  langs:
+  - csharp
+  - vb
+  name: IValidatableObject.Validate(ValidationContext)
+  nameWithType: ToscaNodeType.IValidatableObject.Validate(ValidationContext)
+  fullName: Toscana.ToscaNodeType.System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaNodeType.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
+    path: Toscana/ToscaNodeType.cs
+    startLine: 162
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  syntax:
+    content: IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+    content.vb: Function System.ComponentModel.DataAnnotations.IValidatableObject.Validate(validationContext As ValidationContext) As IEnumerable(Of ValidationResult) Implements IValidatableObject.Validate
+    parameters:
+    - id: validationContext
+      type: System.ComponentModel.DataAnnotations.ValidationContext
+    return:
+      type: System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}
+  implements:
+  - System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType.vb: ToscaNodeType.System.ComponentModel.DataAnnotations.IValidatableObject.Validate(ValidationContext)
+  name.vb: System.ComponentModel.DataAnnotations.IValidatableObject.Validate(ValidationContext)
 references:
 - uid: Toscana
   commentId: N:Toscana
@@ -662,6 +701,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.ComponentModel.DataAnnotations.IValidatableObject
+  commentId: T:System.ComponentModel.DataAnnotations.IValidatableObject
+  parent: System.ComponentModel.DataAnnotations
+  isExternal: true
+  name: IValidatableObject
+  nameWithType: IValidatableObject
+  fullName: System.ComponentModel.DataAnnotations.IValidatableObject
 - uid: Toscana.ToscaObject{Toscana.ToscaNodeType}.CloudServiceArchive
   commentId: F:Toscana.ToscaObject{Toscana.ToscaNodeType}.CloudServiceArchive
   parent: Toscana.ToscaObject{Toscana.ToscaNodeType}
@@ -1237,6 +1283,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.ComponentModel.DataAnnotations
+  commentId: N:System.ComponentModel.DataAnnotations
+  isExternal: false
+  name: System.ComponentModel.DataAnnotations
+  nameWithType: System.ComponentModel.DataAnnotations
+  fullName: System.ComponentModel.DataAnnotations
 - uid: Toscana.ToscaObject`1.CloudServiceArchive
   commentId: F:Toscana.ToscaObject`1.CloudServiceArchive
   isExternal: false
@@ -2372,6 +2424,137 @@ references:
   - name: TValue
     nameWithType: TValue
     fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  commentId: M:System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  parent: System.ComponentModel.DataAnnotations.IValidatableObject
+  isExternal: true
+  name: Validate(ValidationContext)
+  nameWithType: IValidatableObject.Validate(ValidationContext)
+  fullName: System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  spec.csharp:
+  - uid: System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+    name: Validate
+    nameWithType: IValidatableObject.Validate
+    fullName: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.ComponentModel.DataAnnotations.ValidationContext
+    name: ValidationContext
+    nameWithType: ValidationContext
+    fullName: System.ComponentModel.DataAnnotations.ValidationContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+    name: Validate
+    nameWithType: IValidatableObject.Validate
+    fullName: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.ComponentModel.DataAnnotations.ValidationContext
+    name: ValidationContext
+    nameWithType: ValidationContext
+    fullName: System.ComponentModel.DataAnnotations.ValidationContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ComponentModel.DataAnnotations.ValidationContext
+  commentId: T:System.ComponentModel.DataAnnotations.ValidationContext
+  parent: System.ComponentModel.DataAnnotations
+  isExternal: true
+  name: ValidationContext
+  nameWithType: ValidationContext
+  fullName: System.ComponentModel.DataAnnotations.ValidationContext
+- uid: System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}
+  commentId: T:System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<ValidationResult>
+  nameWithType: IEnumerable<ValidationResult>
+  fullName: System.Collections.Generic.IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult>
+  nameWithType.vb: IEnumerable(Of ValidationResult)
+  fullname.vb: System.Collections.Generic.IEnumerable(Of System.ComponentModel.DataAnnotations.ValidationResult)
+  name.vb: IEnumerable(Of ValidationResult)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.ComponentModel.DataAnnotations.ValidationResult
+    name: ValidationResult
+    nameWithType: ValidationResult
+    fullName: System.ComponentModel.DataAnnotations.ValidationResult
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.ComponentModel.DataAnnotations.ValidationResult
+    name: ValidationResult
+    nameWithType: ValidationResult
+    fullName: System.ComponentModel.DataAnnotations.ValidationResult
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullname.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )

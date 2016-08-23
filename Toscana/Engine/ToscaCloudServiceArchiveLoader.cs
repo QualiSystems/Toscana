@@ -77,6 +77,7 @@ namespace Toscana.Engine
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
         /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
         /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
+        /// <exception cref="InvalidDataException">The contents of the stream could not be interpreted as a zip archive or the archive is corrupt and cannot be read.</exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         public ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null)
         {
@@ -85,7 +86,7 @@ namespace Toscana.Engine
                 var archiveEntries = archive.GetArchiveEntriesDictionary();
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
-                var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntries);
+                var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath);
                 validator.Validate(toscaCloudServiceArchive);
                 return toscaCloudServiceArchive;
@@ -106,12 +107,15 @@ namespace Toscana.Engine
                     {
                         cloudServiceArchive.AddArtifact(artifactPath, zipArchiveEntry.Open().ReadAllBytes());
                     }
-                    var artifactFullPath = fileSystem.Path.Combine(alternativePath, artifactPath);
-                    if (fileSystem.File.Exists(artifactFullPath))
+                    if (alternativePath != null)
                     {
-                        using (var stream = fileSystem.File.Open(artifactFullPath, FileMode.Open))
+                        var artifactFullPath = fileSystem.Path.Combine(alternativePath, artifactPath);
+                        if (fileSystem.File.Exists(artifactFullPath))
                         {
-                            cloudServiceArchive.AddArtifact(artifactPath, stream.ReadAllBytes());
+                            using (var stream = fileSystem.File.Open(artifactFullPath, FileMode.Open))
+                            {
+                                cloudServiceArchive.AddArtifact(artifactPath, stream.ReadAllBytes());
+                            }
                         }
                     }
                 }
@@ -173,6 +177,6 @@ namespace Toscana.Engine
             return toscaMetaArchiveEntry;
         }
 
-        private const string ToscaMetaFileName = "TOSCA.meta";
+        public const string ToscaMetaFileName = "TOSCA.meta";
     }
 }

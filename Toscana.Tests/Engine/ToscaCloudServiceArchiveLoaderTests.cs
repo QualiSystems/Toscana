@@ -485,6 +485,10 @@ tosca_definitions_version: tosca_simple_yaml_1_0
  
 node_types:
   example.TransactionSubsystem:
+    artifacts:
+      icon:
+        type: image
+        file: files\image1.png
     properties:
       num_cpus:
         type: integer";

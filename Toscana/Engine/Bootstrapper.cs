@@ -19,6 +19,10 @@ namespace Toscana.Engine
             poorManContainer.Register<IToscaParser<ToscaMetadata>, ToscaParser<ToscaMetadata>>();
             poorManContainer.Register<IToscaServiceTemplateLoader, ToscaServiceTemplateLoader>();
             poorManContainer.Register<IToscaCloudServiceArchiveLoader, ToscaCloudServiceArchiveLoader>();
+            poorManContainer.Register<IToscaCloudServiceArchiveSaver, ToscaCloudServiceArchiveSaver>();
+            poorManContainer.Register<IToscaSerializer<ToscaMetadata>, ToscaSerializer<ToscaMetadata>>();
+            poorManContainer.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
+            poorManContainer.Register<ITypeConvertersFactory, TypeConvertersFactory>();
         }
 
         public IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
@@ -50,6 +54,11 @@ namespace Toscana.Engine
         public IToscaValidator<ToscaCloudServiceArchive> GetToscaCloudServiceValidator()
         {
             return poorManContainer.GetInstance<IToscaValidator<ToscaCloudServiceArchive>>();
+        }
+
+        public IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
+        {
+            return poorManContainer.GetInstance<IToscaCloudServiceArchiveSaver>();
         }
     }
 }

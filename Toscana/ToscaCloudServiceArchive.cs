@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
@@ -33,15 +34,14 @@ namespace Toscana
 
         #endregion
 
-        #region Public ctor
+        #region Public ctors
+
         /// <summary>
         /// Instantiate an instance of <see cref="ToscaCloudServiceArchive"/> from a ToscaMetadata and an optional list of archive 
         /// entries of its content.
         /// </summary>
         /// <param name="toscaMetadata">An instance of Tosca Metadata</param>
-        /// <param name="archiveEntries">Optional list of archive entries containing TOSCA yaml file and other artifacts</param>
-        public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata,
-            IReadOnlyDictionary<string, ZipArchiveEntry> archiveEntries = null)
+        public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata)
         {
             this.toscaMetadata = toscaMetadata;
             toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
@@ -49,19 +49,16 @@ namespace Toscana
             capabilityTypes = new Dictionary<string, ToscaCapabilityType>();
             artifactTypes = new Dictionary<string, ToscaArtifactType>();
             relationshipTypes = new Dictionary<string, ToscaRelationshipType>();
-            if (archiveEntries == null)
-            {
-                fileContents = new Dictionary<string, byte[]>();
-            }
-            else
-            {
-                fileContents = new Dictionary<string, byte[]>(new PathEqualityComparer());
-                foreach (var archiveEntry in archiveEntries)
-                {
-                    fileContents.Add(archiveEntry.Value.FullName, archiveEntry.Value.Open().ReadAllBytes());
-                }
-            }
+            fileContents = new Dictionary<string, byte[]>(new PathEqualityComparer());
             FillDefaults();
+
+        }
+
+        /// <summary>
+        /// Initializes an instance of <see cref="ToscaCloudServiceArchive"/> and fills TOSCA defaults
+        /// </summary>
+        public ToscaCloudServiceArchive(): this(new ToscaMetadata())
+        {
         }
 
         #endregion
@@ -114,6 +111,14 @@ namespace Toscana
         public IReadOnlyDictionary<string, ToscaRelationshipType> RelationshipTypes
         {
             get { return relationshipTypes; }
+        }
+
+        /// <summary>
+        /// Returns artifacts as byte array
+        /// </summary>
+        public IReadOnlyDictionary<string,byte[]> Artifacts
+        {
+            get { return fileContents; }
         }
 
         #endregion
@@ -170,10 +175,6 @@ namespace Toscana
             foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
             {
                 AddNodeType(toscaNodeType.Key, toscaNodeType.Value);
-                //foreach (var artifact in toscaNodeType.Value.Artifacts)
-                //{
-                //    artifact.Value.File
-                //}
             }
             foreach (var capabilityType in toscaServiceTemplate.CapabilityTypes)
             {
@@ -211,6 +212,26 @@ namespace Toscana
                     fileName));
             }
             return content;
+        }
+
+        /// <summary>
+        /// Determines whether <see cref="ToscaCloudServiceArchive"/> contains a file
+        /// </summary>
+        /// <param name="artifactPath">Artifact path to check</param>
+        /// <returns>True is contains, false otherwise</returns>
+        public bool ContainsArtifact(string artifactPath)
+        {
+            return fileContents.ContainsKey(artifactPath);
+        }
+
+        /// <summary>
+        /// Adds an artifact to Cloud Service Archive
+        /// </summary>
+        /// <param name="artifactPath">Relative path to file path</param>
+        /// <param name="bytes">Byte array of the artifact</param>
+        public void AddArtifact(string artifactPath, byte[] bytes)
+        {
+            fileContents.Add(artifactPath, bytes);
         }
 
         /// <summary>
@@ -357,23 +378,13 @@ namespace Toscana
         #endregion
 
         /// <summary>
-        /// Determines whether <see cref="ToscaCloudServiceArchive"/> contains a file
+        /// Saves Cloud Service Archive to a stream
         /// </summary>
-        /// <param name="artifactPath">Artifact path to check</param>
-        /// <returns>True is contains, false otherwise</returns>
-        public bool ContainsArtifact(string artifactPath)
+        /// <param name="stream">Stream to save</param>
+        public void Save(Stream stream)
         {
-            return fileContents.ContainsKey(artifactPath);
-        }
-
-        /// <summary>
-        /// Adds an artifact to Cloud Service Archive
-        /// </summary>
-        /// <param name="artifactPath">Relative path to file path</param>
-        /// <param name="bytes">Byte array of the artifact</param>
-        public void AddArtifact(string artifactPath, byte[] bytes)
-        {
-            fileContents.Add(artifactPath, bytes);
+            var cloudServiceArchiveSaver = new Bootstrapper().GetToscaCloudServiceArchiveSaver();
+            cloudServiceArchiveSaver.Save(this, stream);
         }
     }
 }

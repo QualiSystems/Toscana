@@ -78,6 +78,7 @@
     <Compile Include="Engine\PoorManContainerTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
+    <Compile Include="Engine\ToscaSerializerTests.cs" />
     <Compile Include="Engine\ToscaServiceTemplateLoaderTests.cs" />
     <Compile Include="Engine\ToscaParserTests.cs" />
     <Compile Include="Engine\ToscaValidatorTests.cs" />

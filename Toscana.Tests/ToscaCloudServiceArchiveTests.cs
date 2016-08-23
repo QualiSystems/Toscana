@@ -41,60 +41,18 @@ namespace Toscana.Tests
                 CreatedBy = "Devil",
                 CsarVersion = new Version(1, 1),
                 ToscaMetaFileVersion = new Version(1, 0),
-                EntryDefinitions = @"definitions/tosca_elk.yaml"
+                EntryDefinitions = "tosca.yaml"
             };
 
-            var fileSystem = new MockFileSystem();
-            fileSystem.CreateArchive("tosca.zip", new[]
-            {
-                new FileContent("some_icon.png", "IMAGE")
-            });
-
-            var archiveEntriesDictionary =
-                new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
-
-            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntriesDictionary);
-            var toscaServiceTemplate = new ToscaServiceTemplate {Description = "Devil created the world."};
-            var toscaNodeType = new ToscaNodeType();
-            toscaNodeType.Artifacts.Add("icon", new ToscaArtifact {File = "some_icon.png"});
-            toscaServiceTemplate.NodeTypes.Add("nut-shell", toscaNodeType);
+            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
 
             // Act
-            toscaCloudServiceArchive.AddToscaServiceTemplate(@"definitions/tosca_elk.yaml", toscaServiceTemplate);
+            toscaCloudServiceArchive.AddArtifact("some_icon.png", "IMAGE".ToByteArray(Encoding.ASCII));
 
             // Assert
             toscaCloudServiceArchive.GetArtifactBytes("some_icon.png")
                 .Should()
                 .BeEquivalentTo(new byte[] {73, 77, 65, 71, 69});
-        }
-
-        [Test]
-        public void GetArtifactsBytes_Should_Return_Artifact_Content()
-        {
-            // Act
-            var fileSystem = new MockFileSystem();
-            fileSystem.CreateArchive("tosca.zip", new[] {new FileContent("device.png", "IMAGE_CONTENT")});
-            var zipArchive = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open));
-            var zipArchiveEntries = zipArchive.GetArchiveEntriesDictionary();
-
-            var toscaNodeType = new ToscaNodeType();
-            toscaNodeType.Artifacts.Add("icon", new ToscaArtifact
-            {
-                File = "device.png"
-            });
-            var toscaServiceTemplate = new ToscaServiceTemplate();
-            toscaServiceTemplate.NodeTypes.Add("device", toscaNodeType);
-            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
-            {
-                EntryDefinitions = "tosca.yaml"
-            }, zipArchiveEntries);
-
-            // Act
-            toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
-            var artifactsBytes = toscaCloudServiceArchive.GetArtifactBytes("device.png");
-
-            // Assert
-            artifactsBytes.ShouldAllBeEquivalentTo("IMAGE_CONTENT".ToByteArray(Encoding.ASCII));
         }
 
         [Test]
@@ -117,7 +75,7 @@ namespace Toscana.Tests
             var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
             {
                 EntryDefinitions = "tosca.yaml", CreatedBy = "Anonymous", CsarVersion = new Version(1,1), ToscaMetaFileVersion = new Version(1,1)
-            }, zipArchiveEntries);
+            });
 
             // Act
             toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
@@ -142,7 +100,7 @@ namespace Toscana.Tests
             var toscaCloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
             {
                 EntryDefinitions = "tosca.yaml"
-            }, new Dictionary<string, ZipArchiveEntry>());
+            });
 
             // Act
             Action action = () => toscaCloudServiceArchive.GetArtifactBytes("NOT_EXISTING.png");
@@ -189,38 +147,6 @@ namespace Toscana.Tests
 
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().NotBeNull();
-        }
-
-        [Test]
-        public void GetArtifactBytes_Should_Return_File_Content_Of_File_That_Is_Not_An_Artifact()
-        {
-            // Arrange
-            var fileSystem = new MockFileSystem();
-
-            var toscaMetadata = new ToscaMetadata
-            {
-                CreatedBy = "Devil",
-                CsarVersion = new Version(1, 1),
-                ToscaMetaFileVersion = new Version(1, 0),
-                EntryDefinitions = @"definitions/tosca_elk.yaml"
-            };
-
-            fileSystem.CreateArchive("tosca.zip", new[]
-            {
-                new FileContent("nut_shell.png", "IMAGE_CONTENT")
-            });
-
-            var archiveEntriesDictionary = new ZipArchive(fileSystem.File.Open("tosca.zip", FileMode.Open)).GetArchiveEntriesDictionary();
-
-            var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata, archiveEntriesDictionary);
-            var toscaServiceTemplate = new ToscaServiceTemplate();
-            toscaServiceTemplate.NodeTypes.Add("nut-shell", new ToscaNodeType());
-            toscaCloudServiceArchive.AddToscaServiceTemplate(@"definitions/tosca_elk.yaml", toscaServiceTemplate);
-
-            // Act
-            var artifactBytes = toscaCloudServiceArchive.GetArtifactBytes("nut_shell.png");
-
-            artifactBytes.ShouldAllBeEquivalentTo("IMAGE_CONTENT".ToByteArray(Encoding.ASCII));
         }
 
         [Test]
@@ -459,6 +385,30 @@ namespace Toscana.Tests
 
             // Assert
             action.ShouldThrow<ToscaNodeTypeNotFoundException>().WithMessage("Node type 'NOT_EXISTING' not found");
+        }
+
+        [Test]
+        public void It_Should_Be_Possible_To_Save_And_Load_Cloud_Service_Archive()
+        {
+            var cloudServiceArchive = new ToscaCloudServiceArchive();
+            cloudServiceArchive.ToscaMetadata.CreatedBy = "Anonymous";
+            cloudServiceArchive.ToscaMetadata.CsarVersion = new Version(1,1);
+            cloudServiceArchive.ToscaMetadata.EntryDefinitions = "tosca.yaml";
+            cloudServiceArchive.ToscaMetadata.ToscaMetaFileVersion = new Version(1,0);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" });
+
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results).Should().BeTrue(string.Join(Environment.NewLine, results.Select(r=>r.ErrorMessage)));
+
+            using (var memoryStream = new MemoryStream())
+            {
+                cloudServiceArchive.Save(memoryStream);
+
+                var serviceArchive = ToscaCloudServiceArchive.Load(memoryStream);
+
+                // Assert
+                serviceArchive.ToscaMetadata.CreatedBy.Should().Be("Anonymous");
+            }
         }
     }
 }

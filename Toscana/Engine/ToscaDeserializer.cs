@@ -17,9 +17,14 @@ namespace Toscana.Engine
     {
         private readonly Deserializer deserializer;
 
-        public ToscaDeserializer()
+        public ToscaDeserializer(ITypeConvertersFactory typeConvertersFactory)
         {
             deserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
+
+            foreach (var yamlTypeConverter in typeConvertersFactory.GetTypeConverter())
+            {
+                deserializer.RegisterTypeConverter(yamlTypeConverter);
+            }
         }
 
         public T Deserialize(string tosca)
@@ -37,9 +42,9 @@ namespace Toscana.Engine
         /// <returns></returns>
         public T Deserialize(Stream stream)
         {
-            using (var streamReader = new StreamReader(stream))
+            using (var stringReader = new StreamReader(stream))
             {
-                return Deserialize(streamReader);
+                return Deserialize(stringReader);
             }
         }
 
