@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Toscana.Engine;
 using Toscana.Exceptions;
@@ -7,8 +8,8 @@ namespace Toscana
 {
     internal interface IToscaServiceTemplateBuilder
     {
+        ToscaServiceTemplateBuilder Append(Stream stream);
         IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate);
-        IToscaServiceTemplateBuilder Append(string toscaAsString);
         ToscaServiceTemplate Build();
     }
 
@@ -16,11 +17,10 @@ namespace Toscana
     {
         private readonly List<ToscaServiceTemplate> toscaServiceTemplates = new List<ToscaServiceTemplate>();
 
-        public IToscaServiceTemplateBuilder Append(string toscaAsString)
+        public ToscaServiceTemplateBuilder Append(Stream stream)
         {
-            toscaServiceTemplates.Add(ToscaServiceTemplate.Parse(toscaAsString));
+            toscaServiceTemplates.Add(ToscaServiceTemplate.Parse(stream));
             return this;
-
         }
 
         public IToscaServiceTemplateBuilder Append(ToscaServiceTemplate toscaServiceTemplate)

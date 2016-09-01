@@ -89,17 +89,6 @@ namespace Toscana
         /// <summary>
         /// Parses stream of TOSCA YAML file into an instance of ToscaServiceTemplate class
         /// </summary>
-        /// <param name="toscaAsString">TOSCA YAML content</param>
-        /// <returns>Valid instance of ToscaServiceTemplate</returns>
-        public static ToscaServiceTemplate Parse(string toscaAsString)
-        {
-            var toscaSimpleProfileParser = new Bootstrapper().GetToscaServiceTemplateParser();
-            return toscaSimpleProfileParser.Parse(toscaAsString);
-        }
-
-        /// <summary>
-        /// Parses stream of TOSCA YAML file into an instance of ToscaServiceTemplate class
-        /// </summary>
         /// <param name="stream">Stream of TOSCA YAML file</param>
         /// <returns>Valid instance of ToscaServiceTemplate</returns>
         public static ToscaServiceTemplate Parse(Stream stream)

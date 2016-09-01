@@ -97,13 +97,20 @@ namespace Toscana.Tests
         [Test, TestCaseSource(typeof (GithubRepositoryTestCasesFactory), "TestCases")]
         public void Validate_Tosca_Files_In_Github_Repository_Of_Quali(FileContent fileContent)
         {
-            ToscaServiceTemplate.Parse(fileContent.Content);
+            string toscaAsString = fileContent.Content;
+            using (var memoryStream = toscaAsString.ToMemoryStream())
+            {
+                ToscaServiceTemplate.Parse(memoryStream);
+            }
         }
 
         [Test, TestCaseSource(typeof(LocalDirectoryTestCasesFactory), "TestCases")]
         public void Validate_Tosca_Files_In_Local_Directory(FileContent fileContent)
         {
-            ToscaServiceTemplate.Parse(fileContent.Content);
+            using (var memoryStream = fileContent.Content.ToMemoryStream())
+            {
+                ToscaServiceTemplate.Parse(memoryStream);
+            }
         }
 
         [Test]
@@ -113,7 +120,10 @@ namespace Toscana.Tests
             var toscaSimpleProfileBuilder = new ToscaServiceTemplateBuilder();
             foreach (var fileContent in filesContent)
             {
-                toscaSimpleProfileBuilder.Append(fileContent.Content);
+                using (var memoryStream = fileContent.Content.ToMemoryStream())
+                {
+                    toscaSimpleProfileBuilder.Append(memoryStream);
+                }
             }
             toscaSimpleProfileBuilder.Build();
         }

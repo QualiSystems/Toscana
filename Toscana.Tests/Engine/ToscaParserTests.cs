@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Common;
 using Toscana.Exceptions;
 
 namespace Toscana.Tests.Engine
@@ -29,27 +30,30 @@ node_types:
         constraints:
           - valid_values: [ 1, 2, 4, 8 ]";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().BeNull();
-            tosca.NodeTypes.Should().HaveCount(1);
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().BeNull();
+                tosca.NodeTypes.Should().HaveCount(1);
 
-            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+                var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
 
-            nodeType.Properties.Should().HaveCount(1);
-            var numCpusProperty = nodeType.Properties["num_cpus"];
-            numCpusProperty.Type.Should().Be("integer");
-            numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
-            numCpusProperty.Default.Should().Be("1");
-            numCpusProperty.Required.Should().BeTrue();
-            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
-            numCpusProperty.EntrySchema.Should().Be("default");
-            numCpusProperty.Constraints.Should().HaveCount(1);
-            numCpusProperty.Constraints.Single().Should().HaveCount(1);
-            var validValues = (List<object>) numCpusProperty.Constraints.Single()["valid_values"];
-            validValues.Should().BeEquivalentTo(new List<object> {"1", "2", "4", "8"});
+                nodeType.Properties.Should().HaveCount(1);
+                var numCpusProperty = nodeType.Properties["num_cpus"];
+                numCpusProperty.Type.Should().Be("integer");
+                numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
+                numCpusProperty.Default.Should().Be("1");
+                numCpusProperty.Required.Should().BeTrue();
+                numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
+                numCpusProperty.EntrySchema.Should().Be("default");
+                numCpusProperty.Constraints.Should().HaveCount(1);
+                numCpusProperty.Constraints.Single().Should().HaveCount(1);
+                var validValues = (List<object>) numCpusProperty.Constraints.Single()["valid_values"];
+                validValues.Should().BeEquivalentTo(new List<object> {"1", "2", "4", "8"});
+            }
         }
 
         [Test]
@@ -75,19 +79,22 @@ node_types:
         restore: {}
 ";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().BeNull();
-            tosca.NodeTypes.Should().HaveCount(1);
-            var nodeType = tosca.NodeTypes["cloudshell.standard.Shell"];
-            var resourceDriverInterface = nodeType.Interfaces["cloudshell.shell.core.resource_driver_interface"];
-            ((IDictionary<object, object>) resourceDriverInterface["get_inventory"]).Should().BeEmpty();
-            ((IDictionary<object, object>) resourceDriverInterface["initialize"]).Should().BeEmpty();
-            ((IDictionary<object, object>) resourceDriverInterface["cleanup"]).Should().BeEmpty();
-            ((IDictionary<object, object>) resourceDriverInterface["backup"]).Should().BeEmpty();
-            ((IDictionary<object, object>) resourceDriverInterface["restore"]).Should().BeEmpty();
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().BeNull();
+                tosca.NodeTypes.Should().HaveCount(1);
+                var nodeType = tosca.NodeTypes["cloudshell.standard.Shell"];
+                var resourceDriverInterface = nodeType.Interfaces["cloudshell.shell.core.resource_driver_interface"];
+                ((IDictionary<object, object>) resourceDriverInterface["get_inventory"]).Should().BeEmpty();
+                ((IDictionary<object, object>) resourceDriverInterface["initialize"]).Should().BeEmpty();
+                ((IDictionary<object, object>) resourceDriverInterface["cleanup"]).Should().BeEmpty();
+                ((IDictionary<object, object>) resourceDriverInterface["backup"]).Should().BeEmpty();
+                ((IDictionary<object, object>) resourceDriverInterface["restore"]).Should().BeEmpty();
+            }
         }
 
         [Test]
@@ -113,28 +120,31 @@ node_types:
     requirements:
       - database_endpoint: tosca.capabilities.Endpoint.Database";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().BeNull();
-            tosca.NodeTypes.Should().HaveCount(1);
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().BeNull();
+                tosca.NodeTypes.Should().HaveCount(1);
 
-            var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+                var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
 
-            nodeType.Properties.Should().HaveCount(2);
-            nodeType.Properties["mq_service_ip"].Type.Should().Be("string");
-            nodeType.Properties["receiver_port"].Type.Should().Be("integer");
+                nodeType.Properties.Should().HaveCount(2);
+                nodeType.Properties["mq_service_ip"].Type.Should().Be("string");
+                nodeType.Properties["receiver_port"].Type.Should().Be("integer");
 
-            nodeType.Attributes.Should().HaveCount(2);
-            nodeType.Attributes["receiver_ip"].Type.Should().Be("string");
-            nodeType.Attributes["receiver_port"].Type.Should().Be("integer");
+                nodeType.Attributes.Should().HaveCount(2);
+                nodeType.Attributes["receiver_ip"].Type.Should().Be("string");
+                nodeType.Attributes["receiver_port"].Type.Should().Be("integer");
 
-            nodeType.Capabilities.Should().HaveCount(1);
-            nodeType.Capabilities["message_receiver"].Type.Should().Be("tosca.capabilities.Endpoint");
+                nodeType.Capabilities.Should().HaveCount(1);
+                nodeType.Capabilities["message_receiver"].Type.Should().Be("tosca.capabilities.Endpoint");
 
-            nodeType.Requirements.Should().HaveCount(1);
-            nodeType.Requirements.Single()["database_endpoint"].Capability.Should().Be("tosca.capabilities.Endpoint.Database");
+                nodeType.Requirements.Should().HaveCount(1);
+                nodeType.Requirements.Single()["database_endpoint"].Capability.Should().Be("tosca.capabilities.Endpoint.Database");
+            }
         }
 
         [Test]
@@ -165,24 +175,27 @@ topology_template:
             distribution: rhel 
             version: 6.5 ";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
-            var nodeTemplate = tosca.TopologyTemplate.NodeTemplates["my_server"];
-            nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
+                var nodeTemplate = tosca.TopologyTemplate.NodeTemplates["my_server"];
+                nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
 
-            var host = nodeTemplate.Capabilities["host"];
-            host.Properties["num_cpus"].Should().Be("1");
-            host.Properties["disk_size"].Should().Be("10 GB");
-            host.Properties["mem_size"].Should().Be("4096 MB");
+                var host = nodeTemplate.Capabilities["host"];
+                host.Properties["num_cpus"].Should().Be("1");
+                host.Properties["disk_size"].Should().Be("10 GB");
+                host.Properties["mem_size"].Should().Be("4096 MB");
 
-            var os = nodeTemplate.Capabilities["os"];
-            os.Properties["architecture"].Should().Be("x86_64");
-            os.Properties["type"].Should().Be("linux");
-            os.Properties["distribution"].Should().Be("rhel");
-            os.Properties["version"].Should().Be("6.5");
+                var os = nodeTemplate.Capabilities["os"];
+                os.Properties["architecture"].Should().Be("x86_64");
+                os.Properties["type"].Should().Be("linux");
+                os.Properties["distribution"].Should().Be("rhel");
+                os.Properties["version"].Should().Be("6.5");
+            }
         }
 
         [Test]
@@ -213,30 +226,33 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a single server with MySQL software on top.");
-            var topologyTemplate = tosca.TopologyTemplate;
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a single server with MySQL software on top.");
+                var topologyTemplate = tosca.TopologyTemplate;
 
-            topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeEmpty();
+                topologyTemplate.Inputs.Should().BeNull();
+                topologyTemplate.Outputs.Should().BeEmpty();
 
-            topologyTemplate.NodeTemplates.Should().HaveCount(2);
+                topologyTemplate.NodeTemplates.Should().HaveCount(2);
 
-            var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
-            mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
-            var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
-            requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Node.Should().Be("db_server");
-            var standardInterface = (IDictionary<object, object>) mysqlNodeTemplate.Interfaces["Standard"];
-            standardInterface["configure"].Should().Be("scripts/my_own_configure.sh");
+                var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
+                mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
+                var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
+                requirementKeyValue.Key.Should().Be("host");
+                requirementKeyValue.Value.Node.Should().Be("db_server");
+                var standardInterface = (IDictionary<object, object>) mysqlNodeTemplate.Interfaces["Standard"];
+                standardInterface["configure"].Should().Be("scripts/my_own_configure.sh");
 
-            var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
-            dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeEmpty();
+                var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
+                dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                dbServerNodeTemplate.Capabilities.Should().BeNull();
+                dbServerNodeTemplate.Requirements.Should().BeEmpty();
+            }
         }
 
         [Test]
@@ -251,17 +267,20 @@ node_types:
       num_cpus:
         type: integer";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            var numCpusProperty = tosca.NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"];
-            numCpusProperty.Type.Should().Be("integer");
-            numCpusProperty.Description.Should().BeNull();
-            numCpusProperty.Default.Should().BeNull();
-            numCpusProperty.Required.Should().BeTrue();
-            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.supported);
-            numCpusProperty.EntrySchema.Should().BeNull();
-            numCpusProperty.Constraints.Should().BeNull();
+                // Assert
+                var numCpusProperty = tosca.NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"];
+                numCpusProperty.Type.Should().Be("integer");
+                numCpusProperty.Description.Should().BeNull();
+                numCpusProperty.Default.Should().BeNull();
+                numCpusProperty.Required.Should().BeTrue();
+                numCpusProperty.Status.Should().Be(ToscaPropertyStatus.supported);
+                numCpusProperty.EntrySchema.Should().BeNull();
+                numCpusProperty.Constraints.Should().BeNull();
+            }
         }
 
         [Test]
@@ -288,28 +307,31 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a single server with MySQL software on top.");
-            var topologyTemplate = tosca.TopologyTemplate;
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a single server with MySQL software on top.");
+                var topologyTemplate = tosca.TopologyTemplate;
 
-            topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeEmpty();
+                topologyTemplate.Inputs.Should().BeNull();
+                topologyTemplate.Outputs.Should().BeEmpty();
 
-            topologyTemplate.NodeTemplates.Should().HaveCount(2);
+                topologyTemplate.NodeTemplates.Should().HaveCount(2);
 
-            var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
-            mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
-            var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
-            requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Node.Should().Be("db_server");
+                var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
+                mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
+                var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
+                requirementKeyValue.Key.Should().Be("host");
+                requirementKeyValue.Value.Node.Should().Be("db_server");
 
-            var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
-            dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeEmpty();
+                var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
+                dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                dbServerNodeTemplate.Capabilities.Should().BeNull();
+                dbServerNodeTemplate.Requirements.Should().BeEmpty();
+            }
         }
 
         [Test]
@@ -396,91 +418,94 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a two-tier application servers on two");
-            var topologyTemplate = tosca.TopologyTemplate;
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a two-tier application servers on two");
+                var topologyTemplate = tosca.TopologyTemplate;
 
-            #region Topology Template Input & Outputs
+                #region Topology Template Input & Outputs
 
-            topologyTemplate.Inputs["wp_admin_username"].Type.Should().Be("string");
-            topologyTemplate.Inputs["wp_admin_password"].Type.Should().Be("string");
-            topologyTemplate.Inputs["wp_db_name"].Type.Should().Be("string");
-            topologyTemplate.Inputs["wp_db_password"].Type.Should().Be("string");
-            topologyTemplate.Inputs["wp_db_port"].Type.Should().Be("integer");
-            topologyTemplate.Inputs["mysql_root_password"].Type.Should().Be("string");
-            topologyTemplate.Inputs["mysql_port"].Type.Should().Be("integer");
-            topologyTemplate.Inputs["context_root"].Type.Should().Be("string");
-            topologyTemplate.Outputs.Should().BeEmpty();
+                topologyTemplate.Inputs["wp_admin_username"].Type.Should().Be("string");
+                topologyTemplate.Inputs["wp_admin_password"].Type.Should().Be("string");
+                topologyTemplate.Inputs["wp_db_name"].Type.Should().Be("string");
+                topologyTemplate.Inputs["wp_db_password"].Type.Should().Be("string");
+                topologyTemplate.Inputs["wp_db_port"].Type.Should().Be("integer");
+                topologyTemplate.Inputs["mysql_root_password"].Type.Should().Be("string");
+                topologyTemplate.Inputs["mysql_port"].Type.Should().Be("integer");
+                topologyTemplate.Inputs["context_root"].Type.Should().Be("string");
+                topologyTemplate.Outputs.Should().BeEmpty();
 
-            #endregion
+                #endregion
 
-            topologyTemplate.NodeTemplates.Should().HaveCount(6);
+                topologyTemplate.NodeTemplates.Should().HaveCount(6);
 
-            #region wordpress
+                #region wordpress
 
-            var wordpressNodeTemplate = topologyTemplate.NodeTemplates["wordpress"];
-            wordpressNodeTemplate.Type.Should().Be("tosca.nodes.WebApplication.WordPress");
-            wordpressNodeTemplate.Capabilities.Should().BeEmpty();
-            wordpressNodeTemplate.Requirements.Should().HaveCount(2);
-            wordpressNodeTemplate.Requirements.First()["host"].Node.Should().Be("apache");
-            wordpressNodeTemplate.Requirements.Last()["database_endpoint"].Node.Should().Be("wordpress_db");
-            wordpressNodeTemplate.Properties.Should().HaveCount(4);
+                var wordpressNodeTemplate = topologyTemplate.NodeTemplates["wordpress"];
+                wordpressNodeTemplate.Type.Should().Be("tosca.nodes.WebApplication.WordPress");
+                wordpressNodeTemplate.Capabilities.Should().BeEmpty();
+                wordpressNodeTemplate.Requirements.Should().HaveCount(2);
+                wordpressNodeTemplate.Requirements.First()["host"].Node.Should().Be("apache");
+                wordpressNodeTemplate.Requirements.Last()["database_endpoint"].Node.Should().Be("wordpress_db");
+                wordpressNodeTemplate.Properties.Should().HaveCount(4);
 
-            #endregion
+                #endregion
 
-            #region apache
+                #region apache
 
-            var apacheNodeTemplate = topologyTemplate.NodeTemplates["apache"];
-            apacheNodeTemplate.Type.Should().Be("tosca.nodes.WebServer.Apache");
-            apacheNodeTemplate.Capabilities.Should().BeEmpty();
-            apacheNodeTemplate.Requirements.Should().HaveCount(1);
-            apacheNodeTemplate.Requirements.Single()["host"].Node.Should().Be("web_server");
-            apacheNodeTemplate.Properties.Should().BeNull();
+                var apacheNodeTemplate = topologyTemplate.NodeTemplates["apache"];
+                apacheNodeTemplate.Type.Should().Be("tosca.nodes.WebServer.Apache");
+                apacheNodeTemplate.Capabilities.Should().BeEmpty();
+                apacheNodeTemplate.Requirements.Should().HaveCount(1);
+                apacheNodeTemplate.Requirements.Single()["host"].Node.Should().Be("web_server");
+                apacheNodeTemplate.Properties.Should().BeNull();
 
-            #endregion
+                #endregion
 
-            #region web_server
+                #region web_server
 
-            var webServerNodeTemplate = topologyTemplate.NodeTemplates["web_server"];
-            webServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            webServerNodeTemplate.Capabilities.Should().BeNull();
-            webServerNodeTemplate.Requirements.Should().BeEmpty();
-            webServerNodeTemplate.Properties.Should().BeEmpty();
+                var webServerNodeTemplate = topologyTemplate.NodeTemplates["web_server"];
+                webServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                webServerNodeTemplate.Capabilities.Should().BeNull();
+                webServerNodeTemplate.Requirements.Should().BeEmpty();
+                webServerNodeTemplate.Properties.Should().BeEmpty();
 
-            #endregion
+                #endregion
 
-            #region wordpress_db
+                #region wordpress_db
 
-            var wordpressDbNodeTemplate = topologyTemplate.NodeTemplates["wordpress_db"];
-            wordpressDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
-            wordpressDbNodeTemplate.Capabilities.Should().BeEmpty();
-            wordpressDbNodeTemplate.Requirements.Should().HaveCount(1);
-            wordpressDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
-            wordpressDbNodeTemplate.Properties.Should().HaveCount(4);
+                var wordpressDbNodeTemplate = topologyTemplate.NodeTemplates["wordpress_db"];
+                wordpressDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
+                wordpressDbNodeTemplate.Capabilities.Should().BeEmpty();
+                wordpressDbNodeTemplate.Requirements.Should().HaveCount(1);
+                wordpressDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
+                wordpressDbNodeTemplate.Properties.Should().HaveCount(4);
 
-            #endregion
+                #endregion
 
-            #region mysql
+                #region mysql
 
-            var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
-            mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
-            var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
-            requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Node.Should().Be("db_server");
+                var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
+                mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
+                var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
+                requirementKeyValue.Key.Should().Be("host");
+                requirementKeyValue.Value.Node.Should().Be("db_server");
 
-            #endregion
+                #endregion
 
-            #region db_server
+                #region db_server
 
-            var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
-            dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeEmpty();
+                var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
+                dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                dbServerNodeTemplate.Capabilities.Should().BeNull();
+                dbServerNodeTemplate.Requirements.Should().BeEmpty();
 
-            #endregion
+                #endregion
+            }
         }
 
         [Test]
@@ -529,39 +554,42 @@ topology_template:
       capabilities:
         # omitted here for brevity";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying MySQL and database content.");
-            var topologyTemplate = tosca.TopologyTemplate;
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying MySQL and database content.");
+                var topologyTemplate = tosca.TopologyTemplate;
 
-            topologyTemplate.Inputs.Should().BeNull();
-            topologyTemplate.Outputs.Should().BeEmpty();
+                topologyTemplate.Inputs.Should().BeNull();
+                topologyTemplate.Outputs.Should().BeEmpty();
 
-            topologyTemplate.NodeTemplates.Should().HaveCount(3);
+                topologyTemplate.NodeTemplates.Should().HaveCount(3);
 
-            var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
-            mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
-            var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
-            requirementKeyValue.Key.Should().Be("host");
-            requirementKeyValue.Value.Node.Should().Be("db_server");
+                var mysqlNodeTemplate = topologyTemplate.NodeTemplates["mysql"];
+                mysqlNodeTemplate.Type.Should().Be("tosca.nodes.DBMS.MySQL");
+                var requirementKeyValue = mysqlNodeTemplate.Requirements.Single().Single();
+                requirementKeyValue.Key.Should().Be("host");
+                requirementKeyValue.Value.Node.Should().Be("db_server");
 
-            var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
-            dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            dbServerNodeTemplate.Capabilities.Should().BeNull();
-            dbServerNodeTemplate.Requirements.Should().BeEmpty();
+                var dbServerNodeTemplate = topologyTemplate.NodeTemplates["db_server"];
+                dbServerNodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                dbServerNodeTemplate.Capabilities.Should().BeNull();
+                dbServerNodeTemplate.Requirements.Should().BeEmpty();
 
-            var myDbNodeTemplate = topologyTemplate.NodeTemplates["my_db"];
-            myDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
-            myDbNodeTemplate.Capabilities.Should().BeEmpty();
-            myDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
-            myDbNodeTemplate.Properties.Should().HaveCount(4);
+                var myDbNodeTemplate = topologyTemplate.NodeTemplates["my_db"];
+                myDbNodeTemplate.Type.Should().Be("tosca.nodes.Database.MySQL");
+                myDbNodeTemplate.Capabilities.Should().BeEmpty();
+                myDbNodeTemplate.Requirements.Single()["host"].Node.Should().Be("mysql");
+                myDbNodeTemplate.Properties.Should().HaveCount(4);
 
-            myDbNodeTemplate.Artifacts.Should().HaveCount(1);
-            var artifact = myDbNodeTemplate.Artifacts["db_content"];
-            artifact.File.Should().Be("files/my_db_content.txt");
-            artifact.Type.Should().Be("tosca.artifacts.File");
+                myDbNodeTemplate.Artifacts.Should().HaveCount(1);
+                var artifact = myDbNodeTemplate.Artifacts["db_content"];
+                artifact.File.Should().Be("files/my_db_content.txt");
+                artifact.Type.Should().Be("tosca.artifacts.File");
+            }
         }
 
         [Test]
@@ -576,7 +604,13 @@ node_types:
       num_cpus:
         description: Property without type";
 
-            Action action = () => ToscaServiceTemplate.Parse(toscaString);
+            Action action = () =>
+            {
+                using (var memoryStream = toscaString.ToMemoryStream())
+                {
+                    ToscaServiceTemplate.Parse(memoryStream);
+                }
+            };
 
             // Assert
             action.ShouldThrow<ToscaValidationException>().WithMessage("type is required on property");
@@ -614,33 +648,36 @@ topology_template:
       description: The private IP address of the provisioned server.
       value: { get_attribute: [ my_server, private_address ] }";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
-            var topologyTemplate = tosca.TopologyTemplate;
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
+                var topologyTemplate = tosca.TopologyTemplate;
 
-            var topologyInputCpus = topologyTemplate.Inputs["cpus"];
-            topologyInputCpus.Type.Should().Be("integer");
-            topologyInputCpus.Description.Should().Be("Number of CPUs for the server.");
-            var validValues = (List<object>) topologyInputCpus.Constraints.Single()["valid_values"];
-            validValues.ShouldAllBeEquivalentTo(new[] {1, 2, 4, 8});
+                var topologyInputCpus = topologyTemplate.Inputs["cpus"];
+                topologyInputCpus.Type.Should().Be("integer");
+                topologyInputCpus.Description.Should().Be("Number of CPUs for the server.");
+                var validValues = (List<object>) topologyInputCpus.Constraints.Single()["valid_values"];
+                validValues.ShouldAllBeEquivalentTo(new[] {1, 2, 4, 8});
 
-            var topologyOutput = topologyTemplate.Outputs["server_ip"];
-            topologyOutput.Description.Should().Be("The private IP address of the provisioned server.");
-            var getAttributeValue = ((IDictionary<object, object>) topologyOutput.Value)["get_attribute"];
-            ((List<object>) getAttributeValue).ShouldAllBeEquivalentTo(new[] {"my_server", "private_address"});
+                var topologyOutput = topologyTemplate.Outputs["server_ip"];
+                topologyOutput.Description.Should().Be("The private IP address of the provisioned server.");
+                var getAttributeValue = ((IDictionary<object, object>) topologyOutput.Value)["get_attribute"];
+                ((List<object>) getAttributeValue).ShouldAllBeEquivalentTo(new[] {"my_server", "private_address"});
 
-            var nodeTemplate = topologyTemplate.NodeTemplates["my_server"];
-            nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                var nodeTemplate = topologyTemplate.NodeTemplates["my_server"];
+                nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
 
-            nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
-            nodeTemplate.Capabilities.Should().NotContainKey("os");
-            var hostProperties = nodeTemplate.Capabilities["host"].Properties;
-            ((IDictionary<object, object>) hostProperties["num_cpus"])["get_input"].Should().Be("cpus");
-            hostProperties["mem_size"].Should().Be("2048  MB");
-            hostProperties["disk_size"].Should().Be("10 GB");
+                nodeTemplate.Type.Should().Be("tosca.nodes.Compute");
+                nodeTemplate.Capabilities.Should().NotContainKey("os");
+                var hostProperties = nodeTemplate.Capabilities["host"].Properties;
+                ((IDictionary<object, object>) hostProperties["num_cpus"])["get_input"].Should().Be("cpus");
+                hostProperties["mem_size"].Should().Be("2048  MB");
+                hostProperties["disk_size"].Should().Be("10 GB");
+            }
         }
 
         [Test]
@@ -657,21 +694,23 @@ imports:
       namespace_uri: http://mycompany.com/tosca/1.0/platform
       namespace_prefix: mycompany";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
 
-            tosca.Imports.Should().HaveCount(1);
-            tosca.Imports.Single().Should().HaveCount(1);
-            tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
-            var toscaImport = tosca.Imports.Single().Single().Value;
-            toscaImport.File.Should().Be("path1/path2/file2.yaml");
-            toscaImport.Repository.Should().Be("my_service_catalog");
-            toscaImport.NamespaceUri.Should().Be("http://mycompany.com/tosca/1.0/platform");
-            toscaImport.NamespacePrefix.Should().Be("mycompany");
-
+                tosca.Imports.Should().HaveCount(1);
+                tosca.Imports.Single().Should().HaveCount(1);
+                tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
+                var toscaImport = tosca.Imports.Single().Single().Value;
+                toscaImport.File.Should().Be("path1/path2/file2.yaml");
+                toscaImport.Repository.Should().Be("my_service_catalog");
+                toscaImport.NamespaceUri.Should().Be("http://mycompany.com/tosca/1.0/platform");
+                toscaImport.NamespacePrefix.Should().Be("mycompany");
+            }
         }
 
         [Test]
@@ -684,16 +723,19 @@ description: Template for deploying a single server with predefined properties.
 imports:
   - some_definition_file: path1/path2/some_defs.yaml";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Description.Should().Be("Template for deploying a single server with predefined properties.");
 
-            tosca.Imports.Should().HaveCount(1);
-            tosca.Imports.Single().Should().HaveCount(1);
-            tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
-            tosca.Imports.Single().Single().Value.File.Should().Be("path1/path2/some_defs.yaml");
+                tosca.Imports.Should().HaveCount(1);
+                tosca.Imports.Single().Should().HaveCount(1);
+                tosca.Imports.Single().Single().Key.Should().Be("some_definition_file");
+                tosca.Imports.Single().Single().Value.File.Should().Be("path1/path2/some_defs.yaml");
+            }
         }
 
         [Test]
@@ -706,14 +748,17 @@ metadata:
   template_author: Anonymous
   template_version: 1.0";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.Metadata.Should().HaveCount(3);
-            tosca.Metadata.TemplateName.Should().Be("nutshell");
-            tosca.Metadata.TemplateAuthor.Should().Be("Anonymous");
-            tosca.Metadata.TemplateVersion.Should().Be(new Version("1.0"));
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.Metadata.Should().HaveCount(3);
+                tosca.Metadata.TemplateName.Should().Be("nutshell");
+                tosca.Metadata.TemplateAuthor.Should().Be("Anonymous");
+                tosca.Metadata.TemplateVersion.Should().Be(new Version("1.0"));
+            }
         }
 
         [Test]
@@ -726,20 +771,23 @@ relationship_types:
     derived_from: tosca.relationships.Root
     valid_target_types: [ tosca.capabilities.Node ]";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString);
+            using (var memoryStream = toscaString.ToMemoryStream())
+            {
+                var tosca = ToscaServiceTemplate.Parse(memoryStream);
 
-            // Assert
-            tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
-            tosca.RelationshipTypes.Should().HaveCount(1);
-            var relationshipType = tosca.RelationshipTypes["tosca.relationships.DependsOn"];
-            relationshipType.DerivedFrom.Should().Be("tosca.relationships.Root");
-            relationshipType.ValidTargetTypes.Should().BeEquivalentTo("tosca.capabilities.Node");
+                // Assert
+                tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+                tosca.RelationshipTypes.Should().HaveCount(1);
+                var relationshipType = tosca.RelationshipTypes["tosca.relationships.DependsOn"];
+                relationshipType.DerivedFrom.Should().Be("tosca.relationships.Root");
+                relationshipType.ValidTargetTypes.Should().BeEquivalentTo("tosca.capabilities.Node");
+            }
         }
 
         [Test]
         public void Capability_With_Property_Assignment_Should_Be_Parsed()
         {
-            var toscaSimpleProfile = ToscaServiceTemplate.Parse(@"
+            using (var memoryStream = @"
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 topology_template:
@@ -749,16 +797,19 @@ topology_template:
         capabilities:
           some_capability:
             properties:
-              limit: 100");
+              limit: 100".ToMemoryStream())
+            {
+                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
 
-            toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
-                .Properties["limit"].Should().Be("100");
+                toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
+                    .Properties["limit"].Should().Be("100");
+            }
         }
 
         [Test]
         public void Capability_With_Attribute_Assignment_Should_Be_Parsed()
         {
-            var toscaSimpleProfile = ToscaServiceTemplate.Parse(@"
+            var toscaYaml = @"
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 topology_template:
@@ -768,10 +819,15 @@ topology_template:
         capabilities:
           some_capability:
             attributes:
-              limit: 100");
+              limit: 100";
 
-            toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
-                .Attributes["limit"].Value.Should().Be("100");
+            using (var memoryStream = toscaYaml.ToMemoryStream())
+            {
+                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+
+                toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
+                    .Attributes["limit"].Value.Should().Be("100");
+            }
         }
 
         [Test]
@@ -786,16 +842,26 @@ node_types:
         type: string
         default: ''
         tags: [configuration, setting, search_filter, abstract, bi_filter]";
-            var toscaSimpleProfile = ToscaServiceTemplate.Parse(toscaAsString);
 
-            toscaSimpleProfile.NodeTypes["cloudshell.nodes.Shell"].Properties["vendor"].Tags
-                .ShouldAllBeEquivalentTo(new [] {"configuration", "setting", "search_filter", "abstract", "bi_filter"});
+            using (var memoryStream = toscaAsString.ToMemoryStream())
+            {
+                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+
+                toscaSimpleProfile.NodeTypes["cloudshell.nodes.Shell"].Properties["vendor"].Tags
+                    .ShouldAllBeEquivalentTo(new [] {"configuration", "setting", "search_filter", "abstract", "bi_filter"});
+            }
         }
 
         [Test]
         public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
         {
-            Action action = () => ToscaServiceTemplate.Parse("unsupported_something:");
+            Action action = () =>
+            {
+                using (var memoryStream = "unsupported_something:".ToMemoryStream())
+                {
+                    ToscaServiceTemplate.Parse(memoryStream);
+                }
+            };
 
             action.ShouldThrow<ToscaParsingException>()
                 .WithMessage(@"(Line: 1, Col: 1, Idx: 0) - (Line: 1, Col: 1, Idx: 0): Exception during deserialization
