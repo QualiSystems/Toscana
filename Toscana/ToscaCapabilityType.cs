@@ -39,6 +39,23 @@ namespace Toscana
         public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
 
         /// <summary>
+        /// Returns all the properties of the capability type and its ancestors
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
+        {
+            var properties = new Dictionary<string, ToscaPropertyDefinition>();
+            for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.Base)
+            {
+                foreach (var propertyKeyValue in currNodeType.Properties)
+                {
+                    properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                }
+            }
+            return properties;
+        }
+
+        /// <summary>
         /// An optional list of one or more valid names of Node Types that are supported as valid sources of any relationship established to the declared Capability Type.
         /// </summary>
         public string[] ValidSourceTypes { get; set; }

@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="Common\EnumerableExtensions.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
+    <Compile Include="Common\PathEqualityComparer.cs" />
     <Compile Include="Common\RestrictedValuesAttribute.cs" />
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\StringExtensions.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
     <Compile Include="Engine\ToscaSerializer.cs" />
-    <Compile Include="Engine\PathEqualityComparer.cs" />
     <Compile Include="Engine\PoorManContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveSaver.cs" />
