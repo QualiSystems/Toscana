@@ -72,5 +72,73 @@ namespace Toscana.Tests
             // Assert
             derivedCapabilityType.IsDerivedFrom("base").Should().BeTrue();
         }
+
+        [Test]
+        public void GetAllProperties_Override_Base_Properties()
+        {
+            // Arrange
+            var derivedCapabilityType = new ToscaCapabilityType { DerivedFrom = "base" };
+            derivedCapabilityType.Properties.Add("speed", new ToscaPropertyDefinition
+            {
+                Type = "string",
+                Required = false,
+                Default = "10MBps"
+            });
+            var baseCapabilityType = new ToscaCapabilityType();
+            baseCapabilityType.Properties.Add("speed", new ToscaPropertyDefinition
+            {
+                Type = "integer",
+                Required = true,
+                Default = ""
+            });
+
+            var serviceTemplate = new ToscaServiceTemplate() { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.CapabilityTypes.Add("base", baseCapabilityType);
+            serviceTemplate.CapabilityTypes.Add("derived", derivedCapabilityType);
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata { CreatedBy = "Anonymous", CsarVersion = new Version(1, 1), EntryDefinitions = "tosca.yaml", ToscaMetaFileVersion = new Version(1, 1) });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            List<ValidationResult> validationResults;
+            cloudServiceArchive.TryValidate(out validationResults)
+                .Should().BeTrue(string.Join(Environment.NewLine, validationResults.Select(r => r.ErrorMessage)));
+
+            // Act
+            // Assert
+            var speedProperty = derivedCapabilityType.GetAllProperties()["speed"];
+            speedProperty.Type.Should().Be("string");
+            speedProperty.Required.Should().BeFalse();
+            speedProperty.Default.Should().Be("10MBps");
+        }
+
+        [Test]
+        public void GetAllProperties_Of_Root_Capability_Type_Is_Empty()
+        {
+            // Arrange
+            var capabilityType = new ToscaCapabilityType();
+
+            // Act
+            var allProperties = capabilityType.GetAllProperties();
+
+            // Assert
+            allProperties.Should().BeEmpty();
+        }
+
+        [Test]
+        public void GetAllProperties_Of_Capability_Type_Deriving_From_A_None_Existing_Capability_Type_Should_Throw_An_Exception()
+        {
+            // Arrange
+            var capabilityType = new ToscaCapabilityType { DerivedFrom = "NOT_EXIST" };
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.CapabilityTypes.Add("my_cap_type", capabilityType);
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata { CreatedBy = "Anonymous", CsarVersion = new Version(1, 1), EntryDefinitions = "tosca.yaml", ToscaMetaFileVersion = new Version(1, 1) });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            // Act
+            Action action  = () => capabilityType.GetAllProperties();
+
+            // Assert
+            action.ShouldThrow<ToscaCapabilityTypeNotFoundException>().WithMessage("Capability type 'NOT_EXIST' not found");
+        }
     }
 }

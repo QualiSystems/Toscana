@@ -147,6 +147,7 @@ namespace Toscana
         /// Returns all the properties of the node type and its ancestors
         /// </summary>
         /// <returns></returns>
+        /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
         public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
         {
             var properties = new Dictionary<string, ToscaPropertyDefinition>();
@@ -154,7 +155,10 @@ namespace Toscana
             {
                 foreach (var propertyKeyValue in currNodeType.Properties)
                 {
-                    properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                    if (!properties.ContainsKey(propertyKeyValue.Key))
+                    {
+                        properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                    }
                 }
             }
             return properties;

@@ -42,6 +42,7 @@ namespace Toscana
         /// Returns all the properties of the capability type and its ancestors
         /// </summary>
         /// <returns></returns>
+        /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
         public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
         {
             var properties = new Dictionary<string, ToscaPropertyDefinition>();
@@ -49,7 +50,10 @@ namespace Toscana
             {
                 foreach (var propertyKeyValue in currNodeType.Properties)
                 {
-                    properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                    if (!properties.ContainsKey(propertyKeyValue.Key))
+                    {
+                        properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                    }
                 }
             }
             return properties;
