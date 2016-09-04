@@ -1,0 +1,466 @@
+### YamlMime:ManagedReference
+items:
+- uid: Toscana.ToscaPropertyStatus
+  commentId: T:Toscana.ToscaPropertyStatus
+  id: ToscaPropertyStatus
+  parent: Toscana
+  children:
+  - Toscana.ToscaPropertyStatus.deprecated
+  - Toscana.ToscaPropertyStatus.experimental
+  - Toscana.ToscaPropertyStatus.supported
+  - Toscana.ToscaPropertyStatus.unsupported
+  langs:
+  - csharp
+  - vb
+  name: ToscaPropertyStatus
+  nameWithType: ToscaPropertyStatus
+  fullName: Toscana.ToscaPropertyStatus
+  type: Enum
+  source:
+    remote:
+      path: Toscana/ToscaPropertyStatus.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ToscaPropertyStatus
+    path: Toscana/ToscaPropertyStatus.cs
+    startLine: 5
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nDefines status of property valid values\n"
+  example: []
+  syntax:
+    content: public enum ToscaPropertyStatus
+    content.vb: Public Enum ToscaPropertyStatus
+  extensionMethods:
+  - Toscana.ToscaPropertyStatus.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaPropertyStatus,Toscana.ToscaPropertyStatus},System.Func{Toscana.ToscaPropertyStatus,System.Boolean})
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Toscana.ToscaPropertyStatus.supported
+  commentId: F:Toscana.ToscaPropertyStatus.supported
+  id: supported
+  parent: Toscana.ToscaPropertyStatus
+  langs:
+  - csharp
+  - vb
+  name: supported
+  nameWithType: ToscaPropertyStatus.supported
+  fullName: Toscana.ToscaPropertyStatus.supported
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaPropertyStatus.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: supported
+    path: Toscana/ToscaPropertyStatus.cs
+    startLine: 10
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nIndicates the property is supported.  This is the default value for all property definitions.\n"
+  example: []
+  syntax:
+    content: supported = 0
+    return:
+      type: Toscana.ToscaPropertyStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Toscana.ToscaPropertyStatus.unsupported
+  commentId: F:Toscana.ToscaPropertyStatus.unsupported
+  id: unsupported
+  parent: Toscana.ToscaPropertyStatus
+  langs:
+  - csharp
+  - vb
+  name: unsupported
+  nameWithType: ToscaPropertyStatus.unsupported
+  fullName: Toscana.ToscaPropertyStatus.unsupported
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaPropertyStatus.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: unsupported
+    path: Toscana/ToscaPropertyStatus.cs
+    startLine: 16
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nIndicates the property is not supported.\n"
+  example: []
+  syntax:
+    content: unsupported = 1
+    return:
+      type: Toscana.ToscaPropertyStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Toscana.ToscaPropertyStatus.experimental
+  commentId: F:Toscana.ToscaPropertyStatus.experimental
+  id: experimental
+  parent: Toscana.ToscaPropertyStatus
+  langs:
+  - csharp
+  - vb
+  name: experimental
+  nameWithType: ToscaPropertyStatus.experimental
+  fullName: Toscana.ToscaPropertyStatus.experimental
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaPropertyStatus.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: experimental
+    path: Toscana/ToscaPropertyStatus.cs
+    startLine: 22
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nIndicates the property is experimental and has no official standing.\n"
+  example: []
+  syntax:
+    content: experimental = 2
+    return:
+      type: Toscana.ToscaPropertyStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Toscana.ToscaPropertyStatus.deprecated
+  commentId: F:Toscana.ToscaPropertyStatus.deprecated
+  id: deprecated
+  parent: Toscana.ToscaPropertyStatus
+  langs:
+  - csharp
+  - vb
+  name: deprecated
+  nameWithType: ToscaPropertyStatus.deprecated
+  fullName: Toscana.ToscaPropertyStatus.deprecated
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaPropertyStatus.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: deprecated
+    path: Toscana/ToscaPropertyStatus.cs
+    startLine: 28
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nIndicates the property has been deprecated by a new specification version.\n"
+  example: []
+  syntax:
+    content: deprecated = 3
+    return:
+      type: Toscana.ToscaPropertyStatus
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Toscana
+  commentId: N:Toscana
+  isExternal: false
+  name: Toscana
+  nameWithType: Toscana
+  fullName: Toscana
+- uid: Toscana.ToscaPropertyStatus.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaPropertyStatus,Toscana.ToscaPropertyStatus},System.Func{Toscana.ToscaPropertyStatus,System.Boolean})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  parent: Toscana.Common.EnumerableExtensions
+  definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  name: FromHierarchy<ToscaPropertyStatus>(Func<ToscaPropertyStatus, ToscaPropertyStatus>, Func<ToscaPropertyStatus, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaPropertyStatus>(Func<ToscaPropertyStatus, ToscaPropertyStatus>, Func<ToscaPropertyStatus, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaPropertyStatus>(System.Func<Toscana.ToscaPropertyStatus, Toscana.ToscaPropertyStatus>, System.Func<Toscana.ToscaPropertyStatus, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaPropertyStatus)(Func(Of ToscaPropertyStatus, ToscaPropertyStatus), Func(Of ToscaPropertyStatus, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaPropertyStatus)(System.Func(Of Toscana.ToscaPropertyStatus, Toscana.ToscaPropertyStatus), System.Func(Of Toscana.ToscaPropertyStatus, System.Boolean))
+  name.vb: FromHierarchy(Of ToscaPropertyStatus)(Func(Of ToscaPropertyStatus, ToscaPropertyStatus), Func(Of ToscaPropertyStatus, Boolean))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy<ToscaPropertyStatus>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaPropertyStatus>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaPropertyStatus>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaPropertyStatus
+    name: ToscaPropertyStatus
+    nameWithType: ToscaPropertyStatus
+    fullName: Toscana.ToscaPropertyStatus
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaPropertyStatus
+    name: ToscaPropertyStatus
+    nameWithType: ToscaPropertyStatus
+    fullName: Toscana.ToscaPropertyStatus
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaPropertyStatus
+    name: ToscaPropertyStatus
+    nameWithType: ToscaPropertyStatus
+    fullName: Toscana.ToscaPropertyStatus
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy(Of ToscaPropertyStatus)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaPropertyStatus)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaPropertyStatus)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaPropertyStatus
+    name: ToscaPropertyStatus
+    nameWithType: ToscaPropertyStatus
+    fullName: Toscana.ToscaPropertyStatus
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaPropertyStatus
+    name: ToscaPropertyStatus
+    nameWithType: ToscaPropertyStatus
+    fullName: Toscana.ToscaPropertyStatus
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaPropertyStatus
+    name: ToscaPropertyStatus
+    nameWithType: ToscaPropertyStatus
+    fullName: Toscana.ToscaPropertyStatus
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  isExternal: true
+  name: FromHierarchy<TSource>(TSource, Func<TSource, TSource>, Func<TSource, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<TSource>(TSource, Func<TSource, TSource>, Func<TSource, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>(TSource, System.Func<TSource, TSource>, System.Func<TSource, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource), Func(Of TSource, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)(TSource, System.Func(Of TSource, TSource), System.Func(Of TSource, System.Boolean))
+  name.vb: FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource), Func(Of TSource, Boolean))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy<TSource>
+    nameWithType: EnumerableExtensions.FromHierarchy<TSource>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy(Of TSource)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of TSource)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common.EnumerableExtensions
+  commentId: T:Toscana.Common.EnumerableExtensions
+  parent: Toscana.Common
+  isExternal: false
+  name: EnumerableExtensions
+  nameWithType: EnumerableExtensions
+  fullName: Toscana.Common.EnumerableExtensions
+- uid: Toscana.Common
+  commentId: N:Toscana.Common
+  isExternal: false
+  name: Toscana.Common
+  nameWithType: Toscana.Common
+  fullName: Toscana.Common
+- uid: Toscana.ToscaPropertyStatus
+  commentId: T:Toscana.ToscaPropertyStatus
+  parent: Toscana
+  isExternal: false
+  name: ToscaPropertyStatus
+  nameWithType: ToscaPropertyStatus
+  fullName: Toscana.ToscaPropertyStatus

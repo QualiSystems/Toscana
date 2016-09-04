@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Toscana </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Toscana ">
+    <meta name="generator" content="docfx 2.3.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+              <a href="https://github.com/QualiSystems/Toscana/blob/master/Toscana.Docs/articles/getting_started.md/#L1" class="btn btn-primary pull-right mobile-hide">Improve this Doc</a>
+              <h1 id="toscana">Toscana</h1>
+              
+<h2 id="what-is-toscana">What is Toscana?</h2>
+<p>Toscana, which stands for TOSCA Net Analyzer, is a .NET library for validating, parsing and analyzing TOSCA YAML format.</p>
+<h2 id="what-is-tosca">What is TOSCA?</h2>
+<p>TOSCA, which stands for Topology and Orchestration Specification for Cloud Applications, 
+is a language in YAML grammar for describing service templates by means of Topology Templates and towards enablement 
+of interaction with a TOSCA instance model perhaps by external APIs or plans.  </p>
+<h2 id="what-is-yaml">What is YAML?</h2>
+<p>YAML, which stands for &quot;YAML Ain&#39;t Markup Language&quot;, is described as &quot;a human friendly data serialization 
+standard for all programming languages&quot;. Like XML, it allows to represent about any kind of data in a portable, 
+platform-independent format. Unlike XML, it is &quot;human friendly&quot;, which means that it is easy for a human to read 
+or produce a valid YAML document.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Install Toscana nuget package from from Manage Nuget packages</p>
+<p>Or from Nuget Package Manager Console: </p>
+<pre><code class="lang-Batch">&gt; install-package Toscana
+</code></pre><h2 id="usage">Usage</h2>
+<h3 id="tosca-yaml-file">TOSCA YAML file</h3>
+<p>TOSCA YAML file is represented by <em>ToscaServiceTemplate</em> class in Toscana library. 
+Toscana allows parsing a single TOSCA YAML file into an instance of ToscaServiceTemplate class. 
+Even if the file depends on other TOSCA YAML files via <em>imports</em> parsing will succeeds.</p>
+<p><strong>Parse a tosca.yaml</strong></p>
+<pre><code class="lang-C#">using (Stream stream = File.Open(&quot;tosca.yaml&quot;, FileMode.Open))
+{
+    ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Parse(stream);
+}
+</code></pre><h3 id="license">License</h3>
+<p>The software is released under Apache License v2.0. </p>
+
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+            <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+            </nav>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
