@@ -17,7 +17,7 @@ namespace Toscana.Engine
         /// <param name="archiveFilePath">Path to Cloud Service Archive (CSAR) zip file</param>
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
         /// <exception cref="Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException">Thrown when CSAR file not found.</exception>
-        /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
+        /// <exception cref="ToscaMetadataFileNotFoundException">Thrown when TOSCA.meta file not found in the archive.</exception>
         /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null);
@@ -27,7 +27,7 @@ namespace Toscana.Engine
         /// </summary>
         /// <param name="archiveStream">Stream to Cloud Service Archive (CSAR) zip file</param>
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
-        /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
+        /// <exception cref="ToscaMetadataFileNotFoundException">Thrown when TOSCA.meta file not found in the archive.</exception>
         /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null);
@@ -55,7 +55,7 @@ namespace Toscana.Engine
         /// <param name="archiveFilePath">Path to Cloud Service Archive (CSAR) zip file</param>
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
         /// <exception cref="Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException">Thrown when CSAR file not found.</exception>
-        /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
+        /// <exception cref="ToscaMetadataFileNotFoundException">Thrown when TOSCA.meta file not found in the archive.</exception>
         /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         public ToscaCloudServiceArchive Load(string archiveFilePath, string alternativePath = null)
@@ -75,7 +75,7 @@ namespace Toscana.Engine
         /// </summary>
         /// <param name="archiveStream">Stream to Cloud Service Archive (CSAR) zip file</param>
         /// <param name="alternativePath">Path for dependencies lookup outside the archive</param>
-        /// <exception cref="Toscana.Exceptions.ToscaMetadataFileNotFound">Thrown when TOSCA.meta file not found in the archive.</exception>
+        /// <exception cref="ToscaMetadataFileNotFoundException">Thrown when TOSCA.meta file not found in the archive.</exception>
         /// <exception cref="Toscana.Exceptions.ToscaImportFileNotFoundException">Thrown when import file neither found in the archive nor at the alternative path.</exception>
         /// <exception cref="InvalidDataException">The contents of the stream could not be interpreted as a zip archive or the archive is corrupt and cannot be read.</exception>
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
@@ -171,7 +171,7 @@ namespace Toscana.Engine
                         StringComparison.InvariantCultureIgnoreCase) == 0);
             if (toscaMetaArchiveEntry == null)
             {
-                throw new ToscaMetadataFileNotFound(
+                throw new ToscaMetadataFileNotFoundException(
                     string.Format("{0} file not found within TOSCA Cloud Service Archive file.", ToscaMetaFileName)); 
             }
             return toscaMetaArchiveEntry;

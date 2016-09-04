@@ -310,7 +310,7 @@ node_types:
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
-            action.ShouldThrow<ToscaMetadataFileNotFound>()
+            action.ShouldThrow<ToscaMetadataFileNotFoundException>()
                 .WithMessage("TOSCA.meta file not found within TOSCA Cloud Service Archive file.");
         }
 

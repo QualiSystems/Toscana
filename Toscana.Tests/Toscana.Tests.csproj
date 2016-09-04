@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\RestrictedValuesTests.cs" />
+    <Compile Include="Common\RestrictedValuesAttributeTests.cs" />
     <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
     <Compile Include="Engine\FileSystemExtentions.cs" />
@@ -86,7 +86,7 @@
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaMetadataFileNotFoundTests.cs" />
+    <Compile Include="Exceptions\ToscaMetadataFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaParsingExceptionTests.cs" />

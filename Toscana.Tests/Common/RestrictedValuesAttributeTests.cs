@@ -7,7 +7,7 @@ using Toscana.Common;
 namespace Toscana.Tests.Common
 {
     [TestFixture]
-    public class RestrictedValuesTests
+    public class RestrictedValuesAttributeTests
     {
         private class ClassWithRestrictedValues
         {

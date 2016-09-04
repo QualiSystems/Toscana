@@ -4,22 +4,22 @@ using System.ComponentModel.DataAnnotations;
 namespace Toscana.Common
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    internal class RestrictedValues : ValidationAttribute
+    internal class RestrictedValuesAttribute : ValidationAttribute
     {
         private readonly string[] validValues;
 
-        public RestrictedValues(string[] validValues)
+        public RestrictedValuesAttribute(string[] validValues)
             : this(validValues, "Specified value is not one of the valid values: " + string.Join(", ", validValues))
         {
             this.validValues = validValues;
         }
 
-        public RestrictedValues(string[] validValues, string errorMessage) : 
+        public RestrictedValuesAttribute(string[] validValues, string errorMessage) : 
             this(validValues, () => errorMessage)
         {
         }
 
-        protected RestrictedValues(string[] validValues, Func<string> errorMessageAccessor)
+        protected RestrictedValuesAttribute(string[] validValues, Func<string> errorMessageAccessor)
             : base(errorMessageAccessor)
         {
             this.validValues = validValues;

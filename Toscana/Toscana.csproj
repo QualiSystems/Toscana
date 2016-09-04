@@ -88,7 +88,7 @@
   <ItemGroup>
     <Compile Include="Common\EnumerableExtensions.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
-    <Compile Include="Common\RestrictedValues.cs" />
+    <Compile Include="Common\RestrictedValuesAttribute.cs" />
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\ZipArchiveExtensions.cs" />
@@ -111,7 +111,7 @@
     <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundException.cs" />
-    <Compile Include="Exceptions\ToscaMetadataFileNotFound.cs" />
+    <Compile Include="Exceptions\ToscaMetadataFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaRelationshipTypeNotFound.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />

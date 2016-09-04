@@ -7,12 +7,12 @@ namespace Toscana.Exceptions
     /// Thrown when TOSCA.meta file is not found inside TOSCA Cloud Service Archive (CSAR) ZIP file
     /// </summary>
     [Serializable]
-    public class ToscaMetadataFileNotFound : ToscaBaseException
+    public class ToscaMetadataFileNotFoundException : ToscaBaseException
     {
         /// <summary>
         /// Initializes the exception
         /// </summary>
-        public ToscaMetadataFileNotFound()
+        public ToscaMetadataFileNotFoundException()
         {
         }
 
@@ -20,7 +20,7 @@ namespace Toscana.Exceptions
         /// Initializes the exception with a message
         /// </summary>
         /// <param name="message"></param>
-        public ToscaMetadataFileNotFound(string message) : base(message)
+        public ToscaMetadataFileNotFoundException(string message) : base(message)
         {
         }
 
@@ -29,7 +29,7 @@ namespace Toscana.Exceptions
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public ToscaMetadataFileNotFound(string message, Exception exception) : base(message, exception)
+        public ToscaMetadataFileNotFoundException(string message, Exception exception) : base(message, exception)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Toscana.Exceptions
         /// <param name="info"></param>
         /// <param name="context"></param>
         /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
-        protected ToscaMetadataFileNotFound(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ToscaMetadataFileNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

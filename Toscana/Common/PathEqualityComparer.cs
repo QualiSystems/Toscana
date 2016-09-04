@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Toscana.Engine
+namespace Toscana.Common
 {
     internal class PathEqualityComparer : IEqualityComparer<string>
     {
