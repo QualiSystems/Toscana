@@ -85,6 +85,7 @@
     <Compile Include="Exceptions\ArtifactNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\ToscaDataTypeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundExceptionTests.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="ToscaCapabilityTests.cs" />
     <Compile Include="ToscaCapabilityTypeTests.cs" />
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
+    <Compile Include="ToscaDataTypeDefinitionTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />
     <Compile Include="ToscaNodeTemplateTests.cs" />
     <Compile Include="ToscaNodeTypeTests.cs" />

@@ -43,11 +43,11 @@ namespace Toscana
         /// <summary>
         /// Initializes an instance of of <see cref="ToscaCapability"/> and set its Type property
         /// </summary>
-        /// <param name="val">Value to set to Type property</param>
+        /// <param name="type">Value to set to Type property</param>
         /// <returns>An instance of ToscaCapability</returns>
-        public static implicit operator ToscaCapability(string val)
+        public static implicit operator ToscaCapability(string type)
         {
-            return new ToscaCapability { Type = val };
+            return new ToscaCapability { Type = type };
         }
     }
 }

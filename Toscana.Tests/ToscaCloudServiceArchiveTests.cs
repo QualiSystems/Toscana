@@ -410,5 +410,65 @@ namespace Toscana.Tests
                 serviceArchive.ToscaMetadata.CreatedBy.Should().Be("Anonymous");
             }
         }
+
+        [Test]
+        public void Exception_Should_Be_Thrown_When_Complex_Data_Type_Consists_Of_Not_Existing_Type()
+        {
+            var cloudServiceArchive = new ToscaCloudServiceArchive();
+            cloudServiceArchive.ToscaMetadata.CreatedBy = "Anonymous";
+            cloudServiceArchive.ToscaMetadata.CsarVersion = new Version(1, 1);
+            cloudServiceArchive.ToscaMetadata.EntryDefinitions = "tosca.yaml";
+            cloudServiceArchive.ToscaMetadata.ToscaMetaFileVersion = new Version(1, 0);
+
+            var toscaAsString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+data_types:
+  tosca.datatypes.Complex:
+    properties:
+      real:
+        type: weight";
+
+            using (var memoryStream = toscaAsString.ToMemoryStream())
+            {
+                // Act
+                var serviceTemplate = ToscaServiceTemplate.Parse(memoryStream);
+                cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+
+                List<ValidationResult> results;
+                cloudServiceArchive.TryValidate(out results);
+
+                results.Should().HaveCount(1);
+                results.Should().Contain(a => a.ErrorMessage.Contains("Data type 'weight' specified as part of data type 'tosca.datatypes.Complex' not found."));
+            }
+        }
+
+        [Test]
+        public void Validation_Shall_Pass_When_Complex_Data_Type_Consists_Of_Built_In_Type()
+        {
+            var cloudServiceArchive = new ToscaCloudServiceArchive();
+            cloudServiceArchive.ToscaMetadata.CreatedBy = "Anonymous";
+            cloudServiceArchive.ToscaMetadata.CsarVersion = new Version(1, 1);
+            cloudServiceArchive.ToscaMetadata.EntryDefinitions = "tosca.yaml";
+            cloudServiceArchive.ToscaMetadata.ToscaMetaFileVersion = new Version(1, 0);
+
+            var toscaAsString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+data_types:
+  tosca.datatypes.Complex:
+    properties:
+      real:
+        type: integer";
+
+            using (var memoryStream = toscaAsString.ToMemoryStream())
+            {
+                // Act
+                var serviceTemplate = ToscaServiceTemplate.Parse(memoryStream);
+                cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+
+                // Assert
+                List<ValidationResult> results;
+                cloudServiceArchive.TryValidate(out results).Should().BeTrue(string.Join(Environment.NewLine, results));
+            }
+        }
     }
 }

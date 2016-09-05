@@ -33,6 +33,11 @@ namespace Toscana
         public const string ToscaCapabilitiesNode = "tosca.capabilities.Node";
 
         /// <summary>
+        /// Name of the root data type
+        /// </summary>
+        public static string ToscaDataTypeRoot = "tosca.datatypes.Root";
+
+        /// <summary>
         /// Returns an instance of ToscaNodeType, 
         /// which represents Node Type all other TOSCA base Node Types derive from
         /// </summary>
@@ -83,6 +88,15 @@ namespace Toscana
             {
                 DerivedFrom = ToscaCapabilitiesRoot
             };
+        }
+
+        /// <summary>
+        /// Returns an instance of the tosca.datatypes.Root
+        /// </summary>
+        /// <returns></returns>
+        public static ToscaDataTypeDefinition GetRootDataType()
+        {
+            return new ToscaDataTypeDefinition();
         }
     }
 }

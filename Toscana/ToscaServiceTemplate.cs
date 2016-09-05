@@ -23,6 +23,7 @@ namespace Toscana
             Imports = new List<Dictionary<string, ToscaImport>>();
             Metadata = new ToscaServiceTemplateMetadata();
             RelationshipTypes = new Dictionary<string, ToscaRelationshipType>();
+            DataTypes = new Dictionary<string, ToscaDataTypeDefinition>();
             TopologyTemplate = new ToscaTopologyTemplate();
         }
 
@@ -85,6 +86,11 @@ namespace Toscana
         /// This section contains a set of relationship type definitions for use in the service template.
         /// </summary>
         public Dictionary<string, ToscaRelationshipType> RelationshipTypes { get; set; }
+
+        /// <summary>
+        /// Declares a list of optional TOSCA Data Type definitions.
+        /// </summary>
+        public Dictionary<string, ToscaDataTypeDefinition> DataTypes { get; set; }
 
         /// <summary>
         /// Parses stream of TOSCA YAML file into an instance of ToscaServiceTemplate class

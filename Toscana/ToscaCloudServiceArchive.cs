@@ -31,6 +31,7 @@ namespace Toscana
         private readonly Dictionary<string, ToscaCapabilityType> capabilityTypes;
         private readonly Dictionary<string, ToscaArtifactType> artifactTypes;
         private readonly Dictionary<string, ToscaRelationshipType> relationshipTypes;
+        private readonly Dictionary<string, ToscaDataTypeDefinition> dataTypes;
 
         #endregion
 
@@ -50,6 +51,7 @@ namespace Toscana
             artifactTypes = new Dictionary<string, ToscaArtifactType>();
             relationshipTypes = new Dictionary<string, ToscaRelationshipType>();
             fileContents = new Dictionary<string, byte[]>(new PathEqualityComparer());
+            dataTypes = new Dictionary<string, ToscaDataTypeDefinition>();
             FillDefaults();
 
         }
@@ -121,6 +123,14 @@ namespace Toscana
             get { return fileContents; }
         }
 
+        /// <summary>
+        /// Returns data types from all the Service Templates
+        /// </summary>
+        public IReadOnlyDictionary<string, ToscaDataTypeDefinition> DataTypes
+        {
+            get { return dataTypes; }
+        }
+
         #endregion
 
         #region Public methods
@@ -180,6 +190,17 @@ namespace Toscana
             {
                 AddCapabilityType(capabilityType.Key, capabilityType.Value);
             }
+            foreach (var dataTypeKeyValue in toscaServiceTemplate.DataTypes)
+            {
+                AddDataType(dataTypeKeyValue.Key, dataTypeKeyValue.Value);
+            }
+        }
+
+        private void AddDataType(string dataTypeName, ToscaDataTypeDefinition dataType)
+        {
+            dataTypes.Add(dataTypeName, dataType);
+            dataType.SetToscaCloudServiceArchive(this);
+            dataType.SetDerivedFromToRoot(dataTypeName);
         }
 
         /// <summary>
@@ -304,6 +325,21 @@ namespace Toscana
                             capabilityKeyValue.Value.Type, capabilityKeyValue.Key));
                     }
                 }
+
+                foreach (var complexDataTypeKeyValue in DataTypes)
+                {
+                    foreach (var basicDatatypeKeyValue in complexDataTypeKeyValue.Value.Properties)
+                    {
+                        var basicType = basicDatatypeKeyValue.Value.Type;
+                        if (!DataTypes.ContainsKey(basicType))
+                        {
+                            validationResults.Add(new ValidationResult(
+                                string.Format("Data type '{0}' specified as part of data type '{1}' not found.",
+                                    basicType,
+                                    complexDataTypeKeyValue.Key)));
+                        }
+                    }
+                }
             }
             return validationResults;
         }
@@ -361,18 +397,15 @@ namespace Toscana
         /// </summary>
         private void FillDefaults()
         {
-            if (!NodeTypes.ContainsKey(ToscaDefaults.ToscaNodesRoot))
-            {
-                AddNodeType(ToscaDefaults.ToscaNodesRoot, ToscaDefaults.GetRootNodeType());
-            }
-            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesRoot))
-            {
-                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesRoot, ToscaDefaults.GetRootCapabilityType());
-            }
-            if (!CapabilityTypes.ContainsKey(ToscaDefaults.ToscaCapabilitiesNode))
-            {
-                AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
-            }
+            AddNodeType(ToscaDefaults.ToscaNodesRoot, ToscaDefaults.GetRootNodeType());
+            AddCapabilityType(ToscaDefaults.ToscaCapabilitiesRoot, ToscaDefaults.GetRootCapabilityType());
+            AddCapabilityType(ToscaDefaults.ToscaCapabilitiesNode, ToscaDefaults.GetNodeCapabilityType());
+            AddDataType(ToscaDefaults.ToscaDataTypeRoot, ToscaDefaults.GetRootDataType());
+            AddDataType("string", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot });
+            AddDataType("integer", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot });
+            AddDataType("float", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot });
+            AddDataType("boolean", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot });
+            AddDataType("null", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot });
         }
 
         #endregion

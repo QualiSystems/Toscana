@@ -853,6 +853,30 @@ node_types:
         }
 
         [Test]
+        public void Data_Types_Should_Be_Parsed()
+        {
+            var toscaAsString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+data_types:
+  tosca.datatypes.Complex:
+    properties:
+      real:
+        type: integer
+      imaginary:
+        type: float";
+
+            using (var memoryStream = toscaAsString.ToMemoryStream())
+            {
+                // Act
+                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+
+                // Assert
+                toscaSimpleProfile.DataTypes["tosca.datatypes.Complex"].Properties["real"].Type.Should().Be("integer");
+                toscaSimpleProfile.DataTypes["tosca.datatypes.Complex"].Properties["imaginary"].Type.Should().Be("float");
+            }
+        }
+
+        [Test]
         public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
         {
             Action action = () =>

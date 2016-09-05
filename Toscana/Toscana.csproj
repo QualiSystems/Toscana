@@ -110,6 +110,7 @@
     <Compile Include="Exceptions\ArtifactNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />
+    <Compile Include="Exceptions\ToscaDataTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundException.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="ToscaCapabilityType.cs" />
     <Compile Include="ToscaCloudServiceArchive.cs" />
     <Compile Include="ToscaCredential.cs" />
+    <Compile Include="ToscaDataTypeDefinition.cs" />
     <Compile Include="ToscaDefaults.cs" />
     <Compile Include="ToscaGroup.cs" />
     <Compile Include="ToscaImport.cs" />

@@ -4,7 +4,6 @@ namespace Toscana.Engine
 {
     internal interface IToscaParser<out T>
     {
-        T Parse(string tosca);
         T Parse(Stream stream);
     }
 
@@ -17,13 +16,6 @@ namespace Toscana.Engine
         {
             toscaValidator = validator;
             toscaDeserializer = deserializer;
-        }
-
-        public T Parse(string tosca)
-        {
-            var toscaObject = toscaDeserializer.Deserialize(tosca);
-            toscaValidator.Validate(toscaObject);
-            return toscaObject;
         }
 
         public T Parse(Stream stream)
