@@ -10,6 +10,15 @@ namespace Toscana
     public class ToscaArtifactType : ToscaObject<ToscaArtifactType>
     {
         /// <summary>
+        /// Initilizes an instance of <see cref="ToscaArtifactType"/>
+        /// </summary>
+        public ToscaArtifactType()
+        {
+            string[] a = new string[0];
+            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+        }
+
+        /// <summary>
         /// An optional version for the Artifact Type definition.
         /// </summary>
         public Version Version { get; set; }

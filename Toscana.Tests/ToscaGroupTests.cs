@@ -1,6 +1,4 @@
-﻿
-
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace Toscana.Tests
@@ -19,7 +17,7 @@ namespace Toscana.Tests
         }
 
         [Test]
-        public void Memebers_Should_Be_Empty_Upon_Initialization()
+        public void Members_Should_Be_Empty_Upon_Initialization()
         {
             // Act
             var toscaGroup = new ToscaGroup();
@@ -39,4 +37,3 @@ namespace Toscana.Tests
         }
     }
 }
-

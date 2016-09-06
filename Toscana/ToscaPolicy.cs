@@ -10,6 +10,15 @@ namespace Toscana
     public class ToscaPolicy
     {
         /// <summary>
+        /// Initializes an instance of <see cref="ToscaPolicy"/>
+        /// </summary>
+        public ToscaPolicy()
+        {
+            Properties = new Dictionary<string, ToscaPropertyAssignment>();
+            Targets = new string[0];
+        }
+
+        /// <summary>
         /// The required name of the policy type the policy definition is based upon.
         /// </summary>
         [Required(ErrorMessage = "Type is required on policy.", AllowEmptyStrings = false)]

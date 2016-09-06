@@ -10,6 +10,17 @@ namespace Toscana
     public class ToscaRelationshipType : ToscaObject<ToscaRelationshipType>
     {
         /// <summary>
+        /// Initializes an instance of <see cref="ToscaRelationshipType"/>
+        /// </summary>
+        public ToscaRelationshipType()
+        {
+            Properties = new List<ToscaPropertyDefinition>();
+            Attributes = new List<ToscaAttributeDefinition>();
+            Interfaces = new Dictionary<string, ToscaInterfaceDefinition>();
+            ValidTargetTypes = new List<string>();
+        }
+
+        /// <summary>
         /// Returns an entity that this entity derives from.
         /// If this entity is root, null will be returned
         /// If this entity derives from a non existing entity exception will be thrown

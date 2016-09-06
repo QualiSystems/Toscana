@@ -11,6 +11,16 @@ namespace Toscana
     public class ToscaRelationshipTemplate
     {
         /// <summary>
+        /// Initializes an instance of <see cref="ToscaRelationshipTemplate"/>
+        /// </summary>
+        public ToscaRelationshipTemplate()
+        {
+            Properties = new Dictionary<string, ToscaPropertyAssignment>();
+            Assignments = new Dictionary<string, ToscaAttributeAssignment>();
+            Interfaces = new Dictionary<string, ToscaInterfaceDefinition>();
+        }
+
+        /// <summary>
         /// The required name of the Relationship Type the Relationship Template is based upon.
         /// </summary>
         public string Type { get; set; }
