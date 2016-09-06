@@ -29,5 +29,15 @@ namespace Toscana.Tests
 
             toscaPropertyDefinition.StringValue.Should().Be("23");
         }
+
+        [Test]
+        public void Contraints_Should_Be_Empty_List_Upon_Initialization()
+        {
+            // Act
+            var toscaPropertyDefinition = new ToscaPropertyDefinition();
+
+            // Assert
+            toscaPropertyDefinition.Constraints.Should().BeEmpty();
+        }
     }
 }

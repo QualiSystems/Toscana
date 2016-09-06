@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Exceptions;
 
@@ -23,6 +24,16 @@ namespace Toscana.Tests.Exceptions
 
             // Assert
             toscaDataTypeNotFoundException.Should().BeBinarySerializable();
+        }
+
+        [Test]
+        public void ToscaDataTypeNotFoundException_With_Inner_Exception_Initialized_Properly()
+        {
+            var innerException = new Exception("inner");
+            var toscaDataTypeNotFoundException = new ToscaDataTypeNotFoundException("message", innerException);
+
+            toscaDataTypeNotFoundException.InnerException.Message.Should().Be("inner");
+            toscaDataTypeNotFoundException.Message.Should().Be("message");
         }
     }
 }

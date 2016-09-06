@@ -1,4 +1,6 @@
-﻿namespace Toscana
+﻿using YamlDotNet.Serialization;
+
+namespace Toscana
 {
     /// <summary>
     /// Base object for TOSCA entities that support inheritance
@@ -20,6 +22,7 @@
         /// If this entity is root, null will be returned
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
+        [YamlIgnore]
         public abstract T Base
         {
             get;
@@ -38,10 +41,10 @@
         /// <summary>
         /// Sets archive that the node belongs to
         /// </summary>
-        /// <param name="newCloudServiceArchive"></param>
-        internal void SetToscaCloudServiceArchive(ToscaCloudServiceArchive newCloudServiceArchive)
+        /// <param name="cloudServiceArchive"></param>
+        internal void SetToscaCloudServiceArchive(ToscaCloudServiceArchive cloudServiceArchive)
         {
-            CloudServiceArchive = newCloudServiceArchive;
+            CloudServiceArchive = cloudServiceArchive;
         }
 
         /// <summary>

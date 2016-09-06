@@ -86,7 +86,7 @@ namespace Toscana.Tests
             validationResults.Select(a=>a.ErrorMessage).ToArray()
                 .ShouldAllBeEquivalentTo(new[] { "Artifact 'device.png' not found in Cloud Service Archive." });
 
-            //action.ShouldThrow<ArtifactNotFoundException>()
+            //action.ShouldThrow<ToscaArtifactNotFoundException>()
             //    .WithMessage("Artifact 'device.png' not found in Cloud Service Archive.");
         }
 
@@ -106,7 +106,7 @@ namespace Toscana.Tests
             Action action = () => toscaCloudServiceArchive.GetArtifactBytes("NOT_EXISTING.png");
 
             // Assert
-            action.ShouldThrow<ArtifactNotFoundException>()
+            action.ShouldThrow<ToscaArtifactNotFoundException>()
                 .WithMessage("Artifact 'NOT_EXISTING.png' not found in Cloud Service Archive.");
         }
 
@@ -156,7 +156,7 @@ namespace Toscana.Tests
 
             Action action = () => toscaCloudServiceArchive.GetArtifactBytes("not_existing_file.png");
 
-            action.ShouldThrow<ArtifactNotFoundException>()
+            action.ShouldThrow<ToscaArtifactNotFoundException>()
                 .WithMessage("Artifact 'not_existing_file.png' not found in Cloud Service Archive.");
         }
 
@@ -412,6 +412,39 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void It_Should_Be_Possible_To_Save_And_Load_Cloud_Service_Archive_With_Artifacts()
+        {
+            var cloudServiceArchive = new ToscaCloudServiceArchive();
+            cloudServiceArchive.ToscaMetadata.CreatedBy = "Anonymous";
+            cloudServiceArchive.ToscaMetadata.CsarVersion = new Version(1,1);
+            cloudServiceArchive.ToscaMetadata.EntryDefinitions = "tosca.yaml";
+            cloudServiceArchive.ToscaMetadata.ToscaMetaFileVersion = new Version(1,0);
+            cloudServiceArchive.AddArtifact("readme.txt", "readme content".ToByteArray(Encoding.ASCII));
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            var nodeType = new ToscaNodeType();
+            nodeType.Artifacts.Add("readme", new ToscaArtifact { Type = "tosca.artifacts.File", File = "readme.txt" });
+            serviceTemplate.NodeTypes.Add("some_node", nodeType);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", 
+                serviceTemplate);
+
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results).Should().BeTrue(string.Join(Environment.NewLine, results.Select(r=>r.ErrorMessage)));
+
+            using (var memoryStream = new MemoryStream())
+            {
+                cloudServiceArchive.Save(memoryStream);
+
+                var serviceArchive = ToscaCloudServiceArchive.Load(memoryStream);
+
+                // Assert
+                serviceArchive.ToscaMetadata.CreatedBy.Should().Be("Anonymous");
+                serviceArchive.GetArtifactBytes("readme.txt")
+                    .Should()
+                    .BeEquivalentTo("readme content".ToByteArray(Encoding.ASCII));
+            }
+        }
+
+        [Test]
         public void Exception_Should_Be_Thrown_When_Complex_Data_Type_Consists_Of_Not_Existing_Type()
         {
             var cloudServiceArchive = new ToscaCloudServiceArchive();
@@ -439,6 +472,38 @@ data_types:
 
                 results.Should().HaveCount(1);
                 results.Should().Contain(a => a.ErrorMessage.Contains("Data type 'weight' specified as part of data type 'tosca.datatypes.Complex' not found."));
+            }
+        }
+
+        [Test]
+        public void Exception_Should_Be_Thrown_When_Valid_Values_Are_Not_Of_Compatible_Type()
+        {
+            var cloudServiceArchive = new ToscaCloudServiceArchive();
+            cloudServiceArchive.ToscaMetadata.CreatedBy = "Anonymous";
+            cloudServiceArchive.ToscaMetadata.CsarVersion = new Version(1, 1);
+            cloudServiceArchive.ToscaMetadata.EntryDefinitions = "tosca.yaml";
+            cloudServiceArchive.ToscaMetadata.ToscaMetaFileVersion = new Version(1, 0);
+
+            var toscaAsString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+node_types:
+  tosca.nodes.MyNode:
+    properties:
+      ports_number:
+        type: integer
+        constraints:
+          - valid_values: [a, 1]
+";
+
+            using (var memoryStream = toscaAsString.ToMemoryStream())
+            {
+                // Act
+                Action action = () => ToscaServiceTemplate.Parse(memoryStream);
+
+                // Assert
+                action.ShouldThrow<ToscaValidationException>()
+                    .WithMessage(
+                        "Value 'a' of constraint 'a,1' cannot be parsed according to property data type 'integer'");
             }
         }
 

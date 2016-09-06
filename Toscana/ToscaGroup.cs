@@ -10,6 +10,16 @@ namespace Toscana
     public class ToscaGroup
     {
         /// <summary>
+        /// Initializes an instance of <see cref="ToscaGroup"/>
+        /// </summary>
+        public ToscaGroup()
+        {
+            Interfaces = new Dictionary<string, ToscaInterfaceDefinition>();
+            Members = new string[0];
+            Properties = new Dictionary<string, ToscaPropertyAssignment>();
+        }
+
+        /// <summary>
         /// The required name of the group type the group definition is based upon.
         /// </summary>
         [Required(ErrorMessage = "Type is required on group.", AllowEmptyStrings = false)]

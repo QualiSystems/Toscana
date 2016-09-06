@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Toscana.Exceptions;
+using YamlDotNet.Serialization;
 
 namespace Toscana
 {
@@ -70,6 +71,7 @@ namespace Toscana
         /// For root node type, null is returned
         /// </summary>
         /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
+        [YamlIgnore]
         public override ToscaNodeType Base
         {
             get

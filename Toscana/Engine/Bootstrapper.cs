@@ -1,4 +1,5 @@
-﻿using System.IO.Abstractions;
+﻿using System.Collections.Generic;
+using System.IO.Abstractions;
 
 namespace Toscana.Engine
 {
@@ -12,8 +13,10 @@ namespace Toscana.Engine
             poorManContainer.Register<IFileSystem, FileSystem>();
             poorManContainer.Register<IToscaValidator<ToscaMetadata>, ToscaValidator<ToscaMetadata>>();
             poorManContainer.Register<IToscaValidator<ToscaServiceTemplate>, ToscaValidator<ToscaServiceTemplate>>();
-            poorManContainer.Register<IToscaValidator<ToscaCloudServiceArchive>, ToscaValidator<ToscaCloudServiceArchive>>();
-            poorManContainer.Register<IToscaDeserializer<ToscaServiceTemplate>, ToscaDeserializer<ToscaServiceTemplate>>();
+            poorManContainer
+                .Register<IToscaValidator<ToscaCloudServiceArchive>, ToscaValidator<ToscaCloudServiceArchive>>();
+            poorManContainer.Register<IToscaDeserializer<ToscaServiceTemplate>, ToscaDeserializer<ToscaServiceTemplate>>
+                ();
             poorManContainer.Register<IToscaParser<ToscaServiceTemplate>, ToscaParser<ToscaServiceTemplate>>();
             poorManContainer.Register<IToscaDeserializer<ToscaMetadata>, ToscaDeserializer<ToscaMetadata>>();
             poorManContainer.Register<IToscaParser<ToscaMetadata>, ToscaParser<ToscaMetadata>>();
@@ -23,6 +26,15 @@ namespace Toscana.Engine
             poorManContainer.Register<IToscaSerializer<ToscaMetadata>, ToscaSerializer<ToscaMetadata>>();
             poorManContainer.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
             poorManContainer.Register<ITypeConvertersFactory, TypeConvertersFactory>();
+            poorManContainer.Register<IToscaParserFactory>(
+                () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
+                {
+                    new ToscaBooleanDataTypeConverter(),
+                    new ToscaStringDataTypeConverter(),
+                    new ToscaIntegerDataTypeConverter(),
+                    new ToscaFloatDataTypeConverter(),
+                    new ToscaNullDataTypeConverter()
+                }));
         }
 
         public IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
@@ -59,6 +71,12 @@ namespace Toscana.Engine
         public IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
         {
             return poorManContainer.GetInstance<IToscaCloudServiceArchiveSaver>();
+        }
+
+        public IToscaDataTypeValueConverter GetParser<T>(string type)
+        {
+            var toscaParserFactory = poorManContainer.GetInstance<IToscaParserFactory>();
+            return toscaParserFactory.GetParser(type);
         }
     }
 }

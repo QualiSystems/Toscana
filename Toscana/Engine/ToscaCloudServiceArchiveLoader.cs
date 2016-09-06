@@ -151,14 +151,13 @@ namespace Toscana.Engine
                     if (!fileSystem.File.Exists(alternativeFullPath))
                     {
                         throw new ToscaImportFileNotFoundException(
-                            string.Format(
-                                "{0} file neither found within TOSCA Cloud Service Archive nor at alternative location '{1}'.",
+                            string.Format(@"Import file '{0}' neither found within TOSCA Cloud Service Archive nor at alternative location '{1}'",
                                 zipEntryFileName, alternativePath));
                     }
                     return fileSystem.File.OpenRead(alternativeFullPath);
                 }
                 throw new ToscaImportFileNotFoundException(
-                    string.Format("{0} file not found within TOSCA Cloud Service Archive file.", zipEntryFileName));
+                    string.Format("Import file '{0}' not found within TOSCA Cloud Service Archive file.", zipEntryFileName));
             }
             return zipArchiveEntry.Open();
         }

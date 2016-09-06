@@ -9,6 +9,14 @@ namespace Toscana
     public class ToscaInterfaceDefinition
     {
         /// <summary>
+        /// Initializes an instance of <see cref="ToscaInterfaceDefinition"/>
+        /// </summary>
+        public ToscaInterfaceDefinition()
+        {
+            Inputs = new Dictionary<string, object>();
+        }
+
+        /// <summary>
         /// The optional list of input property definitions available to all defined operations for 
         /// interface definitions that are within TOSCA Node or Relationship Type definitions. 
         /// This includes when interface definitions are included as part of a Requirement definition in a Node Type.

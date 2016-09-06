@@ -176,7 +176,7 @@ namespace Toscana
         /// <summary>
         /// Adds a ToscaServiceTemplate
         /// </summary>
-        /// <exception cref="ArtifactNotFoundException">Thrown when artifact not found in the Cloud Service Archive.</exception>
+        /// <exception cref="ToscaArtifactNotFoundException">Thrown when artifact not found in the Cloud Service Archive.</exception>
         /// <param name="toscaServiceTemplateName">Service template name</param>
         /// <param name="toscaServiceTemplate">An instance of ToscaServiceTemplate</param>
         public void AddToscaServiceTemplate(string toscaServiceTemplateName, ToscaServiceTemplate toscaServiceTemplate)
@@ -223,13 +223,13 @@ namespace Toscana
         /// </summary>
         /// <param name="fileName">File name to return content of</param>
         /// <returns>File content as byte array</returns>
-        /// <exception cref="ArtifactNotFoundException">Thrown when artifact with fileName is not found.</exception>
+        /// <exception cref="ToscaArtifactNotFoundException">Thrown when artifact with fileName is not found.</exception>
         public byte[] GetArtifactBytes(string fileName)
         {
             byte[] content;
             if (!fileContents.TryGetValue(fileName, out content))
             {
-                throw new ArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
+                throw new ToscaArtifactNotFoundException(string.Format("Artifact '{0}' not found in Cloud Service Archive.",
                     fileName));
             }
             return content;
@@ -384,7 +384,7 @@ namespace Toscana
         /// </summary>
         /// <param name="nodeTypeName">Node type name</param>
         /// <param name="nodeType">An instance of node type to add</param>
-        /// <exception cref="ArtifactNotFoundException"></exception>
+        /// <exception cref="ToscaArtifactNotFoundException"></exception>
         private void AddNodeType(string nodeTypeName, ToscaNodeType nodeType)
         {
             nodeTypes.Add(nodeTypeName, nodeType);

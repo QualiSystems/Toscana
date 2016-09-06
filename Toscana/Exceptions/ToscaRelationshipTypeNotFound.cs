@@ -6,6 +6,7 @@ namespace Toscana.Exceptions
     /// <summary>
     /// Thrown when relationship type not found
     /// </summary>
+    [Serializable]
     public class ToscaRelationshipTypeNotFound : ToscaBaseException
     {
         /// <summary>

@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
+using System.Linq;
+using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Common;
 using Toscana.Engine;
 using Toscana.Exceptions;
 
@@ -100,7 +105,7 @@ Entry-Definitions: not_existing.yaml")
 
             // Assert
             action.ShouldThrow<ToscaImportFileNotFoundException>()
-                .WithMessage("not_existing.yaml file not found within TOSCA Cloud Service Archive file.");
+                .WithMessage("Import file 'not_existing.yaml' not found within TOSCA Cloud Service Archive file.");
         }
 
         [Test]
@@ -551,6 +556,79 @@ node_types:
 
             // Assert
             toscaCloudServiceArchive.GetArtifactBytes(@"icon.png").ShouldAllBeEquivalentTo(new byte[] { 73, 77, 65, 71, 69 });
+        }
+
+        [Test]
+        public void Exception_Should_Be_Thrown_When_Artifact_Not_Found()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca.yaml";
+
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    artifacts:
+      icon:
+        type: image
+        file: icon.png
+";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca.yaml", toscaSimpleProfileContent),
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Artifact 'icon.png' not found in Cloud Service Archive.");
+        }
+
+        [Test]
+        public void ToscaArtifactNotFoundException_Should_Be_Thrown_When_Import_Not_Found()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca.yaml";
+
+            var toscaSimpleProfileContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - missing_import: missing_file.yml
+
+node_types:
+  example.TransactionSubsystem:
+    artifacts:
+      icon:
+        type: image
+        file: icon.png
+";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("tosca.yaml", toscaSimpleProfileContent),
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip", @"c:\some_location");
+
+            // Assert
+            action.ShouldThrow<ToscaImportFileNotFoundException>()
+                .WithMessage(@"Import file 'missing_file.yml' neither found within TOSCA Cloud Service Archive nor at alternative location 'c:\some_location'");
         }
     }
 }
