@@ -445,6 +445,22 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void ToscaServiceTemplateAlreadyExistsException_Should_Be_Thrown_When_Same_Service_Template_Added_Twice()
+        {
+            var cloudServiceArchive = new ToscaCloudServiceArchive();
+            cloudServiceArchive.ToscaMetadata.CreatedBy = "Anonymous";
+            cloudServiceArchive.ToscaMetadata.CsarVersion = new Version(1, 1);
+            cloudServiceArchive.ToscaMetadata.EntryDefinitions = "tosca.yaml";
+            cloudServiceArchive.ToscaMetadata.ToscaMetaFileVersion = new Version(1, 0);
+
+            cloudServiceArchive.AddToscaServiceTemplate("reference1.yml", new ToscaServiceTemplate());
+            Action action = () => cloudServiceArchive.AddToscaServiceTemplate("reference1.yml", new ToscaServiceTemplate());
+
+            action.ShouldThrow<ToscaServiceTemplateAlreadyExistsException>()
+                .WithMessage("Service Template 'reference1.yml' already exists");
+        }
+
+        [Test]
         public void Exception_Should_Be_Thrown_When_Complex_Data_Type_Consists_Of_Not_Existing_Type()
         {
             var cloudServiceArchive = new ToscaCloudServiceArchive();

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
-using System.Linq;
-using System.Text;
 using FluentAssertions;
 using NUnit.Framework;
-using Toscana.Common;
 using Toscana.Engine;
 using Toscana.Exceptions;
 
@@ -629,6 +624,79 @@ node_types:
             // Assert
             action.ShouldThrow<ToscaImportFileNotFoundException>()
                 .WithMessage(@"Import file 'missing_file.yml' neither found within TOSCA Cloud Service Archive nor at alternative location 'c:\some_location'");
+        }
+
+        [Test]
+        public void It_Should_Be_Possible_To_Import_The_Same_File_From_Different_Files()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: entry.yaml";
+
+            var toscaEntryContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - ref1: reference1.yml
+  - ref2: reference2.yml
+
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      vendor:
+        type: string
+";
+
+            var toscaRef1Content = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - common: common.yml
+
+node_types:
+  tosca.nodes.Ref1:
+    properties:
+      description:
+        type: string
+";
+
+            var toscaRef2Content = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - common: common.yml
+
+node_types:
+  tosca.nodes.Ref2:
+    properties:
+      title:
+        type: string
+";
+
+            var toscaCommonContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+  tosca.nodes.Common:
+    properties:
+      name:
+        type: string
+";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("entry.yaml", toscaEntryContent),
+                new FileContent("reference1.yml", toscaRef1Content),
+                new FileContent("reference2.yml", toscaRef2Content),
+                new FileContent("common.yml", toscaCommonContent),
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            action.ShouldNotThrow("It should be possible to import the same file from different files");
         }
     }
 }

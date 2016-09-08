@@ -179,8 +179,13 @@ namespace Toscana
         /// <exception cref="ToscaArtifactNotFoundException">Thrown when artifact not found in the Cloud Service Archive.</exception>
         /// <param name="toscaServiceTemplateName">Service template name</param>
         /// <param name="toscaServiceTemplate">An instance of ToscaServiceTemplate</param>
+        /// <exception cref="ToscaServiceTemplateAlreadyExistsException">Service Template was already added to the Cloud Service Archive.</exception>
         public void AddToscaServiceTemplate(string toscaServiceTemplateName, ToscaServiceTemplate toscaServiceTemplate)
         {
+            if (toscaServiceTemplates.ContainsKey(toscaServiceTemplateName))
+            {
+                throw new ToscaServiceTemplateAlreadyExistsException(string.Format("Service Template '{0}' already exists", toscaServiceTemplateName));
+            }
             toscaServiceTemplates.Add(toscaServiceTemplateName, toscaServiceTemplate);
             foreach (var toscaNodeType in toscaServiceTemplate.NodeTypes)
             {

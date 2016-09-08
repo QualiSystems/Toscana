@@ -95,6 +95,7 @@
     <Compile Include="Exceptions\ToscaMetadataFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaRelationshipTypeNotFoundTests.cs" />
+    <Compile Include="Exceptions\ToscaServiceTemplateAlreadyExistsExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaParsingExceptionTests.cs" />
     <Compile Include="FileContent.cs" />
