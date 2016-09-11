@@ -24,7 +24,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaObject
     path: Toscana/ToscaObject.cs
-    startLine: 5
+    startLine: 7
   assemblies:
   - Toscana
   namespace: Toscana
@@ -79,7 +79,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: CloudServiceArchive
     path: Toscana/ToscaObject.cs
-    startLine: 10
+    startLine: 12
   assemblies:
   - Toscana
   namespace: Toscana
@@ -114,7 +114,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: DerivedFrom
     path: Toscana/ToscaObject.cs
-    startLine: 15
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
@@ -152,18 +152,28 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaObject.cs
-    startLine: 22
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nReturns an entity that this entity derives from.\nIf this entity is root, null will be returned\nIf this entity derives from a non existing entity exception will be thrown\n"
   example: []
   syntax:
-    content: public abstract T Base { get; }
-    content.vb: Public MustOverride ReadOnly Property Base As T
+    content: >-
+      [YamlIgnore]
+
+      public abstract T Base { get; }
+    content.vb: >-
+      <YamlIgnore>
+
+      Public MustOverride ReadOnly Property Base As T
     parameters: []
     return:
       type: '{T}'
+  attributes:
+  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
+    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
+    arguments: []
   nameWithType.vb: ToscaObject(Of T).Base
   modifiers.csharp:
   - public
@@ -192,7 +202,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: IsRoot
     path: Toscana/ToscaObject.cs
-    startLine: 32
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
@@ -228,7 +238,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaObject.cs
-    startLine: 50
+    startLine: 53
   assemblies:
   - Toscana
   namespace: Toscana

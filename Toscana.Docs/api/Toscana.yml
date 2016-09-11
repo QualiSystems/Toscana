@@ -13,6 +13,7 @@ items:
   - Toscana.ToscaCapabilityType
   - Toscana.ToscaCloudServiceArchive
   - Toscana.ToscaCredential
+  - Toscana.ToscaDataTypeDefinition
   - Toscana.ToscaDefaults
   - Toscana.ToscaGroup
   - Toscana.ToscaImport
@@ -98,6 +99,13 @@ references:
   name: ToscaCredential
   nameWithType: ToscaCredential
   fullName: Toscana.ToscaCredential
+- uid: Toscana.ToscaDataTypeDefinition
+  commentId: T:Toscana.ToscaDataTypeDefinition
+  parent: Toscana
+  isExternal: false
+  name: ToscaDataTypeDefinition
+  nameWithType: ToscaDataTypeDefinition
+  fullName: Toscana.ToscaDataTypeDefinition
 - uid: Toscana.ToscaDefaults
   commentId: T:Toscana.ToscaDefaults
   isExternal: false

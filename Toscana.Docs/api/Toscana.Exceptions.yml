@@ -4,15 +4,17 @@ items:
   commentId: N:Toscana.Exceptions
   id: Toscana.Exceptions
   children:
-  - Toscana.Exceptions.ArtifactNotFoundException
+  - Toscana.Exceptions.ToscaArtifactNotFoundException
   - Toscana.Exceptions.ToscaBaseException
   - Toscana.Exceptions.ToscaCapabilityTypeNotFoundException
   - Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException
+  - Toscana.Exceptions.ToscaDataTypeNotFoundException
   - Toscana.Exceptions.ToscaImportFileNotFoundException
   - Toscana.Exceptions.ToscaMetadataFileNotFoundException
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException
   - Toscana.Exceptions.ToscaParsingException
   - Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
   - Toscana.Exceptions.ToscaValidationException
   langs:
   - csharp
@@ -24,12 +26,12 @@ items:
   assemblies:
   - Toscana
 references:
-- uid: Toscana.Exceptions.ArtifactNotFoundException
-  commentId: T:Toscana.Exceptions.ArtifactNotFoundException
+- uid: Toscana.Exceptions.ToscaArtifactNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaArtifactNotFoundException
   isExternal: false
-  name: ArtifactNotFoundException
-  nameWithType: ArtifactNotFoundException
-  fullName: Toscana.Exceptions.ArtifactNotFoundException
+  name: ToscaArtifactNotFoundException
+  nameWithType: ToscaArtifactNotFoundException
+  fullName: Toscana.Exceptions.ToscaArtifactNotFoundException
 - uid: Toscana.Exceptions.ToscaCapabilityTypeNotFoundException
   commentId: T:Toscana.Exceptions.ToscaCapabilityTypeNotFoundException
   isExternal: false
@@ -42,6 +44,12 @@ references:
   name: ToscaCloudServiceArchiveFileNotFoundException
   nameWithType: ToscaCloudServiceArchiveFileNotFoundException
   fullName: Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException
+- uid: Toscana.Exceptions.ToscaDataTypeNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaDataTypeNotFoundException
+  isExternal: false
+  name: ToscaDataTypeNotFoundException
+  nameWithType: ToscaDataTypeNotFoundException
+  fullName: Toscana.Exceptions.ToscaDataTypeNotFoundException
 - uid: Toscana.Exceptions.ToscaImportFileNotFoundException
   commentId: T:Toscana.Exceptions.ToscaImportFileNotFoundException
   isExternal: false
@@ -66,6 +74,12 @@ references:
   name: ToscaRelationshipTypeNotFound
   nameWithType: ToscaRelationshipTypeNotFound
   fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+- uid: Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
+  commentId: T:Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
+  isExternal: false
+  name: ToscaServiceTemplateAlreadyExistsException
+  nameWithType: ToscaServiceTemplateAlreadyExistsException
+  fullName: Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
 - uid: Toscana.Exceptions.ToscaValidationException
   commentId: T:Toscana.Exceptions.ToscaValidationException
   isExternal: false

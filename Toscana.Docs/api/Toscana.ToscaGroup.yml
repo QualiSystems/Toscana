@@ -5,6 +5,7 @@ items:
   id: ToscaGroup
   parent: Toscana
   children:
+  - Toscana.ToscaGroup.#ctor
   - Toscana.ToscaGroup.Description
   - Toscana.ToscaGroup.Interfaces
   - Toscana.ToscaGroup.Members
@@ -52,6 +53,37 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: Toscana.ToscaGroup.#ctor
+  commentId: M:Toscana.ToscaGroup.#ctor
+  id: '#ctor'
+  parent: Toscana.ToscaGroup
+  langs:
+  - csharp
+  - vb
+  name: ToscaGroup()
+  nameWithType: ToscaGroup.ToscaGroup()
+  fullName: Toscana.ToscaGroup.ToscaGroup()
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/ToscaGroup.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/ToscaGroup.cs
+    startLine: 14
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaGroup\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public ToscaGroup()
+    content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: Toscana.ToscaGroup.Type
   commentId: P:Toscana.ToscaGroup.Type
   id: Type
@@ -70,7 +102,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaGroup.cs
-    startLine: 14
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
@@ -123,7 +155,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaGroup.cs
-    startLine: 20
+    startLine: 30
   assemblies:
   - Toscana
   namespace: Toscana
@@ -159,7 +191,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaGroup.cs
-    startLine: 25
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
@@ -195,7 +227,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Members
     path: Toscana/ToscaGroup.cs
-    startLine: 30
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
@@ -231,7 +263,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaGroup.cs
-    startLine: 35
+    startLine: 45
   assemblies:
   - Toscana
   namespace: Toscana
@@ -981,6 +1013,12 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.ToscaGroup
+  commentId: T:Toscana.ToscaGroup
+  isExternal: false
+  name: ToscaGroup
+  nameWithType: ToscaGroup
+  fullName: Toscana.ToscaGroup
 - uid: System.String
   commentId: T:System.String
   parent: System

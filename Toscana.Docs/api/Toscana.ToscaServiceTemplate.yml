@@ -8,6 +8,7 @@ items:
   - Toscana.ToscaServiceTemplate.#ctor
   - Toscana.ToscaServiceTemplate.ArtifactTypes
   - Toscana.ToscaServiceTemplate.CapabilityTypes
+  - Toscana.ToscaServiceTemplate.DataTypes
   - Toscana.ToscaServiceTemplate.Description
   - Toscana.ToscaServiceTemplate.DslDefinitions
   - Toscana.ToscaServiceTemplate.Imports
@@ -109,7 +110,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDefinitionsVersion
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - Toscana
   namespace: Toscana
@@ -163,7 +164,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Metadata
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 38
+    startLine: 39
   assemblies:
   - Toscana
   namespace: Toscana
@@ -199,7 +200,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - Toscana
   namespace: Toscana
@@ -235,7 +236,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: DslDefinitions
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 48
+    startLine: 49
   assemblies:
   - Toscana
   namespace: Toscana
@@ -271,7 +272,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Repositories
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - Toscana
   namespace: Toscana
@@ -307,7 +308,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Imports
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 60
+    startLine: 61
   assemblies:
   - Toscana
   namespace: Toscana
@@ -343,7 +344,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ArtifactTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - Toscana
   namespace: Toscana
@@ -379,7 +380,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: CapabilityTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 70
+    startLine: 71
   assemblies:
   - Toscana
   namespace: Toscana
@@ -415,7 +416,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: TopologyTemplate
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 76
+    startLine: 77
   assemblies:
   - Toscana
   namespace: Toscana
@@ -451,7 +452,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 81
+    startLine: 82
   assemblies:
   - Toscana
   namespace: Toscana
@@ -487,7 +488,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: RelationshipTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 86
+    startLine: 87
   assemblies:
   - Toscana
   namespace: Toscana
@@ -499,6 +500,42 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaRelationshipType}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaServiceTemplate.DataTypes
+  commentId: P:Toscana.ToscaServiceTemplate.DataTypes
+  id: DataTypes
+  parent: Toscana.ToscaServiceTemplate
+  langs:
+  - csharp
+  - vb
+  name: DataTypes
+  nameWithType: ToscaServiceTemplate.DataTypes
+  fullName: Toscana.ToscaServiceTemplate.DataTypes
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaServiceTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: DataTypes
+    path: Toscana/ToscaServiceTemplate.cs
+    startLine: 92
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nDeclares a list of optional TOSCA Data Type definitions.\n"
+  example: []
+  syntax:
+    content: public Dictionary<string, ToscaDataTypeDefinition> DataTypes { get; set; }
+    content.vb: Public Property DataTypes As Dictionary(Of String, ToscaDataTypeDefinition)
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaDataTypeDefinition}
   modifiers.csharp:
   - public
   - get
@@ -523,7 +560,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Parse
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 93
+    startLine: 99
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1761,6 +1798,64 @@ references:
     name: ToscaRelationshipType
     nameWithType: ToscaRelationshipType
     fullName: Toscana.ToscaRelationshipType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaDataTypeDefinition}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaDataTypeDefinition}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  name: Dictionary<String, ToscaDataTypeDefinition>
+  nameWithType: Dictionary<String, ToscaDataTypeDefinition>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaDataTypeDefinition>
+  nameWithType.vb: Dictionary(Of String, ToscaDataTypeDefinition)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaDataTypeDefinition)
+  name.vb: Dictionary(Of String, ToscaDataTypeDefinition)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaDataTypeDefinition
+    name: ToscaDataTypeDefinition
+    nameWithType: ToscaDataTypeDefinition
+    fullName: Toscana.ToscaDataTypeDefinition
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.ToscaDataTypeDefinition
+    name: ToscaDataTypeDefinition
+    nameWithType: ToscaDataTypeDefinition
+    fullName: Toscana.ToscaDataTypeDefinition
   - name: )
     nameWithType: )
     fullName: )

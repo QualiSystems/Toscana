@@ -5,6 +5,7 @@ items:
   id: ToscaRelationshipTemplate
   parent: Toscana
   children:
+  - Toscana.ToscaRelationshipTemplate.#ctor
   - Toscana.ToscaRelationshipTemplate.Assignments
   - Toscana.ToscaRelationshipTemplate.Copy
   - Toscana.ToscaRelationshipTemplate.Description
@@ -53,6 +54,37 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: Toscana.ToscaRelationshipTemplate.#ctor
+  commentId: M:Toscana.ToscaRelationshipTemplate.#ctor
+  id: '#ctor'
+  parent: Toscana.ToscaRelationshipTemplate
+  langs:
+  - csharp
+  - vb
+  name: ToscaRelationshipTemplate()
+  nameWithType: ToscaRelationshipTemplate.ToscaRelationshipTemplate()
+  fullName: Toscana.ToscaRelationshipTemplate.ToscaRelationshipTemplate()
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/ToscaRelationshipTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/ToscaRelationshipTemplate.cs
+    startLine: 15
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaRelationshipTemplate\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public ToscaRelationshipTemplate()
+    content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: Toscana.ToscaRelationshipTemplate.Type
   commentId: P:Toscana.ToscaRelationshipTemplate.Type
   id: Type
@@ -71,7 +103,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 15
+    startLine: 25
   assemblies:
   - Toscana
   namespace: Toscana
@@ -107,7 +139,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 20
+    startLine: 30
   assemblies:
   - Toscana
   namespace: Toscana
@@ -143,7 +175,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 25
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
@@ -179,7 +211,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Assignments
     path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 30
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
@@ -215,7 +247,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 35
+    startLine: 45
   assemblies:
   - Toscana
   namespace: Toscana
@@ -251,7 +283,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Copy
     path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 41
+    startLine: 51
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1001,6 +1033,12 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.ToscaRelationshipTemplate
+  commentId: T:Toscana.ToscaRelationshipTemplate
+  isExternal: false
+  name: ToscaRelationshipTemplate
+  nameWithType: ToscaRelationshipTemplate
+  fullName: Toscana.ToscaRelationshipTemplate
 - uid: System.String
   commentId: T:System.String
   parent: System

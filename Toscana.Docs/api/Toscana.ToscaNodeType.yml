@@ -35,7 +35,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodeType
     path: Toscana/ToscaNodeType.cs
-    startLine: 12
+    startLine: 13
   assemblies:
   - Toscana
   namespace: Toscana
@@ -90,7 +90,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaNodeType.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - Toscana
   namespace: Toscana
@@ -121,7 +121,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaNodeType.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
@@ -157,7 +157,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaNodeType.cs
-    startLine: 35
+    startLine: 36
   assemblies:
   - Toscana
   namespace: Toscana
@@ -193,7 +193,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaNodeType.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - Toscana
   namespace: Toscana
@@ -229,7 +229,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaNodeType.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - Toscana
   namespace: Toscana
@@ -265,7 +265,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Requirements
     path: Toscana/ToscaNodeType.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - Toscana
   namespace: Toscana
@@ -301,7 +301,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capabilities
     path: Toscana/ToscaNodeType.cs
-    startLine: 55
+    startLine: 56
   assemblies:
   - Toscana
   namespace: Toscana
@@ -337,7 +337,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaNodeType.cs
-    startLine: 60
+    startLine: 61
   assemblies:
   - Toscana
   namespace: Toscana
@@ -373,7 +373,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Artifacts
     path: Toscana/ToscaNodeType.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - Toscana
   namespace: Toscana
@@ -409,15 +409,21 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaNodeType.cs
-    startLine: 72
+    startLine: 73
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nReturns ToscaNodetype this Node type derives from.\nFor root node type, null is returned\n"
   example: []
   syntax:
-    content: public override ToscaNodeType Base { get; }
-    content.vb: Public Overrides ReadOnly Property Base As ToscaNodeType
+    content: >-
+      [YamlIgnore]
+
+      public override ToscaNodeType Base { get; }
+    content.vb: >-
+      <YamlIgnore>
+
+      Public Overrides ReadOnly Property Base As ToscaNodeType
     parameters: []
     return:
       type: Toscana.ToscaNodeType
@@ -426,6 +432,10 @@ items:
   - type: Toscana.Exceptions.ToscaNodeTypeNotFoundException
     commentId: T:Toscana.Exceptions.ToscaNodeTypeNotFoundException
     description: Thrown when Node Type pointed by Derived From not found
+  attributes:
+  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
+    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - override
@@ -452,7 +462,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllRequirements
     path: Toscana/ToscaNodeType.cs
-    startLine: 90
+    startLine: 92
   assemblies:
   - Toscana
   namespace: Toscana
@@ -486,7 +496,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllCapabilityTypes
     path: Toscana/ToscaNodeType.cs
-    startLine: 106
+    startLine: 108
   assemblies:
   - Toscana
   namespace: Toscana
@@ -520,7 +530,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddRequirement
     path: Toscana/ToscaNodeType.cs
-    startLine: 125
+    startLine: 127
   assemblies:
   - Toscana
   namespace: Toscana
@@ -558,7 +568,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaNodeType.cs
-    startLine: 137
+    startLine: 139
   assemblies:
   - Toscana
   namespace: Toscana
@@ -596,7 +606,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllProperties
     path: Toscana/ToscaNodeType.cs
-    startLine: 149
+    startLine: 152
   assemblies:
   - Toscana
   namespace: Toscana
@@ -608,6 +618,10 @@ items:
     return:
       type: System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaPropertyDefinition}
       description: ''
+  exceptions:
+  - type: Toscana.Exceptions.ToscaNodeTypeNotFoundException
+    commentId: T:Toscana.Exceptions.ToscaNodeTypeNotFoundException
+    description: Thrown when Node Type pointed by Derived From not found
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -631,7 +645,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaNodeType.cs
-    startLine: 162
+    startLine: 168
   assemblies:
   - Toscana
   namespace: Toscana

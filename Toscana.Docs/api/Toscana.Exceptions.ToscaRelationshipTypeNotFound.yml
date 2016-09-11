@@ -30,8 +30,13 @@ items:
   summary: "\nThrown when relationship type not found\n"
   example: []
   syntax:
-    content: 'public class ToscaRelationshipTypeNotFound : ToscaBaseException, ISerializable, _Exception'
+    content: >-
+      [Serializable]
+
+      public class ToscaRelationshipTypeNotFound : ToscaBaseException, ISerializable, _Exception
     content.vb: >-
+      <Serializable>
+
       Public Class ToscaRelationshipTypeNotFound
           Inherits ToscaBaseException
           Implements ISerializable, _Exception
@@ -65,6 +70,10 @@ items:
   - Toscana.Exceptions.ToscaRelationshipTypeNotFound.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,Toscana.Exceptions.ToscaRelationshipTypeNotFound},System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,System.Boolean})
   - Toscana.Exceptions.ToscaRelationshipTypeNotFound.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,Toscana.Exceptions.ToscaRelationshipTypeNotFound})
   - System.Exception.Toscana.Common.ExceptionExtensions.GetaAllMessages
+  attributes:
+  - type: System.SerializableAttribute
+    ctor: System.SerializableAttribute.#ctor
+    arguments: []
   modifiers.csharp:
   - public
   - class
@@ -89,7 +98,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
@@ -120,7 +129,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
@@ -155,7 +164,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
@@ -200,7 +209,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-    startLine: 41
+    startLine: 42
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions

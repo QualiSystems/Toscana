@@ -7,10 +7,12 @@ items:
   children:
   - Toscana.ToscaDefaults.GetNodeCapabilityType
   - Toscana.ToscaDefaults.GetRootCapabilityType
+  - Toscana.ToscaDefaults.GetRootDataType
   - Toscana.ToscaDefaults.GetRootNodeType
   - Toscana.ToscaDefaults.ToscaArtifactRoot
   - Toscana.ToscaDefaults.ToscaCapabilitiesNode
   - Toscana.ToscaDefaults.ToscaCapabilitiesRoot
+  - Toscana.ToscaDefaults.ToscaDataTypeRoot
   - Toscana.ToscaDefaults.ToscaNodesRoot
   - Toscana.ToscaDefaults.ToscaRelationshipTypeRoot
   langs:
@@ -228,6 +230,41 @@ items:
   modifiers.vb:
   - Public
   - Const
+- uid: Toscana.ToscaDefaults.ToscaDataTypeRoot
+  commentId: F:Toscana.ToscaDefaults.ToscaDataTypeRoot
+  id: ToscaDataTypeRoot
+  parent: Toscana.ToscaDefaults
+  langs:
+  - csharp
+  - vb
+  name: ToscaDataTypeRoot
+  nameWithType: ToscaDefaults.ToscaDataTypeRoot
+  fullName: Toscana.ToscaDefaults.ToscaDataTypeRoot
+  type: Field
+  source:
+    remote:
+      path: Toscana/ToscaDefaults.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ToscaDataTypeRoot
+    path: Toscana/ToscaDefaults.cs
+    startLine: 37
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nName of the root data type\n"
+  example: []
+  syntax:
+    content: public static string ToscaDataTypeRoot
+    content.vb: Public Shared ToscaDataTypeRoot As String
+    return:
+      type: System.String
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 - uid: Toscana.ToscaDefaults.GetRootNodeType
   commentId: M:Toscana.ToscaDefaults.GetRootNodeType
   id: GetRootNodeType
@@ -246,7 +283,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootNodeType
     path: Toscana/ToscaDefaults.cs
-    startLine: 39
+    startLine: 44
   assemblies:
   - Toscana
   namespace: Toscana
@@ -282,7 +319,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootCapabilityType
     path: Toscana/ToscaDefaults.cs
-    startLine: 70
+    startLine: 75
   assemblies:
   - Toscana
   namespace: Toscana
@@ -318,7 +355,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetNodeCapabilityType
     path: Toscana/ToscaDefaults.cs
-    startLine: 79
+    startLine: 84
   assemblies:
   - Toscana
   namespace: Toscana
@@ -329,6 +366,42 @@ items:
     content.vb: Public Shared Function GetNodeCapabilityType As ToscaCapabilityType
     return:
       type: Toscana.ToscaCapabilityType
+      description: ''
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Toscana.ToscaDefaults.GetRootDataType
+  commentId: M:Toscana.ToscaDefaults.GetRootDataType
+  id: GetRootDataType
+  parent: Toscana.ToscaDefaults
+  langs:
+  - csharp
+  - vb
+  name: GetRootDataType()
+  nameWithType: ToscaDefaults.GetRootDataType()
+  fullName: Toscana.ToscaDefaults.GetRootDataType()
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaDefaults.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: GetRootDataType
+    path: Toscana/ToscaDefaults.cs
+    startLine: 96
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nReturns an instance of the tosca.datatypes.Root\n"
+  example: []
+  syntax:
+    content: public static ToscaDataTypeDefinition GetRootDataType()
+    content.vb: Public Shared Function GetRootDataType As ToscaDataTypeDefinition
+    return:
+      type: Toscana.ToscaDataTypeDefinition
       description: ''
   modifiers.csharp:
   - public
@@ -656,3 +729,10 @@ references:
   name: ToscaCapabilityType
   nameWithType: ToscaCapabilityType
   fullName: Toscana.ToscaCapabilityType
+- uid: Toscana.ToscaDataTypeDefinition
+  commentId: T:Toscana.ToscaDataTypeDefinition
+  parent: Toscana
+  isExternal: false
+  name: ToscaDataTypeDefinition
+  nameWithType: ToscaDataTypeDefinition
+  fullName: Toscana.ToscaDataTypeDefinition

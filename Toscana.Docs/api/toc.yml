@@ -20,6 +20,8 @@
     name: ToscaCloudServiceArchive
   - uid: Toscana.ToscaCredential
     name: ToscaCredential
+  - uid: Toscana.ToscaDataTypeDefinition
+    name: ToscaDataTypeDefinition
   - uid: Toscana.ToscaDefaults
     name: ToscaDefaults
   - uid: Toscana.ToscaGroup
@@ -66,14 +68,16 @@
 - uid: Toscana.Exceptions
   name: Toscana.Exceptions
   items:
-  - uid: Toscana.Exceptions.ArtifactNotFoundException
-    name: ArtifactNotFoundException
+  - uid: Toscana.Exceptions.ToscaArtifactNotFoundException
+    name: ToscaArtifactNotFoundException
   - uid: Toscana.Exceptions.ToscaBaseException
     name: ToscaBaseException
   - uid: Toscana.Exceptions.ToscaCapabilityTypeNotFoundException
     name: ToscaCapabilityTypeNotFoundException
   - uid: Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException
     name: ToscaCloudServiceArchiveFileNotFoundException
+  - uid: Toscana.Exceptions.ToscaDataTypeNotFoundException
+    name: ToscaDataTypeNotFoundException
   - uid: Toscana.Exceptions.ToscaImportFileNotFoundException
     name: ToscaImportFileNotFoundException
   - uid: Toscana.Exceptions.ToscaMetadataFileNotFoundException
@@ -84,5 +88,7 @@
     name: ToscaParsingException
   - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
     name: ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
+    name: ToscaServiceTemplateAlreadyExistsException
   - uid: Toscana.Exceptions.ToscaValidationException
     name: ToscaValidationException

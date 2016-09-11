@@ -5,6 +5,7 @@ items:
   id: ToscaInterfaceDefinition
   parent: Toscana
   children:
+  - Toscana.ToscaInterfaceDefinition.#ctor
   - Toscana.ToscaInterfaceDefinition.Inputs
   langs:
   - csharp
@@ -48,6 +49,37 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: Toscana.ToscaInterfaceDefinition.#ctor
+  commentId: M:Toscana.ToscaInterfaceDefinition.#ctor
+  id: '#ctor'
+  parent: Toscana.ToscaInterfaceDefinition
+  langs:
+  - csharp
+  - vb
+  name: ToscaInterfaceDefinition()
+  nameWithType: ToscaInterfaceDefinition.ToscaInterfaceDefinition()
+  fullName: Toscana.ToscaInterfaceDefinition.ToscaInterfaceDefinition()
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/ToscaInterfaceDefinition.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/ToscaInterfaceDefinition.cs
+    startLine: 13
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaInterfaceDefinition\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public ToscaInterfaceDefinition()
+    content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: Toscana.ToscaInterfaceDefinition.Inputs
   commentId: P:Toscana.ToscaInterfaceDefinition.Inputs
   id: Inputs
@@ -66,7 +98,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Inputs
     path: Toscana/ToscaInterfaceDefinition.cs
-    startLine: 20
+    startLine: 28
   assemblies:
   - Toscana
   namespace: Toscana
@@ -816,6 +848,12 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.ToscaInterfaceDefinition
+  commentId: T:Toscana.ToscaInterfaceDefinition
+  isExternal: false
+  name: ToscaInterfaceDefinition
+  nameWithType: ToscaInterfaceDefinition
+  fullName: Toscana.ToscaInterfaceDefinition
 - uid: System.Collections.Generic.Dictionary{System.String,System.Object}
   commentId: T:System.Collections.Generic.Dictionary{System.String,System.Object}
   parent: System.Collections.Generic

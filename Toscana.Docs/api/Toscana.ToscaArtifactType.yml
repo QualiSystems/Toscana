@@ -5,6 +5,7 @@ items:
   id: ToscaArtifactType
   parent: Toscana
   children:
+  - Toscana.ToscaArtifactType.#ctor
   - Toscana.ToscaArtifactType.Base
   - Toscana.ToscaArtifactType.Description
   - Toscana.ToscaArtifactType.FileExt
@@ -60,6 +61,37 @@ items:
   modifiers.vb:
   - Public
   - Class
+- uid: Toscana.ToscaArtifactType.#ctor
+  commentId: M:Toscana.ToscaArtifactType.#ctor
+  id: '#ctor'
+  parent: Toscana.ToscaArtifactType
+  langs:
+  - csharp
+  - vb
+  name: ToscaArtifactType()
+  nameWithType: ToscaArtifactType.ToscaArtifactType()
+  fullName: Toscana.ToscaArtifactType.ToscaArtifactType()
+  type: Constructor
+  source:
+    remote:
+      path: Toscana/ToscaArtifactType.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: .ctor
+    path: Toscana/ToscaArtifactType.cs
+    startLine: 14
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nInitilizes an instance of <xref href=\"Toscana.ToscaArtifactType\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: public ToscaArtifactType()
+    content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: Toscana.ToscaArtifactType.Version
   commentId: P:Toscana.ToscaArtifactType.Version
   id: Version
@@ -78,7 +110,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaArtifactType.cs
-    startLine: 14
+    startLine: 23
   assemblies:
   - Toscana
   namespace: Toscana
@@ -114,7 +146,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaArtifactType.cs
-    startLine: 19
+    startLine: 28
   assemblies:
   - Toscana
   namespace: Toscana
@@ -150,7 +182,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: MimeType
     path: Toscana/ToscaArtifactType.cs
-    startLine: 24
+    startLine: 33
   assemblies:
   - Toscana
   namespace: Toscana
@@ -186,7 +218,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: FileExt
     path: Toscana/ToscaArtifactType.cs
-    startLine: 29
+    startLine: 38
   assemblies:
   - Toscana
   namespace: Toscana
@@ -222,7 +254,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaArtifactType.cs
-    startLine: 34
+    startLine: 43
   assemblies:
   - Toscana
   namespace: Toscana
@@ -258,7 +290,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaArtifactType.cs
-    startLine: 41
+    startLine: 50
   assemblies:
   - Toscana
   namespace: Toscana
@@ -297,7 +329,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaArtifactType.cs
-    startLine: 59
+    startLine: 68
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1221,6 +1253,13 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.ToscaArtifactType
+  commentId: T:Toscana.ToscaArtifactType
+  parent: Toscana
+  isExternal: false
+  name: ToscaArtifactType
+  nameWithType: ToscaArtifactType
+  fullName: Toscana.ToscaArtifactType
 - uid: System.Version
   commentId: T:System.Version
   parent: System
@@ -1384,13 +1423,6 @@ references:
   fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.Base
   nameWithType.vb: ToscaObject(Of ToscaArtifactType).Base
   fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).Base
-- uid: Toscana.ToscaArtifactType
-  commentId: T:Toscana.ToscaArtifactType
-  parent: Toscana
-  isExternal: false
-  name: ToscaArtifactType
-  nameWithType: ToscaArtifactType
-  fullName: Toscana.ToscaArtifactType
 - uid: Toscana.ToscaObject`1.Base
   commentId: P:Toscana.ToscaObject`1.Base
   isExternal: false

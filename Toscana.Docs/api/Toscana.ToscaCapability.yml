@@ -270,10 +270,10 @@ items:
   summary: "\nInitializes an instance of of <xref href=\"Toscana.ToscaCapability\" data-throw-if-not-resolved=\"false\"></xref> and set its Type property\n"
   example: []
   syntax:
-    content: public static implicit operator ToscaCapability(string val)
-    content.vb: Public Shared Widening Operator CType(val As String) As ToscaCapability
+    content: public static implicit operator ToscaCapability(string type)
+    content.vb: Public Shared Widening Operator CType(type As String) As ToscaCapability
     parameters:
-    - id: val
+    - id: type
       type: System.String
       description: Value to set to Type property
     return:
