@@ -18,7 +18,7 @@ namespace Toscana
     ///     for a TOSCA orchestrator processing the CSAR file.
     ///     The CSAR file may contain other directories with arbitrary names and contents.
     /// </summary>
-    public class ToscaCloudServiceArchive : IValidatableObject
+    public class ToscaCloudServiceArchive : IValidatableObject, IToscaMetadata
     {
         private const string ArchitectureDescription = @"The Operating System (OS) architecture.
  
@@ -104,6 +104,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private readonly Dictionary<string, ToscaArtifactType> artifactTypes;
         private readonly Dictionary<string, ToscaRelationshipType> relationshipTypes;
         private readonly Dictionary<string, ToscaDataTypeDefinition> dataTypes;
+        private readonly ToscaMetadata toscaMetadata;
 
         #endregion
 
@@ -117,7 +118,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <param name="toscaMetadata">An instance of Tosca Metadata</param>
         public ToscaCloudServiceArchive(ToscaMetadata toscaMetadata)
         {
-            ToscaMetadata = toscaMetadata;
+            this.toscaMetadata = toscaMetadata;
             toscaServiceTemplates = new Dictionary<string, ToscaServiceTemplate>();
             nodeTypes = new Dictionary<string, ToscaNodeType>();
             capabilityTypes = new Dictionary<string, ToscaCapabilityType>();
@@ -128,13 +129,6 @@ Examples of valid values for an “type” of “Linux” would include:  debian
             FillDefaults();
         }
 
-        /// <summary>
-        ///     Initializes an instance of <see cref="ToscaCloudServiceArchive" /> and fills TOSCA defaults
-        /// </summary>
-        public ToscaCloudServiceArchive() : this(new ToscaMetadata())
-        {
-        }
-
         #endregion
 
         #region Public properties
@@ -142,7 +136,10 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <summary>
         ///     TOSCA Metadata
         /// </summary>
-        public ToscaMetadata ToscaMetadata { get; private set; }
+        internal ToscaMetadata ToscaMetadata
+        {
+            get { return toscaMetadata; }
+        }
 
         /// <summary>
         /// </summary>
@@ -568,5 +565,40 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         }
 
         #endregion
+
+        /// <summary>
+        /// Specifies TOSCA.meta file version
+        /// </summary>
+        public Version ToscaMetaFileVersion
+        {
+            get { return ToscaMetadata.ToscaMetaFileVersion; }
+        }
+
+        /// <summary>
+        /// Denotes the verison of CSAR
+        /// Due to the simplified structure of the CSAR file and TOSCA.meta file compared to TOSCA 1.0, 
+        /// the CSAR-Version keyword listed in block_0 of the meta-file is required to denote version 1.1.
+        /// </summary>
+        public Version CsarVersion
+        {
+            get { return ToscaMetadata.CsarVersion; }
+        }
+
+        /// <summary>
+        /// Specifies who created the CSAR  
+        /// </summary>
+        public string CreatedBy
+        {
+            get { return ToscaMetadata.CreatedBy; }
+        }
+
+        /// <summary>
+        /// Entry-Definitions keyword pointing to a valid TOSCA definitions YAML file that a TOSCA 
+        /// orchestrator should use as entry for parsing the contents of the overall CSAR file.
+        /// </summary>
+        public string EntryDefinitions
+        {
+            get { return ToscaMetadata.EntryDefinitions; }
+        }
     }
 }
