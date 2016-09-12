@@ -45,6 +45,6 @@ namespace Toscana
         /// <summary>
         /// The optional key that is used to declare the name of the Datatype definition for entries of set types such as the TOSCA list or map.
         /// </summary>
-        public string EntrySchema { get; set; }
+        public ToscaAttributeDefinition EntrySchema { get; set; }
     }
 }

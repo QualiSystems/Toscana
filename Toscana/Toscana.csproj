@@ -152,6 +152,7 @@
     <Compile Include="ToscaNodeTemplate.cs" />
     <Compile Include="ToscaNodeType.cs" />
     <Compile Include="ToscaObject.cs" />
+    <Compile Include="ToscaPropertyEntrySchema.cs" />
     <Compile Include="ToscaPropertyStatus.cs" />
     <Compile Include="ToscaRelationshipTemplate.cs" />
     <Compile Include="ToscaRelationshipType.cs" />

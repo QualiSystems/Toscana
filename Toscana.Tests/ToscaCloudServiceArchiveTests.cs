@@ -279,7 +279,7 @@ namespace Toscana.Tests
             cloudServiceArchive.TraverseNodeTypesInheritance((nodeTypeName, nodeType) => { discoveredNodeTypeNames.Add(nodeTypeName );});
 
             // Assert
-            discoveredNodeTypeNames.ShouldBeEquivalentTo(new[] { "tosca.nodes.Root", "device", "switch", "router" });
+            discoveredNodeTypeNames.ShouldBeEquivalentTo(new[] { "tosca.nodes.Root", "tosca.nodes.BlockStorage", "tosca.nodes.Compute", "device", "switch", "router" });
         }
 
         [Test]

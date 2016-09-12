@@ -49,7 +49,7 @@ node_types:
                 numCpusProperty.Default.Should().Be("1");
                 numCpusProperty.Required.Should().BeTrue();
                 numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
-                numCpusProperty.EntrySchema.Should().Be("default");
+                numCpusProperty.EntrySchema.Type.Should().Be("default");
                 numCpusProperty.Constraints.Should().HaveCount(1);
                 numCpusProperty.Constraints.Single().Should().HaveCount(1);
                 var validValues = (List<object>) numCpusProperty.Constraints.Single()["valid_values"];

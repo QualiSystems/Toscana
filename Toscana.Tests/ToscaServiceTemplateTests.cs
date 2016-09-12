@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using FluentAssertions;
@@ -138,11 +139,49 @@ node_types:
             numCpusProperty.Default.Should().Be("1");
             numCpusProperty.Required.Should().BeTrue();
             numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
-            numCpusProperty.EntrySchema.Should().Be("default");
+            numCpusProperty.EntrySchema.Type.Should().Be("default");
             numCpusProperty.Constraints.Should().HaveCount(1);
             numCpusProperty.Constraints.Single().Should().HaveCount(1);
             var validValues = (List<object>)numCpusProperty.Constraints.Single()["valid_values"];
             validValues.Should().BeEquivalentTo(new List<object> { "1", "2", "4", "8" });
+        }
+
+        [Test]
+        public void Service_Template_With_Complex_Data_Type_Can_Be_Parsed()
+        {
+            string toscaServiceTemplate = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+    tosca.nodes.SoftwareComponent:
+        derived_from: tosca.nodes.Root
+        properties:
+            # domain-specific software component version
+            component_version:
+                type: version
+                required: false
+            admin_credential:
+                type: tosca.datatypes.Credential
+                required: false
+        requirements:
+        - host:
+            capability: tosca.capabilities.Container
+            node: tosca.nodes.Compute
+            relationship: tosca.relationships.HostedOn";
+
+            var serviceTemplate = ToscaServiceTemplate.Parse(toscaServiceTemplate.ToMemoryStream());
+
+            var toscaMetadata = new ToscaMetadata
+                { CsarVersion = new Version(1,1), EntryDefinitions = "tosca.yml", ToscaMetaFileVersion = new Version(1,1), CreatedBy = "anonymous" };
+            var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results)
+                .Should()
+                .BeTrue(string.Join(Environment.NewLine, results.Select(r => r.ErrorMessage)));
+
+
         }
     }
 }

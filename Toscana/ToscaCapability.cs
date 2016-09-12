@@ -17,6 +17,7 @@ namespace Toscana
         {
             Properties = new Dictionary<string, ToscaPropertyDefinition>();
             Attributes = new Dictionary<string, ToscaAttributeDefinition>();
+            ValidSourceTypes = new string[0];
         }
 
         /// <summary>
@@ -39,6 +40,11 @@ namespace Toscana
         /// An optional list of attribute definitions for the Capability definition.
         /// </summary>
         public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
+
+        /// <summary>
+        /// An optional list of one or more valid names of Node Types that are supported as valid sources of any relationship established to the declared Capability Type.
+        /// </summary>
+        public string[] ValidSourceTypes { get; set; }
 
         /// <summary>
         /// Initializes an instance of of <see cref="ToscaCapability"/> and set its Type property

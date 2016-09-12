@@ -61,7 +61,7 @@ namespace Toscana
         ///     The optional key that is used to declare the name of the Datatype definition for entries of set types such as the
         ///     TOSCA list or map.
         /// </summary>
-        public string EntrySchema { get; set; }
+        public ToscaPropertyEntrySchema EntrySchema { get; set; }
 
         /// <summary>
         ///     The optional list of tags
@@ -106,6 +106,16 @@ namespace Toscana
                 }
             }
             return validatuResults;
+        }
+
+        /// <summary>
+        /// Adds a constraint to the property definition
+        /// </summary>
+        /// <param name="contraintName">Constraint name, like greater_or_equal, valid_values</param>
+        /// <param name="constraintValue">Constraint values</param>
+        public void AddConstraint(string contraintName, object constraintValue)
+        {
+            Constraints.Add(new Dictionary<string, object> { {contraintName, constraintValue} });
         }
     }
 }

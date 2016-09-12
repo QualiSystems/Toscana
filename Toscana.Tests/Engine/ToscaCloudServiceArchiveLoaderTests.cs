@@ -71,7 +71,7 @@ node_types:
             // Assert
             toscaCloudServiceArchive.ToscaServiceTemplates.Should().HaveCount(2);
 
-            toscaCloudServiceArchive.NodeTypes.Should().HaveCount(3);
+            toscaCloudServiceArchive.NodeTypes.Should().HaveCount(5);
             toscaCloudServiceArchive.NodeTypes.Should().ContainSingle(_ => _.Key == "tosca.base");
             toscaCloudServiceArchive.NodeTypes.Should().ContainSingle(_ => _.Key == "example.TransactionSubsystem");
             toscaCloudServiceArchive.NodeTypes.Should().ContainSingle(_ => _.Key == "tosca.nodes.Root");
