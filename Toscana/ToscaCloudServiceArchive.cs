@@ -142,7 +142,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <summary>
         ///     TOSCA Metadata
         /// </summary>
-        public ToscaMetadata ToscaMetadata { get; }
+        public ToscaMetadata ToscaMetadata { get; private set; }
 
         /// <summary>
         /// </summary>
