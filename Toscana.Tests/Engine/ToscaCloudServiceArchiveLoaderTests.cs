@@ -698,5 +698,52 @@ node_types:
 
             action.ShouldNotThrow("It should be possible to import the same file from different files");
         }
+        
+        [Test]
+        public void It_Is_Possible_To_Have_Two_Different_Nodes_Refering_To_Same_Artifact()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: Vido
+Entry-Definitions: entry.yaml";
+
+            var toscaEntryContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      vendor:
+        type: string
+    artifacts:
+      icon:
+        file: sample.png
+        type: tosca.artifacts.File
+
+  example.CrapsactionSubsystem:
+    properties:
+      vendor:
+        type: string
+    artifacts:
+      icon:
+        file: sample.png
+        type: tosca.artifacts.File
+";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("entry.yaml", toscaEntryContent),
+                new FileContent("sample.png", "")
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            action.ShouldNotThrow("It should be possible to that two node types will reference the same artifact");
+        }
     }
 }
