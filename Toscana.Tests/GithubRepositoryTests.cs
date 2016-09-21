@@ -37,13 +37,14 @@ namespace Toscana.Tests
                 {
                     client.DownloadFile(repositoryUrl, tempFile.FilePath);
 
-                    var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open);
-                    var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read);
-
-                    return archive.Entries
-                        .Where(filesFilter)
-                        .Select(ReadFileContent)
-                        .ToList();
+                    using (var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open))
+                    using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
+                    {
+                        return archive.Entries
+                            .Where(filesFilter)
+                            .Select(ReadFileContent)
+                            .ToList();
+                    }
                 }
             }
 
