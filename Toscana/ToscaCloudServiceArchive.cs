@@ -333,7 +333,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <param name="bytes">Byte array of the artifact</param>
         public void AddArtifact(string artifactPath, byte[] bytes)
         {
-            fileContents.Add(artifactPath, bytes);
+            fileContents[artifactPath] = bytes;
         }
 
         /// <summary>
