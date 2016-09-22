@@ -1,0 +1,639 @@
+### YamlMime:ManagedReference
+items:
+- uid: Toscana.IToscaMetadata
+  commentId: T:Toscana.IToscaMetadata
+  id: IToscaMetadata
+  parent: Toscana
+  children:
+  - Toscana.IToscaMetadata.CreatedBy
+  - Toscana.IToscaMetadata.CsarVersion
+  - Toscana.IToscaMetadata.EntryDefinitions
+  - Toscana.IToscaMetadata.ToscaMetaFileVersion
+  langs:
+  - csharp
+  - vb
+  name: IToscaMetadata
+  nameWithType: IToscaMetadata
+  fullName: Toscana.IToscaMetadata
+  type: Interface
+  source:
+    remote:
+      path: Toscana/ToscaMetadata.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: IToscaMetadata
+    path: Toscana/ToscaMetadata.cs
+    startLine: 9
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nInterface to represent TOSCA.meta file content\n"
+  example: []
+  syntax:
+    content: public interface IToscaMetadata
+    content.vb: Public Interface IToscaMetadata
+  extensionMethods:
+  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
+  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Toscana.IToscaMetadata.ToscaMetaFileVersion
+  commentId: P:Toscana.IToscaMetadata.ToscaMetaFileVersion
+  id: ToscaMetaFileVersion
+  parent: Toscana.IToscaMetadata
+  langs:
+  - csharp
+  - vb
+  name: ToscaMetaFileVersion
+  nameWithType: IToscaMetadata.ToscaMetaFileVersion
+  fullName: Toscana.IToscaMetadata.ToscaMetaFileVersion
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaMetadata.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ToscaMetaFileVersion
+    path: Toscana/ToscaMetadata.cs
+    startLine: 14
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nSpecifies TOSCA.meta file version\n"
+  example: []
+  syntax:
+    content: Version ToscaMetaFileVersion { get; }
+    content.vb: ReadOnly Property ToscaMetaFileVersion As Version
+    parameters: []
+    return:
+      type: System.Version
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Toscana.IToscaMetadata.CsarVersion
+  commentId: P:Toscana.IToscaMetadata.CsarVersion
+  id: CsarVersion
+  parent: Toscana.IToscaMetadata
+  langs:
+  - csharp
+  - vb
+  name: CsarVersion
+  nameWithType: IToscaMetadata.CsarVersion
+  fullName: Toscana.IToscaMetadata.CsarVersion
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaMetadata.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: CsarVersion
+    path: Toscana/ToscaMetadata.cs
+    startLine: 21
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nDenotes the verison of CSAR\nDue to the simplified structure of the CSAR file and TOSCA.meta file compared to TOSCA 1.0, \nthe CSAR-Version keyword listed in block_0 of the meta-file is required to denote version 1.1.\n"
+  example: []
+  syntax:
+    content: Version CsarVersion { get; }
+    content.vb: ReadOnly Property CsarVersion As Version
+    parameters: []
+    return:
+      type: System.Version
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Toscana.IToscaMetadata.CreatedBy
+  commentId: P:Toscana.IToscaMetadata.CreatedBy
+  id: CreatedBy
+  parent: Toscana.IToscaMetadata
+  langs:
+  - csharp
+  - vb
+  name: CreatedBy
+  nameWithType: IToscaMetadata.CreatedBy
+  fullName: Toscana.IToscaMetadata.CreatedBy
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaMetadata.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: CreatedBy
+    path: Toscana/ToscaMetadata.cs
+    startLine: 26
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nSpecifies who created the CSAR  \n"
+  example: []
+  syntax:
+    content: string CreatedBy { get; }
+    content.vb: ReadOnly Property CreatedBy As String
+    parameters: []
+    return:
+      type: System.String
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Toscana.IToscaMetadata.EntryDefinitions
+  commentId: P:Toscana.IToscaMetadata.EntryDefinitions
+  id: EntryDefinitions
+  parent: Toscana.IToscaMetadata
+  langs:
+  - csharp
+  - vb
+  name: EntryDefinitions
+  nameWithType: IToscaMetadata.EntryDefinitions
+  fullName: Toscana.IToscaMetadata.EntryDefinitions
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaMetadata.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: EntryDefinitions
+    path: Toscana/ToscaMetadata.cs
+    startLine: 32
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nEntry-Definitions keyword pointing to a valid TOSCA definitions YAML file that a TOSCA \norchestrator should use as entry for parsing the contents of the overall CSAR file.\n"
+  example: []
+  syntax:
+    content: string EntryDefinitions { get; }
+    content.vb: ReadOnly Property EntryDefinitions As String
+    parameters: []
+    return:
+      type: System.String
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: Toscana
+  commentId: N:Toscana
+  isExternal: false
+  name: Toscana
+  nameWithType: Toscana
+  fullName: Toscana
+- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  parent: Toscana.Common.EnumerableExtensions
+  definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>, System.Func<Toscana.IToscaMetadata, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata), System.Func(Of Toscana.IToscaMetadata, System.Boolean))
+  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy<IToscaMetadata>
+    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy(Of IToscaMetadata)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  parent: Toscana.Common.EnumerableExtensions
+  definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata))
+  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
+    name: FromHierarchy<IToscaMetadata>
+    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
+    name: FromHierarchy(Of IToscaMetadata)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
+    nameWithType: IToscaMetadata
+    fullName: Toscana.IToscaMetadata
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  isExternal: true
+  name: FromHierarchy<TSource>(TSource, Func<TSource, TSource>, Func<TSource, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<TSource>(TSource, Func<TSource, TSource>, Func<TSource, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>(TSource, System.Func<TSource, TSource>, System.Func<TSource, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource), Func(Of TSource, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)(TSource, System.Func(Of TSource, TSource), System.Func(Of TSource, System.Boolean))
+  name.vb: FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource), Func(Of TSource, Boolean))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy<TSource>
+    nameWithType: EnumerableExtensions.FromHierarchy<TSource>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy(Of TSource)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of TSource)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common.EnumerableExtensions
+  commentId: T:Toscana.Common.EnumerableExtensions
+  parent: Toscana.Common
+  isExternal: false
+  name: EnumerableExtensions
+  nameWithType: EnumerableExtensions
+  fullName: Toscana.Common.EnumerableExtensions
+- uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  isExternal: true
+  name: FromHierarchy<TSource>(TSource, Func<TSource, TSource>)
+  nameWithType: EnumerableExtensions.FromHierarchy<TSource>(TSource, Func<TSource, TSource>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>(TSource, System.Func<TSource, TSource>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)(TSource, System.Func(Of TSource, TSource))
+  name.vb: FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+    name: FromHierarchy<TSource>
+    nameWithType: EnumerableExtensions.FromHierarchy<TSource>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+    name: FromHierarchy(Of TSource)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of TSource)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common
+  commentId: N:Toscana.Common
+  isExternal: false
+  name: Toscana.Common
+  nameWithType: Toscana.Common
+  fullName: Toscana.Common
+- uid: System.Version
+  commentId: T:System.Version
+  parent: System
+  isExternal: true
+  name: Version
+  nameWithType: Version
+  fullName: System.Version
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
