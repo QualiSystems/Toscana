@@ -78,5 +78,10 @@ namespace Toscana.Engine
             var toscaParserFactory = poorManContainer.GetInstance<IToscaParserFactory>();
             return toscaParserFactory.GetParser(type);
         }
+
+        public IToscaSerializer<ToscaServiceTemplate> GetToscaServiceTemplateSerializer()
+        {
+            return poorManContainer.GetInstance<IToscaSerializer<ToscaServiceTemplate>>();
+        }
     }
 }

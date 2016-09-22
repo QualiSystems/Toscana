@@ -17,6 +17,7 @@ items:
   - Toscana.ToscaServiceTemplate.Parse(System.IO.Stream)
   - Toscana.ToscaServiceTemplate.RelationshipTypes
   - Toscana.ToscaServiceTemplate.Repositories
+  - Toscana.ToscaServiceTemplate.Save(System.IO.Stream)
   - Toscana.ToscaServiceTemplate.TopologyTemplate
   - Toscana.ToscaServiceTemplate.ToscaDefinitionsVersion
   langs:
@@ -582,6 +583,41 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: Toscana.ToscaServiceTemplate.Save(System.IO.Stream)
+  commentId: M:Toscana.ToscaServiceTemplate.Save(System.IO.Stream)
+  id: Save(System.IO.Stream)
+  parent: Toscana.ToscaServiceTemplate
+  langs:
+  - csharp
+  - vb
+  name: Save(Stream)
+  nameWithType: ToscaServiceTemplate.Save(Stream)
+  fullName: Toscana.ToscaServiceTemplate.Save(System.IO.Stream)
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaServiceTemplate.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Save
+    path: Toscana/ToscaServiceTemplate.cs
+    startLine: 109
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nSaves the ServiceTemplate to provided stream\n"
+  example: []
+  syntax:
+    content: public void Save(Stream stream)
+    content.vb: Public Sub Save(stream As Stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+      description: Stream to save
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: Toscana
   commentId: N:Toscana

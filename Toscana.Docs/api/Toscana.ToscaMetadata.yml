@@ -23,17 +23,21 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetadata
     path: Toscana/ToscaMetadata.cs
-    startLine: 10
+    startLine: 39
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nRepresents the content of TOSCA.met file which provides entry information for a TOSCA orchestrator \nprocessing the CSAR file.\n"
   example: []
   syntax:
-    content: public class ToscaMetadata
-    content.vb: Public Class ToscaMetadata
+    content: 'public class ToscaMetadata : IToscaMetadata'
+    content.vb: >-
+      Public Class ToscaMetadata
+          Implements IToscaMetadata
   inheritance:
   - System.Object
+  implements:
+  - Toscana.IToscaMetadata
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -69,7 +73,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetaFileVersion
     path: Toscana/ToscaMetadata.cs
-    startLine: 15
+    startLine: 44
   assemblies:
   - Toscana
   namespace: Toscana
@@ -91,6 +95,8 @@ items:
     parameters: []
     return:
       type: System.Version
+  implements:
+  - Toscana.IToscaMetadata.ToscaMetaFileVersion
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -133,7 +139,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: CsarVersion
     path: Toscana/ToscaMetadata.cs
-    startLine: 24
+    startLine: 53
   assemblies:
   - Toscana
   namespace: Toscana
@@ -155,6 +161,8 @@ items:
     parameters: []
     return:
       type: System.Version
+  implements:
+  - Toscana.IToscaMetadata.CsarVersion
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -197,7 +205,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: CreatedBy
     path: Toscana/ToscaMetadata.cs
-    startLine: 31
+    startLine: 60
   assemblies:
   - Toscana
   namespace: Toscana
@@ -219,6 +227,8 @@ items:
     parameters: []
     return:
       type: System.String
+  implements:
+  - Toscana.IToscaMetadata.CreatedBy
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -261,7 +271,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntryDefinitions
     path: Toscana/ToscaMetadata.cs
-    startLine: 39
+    startLine: 68
   assemblies:
   - Toscana
   namespace: Toscana
@@ -283,6 +293,8 @@ items:
     parameters: []
     return:
       type: System.String
+  implements:
+  - Toscana.IToscaMetadata.EntryDefinitions
   attributes:
   - type: YamlDotNet.Serialization.YamlMemberAttribute
     ctor: YamlDotNet.Serialization.YamlMemberAttribute.#ctor
@@ -321,6 +333,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Toscana.IToscaMetadata
+  commentId: T:Toscana.IToscaMetadata
+  parent: Toscana
+  isExternal: false
+  name: IToscaMetadata
+  nameWithType: IToscaMetadata
+  fullName: Toscana.IToscaMetadata
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -1039,6 +1058,13 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
+- uid: Toscana.IToscaMetadata.ToscaMetaFileVersion
+  commentId: P:Toscana.IToscaMetadata.ToscaMetaFileVersion
+  parent: Toscana.IToscaMetadata
+  isExternal: false
+  name: ToscaMetaFileVersion
+  nameWithType: IToscaMetadata.ToscaMetaFileVersion
+  fullName: Toscana.IToscaMetadata.ToscaMetaFileVersion
 - uid: System.Version
   commentId: T:System.Version
   parent: System
@@ -1046,6 +1072,20 @@ references:
   name: Version
   nameWithType: Version
   fullName: System.Version
+- uid: Toscana.IToscaMetadata.CsarVersion
+  commentId: P:Toscana.IToscaMetadata.CsarVersion
+  parent: Toscana.IToscaMetadata
+  isExternal: false
+  name: CsarVersion
+  nameWithType: IToscaMetadata.CsarVersion
+  fullName: Toscana.IToscaMetadata.CsarVersion
+- uid: Toscana.IToscaMetadata.CreatedBy
+  commentId: P:Toscana.IToscaMetadata.CreatedBy
+  parent: Toscana.IToscaMetadata
+  isExternal: false
+  name: CreatedBy
+  nameWithType: IToscaMetadata.CreatedBy
+  fullName: Toscana.IToscaMetadata.CreatedBy
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1053,3 +1093,10 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: Toscana.IToscaMetadata.EntryDefinitions
+  commentId: P:Toscana.IToscaMetadata.EntryDefinitions
+  parent: Toscana.IToscaMetadata
+  isExternal: false
+  name: EntryDefinitions
+  nameWithType: IToscaMetadata.EntryDefinitions
+  fullName: Toscana.IToscaMetadata.EntryDefinitions

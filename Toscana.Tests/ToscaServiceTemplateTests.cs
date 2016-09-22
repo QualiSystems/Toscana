@@ -147,6 +147,59 @@ node_types:
         }
 
         [Test]
+        public void Load_Service_Template_From_Stream_And_Save_Succeeds()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+        description: Number of CPUs requested for a software node instance.
+        default: 1
+        status: experimental
+        required: true
+        entry_schema: default
+        constraints:
+          - valid_values: [ 1, 2, 4, 8 ]";
+
+            var serviceTemplate = ToscaServiceTemplate.Parse(toscaString.ToMemoryStream());
+            byte[] savedTemplateBuffer;
+            using (var memoryStream = new MemoryStream())
+            {
+                serviceTemplate.Save(memoryStream);
+                memoryStream.Flush();
+
+                savedTemplateBuffer = memoryStream.GetBuffer();
+            }
+
+            var loadedAfterSaveTemplate = ToscaServiceTemplate.Parse(new MemoryStream(savedTemplateBuffer));
+
+            // Assert
+
+            loadedAfterSaveTemplate.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            loadedAfterSaveTemplate.Description.Should().BeNull();
+            loadedAfterSaveTemplate.NodeTypes.Should().HaveCount(1);
+
+            var nodeType = serviceTemplate.NodeTypes["example.TransactionSubsystem"];
+
+            nodeType.Properties.Should().HaveCount(1);
+            var numCpusProperty = nodeType.Properties["num_cpus"];
+            numCpusProperty.Type.Should().Be("integer");
+            numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
+            numCpusProperty.Default.Should().Be("1");
+            numCpusProperty.Required.Should().BeTrue();
+            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
+            numCpusProperty.EntrySchema.Type.Should().Be("default");
+            numCpusProperty.Constraints.Should().HaveCount(1);
+            numCpusProperty.Constraints.Single().Should().HaveCount(1);
+            var validValues = (List<object>)numCpusProperty.Constraints.Single()["valid_values"];
+            validValues.Should().BeEquivalentTo(new List<object> { "1", "2", "4", "8" });
+        }
+
+        [Test]
         public void Service_Template_With_Complex_Data_Type_Can_Be_Parsed()
         {
             string toscaServiceTemplate = @"

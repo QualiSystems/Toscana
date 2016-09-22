@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Toscana.Engine;
+using YamlDotNet.Serialization;
 
 namespace Toscana
 {
@@ -72,6 +73,7 @@ namespace Toscana
         ///     String representation of Default property.
         ///     Returns empty string when default is null
         /// </summary>
+        [YamlIgnore]
         public string StringValue
         {
             get { return Default == null ? string.Empty : Default.ToString(); }

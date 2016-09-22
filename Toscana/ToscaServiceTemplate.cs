@@ -102,5 +102,15 @@ namespace Toscana
             var toscaServiceTemplateParser = new Bootstrapper().GetToscaServiceTemplateParser();
             return toscaServiceTemplateParser.Parse(stream);
         }
+
+        /// <summary>
+        /// Saves the ServiceTemplate to provided stream
+        /// </summary>
+        /// <param name="stream">Stream to save</param>
+        public void Save(Stream stream)
+        {
+            var toscaServiceTemplateSerializer = new Bootstrapper().GetToscaServiceTemplateSerializer();
+            toscaServiceTemplateSerializer.Serialize(stream, this);
+        }
     }
 }

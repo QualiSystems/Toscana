@@ -267,11 +267,11 @@ items:
   summary: "\nThe optional key that is used to declare the name of the Datatype definition for entries of set types such as the TOSCA list or map.\n"
   example: []
   syntax:
-    content: public string EntrySchema { get; set; }
-    content.vb: Public Property EntrySchema As String
+    content: public ToscaAttributeDefinition EntrySchema { get; set; }
+    content.vb: Public Property EntrySchema As ToscaAttributeDefinition
     parameters: []
     return:
-      type: System.String
+      type: Toscana.ToscaAttributeDefinition
   modifiers.csharp:
   - public
   - get
@@ -1012,6 +1012,7 @@ references:
   fullName: Toscana.Common
 - uid: Toscana.ToscaAttributeDefinition
   commentId: T:Toscana.ToscaAttributeDefinition
+  parent: Toscana
   isExternal: false
   name: ToscaAttributeDefinition
   nameWithType: ToscaAttributeDefinition
