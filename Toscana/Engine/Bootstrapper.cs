@@ -27,6 +27,7 @@ namespace Toscana.Engine
             container.Register<IToscaCloudServiceArchiveSaver, ToscaCloudServiceArchiveSaver>();
             container.Register<IToscaSerializer<ToscaMetadata>, ToscaSerializer<ToscaMetadata>>();
             container.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
+            container.Register<IToscaServiceTemplateSaver, ToscaServiceTemplateSaver>();
             container.Register<ITypeConvertersFactory, TypeConvertersFactory>();
             container.Register<IToscaParserFactory>(
                 () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
