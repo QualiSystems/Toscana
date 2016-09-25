@@ -175,7 +175,7 @@ data_types:
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
                 // Act
-                var serviceTemplate = ToscaServiceTemplate.Parse(memoryStream);
+                var serviceTemplate = ToscaServiceTemplate.Load(memoryStream);
                 cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
 
                 List<ValidationResult> results;
@@ -207,7 +207,7 @@ node_types:
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
                 // Act
-                Action action = () => ToscaServiceTemplate.Parse(memoryStream);
+                Action action = () => ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 action.ShouldThrow<ToscaValidationException>()
@@ -576,7 +576,7 @@ data_types:
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
                 // Act
-                var serviceTemplate = ToscaServiceTemplate.Parse(memoryStream);
+                var serviceTemplate = ToscaServiceTemplate.Load(memoryStream);
                 cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
 
                 // Assert

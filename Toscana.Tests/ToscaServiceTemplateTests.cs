@@ -123,7 +123,7 @@ node_types:
         constraints:
           - valid_values: [ 1, 2, 4, 8 ]";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString.ToMemoryStream());
+            var tosca = ToscaServiceTemplate.Load(toscaString.ToMemoryStream());
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -165,7 +165,7 @@ node_types:
         constraints:
           - valid_values: [ 1, 2, 4, 8 ]";
 
-            var serviceTemplate = ToscaServiceTemplate.Parse(toscaString.ToMemoryStream());
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaString.ToMemoryStream());
             byte[] savedTemplateBuffer;
             using (var memoryStream = new MemoryStream())
             {
@@ -175,7 +175,7 @@ node_types:
                 savedTemplateBuffer = memoryStream.GetBuffer();
             }
 
-            var loadedAfterSaveTemplate = ToscaServiceTemplate.Parse(new MemoryStream(savedTemplateBuffer));
+            var loadedAfterSaveTemplate = ToscaServiceTemplate.Load(new MemoryStream(savedTemplateBuffer));
 
             // Assert
 
@@ -222,7 +222,7 @@ node_types:
             node: tosca.nodes.Compute
             relationship: tosca.relationships.HostedOn";
 
-            var serviceTemplate = ToscaServiceTemplate.Parse(toscaServiceTemplate.ToMemoryStream());
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaServiceTemplate.ToMemoryStream());
 
             var toscaMetadata = new ToscaMetadata
                 { CsarVersion = new Version(1,1), EntryDefinitions = "tosca.yml", ToscaMetaFileVersion = new Version(1,1), CreatedBy = "anonymous" };

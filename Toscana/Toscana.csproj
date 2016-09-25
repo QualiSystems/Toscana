@@ -95,6 +95,7 @@
     <Compile Include="Common\ZipArchiveExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
+    <Compile Include="Engine\ToscaServiceTemplateSaver.cs" />
     <Compile Include="Engine\ToscaBooleanDataTypeConverter.cs" />
     <Compile Include="Engine\ToscaFloatDataTypeConverter.cs" />
     <Compile Include="Engine\ToscaIntegerDataTypeConverter.cs" />
@@ -102,7 +103,7 @@
     <Compile Include="Engine\ToscaParserFactory.cs" />
     <Compile Include="Engine\StringToscaDataTypeConverter.cs" />
     <Compile Include="Engine\ToscaSerializer.cs" />
-    <Compile Include="Engine\PoorManContainer.cs" />
+    <Compile Include="Engine\SimpleIocContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveSaver.cs" />
     <Compile Include="Engine\ToscaNodeTypeInheritanceWalker.cs">

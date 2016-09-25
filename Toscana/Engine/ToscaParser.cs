@@ -1,9 +1,16 @@
 ﻿using System.IO;
+using Toscana.Exceptions;
 
 namespace Toscana.Engine
 {
     internal interface IToscaParser<out T>
     {
+        /// <summary>
+        /// Parses TOSCA entity from the stream
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns>TOSCA entity</returns>
+        /// <exception cref="ToscaParsingException">Thrown when YAML is not valid</exception>
         T Parse(Stream stream);
     }
 
@@ -18,6 +25,12 @@ namespace Toscana.Engine
             toscaDeserializer = deserializer;
         }
 
+        /// <summary>
+        /// Parses TOSCA entity from the stream
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns>TOSCA entity</returns>
+        /// <exception cref="ToscaParsingException">Tosca entity is null or not valid</exception>
         public T Parse(Stream stream)
         {
             var toscaObject = toscaDeserializer.Deserialize(stream);

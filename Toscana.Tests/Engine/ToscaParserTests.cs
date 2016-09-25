@@ -33,7 +33,7 @@ node_types:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -82,7 +82,7 @@ node_types:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -123,7 +123,7 @@ node_types:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -178,7 +178,7 @@ topology_template:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -229,7 +229,7 @@ topology_template:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -270,7 +270,7 @@ node_types:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 var numCpusProperty = tosca.NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"];
@@ -310,7 +310,7 @@ topology_template:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -421,7 +421,7 @@ topology_template:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -557,7 +557,7 @@ topology_template:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -609,7 +609,7 @@ node_types:
             {
                 using (var memoryStream = toscaString.ToMemoryStream())
                 {
-                    ToscaServiceTemplate.Parse(memoryStream);
+                    ToscaServiceTemplate.Load(memoryStream);
                 }
             };
 
@@ -651,7 +651,7 @@ topology_template:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -697,7 +697,7 @@ imports:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -726,7 +726,7 @@ imports:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -751,7 +751,7 @@ metadata:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -774,7 +774,7 @@ relationship_types:
 
             using (var memoryStream = toscaString.ToMemoryStream())
             {
-                var tosca = ToscaServiceTemplate.Parse(memoryStream);
+                var tosca = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -800,7 +800,7 @@ topology_template:
             properties:
               limit: 100".ToMemoryStream())
             {
-                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+                var toscaSimpleProfile = ToscaServiceTemplate.Load(memoryStream);
 
                 toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
                     .Properties["limit"].Should().Be("100");
@@ -824,7 +824,7 @@ topology_template:
 
             using (var memoryStream = toscaYaml.ToMemoryStream())
             {
-                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+                var toscaSimpleProfile = ToscaServiceTemplate.Load(memoryStream);
 
                 toscaSimpleProfile.TopologyTemplate.NodeTemplates["some_node_template"].Capabilities["some_capability"]
                     .Attributes["limit"].Value.Should().Be("100");
@@ -846,7 +846,7 @@ node_types:
 
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
-                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+                var toscaSimpleProfile = ToscaServiceTemplate.Load(memoryStream);
 
                 toscaSimpleProfile.NodeTypes["cloudshell.nodes.Shell"].Properties["vendor"].Tags
                     .ShouldAllBeEquivalentTo(new [] {"configuration", "setting", "search_filter", "abstract", "bi_filter"});
@@ -869,7 +869,7 @@ data_types:
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
                 // Act
-                var toscaSimpleProfile = ToscaServiceTemplate.Parse(memoryStream);
+                var toscaSimpleProfile = ToscaServiceTemplate.Load(memoryStream);
 
                 // Assert
                 toscaSimpleProfile.DataTypes["tosca.datatypes.Complex"].Properties["real"].Type.Should().Be("integer");
@@ -884,7 +884,7 @@ data_types:
             {
                 using (var memoryStream = "unsupported_something:".ToMemoryStream())
                 {
-                    ToscaServiceTemplate.Parse(memoryStream);
+                    ToscaServiceTemplate.Load(memoryStream);
                 }
             };
 

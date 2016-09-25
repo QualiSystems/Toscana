@@ -101,7 +101,7 @@ namespace Toscana.Tests
             string toscaAsString = fileContent.Content;
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
-                ToscaServiceTemplate.Parse(memoryStream);
+                ToscaServiceTemplate.Load(memoryStream);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Toscana.Tests
         {
             using (var memoryStream = fileContent.Content.ToMemoryStream())
             {
-                ToscaServiceTemplate.Parse(memoryStream);
+                ToscaServiceTemplate.Load(memoryStream);
             }
         }
 

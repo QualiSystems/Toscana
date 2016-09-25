@@ -19,7 +19,7 @@ namespace Toscana.Engine
         /// Validates a TOSCA entity and throws exception if validation fails
         /// </summary>
         /// <param name="toscaObject"></param>
-        /// <exception cref="ToscaValidationException">Tosca is null or empty</exception>
+        /// <exception cref="ToscaValidationException">Tosca entity is null or not valid</exception>
         public void Validate(T toscaObject)
         {
             if (toscaObject == null)

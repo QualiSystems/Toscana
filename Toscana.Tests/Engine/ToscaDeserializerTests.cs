@@ -2,6 +2,7 @@
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Common;
 using Toscana.Engine;
 using Toscana.Exceptions;
 
@@ -34,7 +35,7 @@ node_types:
             node: cloudshell.nodes.GenericPortChannel
             relationship: tosca.relationships.AttachesTo
             occurrences: [0, UNBOUNDED]
-");
+".ToMemoryStream());
 
             // Assert
             tosca.NodeTypes.Should().HaveCount(1);
@@ -56,7 +57,7 @@ node_types:
         public void ToscaParsingException_Should_Be_Thrown_When_Wrong_Tosca_Parsed()
         {
             var toscaDeserializer = CreateToscaDeserializer();
-            Action action = () => toscaDeserializer.Deserialize("unsupported_something:");
+            Action action = () => toscaDeserializer.Deserialize("unsupported_something:".ToMemoryStream());
 
             action.ShouldThrow<ToscaParsingException>()
                 .WithMessage(@"(Line: 1, Col: 1, Idx: 0) - (Line: 1, Col: 1, Idx: 0): Exception during deserialization

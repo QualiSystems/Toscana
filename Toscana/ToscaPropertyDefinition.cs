@@ -86,7 +86,7 @@ namespace Toscana
             var validValuesConstraint = Constraints.FirstOrDefault(c => c.ContainsKey(ValidValues));
             if (validValuesConstraint != null)
             {
-                var parser = new Bootstrapper().GetParser<object>(Type);
+                var parser = Bootstrapper.Current.GetParser<object>(Type);
                 var validValues = validValuesConstraint[ValidValues];
                 if (!(validValues is List<object>))
                 {

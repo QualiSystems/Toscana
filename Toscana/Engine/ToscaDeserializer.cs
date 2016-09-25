@@ -9,7 +9,12 @@ namespace Toscana.Engine
 {
     internal interface IToscaDeserializer<out T>
     {
-        T Deserialize(string tosca);
+        /// <summary>
+        /// Deserializes a stream of YAML to an instance of T
+        /// </summary>
+        /// <param name="stream">Stream </param>
+        /// <returns></returns>
+        /// <exception cref="ToscaParsingException">Thrown when YAML is not valid</exception>
         T Deserialize(Stream stream);
     }
 
@@ -25,37 +30,24 @@ namespace Toscana.Engine
             }
         }
 
-        public T Deserialize(string tosca)
-        {
-            using (var stringReader = new StringReader(tosca))
-            {
-                return Deserialize(stringReader);
-            }
-        }
-
         /// <summary>
         /// Deserializes a stream of YAML to an instance of T
         /// </summary>
         /// <param name="stream">Stream </param>
         /// <returns></returns>
+        /// <exception cref="ToscaParsingException">Thrown when YAML is not valid</exception>
         public T Deserialize(Stream stream)
         {
             using (var stringReader = new StreamReader(stream))
             {
-                return Deserialize(stringReader);
-            }
-        }
-
-
-        private T Deserialize(TextReader stringReader)
-        {
-            try
-            {
-                return deserializer.Deserialize<T>(stringReader);
-            }
-            catch (YamlException yamlException)
-            {
-                throw new ToscaParsingException(yamlException.GetaAllMessages(), yamlException);
+                try
+                {
+                    return deserializer.Deserialize<T>(stringReader);
+                }
+                catch (YamlException yamlException)
+                {
+                    throw new ToscaParsingException(yamlException.GetaAllMessages(), yamlException);
+                }
             }
         }
     }
