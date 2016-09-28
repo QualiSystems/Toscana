@@ -114,6 +114,7 @@
     <Compile Include="Engine\TypeConvertersFactory.cs" />
     <Compile Include="Engine\ValidationResultEqualityComparer.cs" />
     <Compile Include="Engine\VersionTypeConverter.cs" />
+    <Compile Include="Exceptions\ToscaInvalidFileException.cs" />
     <Compile Include="Exceptions\ToscaArtifactNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundException.cs" />

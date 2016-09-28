@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
@@ -697,6 +698,18 @@ node_types:
             Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             action.ShouldNotThrow("It should be possible to import the same file from different files");
+        }
+        
+        [Test]
+        public void Load_Doesnt_Support_Non_Zip_Files()
+        {
+            // Arrange
+            using (var stream = new StreamWriter(fileSystem.File.Create("dummy.yml")))
+            { stream.Write("hello world!"); }
+
+            Action action = () => toscaCloudServiceArchiveLoader.Load("dummy.yml");
+
+            action.ShouldThrow<ToscaInvalidFileException>("Load Tosca CSAR should not support non zip files");
         }
     }
 }
