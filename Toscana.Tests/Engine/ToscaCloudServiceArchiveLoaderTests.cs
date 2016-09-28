@@ -59,8 +59,10 @@ node_types:
             };
 
             mockFileSystem.CreateArchive("tosca.zip", fileContents);
-            mockFileSystem.AddFile(@"c:\alternative\base.yaml", new MockFileData(
-                @"tosca_definitions_version: tosca_simple_yaml_1_0
+            mockFileSystem.AddFile(
+                @"c:\alternative\base.yaml",
+                new MockFileData(
+                    @"tosca_definitions_version: tosca_simple_yaml_1_0
 node_types:
   tosca.base:
     properties:
@@ -88,7 +90,8 @@ node_types:
             // Arrange
             var fileContents = new List<FileContent>
             {
-                new FileContent("TOSCA.meta",
+                new FileContent(
+                    "TOSCA.meta",
                     @"TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
@@ -128,7 +131,7 @@ node_types:
   tosca.base:
     properties:
       price:
-        type: integer" )
+        type: integer")
             };
             fileSystem.CreateArchive("tosca.zip", fileContents);
             fileSystem.AddFile(@"C:\alternative\location\definitions.yaml", new MockFileData(@"tosca_definitions_version: tosca_simple_yaml_1_0"));
@@ -183,7 +186,11 @@ node_types:
 
             // Assert
             toscaCloudServiceArchive.GetEntryLeafNodeTypes()
-                .Keys.ShouldAllBeEquivalentTo(new[] {"tosca.network_device"});
+                .Keys.ShouldAllBeEquivalentTo(
+                    new[]
+                    {
+                        "tosca.network_device"
+                    });
             toscaCloudServiceArchive.GetEntryLeafNodeTypes()["tosca.network_device"]
                 .Base.Properties.Should().ContainKey("price");
         }
@@ -192,17 +199,21 @@ node_types:
         public void Shell_With_Auto_Discovery_Capability_Parsed_To_Resource_Template()
         {
             // Arrange
-            fileSystem.CreateArchive("tosca.zip", new[]
-            {
-                new FileContent("TOSCA.meta",
-                    @"
+            fileSystem.CreateArchive(
+                "tosca.zip",
+                new[]
+                {
+                    new FileContent(
+                        "TOSCA.meta",
+                        @"
 TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
 Created-By: OASIS TOSCA TC
 Entry-Definitions: tosca_elk.yaml
 "),
-                new FileContent("tosca_elk.yaml",
-                    @"
+                    new FileContent(
+                        "tosca_elk.yaml",
+                        @"
 tosca_definitions_version: tosca_simple_yaml_1_0
 metadata:
   name: NXOS Shell
@@ -243,7 +254,7 @@ node_types:
       device_owner:
         type: string
 ")
-            });
+                });
 
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
@@ -551,7 +562,15 @@ node_types:
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip", @"C:\alternative");
 
             // Assert
-            toscaCloudServiceArchive.GetArtifactBytes(@"icon.png").ShouldAllBeEquivalentTo(new byte[] { 73, 77, 65, 71, 69 });
+            toscaCloudServiceArchive.GetArtifactBytes(@"icon.png").ShouldAllBeEquivalentTo(
+                new byte[]
+                {
+                    73,
+                    77,
+                    65,
+                    71,
+                    69
+                });
         }
 
         [Test]
@@ -699,13 +718,62 @@ node_types:
 
             action.ShouldNotThrow("It should be possible to import the same file from different files");
         }
-        
+
+        [Test]
+        public void It_Is_Possible_To_Have_Two_Different_Nodes_Refering_To_Same_Artifact()
+        {
+            // Arrange
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: Vido
+Entry-Definitions: entry.yaml";
+
+            var toscaEntryContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      vendor:
+        type: string
+    artifacts:
+      icon:
+        file: sample.png
+        type: tosca.artifacts.File
+
+  example.CrapsactionSubsystem:
+    properties:
+      vendor:
+        type: string
+    artifacts:
+      icon:
+        file: sample.png
+        type: tosca.artifacts.File
+";
+
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("entry.yaml", toscaEntryContent),
+                new FileContent("sample.png", "")
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            action.ShouldNotThrow("It should be possible to that two node types will reference the same artifact");
+        }
+
         [Test]
         public void Load_Doesnt_Support_Non_Zip_Files()
         {
             // Arrange
             using (var stream = new StreamWriter(fileSystem.File.Create("dummy.yml")))
-            { stream.Write("hello world!"); }
+            {
+                stream.Write("hello world!");
+            }
 
             Action action = () => toscaCloudServiceArchiveLoader.Load("dummy.yml");
 

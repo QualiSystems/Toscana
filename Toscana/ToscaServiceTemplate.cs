@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using Toscana.Common;
 using Toscana.Engine;
+using Toscana.Exceptions;
 
 namespace Toscana
 {
@@ -97,10 +98,43 @@ namespace Toscana
         /// </summary>
         /// <param name="stream">Stream of TOSCA YAML file</param>
         /// <returns>Valid instance of ToscaServiceTemplate</returns>
-        public static ToscaServiceTemplate Parse(Stream stream)
+        /// <exception cref="ToscaParsingException">Thrown when YAML is not valid</exception>
+        public static ToscaServiceTemplate Load(Stream stream)
         {
-            var toscaServiceTemplateParser = new Bootstrapper().GetToscaServiceTemplateParser();
+            var toscaServiceTemplateParser = Bootstrapper.Current.GetToscaServiceTemplateParser();
             return toscaServiceTemplateParser.Parse(stream);
+        }
+
+        /// <summary>
+        /// Parses stream of TOSCA YAML file into an instance of ToscaServiceTemplate class
+        /// </summary>
+        /// <param name="filePath">Path to the file</param>
+        /// <returns>Valid instance of ToscaServiceTemplate</returns>
+        /// <exception cref="ToscaParsingException">Thrown when file is not valid according to YAML or TOSCA</exception>
+        public static ToscaServiceTemplate Load(string filePath)
+        {
+            var toscaServiceTemplateParser = Bootstrapper.Current.GetToscaServiceTemplateLoader();
+            return toscaServiceTemplateParser.Load(filePath);
+        }
+
+        /// <summary>
+        /// Saves the ServiceTemplate to provided stream
+        /// </summary>
+        /// <param name="stream">Stream to save</param>
+        public void Save(Stream stream)
+        {
+            var toscaServiceTemplateSerializer = Bootstrapper.Current.GetToscaServiceTemplateSerializer();
+            toscaServiceTemplateSerializer.Serialize(stream, this);
+        }
+
+        /// <summary>
+        /// Saves the instance of ToscaServiceTemplate to specified file
+        /// </summary>
+        /// <param name="path">File path to save</param>
+        public void Save(string path)
+        {
+            var toscaServiceTemplateSaver = Bootstrapper.Current.GetToscaServiceTemplateSaver();
+            toscaServiceTemplateSaver.Save(path, this);
         }
     }
 }

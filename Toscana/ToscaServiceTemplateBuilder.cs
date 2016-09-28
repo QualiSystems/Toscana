@@ -19,7 +19,7 @@ namespace Toscana
 
         public ToscaServiceTemplateBuilder Append(Stream stream)
         {
-            toscaServiceTemplates.Add(ToscaServiceTemplate.Parse(stream));
+            toscaServiceTemplates.Add(ToscaServiceTemplate.Load(stream));
             return this;
         }
 

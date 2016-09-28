@@ -5,28 +5,31 @@ namespace Toscana.Engine
 {
     internal class Bootstrapper
     {
-        private readonly PoorManContainer poorManContainer;
+        public static Bootstrapper Current = new Bootstrapper();
 
-        public Bootstrapper()
+        private readonly SimpleIocContainer container;
+
+        internal Bootstrapper()
         {
-            poorManContainer = new PoorManContainer();
-            poorManContainer.Register<IFileSystem, FileSystem>();
-            poorManContainer.Register<IToscaValidator<ToscaMetadata>, ToscaValidator<ToscaMetadata>>();
-            poorManContainer.Register<IToscaValidator<ToscaServiceTemplate>, ToscaValidator<ToscaServiceTemplate>>();
-            poorManContainer
+            container = new SimpleIocContainer();
+            container.Register<IFileSystem, FileSystem>();
+            container.Register<IToscaValidator<ToscaMetadata>, ToscaValidator<ToscaMetadata>>();
+            container.Register<IToscaValidator<ToscaServiceTemplate>, ToscaValidator<ToscaServiceTemplate>>();
+            container
                 .Register<IToscaValidator<ToscaCloudServiceArchive>, ToscaValidator<ToscaCloudServiceArchive>>();
-            poorManContainer.Register<IToscaDeserializer<ToscaServiceTemplate>, ToscaDeserializer<ToscaServiceTemplate>>
+            container.Register<IToscaDeserializer<ToscaServiceTemplate>, ToscaDeserializer<ToscaServiceTemplate>>
                 ();
-            poorManContainer.Register<IToscaParser<ToscaServiceTemplate>, ToscaParser<ToscaServiceTemplate>>();
-            poorManContainer.Register<IToscaDeserializer<ToscaMetadata>, ToscaDeserializer<ToscaMetadata>>();
-            poorManContainer.Register<IToscaParser<ToscaMetadata>, ToscaParser<ToscaMetadata>>();
-            poorManContainer.Register<IToscaServiceTemplateLoader, ToscaServiceTemplateLoader>();
-            poorManContainer.Register<IToscaCloudServiceArchiveLoader, ToscaCloudServiceArchiveLoader>();
-            poorManContainer.Register<IToscaCloudServiceArchiveSaver, ToscaCloudServiceArchiveSaver>();
-            poorManContainer.Register<IToscaSerializer<ToscaMetadata>, ToscaSerializer<ToscaMetadata>>();
-            poorManContainer.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
-            poorManContainer.Register<ITypeConvertersFactory, TypeConvertersFactory>();
-            poorManContainer.Register<IToscaParserFactory>(
+            container.Register<IToscaParser<ToscaServiceTemplate>, ToscaParser<ToscaServiceTemplate>>();
+            container.Register<IToscaDeserializer<ToscaMetadata>, ToscaDeserializer<ToscaMetadata>>();
+            container.Register<IToscaParser<ToscaMetadata>, ToscaParser<ToscaMetadata>>();
+            container.Register<IToscaServiceTemplateLoader, ToscaServiceTemplateLoader>();
+            container.Register<IToscaCloudServiceArchiveLoader, ToscaCloudServiceArchiveLoader>();
+            container.Register<IToscaCloudServiceArchiveSaver, ToscaCloudServiceArchiveSaver>();
+            container.Register<IToscaSerializer<ToscaMetadata>, ToscaSerializer<ToscaMetadata>>();
+            container.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
+            container.Register<IToscaServiceTemplateSaver, ToscaServiceTemplateSaver>();
+            container.Register<ITypeConvertersFactory, TypeConvertersFactory>();
+            container.Register<IToscaParserFactory>(
                 () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
                 {
                     new ToscaBooleanDataTypeConverter(),
@@ -37,46 +40,56 @@ namespace Toscana.Engine
                 }));
         }
 
-        public IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
+        internal IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
         {
-            return poorManContainer.GetInstance<IToscaParser<ToscaServiceTemplate>>();
+            return container.GetInstance<IToscaParser<ToscaServiceTemplate>>();
         }
 
-        public IToscaServiceTemplateLoader GetToscaServiceTemplateLoader()
+        internal IToscaServiceTemplateLoader GetToscaServiceTemplateLoader()
         {
-            return poorManContainer.GetInstance<IToscaServiceTemplateLoader>();
+            return container.GetInstance<IToscaServiceTemplateLoader>();
         }
 
-        public IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        internal IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
         {
-            return poorManContainer.GetInstance<IToscaCloudServiceArchiveLoader>();
+            return container.GetInstance<IToscaCloudServiceArchiveLoader>();
         }
 
         public Bootstrapper Replace<T>(T instance)
         {
-            poorManContainer.RegisterSingleton(instance);
+            container.RegisterSingleton(instance);
             return this;
         }
 
-        public IToscaParser<ToscaMetadata> GetToscaMetadataParser()
+        internal IToscaParser<ToscaMetadata> GetToscaMetadataParser()
         {
-            return poorManContainer.GetInstance<IToscaParser<ToscaMetadata>>();
+            return container.GetInstance<IToscaParser<ToscaMetadata>>();
         }
 
-        public IToscaValidator<ToscaCloudServiceArchive> GetToscaCloudServiceValidator()
+        internal IToscaValidator<ToscaCloudServiceArchive> GetToscaCloudServiceValidator()
         {
-            return poorManContainer.GetInstance<IToscaValidator<ToscaCloudServiceArchive>>();
+            return container.GetInstance<IToscaValidator<ToscaCloudServiceArchive>>();
         }
 
-        public IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
+        internal IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
         {
-            return poorManContainer.GetInstance<IToscaCloudServiceArchiveSaver>();
+            return container.GetInstance<IToscaCloudServiceArchiveSaver>();
         }
 
-        public IToscaDataTypeValueConverter GetParser<T>(string type)
+        internal IToscaDataTypeValueConverter GetParser<T>(string type)
         {
-            var toscaParserFactory = poorManContainer.GetInstance<IToscaParserFactory>();
+            var toscaParserFactory = container.GetInstance<IToscaParserFactory>();
             return toscaParserFactory.GetParser(type);
+        }
+
+        internal IToscaSerializer<ToscaServiceTemplate> GetToscaServiceTemplateSerializer()
+        {
+            return container.GetInstance<IToscaSerializer<ToscaServiceTemplate>>();
+        }
+
+        internal IToscaServiceTemplateSaver GetToscaServiceTemplateSaver()
+        {
+            return container.GetInstance<IToscaServiceTemplateSaver>();
         }
     }
 }

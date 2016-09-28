@@ -33,5 +33,14 @@ namespace Toscana.Tests.Engine
 
             toscaServiceTemplateParser.Should().NotBeNull();
         }
+
+        [Test]
+        public void GetToscaServiceTemplateSaver_Should_Return_Not_Null()
+        {
+            var bootstrapper = new Bootstrapper();
+            var serviceTemplateSaver = bootstrapper.GetToscaServiceTemplateSaver();
+
+            serviceTemplateSaver.Should().NotBeNull();
+        }
     }
 }

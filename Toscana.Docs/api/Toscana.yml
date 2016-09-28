@@ -4,6 +4,7 @@ items:
   commentId: N:Toscana
   id: Toscana
   children:
+  - Toscana.IToscaMetadata
   - Toscana.ToscaArtifact
   - Toscana.ToscaArtifactType
   - Toscana.ToscaAttributeAssignment
@@ -26,6 +27,7 @@ items:
   - Toscana.ToscaPolicy
   - Toscana.ToscaPropertyAssignment
   - Toscana.ToscaPropertyDefinition
+  - Toscana.ToscaPropertyEntrySchema
   - Toscana.ToscaPropertyStatus
   - Toscana.ToscaRelationshipTemplate
   - Toscana.ToscaRelationshipType
@@ -127,6 +129,7 @@ references:
   fullName: Toscana.ToscaImport
 - uid: Toscana.ToscaAttributeDefinition
   commentId: T:Toscana.ToscaAttributeDefinition
+  parent: Toscana
   isExternal: false
   name: ToscaAttributeDefinition
   nameWithType: ToscaAttributeDefinition
@@ -137,6 +140,13 @@ references:
   name: ToscaInterfaceDefinition
   nameWithType: ToscaInterfaceDefinition
   fullName: Toscana.ToscaInterfaceDefinition
+- uid: Toscana.IToscaMetadata
+  commentId: T:Toscana.IToscaMetadata
+  parent: Toscana
+  isExternal: false
+  name: IToscaMetadata
+  nameWithType: IToscaMetadata
+  fullName: Toscana.IToscaMetadata
 - uid: Toscana.ToscaMetadata
   commentId: T:Toscana.ToscaMetadata
   parent: Toscana
@@ -219,6 +229,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Toscana.ToscaPropertyEntrySchema
+  commentId: T:Toscana.ToscaPropertyEntrySchema
+  parent: Toscana
+  isExternal: false
+  name: ToscaPropertyEntrySchema
+  nameWithType: ToscaPropertyEntrySchema
+  fullName: Toscana.ToscaPropertyEntrySchema
 - uid: Toscana.ToscaPropertyStatus
   commentId: T:Toscana.ToscaPropertyStatus
   parent: Toscana

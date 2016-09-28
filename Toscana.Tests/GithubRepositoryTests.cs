@@ -37,13 +37,14 @@ namespace Toscana.Tests
                 {
                     client.DownloadFile(repositoryUrl, tempFile.FilePath);
 
-                    var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open);
-                    var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read);
-
-                    return archive.Entries
-                        .Where(filesFilter)
-                        .Select(ReadFileContent)
-                        .ToList();
+                    using (var zipToOpen = new FileStream(tempFile.FilePath, FileMode.Open))
+                    using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Read))
+                    {
+                        return archive.Entries
+                            .Where(filesFilter)
+                            .Select(ReadFileContent)
+                            .ToList();
+                    }
                 }
             }
 
@@ -100,7 +101,7 @@ namespace Toscana.Tests
             string toscaAsString = fileContent.Content;
             using (var memoryStream = toscaAsString.ToMemoryStream())
             {
-                ToscaServiceTemplate.Parse(memoryStream);
+                ToscaServiceTemplate.Load(memoryStream);
             }
         }
 
@@ -109,7 +110,7 @@ namespace Toscana.Tests
         {
             using (var memoryStream = fileContent.Content.ToMemoryStream())
             {
-                ToscaServiceTemplate.Parse(memoryStream);
+                ToscaServiceTemplate.Load(memoryStream);
             }
         }
 

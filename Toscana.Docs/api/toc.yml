@@ -2,6 +2,8 @@
 - uid: Toscana
   name: Toscana
   items:
+  - uid: Toscana.IToscaMetadata
+    name: IToscaMetadata
   - uid: Toscana.ToscaArtifact
     name: ToscaArtifact
   - uid: Toscana.ToscaArtifactType
@@ -47,6 +49,8 @@
     name: ToscaPropertyAssignment
   - uid: Toscana.ToscaPropertyDefinition
     name: ToscaPropertyDefinition
+  - uid: Toscana.ToscaPropertyEntrySchema
+    name: ToscaPropertyEntrySchema
   - uid: Toscana.ToscaPropertyStatus
     name: ToscaPropertyStatus
   - uid: Toscana.ToscaRelationshipTemplate

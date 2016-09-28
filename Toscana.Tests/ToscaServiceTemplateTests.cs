@@ -123,7 +123,7 @@ node_types:
         constraints:
           - valid_values: [ 1, 2, 4, 8 ]";
 
-            var tosca = ToscaServiceTemplate.Parse(toscaString.ToMemoryStream());
+            var tosca = ToscaServiceTemplate.Load(toscaString.ToMemoryStream());
 
             // Assert
             tosca.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
@@ -131,6 +131,59 @@ node_types:
             tosca.NodeTypes.Should().HaveCount(1);
 
             var nodeType = tosca.NodeTypes["example.TransactionSubsystem"];
+
+            nodeType.Properties.Should().HaveCount(1);
+            var numCpusProperty = nodeType.Properties["num_cpus"];
+            numCpusProperty.Type.Should().Be("integer");
+            numCpusProperty.Description.Should().Be("Number of CPUs requested for a software node instance.");
+            numCpusProperty.Default.Should().Be("1");
+            numCpusProperty.Required.Should().BeTrue();
+            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.experimental);
+            numCpusProperty.EntrySchema.Type.Should().Be("default");
+            numCpusProperty.Constraints.Should().HaveCount(1);
+            numCpusProperty.Constraints.Single().Should().HaveCount(1);
+            var validValues = (List<object>)numCpusProperty.Constraints.Single()["valid_values"];
+            validValues.Should().BeEquivalentTo(new List<object> { "1", "2", "4", "8" });
+        }
+
+        [Test]
+        public void Load_Service_Template_From_Stream_And_Save_Succeeds()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+        description: Number of CPUs requested for a software node instance.
+        default: 1
+        status: experimental
+        required: true
+        entry_schema: default
+        constraints:
+          - valid_values: [ 1, 2, 4, 8 ]";
+
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaString.ToMemoryStream());
+            byte[] savedTemplateBuffer;
+            using (var memoryStream = new MemoryStream())
+            {
+                serviceTemplate.Save(memoryStream);
+                memoryStream.Flush();
+
+                savedTemplateBuffer = memoryStream.GetBuffer();
+            }
+
+            var loadedAfterSaveTemplate = ToscaServiceTemplate.Load(new MemoryStream(savedTemplateBuffer));
+
+            // Assert
+
+            loadedAfterSaveTemplate.ToscaDefinitionsVersion.Should().Be("tosca_simple_yaml_1_0");
+            loadedAfterSaveTemplate.Description.Should().BeNull();
+            loadedAfterSaveTemplate.NodeTypes.Should().HaveCount(1);
+
+            var nodeType = serviceTemplate.NodeTypes["example.TransactionSubsystem"];
 
             nodeType.Properties.Should().HaveCount(1);
             var numCpusProperty = nodeType.Properties["num_cpus"];
@@ -169,7 +222,7 @@ node_types:
             node: tosca.nodes.Compute
             relationship: tosca.relationships.HostedOn";
 
-            var serviceTemplate = ToscaServiceTemplate.Parse(toscaServiceTemplate.ToMemoryStream());
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaServiceTemplate.ToMemoryStream());
 
             var toscaMetadata = new ToscaMetadata
                 { CsarVersion = new Version(1,1), EntryDefinitions = "tosca.yml", ToscaMetaFileVersion = new Version(1,1), CreatedBy = "anonymous" };

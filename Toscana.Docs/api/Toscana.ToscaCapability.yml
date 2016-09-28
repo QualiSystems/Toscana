@@ -11,6 +11,7 @@ items:
   - Toscana.ToscaCapability.op_Implicit(System.String)~Toscana.ToscaCapability
   - Toscana.ToscaCapability.Properties
   - Toscana.ToscaCapability.Type
+  - Toscana.ToscaCapability.ValidSourceTypes
   langs:
   - csharp
   - vb
@@ -102,7 +103,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaCapability.cs
-    startLine: 24
+    startLine: 25
   assemblies:
   - Toscana
   namespace: Toscana
@@ -155,7 +156,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaCapability.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
@@ -191,7 +192,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaCapability.cs
-    startLine: 35
+    startLine: 36
   assemblies:
   - Toscana
   namespace: Toscana
@@ -227,7 +228,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaCapability.cs
-    startLine: 40
+    startLine: 41
   assemblies:
   - Toscana
   namespace: Toscana
@@ -239,6 +240,42 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeDefinition}
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaCapability.ValidSourceTypes
+  commentId: P:Toscana.ToscaCapability.ValidSourceTypes
+  id: ValidSourceTypes
+  parent: Toscana.ToscaCapability
+  langs:
+  - csharp
+  - vb
+  name: ValidSourceTypes
+  nameWithType: ToscaCapability.ValidSourceTypes
+  fullName: Toscana.ToscaCapability.ValidSourceTypes
+  type: Property
+  source:
+    remote:
+      path: Toscana/ToscaCapability.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: ValidSourceTypes
+    path: Toscana/ToscaCapability.cs
+    startLine: 46
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nAn optional list of one or more valid names of Node Types that are supported as valid sources of any relationship established to the declared Capability Type.\n"
+  example: []
+  syntax:
+    content: public string[] ValidSourceTypes { get; set; }
+    content.vb: Public Property ValidSourceTypes As String()
+    parameters: []
+    return:
+      type: System.String[]
   modifiers.csharp:
   - public
   - get
@@ -263,7 +300,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaCapability.cs
-    startLine: 47
+    startLine: 53
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1200,6 +1237,31 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.String[]
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullname.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: Toscana.ToscaCapability
   commentId: T:Toscana.ToscaCapability
   parent: Toscana

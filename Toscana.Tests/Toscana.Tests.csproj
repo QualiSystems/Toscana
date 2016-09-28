@@ -74,8 +74,9 @@
     <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
     <Compile Include="Engine\FileSystemExtentions.cs" />
+    <Compile Include="Engine\ToscaServiceTemplateSaverTests.cs" />
     <Compile Include="Engine\PathEqualityComparerTests.cs" />
-    <Compile Include="Engine\PoorManContainerTests.cs" />
+    <Compile Include="Engine\SimpleIocContainerTests.cs" />
     <Compile Include="Engine\ToscaBooleanDataTypeConverterTests.cs" />
     <Compile Include="Engine\ToscaDeserializerTests.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
