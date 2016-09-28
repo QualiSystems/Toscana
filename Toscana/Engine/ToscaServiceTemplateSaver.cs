@@ -20,7 +20,7 @@ namespace Toscana.Engine
 
         public void Save(string path, ToscaServiceTemplate toscaServiceTemplate)
         {
-            using (var stream = fileSystem.File.OpenWrite(path))
+            using (var stream = fileSystem.File.Create(path))
             {
                 serializer.Serialize(stream, toscaServiceTemplate);
             }
