@@ -99,9 +99,9 @@ namespace Toscana.Engine
             {
                 return new ZipArchive(archiveStream, ZipArchiveMode.Read);
             }
-            catch (InvalidDataException)
+            catch (InvalidDataException ioException)
             {
-                throw new ToscaInvalidFileException("Zip files are the only file format supported");
+                throw new ToscaInvalidFileException("Zip files are the only file format supported", ioException);
             }
         }
 
