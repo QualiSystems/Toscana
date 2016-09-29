@@ -93,6 +93,7 @@
     <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaDataTypeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaImportFileNotFoundExceptionTests.cs" />
+    <Compile Include="Exceptions\ToscaInvalidFileExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaRelationshipTypeNotFoundTests.cs" />

@@ -770,10 +770,8 @@ node_types:
         public void Load_Doesnt_Support_Non_Zip_Files()
         {
             // Arrange
-            using (var stream = new StreamWriter(fileSystem.File.Create("dummy.yml")))
-            {
-                stream.Write("hello world!");
-            }
+            var mockFileData = new MockFileData("hello world!");
+            fileSystem.AddFile("dummy.yml", mockFileData);
 
             Action action = () => toscaCloudServiceArchiveLoader.Load("dummy.yml");
 

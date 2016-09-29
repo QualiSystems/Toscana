@@ -33,5 +33,14 @@ namespace Toscana.Exceptions
         public ToscaInvalidFileException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         { }
+
+        /// <summary>
+        /// Initializes an exception from with a custom message and an inner exception
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="innerException">The inner exception that occured and is now handled</param>
+        public ToscaInvalidFileException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
     }
 }
