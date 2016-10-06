@@ -106,6 +106,7 @@ namespace Toscana.Tests
         }
 
         [Test, TestCaseSource(typeof(LocalDirectoryTestCasesFactory), "TestCases")]
+        [Ignore]
         public void Validate_Tosca_Files_In_Local_Directory(FileContent fileContent)
         {
             using (var memoryStream = fileContent.Content.ToMemoryStream())
