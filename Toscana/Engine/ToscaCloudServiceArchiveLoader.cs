@@ -81,7 +81,7 @@ namespace Toscana.Engine
         /// <returns>A valid instance of ToscaCloudServiceArchive</returns>
         public ToscaCloudServiceArchive Load(Stream archiveStream, string alternativePath = null)
         {
-            using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Read))
+            using (var archive = CreateZipArchiveFromStream(archiveStream))
             {
                 var archiveEntries = archive.GetArchiveEntriesDictionary();
                 var toscaMetaArchiveEntry = GetToscaMetaArchiveEntry(archiveEntries);
@@ -90,6 +90,18 @@ namespace Toscana.Engine
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath);
                 validator.Validate(toscaCloudServiceArchive);
                 return toscaCloudServiceArchive;
+            }
+        }
+
+        private static ZipArchive CreateZipArchiveFromStream(Stream archiveStream)
+        {
+            try
+            {
+                return new ZipArchive(archiveStream, ZipArchiveMode.Read);
+            }
+            catch (InvalidDataException ioException)
+            {
+                throw new ToscaInvalidFileException("Zip files are the only file format supported", ioException);
             }
         }
 
