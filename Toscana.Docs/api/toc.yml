@@ -84,6 +84,8 @@
     name: ToscaDataTypeNotFoundException
   - uid: Toscana.Exceptions.ToscaImportFileNotFoundException
     name: ToscaImportFileNotFoundException
+  - uid: Toscana.Exceptions.ToscaInvalidFileException
+    name: ToscaInvalidFileException
   - uid: Toscana.Exceptions.ToscaMetadataFileNotFoundException
     name: ToscaMetadataFileNotFoundException
   - uid: Toscana.Exceptions.ToscaNodeTypeNotFoundException

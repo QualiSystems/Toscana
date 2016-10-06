@@ -10,6 +10,7 @@ items:
   - Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException
   - Toscana.Exceptions.ToscaDataTypeNotFoundException
   - Toscana.Exceptions.ToscaImportFileNotFoundException
+  - Toscana.Exceptions.ToscaInvalidFileException
   - Toscana.Exceptions.ToscaMetadataFileNotFoundException
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException
   - Toscana.Exceptions.ToscaParsingException
@@ -26,6 +27,12 @@ items:
   assemblies:
   - Toscana
 references:
+- uid: Toscana.Exceptions.ToscaInvalidFileException
+  commentId: T:Toscana.Exceptions.ToscaInvalidFileException
+  isExternal: false
+  name: ToscaInvalidFileException
+  nameWithType: ToscaInvalidFileException
+  fullName: Toscana.Exceptions.ToscaInvalidFileException
 - uid: Toscana.Exceptions.ToscaArtifactNotFoundException
   commentId: T:Toscana.Exceptions.ToscaArtifactNotFoundException
   isExternal: false
