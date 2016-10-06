@@ -8,10 +8,13 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 build:
-  publish_nuget: true
+  publish_nuget: false
   verbosity: minimal
-after_test:
-  - bash <(curl -s https://codecov.io/bash)
+after_test: 
+    - .\packages\OpenCover.4.5.3522\OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:.\Toscana.Tests\bin\Debug\Toscana.Tests.dll" -hideskipped:All -output:.\Toscana_coverage.xml
+    - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+    - pip install codecov
+    - codecov -f "Toscana_coverage.xml"
 deploy:
 - provider: NuGet
   api_key:
