@@ -11,7 +11,7 @@ build:
   publish_nuget: false
   verbosity: minimal
 after_test: 
-    - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"nunit-console.exe" -targetargs:".\Toscana.Tests\bin\Debug\Toscana.Tests.dll" -filter:"+[Toscana*]*" -hideskipped:All -output:.\Toscana_coverage.xml
+    - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:"nunit-console.exe" -targetargs:"/nologo /noshadow .\Toscana.Tests\bin\Debug\Toscana.Tests.dll" -filter:"+[*]*" -output:.\Toscana_coverage.xml
     - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
     - pip install codecov
     - codecov -f "Toscana_coverage.xml"
