@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaArtifactType
     path: Toscana/ToscaArtifactType.cs
@@ -75,7 +75,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaArtifactType.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaArtifactType.cs
@@ -142,7 +142,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaArtifactType.cs
@@ -178,7 +178,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: MimeType
     path: Toscana/ToscaArtifactType.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: FileExt
     path: Toscana/ToscaArtifactType.cs
@@ -250,7 +250,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaArtifactType.cs
@@ -286,7 +286,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaArtifactType.cs
@@ -325,7 +325,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaArtifactType.cs

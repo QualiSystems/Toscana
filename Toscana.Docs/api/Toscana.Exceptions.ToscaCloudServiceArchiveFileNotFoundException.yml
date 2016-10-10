@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCloudServiceArchiveFileNotFoundException
     path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
@@ -198,7 +198,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaCloudServiceArchiveFileNotFoundException.cs

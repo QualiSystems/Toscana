@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDataTypeDefinition
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -74,7 +74,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -105,7 +105,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -141,7 +141,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -177,7 +177,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -213,7 +213,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -249,7 +249,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -292,7 +292,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaDataTypeDefinition.cs

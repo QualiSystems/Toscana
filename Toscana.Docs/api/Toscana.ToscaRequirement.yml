@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRequirement.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRequirement
     path: Toscana/ToscaRequirement.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRequirement.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capability
     path: Toscana/ToscaRequirement.cs
@@ -116,7 +116,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRequirement.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Node
     path: Toscana/ToscaRequirement.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRequirement.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Relationship
     path: Toscana/ToscaRequirement.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRequirement.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Occurrences
     path: Toscana/ToscaRequirement.cs
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRequirement.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaRequirement.cs

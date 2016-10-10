@@ -32,7 +32,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaServiceTemplate
     path: Toscana/ToscaServiceTemplate.cs
@@ -78,7 +78,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaServiceTemplate.cs
@@ -109,7 +109,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDefinitionsVersion
     path: Toscana/ToscaServiceTemplate.cs
@@ -163,7 +163,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Metadata
     path: Toscana/ToscaServiceTemplate.cs
@@ -199,7 +199,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaServiceTemplate.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: DslDefinitions
     path: Toscana/ToscaServiceTemplate.cs
@@ -271,7 +271,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Repositories
     path: Toscana/ToscaServiceTemplate.cs
@@ -307,7 +307,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Imports
     path: Toscana/ToscaServiceTemplate.cs
@@ -343,7 +343,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ArtifactTypes
     path: Toscana/ToscaServiceTemplate.cs
@@ -379,7 +379,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: CapabilityTypes
     path: Toscana/ToscaServiceTemplate.cs
@@ -415,7 +415,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: TopologyTemplate
     path: Toscana/ToscaServiceTemplate.cs
@@ -451,7 +451,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeTypes
     path: Toscana/ToscaServiceTemplate.cs
@@ -487,7 +487,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: RelationshipTypes
     path: Toscana/ToscaServiceTemplate.cs
@@ -523,7 +523,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: DataTypes
     path: Toscana/ToscaServiceTemplate.cs
@@ -559,7 +559,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaServiceTemplate.cs
@@ -603,7 +603,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaServiceTemplate.cs
@@ -647,7 +647,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaServiceTemplate.cs
@@ -682,7 +682,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaServiceTemplate.cs

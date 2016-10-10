@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaGroup
     path: Toscana/ToscaGroup.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaGroup.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaGroup.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaGroup.cs
@@ -187,7 +187,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaGroup.cs
@@ -223,7 +223,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Members
     path: Toscana/ToscaGroup.cs
@@ -259,7 +259,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaGroup.cs

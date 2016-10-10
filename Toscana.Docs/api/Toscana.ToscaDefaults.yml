@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDefaults
     path: Toscana/ToscaDefaults.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRelationshipTypeRoot
     path: Toscana/ToscaDefaults.cs
@@ -104,7 +104,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodesRoot
     path: Toscana/ToscaDefaults.cs
@@ -139,7 +139,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapabilitiesRoot
     path: Toscana/ToscaDefaults.cs
@@ -174,7 +174,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaArtifactRoot
     path: Toscana/ToscaDefaults.cs
@@ -209,7 +209,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapabilitiesNode
     path: Toscana/ToscaDefaults.cs
@@ -244,7 +244,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDataTypeRoot
     path: Toscana/ToscaDefaults.cs
@@ -279,7 +279,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootNodeType
     path: Toscana/ToscaDefaults.cs
@@ -315,7 +315,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootCapabilityType
     path: Toscana/ToscaDefaults.cs
@@ -351,7 +351,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetNodeCapabilityType
     path: Toscana/ToscaDefaults.cs
@@ -387,7 +387,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDefaults.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetRootDataType
     path: Toscana/ToscaDefaults.cs

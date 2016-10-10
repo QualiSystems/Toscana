@@ -45,18 +45,19 @@ namespace Toscana
         /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
         public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
         {
-            var properties = new Dictionary<string, ToscaPropertyDefinition>();
+            var combinedProperties = new Dictionary<string, List<ToscaPropertyDefinition>>();
             for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.Base)
             {
                 foreach (var propertyKeyValue in currNodeType.Properties)
                 {
-                    if (!properties.ContainsKey(propertyKeyValue.Key))
+                    if (!combinedProperties.ContainsKey(propertyKeyValue.Key))
                     {
-                        properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
+                        combinedProperties.Add(propertyKeyValue.Key, new List<ToscaPropertyDefinition>());
                     }
+                    combinedProperties[propertyKeyValue.Key].Add(propertyKeyValue.Value);
                 }
             }
-            return properties;
+            return ToscaPropertyMerger.MergeProperties(combinedProperties);
         }
 
         /// <summary>
