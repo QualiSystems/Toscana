@@ -2,6 +2,12 @@
 - uid: Toscana
   name: Toscana
   items:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity<T>
+    name.vb: IDerivableToscaEntity(Of T)
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties<T>
+    name.vb: IToscaEntityWithProperties(Of T)
   - uid: Toscana.IToscaMetadata
     name: IToscaMetadata
   - uid: Toscana.ToscaArtifact

@@ -151,12 +151,13 @@
     <Compile Include="ToscaParameter.cs" />
     <Compile Include="ToscaPolicy.cs" />
     <Compile Include="ToscaPropertyAssignment.cs" />
+    <Compile Include="Engine\ToscaPropertyCombiner.cs" />
     <Compile Include="ToscaPropertyDefinition.cs" />
     <Compile Include="ToscaNodeTemplate.cs" />
     <Compile Include="ToscaNodeType.cs" />
     <Compile Include="ToscaObject.cs" />
     <Compile Include="ToscaPropertyEntrySchema.cs" />
-    <Compile Include="ToscaPropertyMerger.cs" />
+    <Compile Include="Engine\ToscaPropertyMerger.cs" />
     <Compile Include="ToscaPropertyStatus.cs" />
     <Compile Include="ToscaRelationshipTemplate.cs" />
     <Compile Include="ToscaRelationshipType.cs" />

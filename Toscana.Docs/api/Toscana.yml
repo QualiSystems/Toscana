@@ -4,6 +4,8 @@ items:
   commentId: N:Toscana
   id: Toscana
   children:
+  - Toscana.IDerivableToscaEntity`1
+  - Toscana.IToscaEntityWithProperties`1
   - Toscana.IToscaMetadata
   - Toscana.ToscaArtifact
   - Toscana.ToscaArtifactType
@@ -47,6 +49,43 @@ items:
   assemblies:
   - Toscana
 references:
+- uid: Toscana.IToscaEntityWithProperties`1
+  commentId: T:Toscana.IToscaEntityWithProperties`1
+  isExternal: false
+  name: IToscaEntityWithProperties<T>
+  nameWithType: IToscaEntityWithProperties<T>
+  fullName: Toscana.IToscaEntityWithProperties<T>
+  nameWithType.vb: IToscaEntityWithProperties(Of T)
+  fullname.vb: Toscana.IToscaEntityWithProperties(Of T)
+  name.vb: IToscaEntityWithProperties(Of T)
+  spec.csharp:
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties
+    nameWithType: IToscaEntityWithProperties
+    fullName: Toscana.IToscaEntityWithProperties
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties
+    nameWithType: IToscaEntityWithProperties
+    fullName: Toscana.IToscaEntityWithProperties
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Toscana.ToscaArtifact
   commentId: T:Toscana.ToscaArtifact
   isExternal: false
@@ -192,6 +231,43 @@ references:
   name: ToscaNodeType
   nameWithType: ToscaNodeType
   fullName: Toscana.ToscaNodeType
+- uid: Toscana.IDerivableToscaEntity`1
+  commentId: T:Toscana.IDerivableToscaEntity`1
+  isExternal: false
+  name: IDerivableToscaEntity<T>
+  nameWithType: IDerivableToscaEntity<T>
+  fullName: Toscana.IDerivableToscaEntity<T>
+  nameWithType.vb: IDerivableToscaEntity(Of T)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T)
+  name.vb: IDerivableToscaEntity(Of T)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Toscana.ToscaObject`1
   commentId: T:Toscana.ToscaObject`1
   isExternal: false

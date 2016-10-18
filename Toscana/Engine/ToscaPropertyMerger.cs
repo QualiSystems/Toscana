@@ -1,11 +1,31 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Toscana
+namespace Toscana.Engine
 {
-    internal static class ToscaPropertyMerger
+    internal interface IToscaPropertyMerger
     {
-        internal static Dictionary<string, ToscaPropertyDefinition> MergeProperties(Dictionary<string, List<ToscaPropertyDefinition>> combinedProperties)
+        IReadOnlyDictionary<string, ToscaPropertyDefinition> CombineAndMerge<T>(IToscaEntityWithProperties<T> toscaEntity)
+            where T : IToscaEntityWithProperties<T>;
+    }
+
+    internal class ToscaPropertyMerger : IToscaPropertyMerger
+    {
+        private readonly IToscaPropertyCombiner toscaPropertyCombiner;
+
+        public ToscaPropertyMerger(IToscaPropertyCombiner toscaPropertyCombiner)
+        {
+            this.toscaPropertyCombiner = toscaPropertyCombiner;
+        }
+
+        public IReadOnlyDictionary<string, ToscaPropertyDefinition> CombineAndMerge<T>(IToscaEntityWithProperties<T> toscaEntity)
+            where T : IToscaEntityWithProperties<T>
+        {
+            var combineProperties = toscaPropertyCombiner.CombineProperties(toscaEntity);
+            return MergeProperties(combineProperties);
+        }
+
+        private Dictionary<string, ToscaPropertyDefinition> MergeProperties(Dictionary<string, List<ToscaPropertyDefinition>> combinedProperties)
         {
             var mergedProperties = new Dictionary<string, ToscaPropertyDefinition>();
             foreach (var property in combinedProperties)
