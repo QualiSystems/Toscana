@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaArtifactType
     path: Toscana/ToscaArtifactType.cs
@@ -34,13 +34,16 @@ items:
   summary: "\nAn Artifact Type is a reusable entity that defines the type of one or more files that are used to define implementation or deployment artifacts that are referenced by nodes or relationships on their operations\n"
   example: []
   syntax:
-    content: 'public class ToscaArtifactType : ToscaObject<ToscaArtifactType>'
+    content: 'public class ToscaArtifactType : ToscaObject<ToscaArtifactType>, IDerivableToscaEntity<ToscaArtifactType>'
     content.vb: >-
       Public Class ToscaArtifactType
           Inherits ToscaObject(Of ToscaArtifactType)
+          Implements IDerivableToscaEntity(Of ToscaArtifactType)
   inheritance:
   - System.Object
   - Toscana.ToscaObject{Toscana.ToscaArtifactType}
+  implements:
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaArtifactType}
   inheritedMembers:
   - Toscana.ToscaObject{Toscana.ToscaArtifactType}.CloudServiceArchive
   - Toscana.ToscaObject{Toscana.ToscaArtifactType}.DerivedFrom
@@ -75,7 +78,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaArtifactType.cs
@@ -106,7 +109,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaArtifactType.cs
@@ -142,7 +145,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaArtifactType.cs
@@ -178,7 +181,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: MimeType
     path: Toscana/ToscaArtifactType.cs
@@ -214,7 +217,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: FileExt
     path: Toscana/ToscaArtifactType.cs
@@ -250,7 +253,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaArtifactType.cs
@@ -286,7 +289,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaArtifactType.cs
@@ -325,7 +328,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaArtifactType.cs
@@ -393,6 +396,46 @@ references:
     name: ToscaObject
     nameWithType: ToscaObject
     fullName: Toscana.ToscaObject
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaArtifactType
+    name: ToscaArtifactType
+    nameWithType: ToscaArtifactType
+    fullName: Toscana.ToscaArtifactType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaArtifactType}
+  commentId: T:Toscana.IDerivableToscaEntity{Toscana.ToscaArtifactType}
+  parent: Toscana
+  definition: Toscana.IDerivableToscaEntity`1
+  name: IDerivableToscaEntity<ToscaArtifactType>
+  nameWithType: IDerivableToscaEntity<ToscaArtifactType>
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaArtifactType>
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaArtifactType)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaArtifactType)
+  name.vb: IDerivableToscaEntity(Of ToscaArtifactType)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaArtifactType
+    name: ToscaArtifactType
+    nameWithType: ToscaArtifactType
+    fullName: Toscana.ToscaArtifactType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -969,6 +1012,43 @@ references:
     name: ToscaObject
     nameWithType: ToscaObject
     fullName: Toscana.ToscaObject
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity`1
+  commentId: T:Toscana.IDerivableToscaEntity`1
+  isExternal: false
+  name: IDerivableToscaEntity<T>
+  nameWithType: IDerivableToscaEntity<T>
+  fullName: Toscana.IDerivableToscaEntity<T>
+  nameWithType.vb: IDerivableToscaEntity(Of T)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T)
+  name.vb: IDerivableToscaEntity(Of T)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

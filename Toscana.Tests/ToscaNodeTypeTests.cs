@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Exceptions;
 
 namespace Toscana.Tests
 {
@@ -95,12 +96,11 @@ namespace Toscana.Tests
 
             // Act
             var validationResults = new List<ValidationResult>();
-            var validationSuccess = cloudServiceArchive.TryValidate(out validationResults);
+            Action action = () => cloudServiceArchive.TryValidate(out validationResults);
 
             // Assert
-            validationSuccess.Should().BeFalse();
-            validationResults.Should()
-                .Contain(r => r.ErrorMessage.Contains("Node type 'cloudshell.nodes.Switch' not found"));
+            action.ShouldThrow<ToscaNodeTypeNotFoundException>()
+                .WithMessage("Node type 'cloudshell.nodes.Switch' not found");
         }
 
         [Test]
@@ -142,9 +142,21 @@ namespace Toscana.Tests
         {
             // Arrange
             var switchNodeType = new ToscaNodeType();
-            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "string", Default = "10MBps", Required = true} );
+            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            {
+                Type = "string",
+                Default = "10MBps",
+                Required = true,
+                Description = "switch description"
+            } );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
-            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "string", Default = "1GBps", Required = false });
+            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            {
+                Type = "string",
+                Default = "1GBps",
+                Required = false,
+                Description = "nxos description"
+            });
 
             var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
             serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
@@ -169,7 +181,79 @@ namespace Toscana.Tests
             // Assert
             allProperties["speed"].Default.Should().Be("1GBps");
             allProperties["speed"].Required.Should().BeFalse();
+            allProperties["speed"].Description.Should().Be("nxos description");
         }
+
+        [Test]
+        public void Exception_Thrown_When_Type_On_Derived_NodeType_Differs_From_Base_NodeType()
+        {
+            // Arrange
+            var switchNodeType = new ToscaNodeType();
+            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            {
+                Type = "string"
+            } );
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            {
+                Type = "integer"
+            });
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            // Act
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults);
+            
+            // Assert
+            validationResults.Should().Contain(r=>r.ErrorMessage.Equals("Property 'speed' has different type when overriden, which is not allowed"));
+        }
+
+        [Test]
+        public void GetAllProperties_Does_Not_Override_Default_When_Not_Specified()
+        {
+            // Arrange
+            var switchNodeType = new ToscaNodeType();
+            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "string", Default = "10MBps", Required = true} );
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "string", Required = false });
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allProperties = nxosNodeType.GetAllProperties();
+
+            // Assert
+            allProperties["speed"].Default.Should().Be("10MBps");
+            allProperties["speed"].Required.Should().BeFalse();
+        }
+
         [Test]
         public void GetAllRequirements_Return_Requirements_Of_Base_Node_Type()
         {

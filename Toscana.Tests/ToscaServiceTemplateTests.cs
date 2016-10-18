@@ -200,6 +200,32 @@ node_types:
         }
 
         [Test]
+        public void Property_Default_Are_Loaded_When_Not_Specified()
+        {
+            const string toscaString = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+ 
+node_types:
+  example.TransactionSubsystem:
+    properties:
+      num_cpus:
+        type: integer
+";
+
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaString.ToMemoryStream());
+
+            // Assert
+            var numCpusProperty = serviceTemplate.NodeTypes["example.TransactionSubsystem"].Properties["num_cpus"];
+            numCpusProperty.Type.Should().Be("integer");
+            numCpusProperty.Description.Should().BeNull();
+            numCpusProperty.Default.Should().BeNull();
+            numCpusProperty.Required.Should().BeTrue();
+            numCpusProperty.Status.Should().Be(ToscaPropertyStatus.supported);
+            numCpusProperty.EntrySchema.Should().BeNull();
+            numCpusProperty.Constraints.Should().BeEmpty();
+        }
+
+        [Test]
         public void Service_Template_With_Complex_Data_Type_Can_Be_Parsed()
         {
             string toscaServiceTemplate = @"

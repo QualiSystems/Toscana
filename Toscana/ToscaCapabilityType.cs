@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Toscana.Engine;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -6,7 +7,7 @@ namespace Toscana
     /// <summary>
     /// Represents TOSCA Capability type
     /// </summary>
-    public class ToscaCapabilityType : ToscaObject<ToscaCapabilityType>
+    public class ToscaCapabilityType : ToscaObject<ToscaCapabilityType>, IToscaEntityWithProperties<ToscaCapabilityType>
     {
         /// <summary>
         /// Instantiates an instance of ToscaCapabilityType
@@ -45,18 +46,7 @@ namespace Toscana
         /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
         public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
         {
-            var properties = new Dictionary<string, ToscaPropertyDefinition>();
-            for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.Base)
-            {
-                foreach (var propertyKeyValue in currNodeType.Properties)
-                {
-                    if (!properties.ContainsKey(propertyKeyValue.Key))
-                    {
-                        properties.Add(propertyKeyValue.Key, propertyKeyValue.Value);
-                    }
-                }
-            }
-            return properties;
+            return Bootstrapper.Current.GetPropertyMerger().CombineAndMerge(this);
         }
 
         /// <summary>

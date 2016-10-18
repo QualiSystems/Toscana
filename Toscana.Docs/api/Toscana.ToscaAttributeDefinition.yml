@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaAttributeDefinition
     path: Toscana/ToscaAttributeDefinition.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaAttributeDefinition.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaAttributeDefinition.cs
@@ -148,7 +148,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaAttributeDefinition.cs
@@ -184,7 +184,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Default
     path: Toscana/ToscaAttributeDefinition.cs
@@ -220,7 +220,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Status
     path: Toscana/ToscaAttributeDefinition.cs
@@ -256,7 +256,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntrySchema
     path: Toscana/ToscaAttributeDefinition.cs

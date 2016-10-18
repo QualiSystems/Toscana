@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaInvalidFileException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaInvalidFileException
     path: Toscana/Exceptions/ToscaInvalidFileException.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaInvalidFileException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaInvalidFileException.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaInvalidFileException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaInvalidFileException.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaInvalidFileException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaInvalidFileException.cs
@@ -205,7 +205,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaInvalidFileException.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaInvalidFileException.cs

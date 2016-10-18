@@ -31,27 +31,29 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaNodeType
     path: Toscana/ToscaNodeType.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nA Node Type is a reusable entity that defines the type of one or more Node Templates. \nAs such, a Node Type defines the structure of observable properties via a Properties Definition, the Requirements and Capabilities of the node as well as its supported interfaces.\n"
   example: []
   syntax:
-    content: 'public class ToscaNodeType : ToscaObject<ToscaNodeType>, IValidatableObject'
+    content: 'public class ToscaNodeType : ToscaObject<ToscaNodeType>, IValidatableObject, IToscaEntityWithProperties<ToscaNodeType>, IDerivableToscaEntity<ToscaNodeType>'
     content.vb: >-
       Public Class ToscaNodeType
           Inherits ToscaObject(Of ToscaNodeType)
-          Implements IValidatableObject
+          Implements IValidatableObject, IToscaEntityWithProperties(Of ToscaNodeType), IDerivableToscaEntity(Of ToscaNodeType)
   inheritance:
   - System.Object
   - Toscana.ToscaObject{Toscana.ToscaNodeType}
   implements:
   - System.ComponentModel.DataAnnotations.IValidatableObject
+  - Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}
   inheritedMembers:
   - Toscana.ToscaObject{Toscana.ToscaNodeType}.CloudServiceArchive
   - Toscana.ToscaObject{Toscana.ToscaNodeType}.DerivedFrom
@@ -86,11 +88,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaNodeType.cs
-    startLine: 18
+    startLine: 21
   assemblies:
   - Toscana
   namespace: Toscana
@@ -117,11 +119,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaNodeType.cs
-    startLine: 31
+    startLine: 35
   assemblies:
   - Toscana
   namespace: Toscana
@@ -153,11 +155,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaNodeType.cs
-    startLine: 36
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
@@ -189,11 +191,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaNodeType.cs
-    startLine: 41
+    startLine: 45
   assemblies:
   - Toscana
   namespace: Toscana
@@ -205,6 +207,8 @@ items:
     parameters: []
     return:
       type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyDefinition}
+  implements:
+  - Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}.Properties
   modifiers.csharp:
   - public
   - get
@@ -225,11 +229,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaNodeType.cs
-    startLine: 46
+    startLine: 50
   assemblies:
   - Toscana
   namespace: Toscana
@@ -261,11 +265,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Requirements
     path: Toscana/ToscaNodeType.cs
-    startLine: 51
+    startLine: 55
   assemblies:
   - Toscana
   namespace: Toscana
@@ -297,11 +301,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Capabilities
     path: Toscana/ToscaNodeType.cs
-    startLine: 56
+    startLine: 60
   assemblies:
   - Toscana
   namespace: Toscana
@@ -333,11 +337,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaNodeType.cs
-    startLine: 61
+    startLine: 65
   assemblies:
   - Toscana
   namespace: Toscana
@@ -369,11 +373,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Artifacts
     path: Toscana/ToscaNodeType.cs
-    startLine: 66
+    startLine: 70
   assemblies:
   - Toscana
   namespace: Toscana
@@ -405,11 +409,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaNodeType.cs
-    startLine: 73
+    startLine: 77
   assemblies:
   - Toscana
   namespace: Toscana
@@ -432,6 +436,8 @@ items:
   - type: Toscana.Exceptions.ToscaNodeTypeNotFoundException
     commentId: T:Toscana.Exceptions.ToscaNodeTypeNotFoundException
     description: Thrown when Node Type pointed by Derived From not found
+  implements:
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}.Base
   attributes:
   - type: YamlDotNet.Serialization.YamlIgnoreAttribute
     ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
@@ -458,11 +464,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllRequirements
     path: Toscana/ToscaNodeType.cs
-    startLine: 92
+    startLine: 96
   assemblies:
   - Toscana
   namespace: Toscana
@@ -492,11 +498,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllCapabilityTypes
     path: Toscana/ToscaNodeType.cs
-    startLine: 108
+    startLine: 112
   assemblies:
   - Toscana
   namespace: Toscana
@@ -526,11 +532,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddRequirement
     path: Toscana/ToscaNodeType.cs
-    startLine: 127
+    startLine: 131
   assemblies:
   - Toscana
   namespace: Toscana
@@ -564,11 +570,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaNodeType.cs
-    startLine: 139
+    startLine: 143
   assemblies:
   - Toscana
   namespace: Toscana
@@ -582,6 +588,8 @@ items:
       type: System.String
       description: Node type name
   overridden: Toscana.ToscaObject{Toscana.ToscaNodeType}.SetDerivedFromToRoot(System.String)
+  implements:
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}.SetDerivedFromToRoot(System.String)
   modifiers.csharp:
   - public
   - override
@@ -602,11 +610,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllProperties
     path: Toscana/ToscaNodeType.cs
-    startLine: 152
+    startLine: 156
   assemblies:
   - Toscana
   namespace: Toscana
@@ -641,11 +649,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaNodeType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaNodeType.cs
-    startLine: 168
+    startLine: 161
   assemblies:
   - Toscana
   namespace: Toscana
@@ -722,6 +730,86 @@ references:
   name: IValidatableObject
   nameWithType: IValidatableObject
   fullName: System.ComponentModel.DataAnnotations.IValidatableObject
+- uid: Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}
+  commentId: T:Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}
+  parent: Toscana
+  definition: Toscana.IToscaEntityWithProperties`1
+  name: IToscaEntityWithProperties<ToscaNodeType>
+  nameWithType: IToscaEntityWithProperties<ToscaNodeType>
+  fullName: Toscana.IToscaEntityWithProperties<Toscana.ToscaNodeType>
+  nameWithType.vb: IToscaEntityWithProperties(Of ToscaNodeType)
+  fullname.vb: Toscana.IToscaEntityWithProperties(Of Toscana.ToscaNodeType)
+  name.vb: IToscaEntityWithProperties(Of ToscaNodeType)
+  spec.csharp:
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties
+    nameWithType: IToscaEntityWithProperties
+    fullName: Toscana.IToscaEntityWithProperties
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaNodeType
+    name: ToscaNodeType
+    nameWithType: ToscaNodeType
+    fullName: Toscana.ToscaNodeType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties
+    nameWithType: IToscaEntityWithProperties
+    fullName: Toscana.IToscaEntityWithProperties
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaNodeType
+    name: ToscaNodeType
+    nameWithType: ToscaNodeType
+    fullName: Toscana.ToscaNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}
+  commentId: T:Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}
+  parent: Toscana
+  definition: Toscana.IDerivableToscaEntity`1
+  name: IDerivableToscaEntity<ToscaNodeType>
+  nameWithType: IDerivableToscaEntity<ToscaNodeType>
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaNodeType>
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaNodeType)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaNodeType)
+  name.vb: IDerivableToscaEntity(Of ToscaNodeType)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaNodeType
+    name: ToscaNodeType
+    nameWithType: ToscaNodeType
+    fullName: Toscana.ToscaNodeType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaNodeType
+    name: ToscaNodeType
+    nameWithType: ToscaNodeType
+    fullName: Toscana.ToscaNodeType
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Toscana.ToscaObject{Toscana.ToscaNodeType}.CloudServiceArchive
   commentId: F:Toscana.ToscaObject{Toscana.ToscaNodeType}.CloudServiceArchive
   parent: Toscana.ToscaObject{Toscana.ToscaNodeType}
@@ -1303,6 +1391,80 @@ references:
   name: System.ComponentModel.DataAnnotations
   nameWithType: System.ComponentModel.DataAnnotations
   fullName: System.ComponentModel.DataAnnotations
+- uid: Toscana.IToscaEntityWithProperties`1
+  commentId: T:Toscana.IToscaEntityWithProperties`1
+  isExternal: false
+  name: IToscaEntityWithProperties<T>
+  nameWithType: IToscaEntityWithProperties<T>
+  fullName: Toscana.IToscaEntityWithProperties<T>
+  nameWithType.vb: IToscaEntityWithProperties(Of T)
+  fullname.vb: Toscana.IToscaEntityWithProperties(Of T)
+  name.vb: IToscaEntityWithProperties(Of T)
+  spec.csharp:
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties
+    nameWithType: IToscaEntityWithProperties
+    fullName: Toscana.IToscaEntityWithProperties
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IToscaEntityWithProperties`1
+    name: IToscaEntityWithProperties
+    nameWithType: IToscaEntityWithProperties
+    fullName: Toscana.IToscaEntityWithProperties
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity`1
+  commentId: T:Toscana.IDerivableToscaEntity`1
+  isExternal: false
+  name: IDerivableToscaEntity<T>
+  nameWithType: IDerivableToscaEntity<T>
+  fullName: Toscana.IDerivableToscaEntity<T>
+  nameWithType.vb: IDerivableToscaEntity(Of T)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T)
+  name.vb: IDerivableToscaEntity(Of T)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Toscana.ToscaObject`1.CloudServiceArchive
   commentId: F:Toscana.ToscaObject`1.CloudServiceArchive
   isExternal: false
@@ -1592,6 +1754,15 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}.Properties
+  commentId: P:Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}.Properties
+  parent: Toscana.IToscaEntityWithProperties{Toscana.ToscaNodeType}
+  definition: Toscana.IToscaEntityWithProperties`1.Properties
+  name: Properties
+  nameWithType: IToscaEntityWithProperties<ToscaNodeType>.Properties
+  fullName: Toscana.IToscaEntityWithProperties<Toscana.ToscaNodeType>.Properties
+  nameWithType.vb: IToscaEntityWithProperties(Of ToscaNodeType).Properties
+  fullname.vb: Toscana.IToscaEntityWithProperties(Of Toscana.ToscaNodeType).Properties
 - uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyDefinition}
   commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyDefinition}
   parent: System.Collections.Generic
@@ -1650,6 +1821,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Toscana.IToscaEntityWithProperties`1.Properties
+  commentId: P:Toscana.IToscaEntityWithProperties`1.Properties
+  isExternal: false
+  name: Properties
+  nameWithType: IToscaEntityWithProperties<T>.Properties
+  fullName: Toscana.IToscaEntityWithProperties<T>.Properties
+  nameWithType.vb: IToscaEntityWithProperties(Of T).Properties
+  fullname.vb: Toscana.IToscaEntityWithProperties(Of T).Properties
 - uid: System.Collections.Generic.Dictionary`2
   commentId: T:System.Collections.Generic.Dictionary`2
   isExternal: true
@@ -2107,6 +2286,15 @@ references:
   fullName: Toscana.ToscaObject<Toscana.ToscaNodeType>.Base
   nameWithType.vb: ToscaObject(Of ToscaNodeType).Base
   fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaNodeType).Base
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}.Base
+  commentId: P:Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}.Base
+  parent: Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}
+  definition: Toscana.IDerivableToscaEntity`1.Base
+  name: Base
+  nameWithType: IDerivableToscaEntity<ToscaNodeType>.Base
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaNodeType>.Base
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaNodeType).Base
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaNodeType).Base
 - uid: Toscana.Exceptions.ToscaNodeTypeNotFoundException
   commentId: T:Toscana.Exceptions.ToscaNodeTypeNotFoundException
   isExternal: false
@@ -2128,6 +2316,14 @@ references:
   fullName: Toscana.ToscaObject<T>.Base
   nameWithType.vb: ToscaObject(Of T).Base
   fullname.vb: Toscana.ToscaObject(Of T).Base
+- uid: Toscana.IDerivableToscaEntity`1.Base
+  commentId: P:Toscana.IDerivableToscaEntity`1.Base
+  isExternal: false
+  name: Base
+  nameWithType: IDerivableToscaEntity<T>.Base
+  fullName: Toscana.IDerivableToscaEntity<T>.Base
+  nameWithType.vb: IDerivableToscaEntity(Of T).Base
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T).Base
 - uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaRequirement}
   commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaRequirement}
   parent: System.Collections.Generic
@@ -2292,6 +2488,47 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}.SetDerivedFromToRoot(System.String)
+  commentId: M:Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}.SetDerivedFromToRoot(System.String)
+  parent: Toscana.IDerivableToscaEntity{Toscana.ToscaNodeType}
+  definition: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+  name: SetDerivedFromToRoot(String)
+  nameWithType: IDerivableToscaEntity<ToscaNodeType>.SetDerivedFromToRoot(String)
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaNodeType>.SetDerivedFromToRoot(System.String)
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaNodeType).SetDerivedFromToRoot(String)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaNodeType).SetDerivedFromToRoot(System.String)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+    name: SetDerivedFromToRoot
+    nameWithType: IDerivableToscaEntity<ToscaNodeType>.SetDerivedFromToRoot
+    fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaNodeType>.SetDerivedFromToRoot
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+    name: SetDerivedFromToRoot
+    nameWithType: IDerivableToscaEntity(Of ToscaNodeType).SetDerivedFromToRoot
+    fullName: Toscana.IDerivableToscaEntity(Of Toscana.ToscaNodeType).SetDerivedFromToRoot
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: Toscana.ToscaObject`1.SetDerivedFromToRoot(System.String)
   commentId: M:Toscana.ToscaObject`1.SetDerivedFromToRoot(System.String)
   isExternal: true
@@ -2321,6 +2558,46 @@ references:
     name: SetDerivedFromToRoot
     nameWithType: ToscaObject(Of T).SetDerivedFromToRoot
     fullName: Toscana.ToscaObject(Of T).SetDerivedFromToRoot
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+  commentId: M:Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+  isExternal: true
+  name: SetDerivedFromToRoot(String)
+  nameWithType: IDerivableToscaEntity<T>.SetDerivedFromToRoot(String)
+  fullName: Toscana.IDerivableToscaEntity<T>.SetDerivedFromToRoot(System.String)
+  nameWithType.vb: IDerivableToscaEntity(Of T).SetDerivedFromToRoot(String)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T).SetDerivedFromToRoot(System.String)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+    name: SetDerivedFromToRoot
+    nameWithType: IDerivableToscaEntity<T>.SetDerivedFromToRoot
+    fullName: Toscana.IDerivableToscaEntity<T>.SetDerivedFromToRoot
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+    name: SetDerivedFromToRoot
+    nameWithType: IDerivableToscaEntity(Of T).SetDerivedFromToRoot
+    fullName: Toscana.IDerivableToscaEntity(Of T).SetDerivedFromToRoot
   - name: (
     nameWithType: (
     fullName: (

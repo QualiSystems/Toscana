@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRelationshipType
     path: Toscana/ToscaRelationshipType.cs
@@ -35,13 +35,16 @@ items:
   summary: "\nA Relationship Type is a reusable entity that defines the type of one or more relationships \nbetween Node Types or Node Templates.\n"
   example: []
   syntax:
-    content: 'public class ToscaRelationshipType : ToscaObject<ToscaRelationshipType>'
+    content: 'public class ToscaRelationshipType : ToscaObject<ToscaRelationshipType>, IDerivableToscaEntity<ToscaRelationshipType>'
     content.vb: >-
       Public Class ToscaRelationshipType
           Inherits ToscaObject(Of ToscaRelationshipType)
+          Implements IDerivableToscaEntity(Of ToscaRelationshipType)
   inheritance:
   - System.Object
   - Toscana.ToscaObject{Toscana.ToscaRelationshipType}
+  implements:
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaRelationshipType}
   inheritedMembers:
   - Toscana.ToscaObject{Toscana.ToscaRelationshipType}.CloudServiceArchive
   - Toscana.ToscaObject{Toscana.ToscaRelationshipType}.DerivedFrom
@@ -76,7 +79,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaRelationshipType.cs
@@ -107,7 +110,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaRelationshipType.cs
@@ -150,7 +153,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaRelationshipType.cs
@@ -188,7 +191,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaRelationshipType.cs
@@ -224,7 +227,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaRelationshipType.cs
@@ -260,7 +263,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaRelationshipType.cs
@@ -296,7 +299,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaRelationshipType.cs
@@ -332,7 +335,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaRelationshipType.cs
@@ -368,7 +371,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ValidTargetTypes
     path: Toscana/ToscaRelationshipType.cs
@@ -434,6 +437,46 @@ references:
     name: ToscaObject
     nameWithType: ToscaObject
     fullName: Toscana.ToscaObject
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaRelationshipType
+    name: ToscaRelationshipType
+    nameWithType: ToscaRelationshipType
+    fullName: Toscana.ToscaRelationshipType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaRelationshipType}
+  commentId: T:Toscana.IDerivableToscaEntity{Toscana.ToscaRelationshipType}
+  parent: Toscana
+  definition: Toscana.IDerivableToscaEntity`1
+  name: IDerivableToscaEntity<ToscaRelationshipType>
+  nameWithType: IDerivableToscaEntity<ToscaRelationshipType>
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaRelationshipType>
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaRelationshipType)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaRelationshipType)
+  name.vb: IDerivableToscaEntity(Of ToscaRelationshipType)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaRelationshipType
+    name: ToscaRelationshipType
+    nameWithType: ToscaRelationshipType
+    fullName: Toscana.ToscaRelationshipType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -1010,6 +1053,43 @@ references:
     name: ToscaObject
     nameWithType: ToscaObject
     fullName: Toscana.ToscaObject
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity`1
+  commentId: T:Toscana.IDerivableToscaEntity`1
+  isExternal: false
+  name: IDerivableToscaEntity<T>
+  nameWithType: IDerivableToscaEntity<T>
+  fullName: Toscana.IDerivableToscaEntity<T>
+  nameWithType.vb: IDerivableToscaEntity(Of T)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T)
+  name.vb: IDerivableToscaEntity(Of T)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

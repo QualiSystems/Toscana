@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDataTypeDefinition
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -33,13 +33,16 @@ items:
   summary: "\nA Data Type definition defines the schema for new named datatypes in TOSCA. \n"
   example: []
   syntax:
-    content: 'public class ToscaDataTypeDefinition : ToscaObject<ToscaDataTypeDefinition>'
+    content: 'public class ToscaDataTypeDefinition : ToscaObject<ToscaDataTypeDefinition>, IDerivableToscaEntity<ToscaDataTypeDefinition>'
     content.vb: >-
       Public Class ToscaDataTypeDefinition
           Inherits ToscaObject(Of ToscaDataTypeDefinition)
+          Implements IDerivableToscaEntity(Of ToscaDataTypeDefinition)
   inheritance:
   - System.Object
   - Toscana.ToscaObject{Toscana.ToscaDataTypeDefinition}
+  implements:
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaDataTypeDefinition}
   inheritedMembers:
   - Toscana.ToscaObject{Toscana.ToscaDataTypeDefinition}.CloudServiceArchive
   - Toscana.ToscaObject{Toscana.ToscaDataTypeDefinition}.DerivedFrom
@@ -74,7 +77,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -105,7 +108,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -141,7 +144,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -177,7 +180,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -213,7 +216,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -249,7 +252,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Base
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -292,7 +295,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaDataTypeDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaDataTypeDefinition.cs
@@ -360,6 +363,46 @@ references:
     name: ToscaObject
     nameWithType: ToscaObject
     fullName: Toscana.ToscaObject
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.ToscaDataTypeDefinition
+    name: ToscaDataTypeDefinition
+    nameWithType: ToscaDataTypeDefinition
+    fullName: Toscana.ToscaDataTypeDefinition
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaDataTypeDefinition}
+  commentId: T:Toscana.IDerivableToscaEntity{Toscana.ToscaDataTypeDefinition}
+  parent: Toscana
+  definition: Toscana.IDerivableToscaEntity`1
+  name: IDerivableToscaEntity<ToscaDataTypeDefinition>
+  nameWithType: IDerivableToscaEntity<ToscaDataTypeDefinition>
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaDataTypeDefinition>
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaDataTypeDefinition)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaDataTypeDefinition)
+  name.vb: IDerivableToscaEntity(Of ToscaDataTypeDefinition)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.ToscaDataTypeDefinition
+    name: ToscaDataTypeDefinition
+    nameWithType: ToscaDataTypeDefinition
+    fullName: Toscana.ToscaDataTypeDefinition
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
@@ -936,6 +979,43 @@ references:
     name: ToscaObject
     nameWithType: ToscaObject
     fullName: Toscana.ToscaObject
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDerivableToscaEntity`1
+  commentId: T:Toscana.IDerivableToscaEntity`1
+  isExternal: false
+  name: IDerivableToscaEntity<T>
+  nameWithType: IDerivableToscaEntity<T>
+  fullName: Toscana.IDerivableToscaEntity<T>
+  nameWithType.vb: IDerivableToscaEntity(Of T)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T)
+  name.vb: IDerivableToscaEntity(Of T)
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '

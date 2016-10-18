@@ -128,6 +128,7 @@
     <Compile Include="Exceptions\ToscaValidationException.cs" />
     <Compile Include="Exceptions\ToscaBaseException.cs" />
     <Compile Include="Exceptions\ToscaParsingException.cs" />
+    <Compile Include="IToscaEntityWithProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Engine\ToscaDeserializer.cs" />
     <Compile Include="Engine\ToscaValidator.cs" />
@@ -150,11 +151,13 @@
     <Compile Include="ToscaParameter.cs" />
     <Compile Include="ToscaPolicy.cs" />
     <Compile Include="ToscaPropertyAssignment.cs" />
+    <Compile Include="Engine\ToscaPropertyCombiner.cs" />
     <Compile Include="ToscaPropertyDefinition.cs" />
     <Compile Include="ToscaNodeTemplate.cs" />
     <Compile Include="ToscaNodeType.cs" />
     <Compile Include="ToscaObject.cs" />
     <Compile Include="ToscaPropertyEntrySchema.cs" />
+    <Compile Include="Engine\ToscaPropertyMerger.cs" />
     <Compile Include="ToscaPropertyStatus.cs" />
     <Compile Include="ToscaRelationshipTemplate.cs" />
     <Compile Include="ToscaRelationshipType.cs" />

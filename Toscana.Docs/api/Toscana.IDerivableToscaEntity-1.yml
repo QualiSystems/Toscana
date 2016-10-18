@@ -1,182 +1,190 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.IToscaMetadata
-  commentId: T:Toscana.IToscaMetadata
-  id: IToscaMetadata
+- uid: Toscana.IDerivableToscaEntity`1
+  commentId: T:Toscana.IDerivableToscaEntity`1
+  id: IDerivableToscaEntity`1
   parent: Toscana
   children:
-  - Toscana.IToscaMetadata.CreatedBy
-  - Toscana.IToscaMetadata.CsarVersion
-  - Toscana.IToscaMetadata.EntryDefinitions
-  - Toscana.IToscaMetadata.ToscaMetaFileVersion
+  - Toscana.IDerivableToscaEntity`1.Base
+  - Toscana.IDerivableToscaEntity`1.DerivedFrom
+  - Toscana.IDerivableToscaEntity`1.IsRoot
+  - Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
   langs:
   - csharp
   - vb
-  name: IToscaMetadata
-  nameWithType: IToscaMetadata
-  fullName: Toscana.IToscaMetadata
+  name: IDerivableToscaEntity<T>
+  nameWithType: IDerivableToscaEntity<T>
+  fullName: Toscana.IDerivableToscaEntity<T>
   type: Interface
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/ToscaObject.cs
       branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
-    id: IToscaMetadata
-    path: Toscana/ToscaMetadata.cs
-    startLine: 9
+    id: IDerivableToscaEntity
+    path: Toscana/ToscaObject.cs
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nInterface to represent TOSCA.meta file content\n"
+  summary: "\nDefines TOSCA entity that supports inheritance\n"
   example: []
   syntax:
-    content: public interface IToscaMetadata
-    content.vb: Public Interface IToscaMetadata
+    content: >-
+      public interface IDerivableToscaEntity<T>
+          where T : IDerivableToscaEntity<T>
+    content.vb: Public Interface IDerivableToscaEntity(Of T As IDerivableToscaEntity(Of T))
+    typeParameters:
+    - id: T
+      description: ''
   extensionMethods:
-  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
-  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+  - Toscana.IDerivableToscaEntity`1.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDerivableToscaEntity{{T}},Toscana.IDerivableToscaEntity{{T}}},System.Func{Toscana.IDerivableToscaEntity{{T}},System.Boolean})
+  - Toscana.IDerivableToscaEntity`1.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDerivableToscaEntity{{T}},Toscana.IDerivableToscaEntity{{T}}})
+  nameWithType.vb: IDerivableToscaEntity(Of T)
   modifiers.csharp:
   - public
   - interface
   modifiers.vb:
   - Public
   - Interface
-- uid: Toscana.IToscaMetadata.ToscaMetaFileVersion
-  commentId: P:Toscana.IToscaMetadata.ToscaMetaFileVersion
-  id: ToscaMetaFileVersion
-  parent: Toscana.IToscaMetadata
+  fullName.vb: Toscana.IDerivableToscaEntity(Of T)
+  name.vb: IDerivableToscaEntity(Of T)
+- uid: Toscana.IDerivableToscaEntity`1.DerivedFrom
+  commentId: P:Toscana.IDerivableToscaEntity`1.DerivedFrom
+  id: DerivedFrom
+  parent: Toscana.IDerivableToscaEntity`1
   langs:
   - csharp
   - vb
-  name: ToscaMetaFileVersion
-  nameWithType: IToscaMetadata.ToscaMetaFileVersion
-  fullName: Toscana.IToscaMetadata.ToscaMetaFileVersion
+  name: DerivedFrom
+  nameWithType: IDerivableToscaEntity<T>.DerivedFrom
+  fullName: Toscana.IDerivableToscaEntity<T>.DerivedFrom
   type: Property
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/ToscaObject.cs
       branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaMetaFileVersion
-    path: Toscana/ToscaMetadata.cs
-    startLine: 14
+    id: DerivedFrom
+    path: Toscana/ToscaObject.cs
+    startLine: 13
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nSpecifies TOSCA.meta file version\n"
+  summary: "\nAn optional name of parent entity this new entity derives from.\n"
   example: []
   syntax:
-    content: Version ToscaMetaFileVersion { get; }
-    content.vb: ReadOnly Property ToscaMetaFileVersion As Version
-    parameters: []
-    return:
-      type: System.Version
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.CsarVersion
-  commentId: P:Toscana.IToscaMetadata.CsarVersion
-  id: CsarVersion
-  parent: Toscana.IToscaMetadata
-  langs:
-  - csharp
-  - vb
-  name: CsarVersion
-  nameWithType: IToscaMetadata.CsarVersion
-  fullName: Toscana.IToscaMetadata.CsarVersion
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaMetadata.cs
-      branch: develop
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: CsarVersion
-    path: Toscana/ToscaMetadata.cs
-    startLine: 21
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nDenotes the verison of CSAR\nDue to the simplified structure of the CSAR file and TOSCA.meta file compared to TOSCA 1.0, \nthe CSAR-Version keyword listed in block_0 of the meta-file is required to denote version 1.1.\n"
-  example: []
-  syntax:
-    content: Version CsarVersion { get; }
-    content.vb: ReadOnly Property CsarVersion As Version
-    parameters: []
-    return:
-      type: System.Version
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.CreatedBy
-  commentId: P:Toscana.IToscaMetadata.CreatedBy
-  id: CreatedBy
-  parent: Toscana.IToscaMetadata
-  langs:
-  - csharp
-  - vb
-  name: CreatedBy
-  nameWithType: IToscaMetadata.CreatedBy
-  fullName: Toscana.IToscaMetadata.CreatedBy
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaMetadata.cs
-      branch: develop
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: CreatedBy
-    path: Toscana/ToscaMetadata.cs
-    startLine: 26
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nSpecifies who created the CSAR  \n"
-  example: []
-  syntax:
-    content: string CreatedBy { get; }
-    content.vb: ReadOnly Property CreatedBy As String
+    content: string DerivedFrom { get; set; }
+    content.vb: Property DerivedFrom As String
     parameters: []
     return:
       type: System.String
+  nameWithType.vb: IDerivableToscaEntity(Of T).DerivedFrom
   modifiers.csharp:
   - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.EntryDefinitions
-  commentId: P:Toscana.IToscaMetadata.EntryDefinitions
-  id: EntryDefinitions
-  parent: Toscana.IToscaMetadata
+  - set
+  fullName.vb: Toscana.IDerivableToscaEntity(Of T).DerivedFrom
+- uid: Toscana.IDerivableToscaEntity`1.Base
+  commentId: P:Toscana.IDerivableToscaEntity`1.Base
+  id: Base
+  parent: Toscana.IDerivableToscaEntity`1
   langs:
   - csharp
   - vb
-  name: EntryDefinitions
-  nameWithType: IToscaMetadata.EntryDefinitions
-  fullName: Toscana.IToscaMetadata.EntryDefinitions
+  name: Base
+  nameWithType: IDerivableToscaEntity<T>.Base
+  fullName: Toscana.IDerivableToscaEntity<T>.Base
   type: Property
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/ToscaObject.cs
       branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
-    id: EntryDefinitions
-    path: Toscana/ToscaMetadata.cs
-    startLine: 32
+    id: Base
+    path: Toscana/ToscaObject.cs
+    startLine: 20
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nEntry-Definitions keyword pointing to a valid TOSCA definitions YAML file that a TOSCA \norchestrator should use as entry for parsing the contents of the overall CSAR file.\n"
+  summary: "\nReturns an entity that this entity derives from.\nIf this entity is root, null will be returned\nIf this entity derives from a non existing entity exception will be thrown\n"
   example: []
   syntax:
-    content: string EntryDefinitions { get; }
-    content.vb: ReadOnly Property EntryDefinitions As String
+    content: T Base { get; }
+    content.vb: ReadOnly Property Base As T
     parameters: []
     return:
-      type: System.String
+      type: '{T}'
+  nameWithType.vb: IDerivableToscaEntity(Of T).Base
   modifiers.csharp:
   - get
   modifiers.vb:
   - ReadOnly
+  fullName.vb: Toscana.IDerivableToscaEntity(Of T).Base
+- uid: Toscana.IDerivableToscaEntity`1.IsRoot
+  commentId: M:Toscana.IDerivableToscaEntity`1.IsRoot
+  id: IsRoot
+  parent: Toscana.IDerivableToscaEntity`1
+  langs:
+  - csharp
+  - vb
+  name: IsRoot()
+  nameWithType: IDerivableToscaEntity<T>.IsRoot()
+  fullName: Toscana.IDerivableToscaEntity<T>.IsRoot()
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaObject.cs
+      branch: develop
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: IsRoot
+    path: Toscana/ToscaObject.cs
+    startLine: 27
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nReturns True if this entity is the root, which other entities derive from it.\nFalse otherwise\n"
+  example: []
+  syntax:
+    content: bool IsRoot()
+    content.vb: Function IsRoot As Boolean
+    return:
+      type: System.Boolean
+      description: ''
+  nameWithType.vb: IDerivableToscaEntity(Of T).IsRoot()
+  fullName.vb: Toscana.IDerivableToscaEntity(Of T).IsRoot()
+- uid: Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+  commentId: M:Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
+  id: SetDerivedFromToRoot(System.String)
+  parent: Toscana.IDerivableToscaEntity`1
+  langs:
+  - csharp
+  - vb
+  name: SetDerivedFromToRoot(String)
+  nameWithType: IDerivableToscaEntity<T>.SetDerivedFromToRoot(String)
+  fullName: Toscana.IDerivableToscaEntity<T>.SetDerivedFromToRoot(System.String)
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaObject.cs
+      branch: develop
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: SetDerivedFromToRoot
+    path: Toscana/ToscaObject.cs
+    startLine: 33
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nSets DerivedFrom to point to root if it's not set\n"
+  example: []
+  syntax:
+    content: void SetDerivedFromToRoot(string name)
+    content.vb: Sub SetDerivedFromToRoot(name As String)
+    parameters:
+    - id: name
+      type: System.String
+      description: Object name
+  nameWithType.vb: IDerivableToscaEntity(Of T).SetDerivedFromToRoot(String)
+  fullName.vb: Toscana.IDerivableToscaEntity(Of T).SetDerivedFromToRoot(System.String)
 references:
 - uid: Toscana
   commentId: N:Toscana
@@ -184,21 +192,21 @@ references:
   name: Toscana
   nameWithType: Toscana
   fullName: Toscana
-- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
+- uid: Toscana.IDerivableToscaEntity`1.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDerivableToscaEntity{{T}},Toscana.IDerivableToscaEntity{{T}}},System.Func{Toscana.IDerivableToscaEntity{{T}},System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>, System.Func<Toscana.IToscaMetadata, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata), System.Func(Of Toscana.IToscaMetadata, System.Boolean))
-  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
+  name: FromHierarchy<IDerivableToscaEntity<T>>(Func<IDerivableToscaEntity<T>, IDerivableToscaEntity<T>>, Func<IDerivableToscaEntity<T>, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IDerivableToscaEntity<T>>(Func<IDerivableToscaEntity<T>, IDerivableToscaEntity<T>>, Func<IDerivableToscaEntity<T>, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDerivableToscaEntity<T>>(System.Func<Toscana.IDerivableToscaEntity<T>, Toscana.IDerivableToscaEntity<T>>, System.Func<Toscana.IDerivableToscaEntity<T>, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IDerivableToscaEntity(Of T))(Func(Of IDerivableToscaEntity(Of T), IDerivableToscaEntity(Of T)), Func(Of IDerivableToscaEntity(Of T), Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDerivableToscaEntity(Of T))(System.Func(Of Toscana.IDerivableToscaEntity(Of T), Toscana.IDerivableToscaEntity(Of T)), System.Func(Of Toscana.IDerivableToscaEntity(Of T), System.Boolean))
+  name.vb: FromHierarchy(Of IDerivableToscaEntity(Of T))(Func(Of IDerivableToscaEntity(Of T), IDerivableToscaEntity(Of T)), Func(Of IDerivableToscaEntity(Of T), Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<IToscaMetadata>
-    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+    name: FromHierarchy<IDerivableToscaEntity<T>>
+    nameWithType: EnumerableExtensions.FromHierarchy<IDerivableToscaEntity<T>>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDerivableToscaEntity<T>>
   - name: (
     nameWithType: (
     fullName: (
@@ -210,17 +218,35 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -235,10 +261,19 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -255,9 +290,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of IToscaMetadata)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+    name: FromHierarchy(Of IDerivableToscaEntity(Of T))
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IDerivableToscaEntity(Of T))
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDerivableToscaEntity(Of T))
   - name: (
     nameWithType: (
     fullName: (
@@ -269,17 +304,35 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -294,10 +347,19 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -312,21 +374,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+- uid: Toscana.IDerivableToscaEntity`1.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDerivableToscaEntity{{T}},Toscana.IDerivableToscaEntity{{T}}})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
-  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata))
-  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
+  name: FromHierarchy<IDerivableToscaEntity<T>>(Func<IDerivableToscaEntity<T>, IDerivableToscaEntity<T>>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IDerivableToscaEntity<T>>(Func<IDerivableToscaEntity<T>, IDerivableToscaEntity<T>>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDerivableToscaEntity<T>>(System.Func<Toscana.IDerivableToscaEntity<T>, Toscana.IDerivableToscaEntity<T>>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IDerivableToscaEntity(Of T))(Func(Of IDerivableToscaEntity(Of T), IDerivableToscaEntity(Of T)))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDerivableToscaEntity(Of T))(System.Func(Of Toscana.IDerivableToscaEntity(Of T), Toscana.IDerivableToscaEntity(Of T)))
+  name.vb: FromHierarchy(Of IDerivableToscaEntity(Of T))(Func(Of IDerivableToscaEntity(Of T), IDerivableToscaEntity(Of T)))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<IToscaMetadata>
-    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+    name: FromHierarchy<IDerivableToscaEntity<T>>
+    nameWithType: EnumerableExtensions.FromHierarchy<IDerivableToscaEntity<T>>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDerivableToscaEntity<T>>
   - name: (
     nameWithType: (
     fullName: (
@@ -338,17 +400,35 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -357,9 +437,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of IToscaMetadata)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+    name: FromHierarchy(Of IDerivableToscaEntity(Of T))
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IDerivableToscaEntity(Of T))
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDerivableToscaEntity(Of T))
   - name: (
     nameWithType: (
     fullName: (
@@ -371,17 +451,35 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDerivableToscaEntity`1
+    name: IDerivableToscaEntity
+    nameWithType: IDerivableToscaEntity
+    fullName: Toscana.IDerivableToscaEntity
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -617,19 +715,6 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: System.Version
-  commentId: T:System.Version
-  parent: System
-  isExternal: true
-  name: Version
-  nameWithType: Version
-  fullName: System.Version
-- uid: System
-  commentId: N:System
-  isExternal: false
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -637,3 +722,27 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

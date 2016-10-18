@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRelationshipTemplate
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -99,7 +99,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -135,7 +135,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -171,7 +171,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -207,7 +207,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Assignments
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -243,7 +243,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaRelationshipTemplate.cs
@@ -279,7 +279,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Copy
     path: Toscana/ToscaRelationshipTemplate.cs

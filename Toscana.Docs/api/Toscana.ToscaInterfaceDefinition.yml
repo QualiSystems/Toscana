@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaInterfaceDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaInterfaceDefinition
     path: Toscana/ToscaInterfaceDefinition.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaInterfaceDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaInterfaceDefinition.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaInterfaceDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Inputs
     path: Toscana/ToscaInterfaceDefinition.cs

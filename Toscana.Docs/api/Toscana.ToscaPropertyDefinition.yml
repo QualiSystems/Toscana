@@ -27,7 +27,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaPropertyDefinition
     path: Toscana/ToscaPropertyDefinition.cs
@@ -77,7 +77,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaPropertyDefinition.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaPropertyDefinition.cs
@@ -161,7 +161,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaPropertyDefinition.cs
@@ -197,7 +197,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Required
     path: Toscana/ToscaPropertyDefinition.cs
@@ -233,7 +233,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Default
     path: Toscana/ToscaPropertyDefinition.cs
@@ -269,7 +269,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Status
     path: Toscana/ToscaPropertyDefinition.cs
@@ -305,7 +305,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaPropertyDefinition.cs
@@ -341,7 +341,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntrySchema
     path: Toscana/ToscaPropertyDefinition.cs
@@ -377,7 +377,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Tags
     path: Toscana/ToscaPropertyDefinition.cs
@@ -413,7 +413,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: StringValue
     path: Toscana/ToscaPropertyDefinition.cs
@@ -460,7 +460,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaPropertyDefinition.cs
@@ -494,7 +494,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyDefinition.cs
-      branch: master
+      branch: develop
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddConstraint
     path: Toscana/ToscaPropertyDefinition.cs
