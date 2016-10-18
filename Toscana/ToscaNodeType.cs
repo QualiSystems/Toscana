@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Toscana.Engine;
 using Toscana.Exceptions;
 using YamlDotNet.Serialization;
 
@@ -13,6 +14,8 @@ namespace Toscana
     /// </summary>
     public class ToscaNodeType : ToscaObject<ToscaNodeType>, IValidatableObject, IToscaEntityWithProperties<ToscaNodeType>
     {
+        private readonly ToscaPropertyCombiner toscaPropertyCombiner;
+
         /// <summary>
         /// Initializes a instance of ToscaNodeType
         /// </summary>
@@ -24,6 +27,7 @@ namespace Toscana
             Capabilities = new Dictionary<string, ToscaCapability>();
             Interfaces = new Dictionary<string, Dictionary<string, object>>();
             Artifacts = new Dictionary<string, ToscaArtifact>();
+            toscaPropertyCombiner = new ToscaPropertyCombiner();
         }
 
         /// <summary>
@@ -152,25 +156,7 @@ namespace Toscana
         /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
         public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
         {
-            var combinedProperties = CombineProperties(this);
-            return ToscaPropertyMerger.MergeProperties(combinedProperties);
-        }
-
-        private Dictionary<string, List<ToscaPropertyDefinition>> CombineProperties(IToscaEntityWithProperties<ToscaNodeType> toscaEntity)
-        {
-            var combinedProperties = new Dictionary<string, List<ToscaPropertyDefinition>>();
-            for (var currNodeType = toscaEntity; currNodeType != null; currNodeType = currNodeType.Base)
-            {
-                foreach (var propertyKeyValue in currNodeType.Properties)
-                {
-                    if (!combinedProperties.ContainsKey(propertyKeyValue.Key))
-                    {
-                        combinedProperties.Add(propertyKeyValue.Key, new List<ToscaPropertyDefinition>());
-                    }
-                    combinedProperties[propertyKeyValue.Key].Add(propertyKeyValue.Value);
-                }
-            }
-            return combinedProperties;
+            return Bootstrapper.Current.GetPropertyMerger().CombineAndMerge(this);
         }
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
@@ -181,7 +167,7 @@ namespace Toscana
                 .Select(artifact => new ValidationResult(string.Format("Artifact '{0}' not found in Cloud Service Archive.", artifact.Value.File)))
                 .ToList();
 
-            var combineProperties = CombineProperties(this);
+            var combineProperties = toscaPropertyCombiner.CombineProperties(this);
             validationResults.AddRange(
                 combineProperties.Where(
                     combineProperty => combineProperty.Value.Select(p => p.Type).Distinct().Count() > 1)

@@ -29,6 +29,8 @@ namespace Toscana.Engine
             container.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
             container.Register<IToscaServiceTemplateSaver, ToscaServiceTemplateSaver>();
             container.Register<ITypeConvertersFactory, TypeConvertersFactory>();
+            container.Register<IToscaPropertyMerger, ToscaPropertyMerger>();
+            container.Register<IToscaPropertyCombiner, ToscaPropertyCombiner>();
             container.Register<IToscaParserFactory>(
                 () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
                 {
@@ -90,6 +92,11 @@ namespace Toscana.Engine
         internal IToscaServiceTemplateSaver GetToscaServiceTemplateSaver()
         {
             return container.GetInstance<IToscaServiceTemplateSaver>();
+        }
+
+        internal IToscaPropertyMerger GetPropertyMerger()
+        {
+            return container.GetInstance<IToscaPropertyMerger>();
         }
     }
 }
