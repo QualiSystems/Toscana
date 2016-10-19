@@ -54,9 +54,15 @@ namespace Toscana.Engine
             {
                 mergedProperty.Description = overridingProperty.Description;
             }
-            if (overridingProperty.Constraints != null)
+            if (overridingProperty.Constraints != null && overridingProperty.Constraints.Any())
             {
-                mergedProperty.Constraints = overridingProperty.Constraints;
+                var mergedConstraints = mergedProperty.GetConstraintsDictionary();
+                var overringConstraints = overridingProperty.GetConstraintsDictionary();
+                foreach (var overringConstraint in overringConstraints)
+                {
+                    mergedConstraints[overringConstraint.Key] = overringConstraint.Value;
+                }
+                mergedProperty.SetConstraints(mergedConstraints);
             }
             mergedProperty.Required = overridingProperty.Required;
         }

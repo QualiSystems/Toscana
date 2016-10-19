@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Toscana.Engine;
@@ -76,7 +77,7 @@ namespace Toscana
         [YamlIgnore]
         public string StringValue
         {
-            get { return Default == null ? string.Empty : Default.ToString(); }
+            get { return Default == null ? String.Empty : Default.ToString(); }
         }
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
@@ -101,9 +102,9 @@ namespace Toscana
                     {
                         validatuResults.Add(
                             new ValidationResult(
-                                string.Format(
+                                String.Format(
                                     "Value '{0}' of constraint '{1}' cannot be parsed according to property data type '{2}'",
-                                    validValue, string.Join(",", listOfValidValues), Type)));
+                                    validValue, String.Join(",", listOfValidValues), Type)));
                     }
                 }
             }
@@ -118,6 +119,24 @@ namespace Toscana
         public void AddConstraint(string contraintName, object constraintValue)
         {
             Constraints.Add(new Dictionary<string, object> { {contraintName, constraintValue} });
+        }
+
+        /// <summary>
+        /// Returns contstrains as a dictionary
+        /// </summary>
+        /// <returns>Contstrains as a dictionary</returns>
+        public Dictionary<string, object> GetConstraintsDictionary()
+        {
+            return Constraints.SelectMany(a=>a).ToDictionary(c=>c.Key, d=>d.Value);
+        }
+
+        /// <summary>
+        /// Sets constraints of the property
+        /// </summary>
+        /// <param name="constraints">Constraints to set</param>
+        public void SetConstraints(Dictionary<string, object> constraints)
+        {
+            Constraints = constraints.Select(c => new Dictionary<string, object> {{c.Key, c.Value}}).ToList();
         }
     }
 }
