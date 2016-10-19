@@ -64,6 +64,10 @@ namespace Toscana.Engine
                 }
                 mergedProperty.SetConstraints(mergedConstraints);
             }
+            if (overridingProperty.Tags != null && overridingProperty.Tags.Any())
+            {
+                mergedProperty.Tags = overridingProperty.Tags;
+            }
             mergedProperty.Required = overridingProperty.Required;
         }
     }
