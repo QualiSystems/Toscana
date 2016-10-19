@@ -149,6 +149,7 @@ namespace Toscana.Tests
                 Default = "10MBps",
                 Required = true,
                 Description = "switch description",
+                Tags = new List<string>(new [] {"read_only"})
             } );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
             nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition
@@ -156,7 +157,8 @@ namespace Toscana.Tests
                 Type = "string",
                 Default = "1GBps",
                 Required = false,
-                Description = "nxos description"
+                Description = "nxos description",
+                Tags = new List<string>(new[] { "admin_only" })
             });
 
             var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
@@ -183,6 +185,7 @@ namespace Toscana.Tests
             allProperties["speed"].Default.Should().Be("1GBps");
             allProperties["speed"].Required.Should().BeFalse();
             allProperties["speed"].Description.Should().Be("nxos description");
+            allProperties["speed"].Tags.ShouldAllBeEquivalentTo(new [] { "admin_only" });
         }
 
         [Test]
