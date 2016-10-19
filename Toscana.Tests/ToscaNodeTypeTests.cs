@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
+using Toscana.Common;
 using Toscana.Exceptions;
 
 namespace Toscana.Tests
@@ -147,7 +148,7 @@ namespace Toscana.Tests
                 Type = "string",
                 Default = "10MBps",
                 Required = true,
-                Description = "switch description"
+                Description = "switch description",
             } );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
             nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition
@@ -252,6 +253,159 @@ namespace Toscana.Tests
             // Assert
             allProperties["speed"].Default.Should().Be("10MBps");
             allProperties["speed"].Required.Should().BeFalse();
+        }
+
+        [Test]
+        public void GetAllProperties_Does_Not_Override_Default_When_Not_Specified_When_Parsed_From_Yaml()
+        {
+            // Arrange
+            var serviceTemplate = ToscaServiceTemplate.Load(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  template_author: Anonymous
+  template_name: TOSCA
+  template_version: 1.1
+node_types:
+  cloudshell.nodes.Switch:
+    properties:
+      speed:
+        type: string
+        required: true
+        default: 10MBps
+        constraints: 
+          - valid_values: [10MBps, 100MBps, 1GBps]
+  vendor.switch.NXOS:
+    derived_from: cloudshell.nodes.Switch
+    properties:
+      speed:
+        type: string
+        default: 1GBps
+".ToMemoryStream());
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allProperties = serviceTemplate.NodeTypes["vendor.switch.NXOS"].GetAllProperties();
+
+            // Assert
+            allProperties["speed"].Default.Should().Be("1GBps");
+            var validValues = allProperties["speed"].GetConstraintsDictionary()["valid_values"];
+            ((List<object>)validValues).ShouldBeEquivalentTo(new[] { "10MBps", "100MBps", "1GBps" });
+        }
+
+        [Test]
+        public void GetAllProperties_Constraints_Overriden_On_Derived_Node_Type()
+        {
+            // Arrange
+            var serviceTemplate = ToscaServiceTemplate.Load(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  template_author: Anonymous
+  template_name: TOSCA
+  template_version: 1.1
+node_types:
+  cloudshell.nodes.Switch:
+    properties:
+      speed:
+        type: string
+        required: true
+        default: 10MBps
+        constraints: 
+          - valid_values: [10MBps, 100MBps, 1GBps]
+  vendor.switch.NXOS:
+    derived_from: cloudshell.nodes.Switch
+    properties:
+      speed:
+        type: string
+        default: 1mps
+        constraints: 
+          - valid_values: [1mps, 2mps, 3mps]
+".ToMemoryStream());
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allProperties = serviceTemplate.NodeTypes["vendor.switch.NXOS"].GetAllProperties();
+
+            // Assert
+            allProperties["speed"].Default.Should().Be("1mps");
+            var validValues = allProperties["speed"].GetConstraintsDictionary()["valid_values"];
+            ((List<object>)validValues).ShouldBeEquivalentTo(new[] { "1mps", "2mps", "3mps" });
+        }
+
+        [Test]
+        public void GetAllProperties_Constraints_Are_Merged_From_Base_And_Derived_Node_Type()
+        {
+            // Arrange
+            var serviceTemplate = ToscaServiceTemplate.Load(@"
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  template_author: Anonymous
+  template_name: TOSCA
+  template_version: 1.1
+node_types:
+  cloudshell.nodes.Switch:
+    properties:
+      speed:
+        type: string
+        required: true
+        default: 10MBps
+        constraints: 
+          - valid_values: [10MBps, 100MBps, 1GBps]
+  vendor.switch.NXOS:
+    derived_from: cloudshell.nodes.Switch
+    properties:
+      speed:
+        type: string
+        default: 1mps
+        constraints: 
+          - max_length: 128
+".ToMemoryStream());
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            var validationResults = new List<ValidationResult>();
+            cloudServiceArchive.TryValidate(out validationResults).Should()
+                .BeTrue(string.Join(Environment.NewLine, validationResults.Select(r=>r.ErrorMessage)));
+
+            // Act
+            var allProperties = serviceTemplate.NodeTypes["vendor.switch.NXOS"].GetAllProperties();
+
+            // Assert
+            allProperties["speed"].Default.Should().Be("1mps");
+            var validValues = allProperties["speed"].GetConstraintsDictionary()["valid_values"];
+            ((List<object>)validValues).ShouldBeEquivalentTo(new[] { "10MBps", "100MBps", "1GBps" });
+            var maxLength = allProperties["speed"].GetConstraintsDictionary()["max_length"];
+            maxLength.Should().Be("128");
         }
 
         [Test]
