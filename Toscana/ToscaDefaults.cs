@@ -48,9 +48,9 @@ namespace Toscana
             {
                 Description = "The TOSCA Node Type all other TOSCA base Node Types derive from"
             };
-            rootNode.Attributes.Add("tosca_id", new ToscaAttributeDefinition { Type = "string" });
-            rootNode.Attributes.Add("tosca_name", new ToscaAttributeDefinition { Type = "string" });
-            rootNode.Attributes.Add("state", new ToscaAttributeDefinition { Type = "string" });
+            rootNode.Attributes.Add("tosca_id", new ToscaAttribute { Type = "string" });
+            rootNode.Attributes.Add("tosca_name", new ToscaAttribute { Type = "string" });
+            rootNode.Attributes.Add("state", new ToscaAttribute { Type = "string" });
             rootNode.Capabilities.Add("feature", new ToscaCapability { Type = "tosca.capabilities.Node" });
             rootNode.Requirements.Add(new Dictionary<string, ToscaRequirement>
             {
@@ -94,9 +94,9 @@ namespace Toscana
         /// Returns an instance of the tosca.datatypes.Root
         /// </summary>
         /// <returns></returns>
-        public static ToscaDataTypeDefinition GetRootDataType()
+        public static ToscaDataType GetRootDataType()
         {
-            return new ToscaDataTypeDefinition();
+            return new ToscaDataType();
         }
     }
 }

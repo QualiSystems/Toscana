@@ -10,7 +10,7 @@ namespace Toscana.Tests
         public void Status_Should_Be_Supported_Upon_Initialization()
         {
             // Act
-            var toscaNodeAttribute = new ToscaAttributeDefinition();
+            var toscaNodeAttribute = new ToscaAttribute();
 
             // Assert
             toscaNodeAttribute.Status.Should().Be(ToscaPropertyStatus.supported);

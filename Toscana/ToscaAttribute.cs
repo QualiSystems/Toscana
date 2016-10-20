@@ -10,12 +10,12 @@ namespace Toscana
     /// Attribute values can be retrieved via the get_attribute function from the instance model 
     /// and used as values to other entities within TOSCA Service Templates.
     /// </summary>
-    public class ToscaAttributeDefinition
+    public class ToscaAttribute
     {
         /// <summary>
-        /// Initializes an instance of <see cref="ToscaAttributeDefinition"/>
+        /// Initializes an instance of <see cref="ToscaAttribute"/>
         /// </summary>
-        public ToscaAttributeDefinition()
+        public ToscaAttribute()
         {
             Status = ToscaPropertyStatus.supported;
         }
@@ -45,6 +45,6 @@ namespace Toscana
         /// <summary>
         /// The optional key that is used to declare the name of the Datatype definition for entries of set types such as the TOSCA list or map.
         /// </summary>
-        public ToscaAttributeDefinition EntrySchema { get; set; }
+        public ToscaAttribute EntrySchema { get; set; }
     }
 }

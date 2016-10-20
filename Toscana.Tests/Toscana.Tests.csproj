@@ -110,7 +110,7 @@
     <Compile Include="ToscaCapabilityTests.cs" />
     <Compile Include="ToscaCapabilityTypeTests.cs" />
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
-    <Compile Include="ToscaDataTypeDefinitionTests.cs" />
+    <Compile Include="ToscaDataTypeTests.cs" />
     <Compile Include="ToscaGroupTests.cs" />
     <Compile Include="ToscaInterfaceDefinitionTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="ToscaNodeTypeTests.cs" />
     <Compile Include="ToscaObjectTests.cs" />
     <Compile Include="ToscaPolicyTests.cs" />
-    <Compile Include="ToscaPropertyDefinitionTests.cs" />
+    <Compile Include="ToscaPropertyTests.cs" />
     <Compile Include="ToscaRelationshipTemplateTests.cs" />
     <Compile Include="ToscaRelationshipTypeTests.cs" />
     <Compile Include="ToscaServiceTemplateTests.cs" />

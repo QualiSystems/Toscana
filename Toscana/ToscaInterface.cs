@@ -6,12 +6,12 @@ namespace Toscana
     /// An interface definition defines a named interface that can be associated 
     /// with a Node or Relationship Type
     /// </summary>
-    public class ToscaInterfaceDefinition
+    public class ToscaInterface
     {
         /// <summary>
-        /// Initializes an instance of <see cref="ToscaInterfaceDefinition"/>
+        /// Initializes an instance of <see cref="ToscaInterface"/>
         /// </summary>
-        public ToscaInterfaceDefinition()
+        public ToscaInterface()
         {
             Inputs = new Dictionary<string, object>();
         }

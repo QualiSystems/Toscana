@@ -14,7 +14,7 @@ namespace Toscana
         /// </summary>
         public ToscaGroup()
         {
-            Interfaces = new Dictionary<string, ToscaInterfaceDefinition>();
+            Interfaces = new Dictionary<string, ToscaInterface>();
             Members = new string[0];
             Properties = new Dictionary<string, ToscaPropertyAssignment>();
         }
@@ -43,6 +43,6 @@ namespace Toscana
         /// <summary>
         /// An optional list of named interface definitions for the group definition.
         /// </summary>
-        public Dictionary<string, ToscaInterfaceDefinition> Interfaces { get; set; }
+        public Dictionary<string, ToscaInterface> Interfaces { get; set; }
     }
 }
