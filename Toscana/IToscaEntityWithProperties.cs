@@ -10,6 +10,6 @@ namespace Toscana
         /// <summary>
         /// An optional list of property definitions for the Node Type.
         /// </summary>
-        Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        Dictionary<string, ToscaProperty> Properties { get; set; }
     }
 }

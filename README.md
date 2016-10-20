@@ -40,12 +40,19 @@ TOSCA YAML file is represented by _ToscaServiceTemplate_ class in Toscana librar
 Toscana allows parsing a single TOSCA YAML file into an instance of ToscaServiceTemplate class. 
 Even if the file depends on other TOSCA YAML files via _imports_ parsing will succeeds.
 
-**Parse a TOSCA Service Template file**
+**Load a TOSCA Service Template file**
 ```C#
-using (Stream stream = File.Open("tosca.yml", FileMode.Open))
+ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Load("service-template.yaml");
+```
+
+**Create a new TOSCA Service Template and save it to a file**
+```C#
+ToscaServiceTemplate toscaServiceTemplate = new ToscaServiceTemplate
 {
-    ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Parse(stream);
-}
+    ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
+};
+toscaServiceTemplate.NodeTypes.Add("node_type_name", new ToscaNodeType() );
+toscaServiceTemplate.Save("service-template.yaml");
 ```
 
 ### TOSCA Cloud Service Archive 
@@ -54,16 +61,16 @@ TOSCA CSAR file is a ZIP compressed file which contains a set of TOSCA YAML file
 The archive must contain the TOSCA.meta file, whcih points to the TOSCA YAML entry point file. If any of the TOSCA YAML files 
 imports another YAML file that is missing in the archive, loading will fail.
 
-**Loading a tosca.zip with all the _imports_ included in the archive**
+**Load a tosca.zip with all the _imports_ included in the archive**
 
 ```C#
-ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("tosca.zip");
+ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("cloud-archive.zip");
 ```
 
-**Loading a tosca.zip when some of the _imports_ reside at alternative location**
+**Load a tosca.zip when some of the _imports_ reside at alternative location**
 
 ```C#
-ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("tosca.zip", @"C:\tosca_imports\");
+ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("cloud-archive.zip", @"c:\cloud-imports\");
 ```
 
 ### License

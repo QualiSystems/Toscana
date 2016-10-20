@@ -47,9 +47,9 @@ namespace Toscana.Tests.Engine
                 ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
             };
             var nodeType = new ToscaNodeType();
-            nodeType.Properties.Add("name", new ToscaPropertyDefinition {Type = "string"});
-            nodeType.Properties.Add("age", new ToscaPropertyDefinition {Type = "integer"});
-            nodeType.Properties.Add("gender", new ToscaPropertyDefinition {Type = "boolean"});
+            nodeType.Properties.Add("name", new ToscaProperty {Type = "string"});
+            nodeType.Properties.Add("age", new ToscaProperty {Type = "integer"});
+            nodeType.Properties.Add("gender", new ToscaProperty {Type = "boolean"});
             serviceTemplate.NodeTypes.Add("tosca.nodes.Simple", nodeType);
 
             serviceTemplateSaver.Save(filePath, serviceTemplate);

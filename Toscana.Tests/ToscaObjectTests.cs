@@ -27,9 +27,9 @@ namespace Toscana.Tests
 
         public class TestToscaObject : ToscaObject<TestToscaObject>
         {
-            public override TestToscaObject Base
+            public override TestToscaObject GetDerivedFromEntity()
             {
-                get { throw new System.NotImplementedException(); }
+                throw new System.NotImplementedException();
             }
 
             public override void SetDerivedFromToRoot(string name)

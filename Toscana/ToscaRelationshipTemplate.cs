@@ -17,7 +17,7 @@ namespace Toscana
         {
             Properties = new Dictionary<string, ToscaPropertyAssignment>();
             Assignments = new Dictionary<string, ToscaAttributeAssignment>();
-            Interfaces = new Dictionary<string, ToscaInterfaceDefinition>();
+            Interfaces = new Dictionary<string, ToscaInterface>();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Toscana
         /// <summary>
         /// An optional list of named interface definitions for the Node Template.
         /// </summary>
-        public Dictionary<string, ToscaInterfaceDefinition> Interfaces { get; set; }
+        public Dictionary<string, ToscaInterface> Interfaces { get; set; }
 
         /// <summary>
         /// The optional (symbolic) name of another relationship template 

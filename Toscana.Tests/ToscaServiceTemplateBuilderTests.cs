@@ -231,7 +231,7 @@ namespace Toscana.Tests
         {
             // Arrange
             var nodeType = new ToscaNodeType();
-            nodeType.Properties.Add("base_property1", new ToscaPropertyDefinition {Type = "string"});
+            nodeType.Properties.Add("base_property1", new ToscaProperty {Type = "string"});
             var baseProfile = new ToscaServiceTemplate();
             baseProfile.NodeTypes.Add("base_node", nodeType);
 
@@ -239,7 +239,7 @@ namespace Toscana.Tests
             {
                 DerivedFrom = "base_node"
             };
-            derivedNodeType.Properties.Add("property1", new ToscaPropertyDefinition {Type = "int"});
+            derivedNodeType.Properties.Add("property1", new ToscaProperty {Type = "int"});
             var derivedProfile = new ToscaServiceTemplate();
             derivedProfile.NodeTypes.Add("node1", derivedNodeType);
 
@@ -261,7 +261,7 @@ namespace Toscana.Tests
         {
             // Arrange
             var nodeType = new ToscaNodeType();
-            nodeType.Properties.Add("property1", new ToscaPropertyDefinition { Type = "string"});
+            nodeType.Properties.Add("property1", new ToscaProperty { Type = "string"});
             var baseProfile = new ToscaServiceTemplate();
             baseProfile.NodeTypes.Add("base_node", nodeType);
 
@@ -269,7 +269,7 @@ namespace Toscana.Tests
             {
                 DerivedFrom = "base_node"
             };
-            derivedNodeType.Properties.Add("property1", new ToscaPropertyDefinition() { Type = "string" });
+            derivedNodeType.Properties.Add("property1", new ToscaProperty() { Type = "string" });
             var derivedProfile = new ToscaServiceTemplate();
             derivedProfile.NodeTypes.Add("node1", derivedNodeType);
 
@@ -359,7 +359,7 @@ namespace Toscana.Tests
         {
             // Arrange
             var nodeType = new ToscaNodeType();
-            nodeType.Attributes.Add("base_attribute1", new ToscaAttributeDefinition { Type = "string" });
+            nodeType.Attributes.Add("base_attribute1", new ToscaAttribute { Type = "string" });
             var baseProfile = new ToscaServiceTemplate();
             baseProfile.NodeTypes.Add("base_node", nodeType);
 
@@ -367,7 +367,7 @@ namespace Toscana.Tests
             {
                 DerivedFrom = "base_node"
             };
-            nodeType.Attributes.Add("attribute1", new ToscaAttributeDefinition { Type = "int" });
+            nodeType.Attributes.Add("attribute1", new ToscaAttribute { Type = "int" });
             var derivedProfile = new ToscaServiceTemplate();
             derivedProfile.NodeTypes.Add("node1", derivedNodeType);
 
@@ -389,7 +389,7 @@ namespace Toscana.Tests
         {
             // Arrange
             var nodeType = new ToscaNodeType();
-            nodeType.Attributes.Add("attribute1", new ToscaAttributeDefinition { Type = "string" });
+            nodeType.Attributes.Add("attribute1", new ToscaAttribute { Type = "string" });
             var baseProfile = new ToscaServiceTemplate();
             baseProfile.NodeTypes.Add("base_node", nodeType);
 
@@ -397,7 +397,7 @@ namespace Toscana.Tests
             {
                 DerivedFrom = "base_node"
             };
-            derivedNodeType.Attributes.Add("attribute1", new ToscaAttributeDefinition { Type = "string" });
+            derivedNodeType.Attributes.Add("attribute1", new ToscaAttribute { Type = "string" });
             var derivedProfile = new ToscaServiceTemplate();
             derivedProfile.NodeTypes.Add("node1", derivedNodeType);
 

@@ -12,7 +12,7 @@ namespace Toscana.Tests
         public void Inputs_Should_Be_Empty_Upon_Initialization()
         {
             // Act
-            var toscaInterfaceDefinition = new ToscaInterfaceDefinition();
+            var toscaInterfaceDefinition = new ToscaInterface();
 
             // Assert
             toscaInterfaceDefinition.Inputs.Should().BeEmpty();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -7,7 +8,7 @@ namespace Toscana
     /// <summary>
     /// An Artifact Type is a reusable entity that defines the type of one or more files that are used to define implementation or deployment artifacts that are referenced by nodes or relationships on their operations
     /// </summary>
-    public class ToscaArtifactType : ToscaObject<ToscaArtifactType>
+    public class ToscaArtifactType : ToscaObject<ToscaArtifactType>, IValidatableObject
     {
         /// <summary>
         /// Initilizes an instance of <see cref="ToscaArtifactType"/>
@@ -15,7 +16,7 @@ namespace Toscana
         public ToscaArtifactType()
         {
             string[] a = new string[0];
-            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+            Properties = new Dictionary<string, ToscaProperty>();
         }
 
         /// <summary>
@@ -41,25 +42,22 @@ namespace Toscana
         /// <summary>
         /// An optional list of property definitions for the Artifact Type.
         /// </summary>
-        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaProperty> Properties { get; set; }
 
         /// <summary>
         /// Returns an entity that this entity derives from.
         /// If this entity is root, null will be returned
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
-        public override ToscaArtifactType Base
+        public override ToscaArtifactType GetDerivedFromEntity()
         {
-            get
+            if (CloudServiceArchive == null || IsRoot()) return null;
+            ToscaArtifactType artifactType;
+            if (CloudServiceArchive.ArtifactTypes.TryGetValue(DerivedFrom, out artifactType))
             {
-                if (CloudServiceArchive == null || IsRoot()) return null;
-                ToscaArtifactType artifactType;
-                if (CloudServiceArchive.ArtifactTypes.TryGetValue(DerivedFrom, out artifactType))
-                {
-                    return artifactType;
-                }
-                throw new ToscaNodeTypeNotFoundException(string.Format("Artifact type '{0}' not found", DerivedFrom));
+                return artifactType;
             }
+            throw new ToscaNodeTypeNotFoundException(string.Format("Artifact type '{0}' not found", DerivedFrom));
         }
 
         /// <summary>
@@ -72,6 +70,11 @@ namespace Toscana
             {
                 DerivedFrom = ToscaDefaults.ToscaArtifactRoot;
             }
+        }
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return ValidateCircularDependency();
         }
     }
 }
