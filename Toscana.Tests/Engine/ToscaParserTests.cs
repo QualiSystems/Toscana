@@ -60,7 +60,7 @@ node_types:
         [Test]
         public void Analyze_Cloudshell_Base_Standard()
         {
-            const string toscaString = @"# CloudShell Base Standard
+            const string toscaString = @"# CloudShell GetDerivedFromEntity Standard
 # Suitable for modeling CloudShell Shells 
 tosca_definitions_version: tosca_simple_yaml_1_0
 

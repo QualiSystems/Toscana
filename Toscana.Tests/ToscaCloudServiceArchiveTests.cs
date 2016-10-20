@@ -72,7 +72,7 @@ namespace Toscana.Tests
             cloudServiceArchive.AddToscaServiceTemplate("sample.yaml", serviceTemplate);
 
             // Assert
-            cloudServiceArchive.CapabilityTypes["connectable"].Base.Properties.Should().ContainKey("username");
+            cloudServiceArchive.CapabilityTypes["connectable"].GetDerivedFromEntity().Properties.Should().ContainKey("username");
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace Toscana.Tests
 
             // Assert
             deviceNodeType.DerivedFrom.Should().Be(ToscaDefaults.ToscaNodesRoot);
-            deviceNodeType.Base.Attributes.Should().ContainKey("tosca_id", "tosca.nodes.Root has tosca_id property");
+            deviceNodeType.GetDerivedFromEntity().Attributes.Should().ContainKey("tosca_id", "tosca.nodes.Root has tosca_id property");
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace Toscana.Tests
             cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
 
             // Assert
-            switchNodeType.Base.Properties.Should().ContainKey("vendor");
+            switchNodeType.GetDerivedFromEntity().Properties.Should().ContainKey("vendor");
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace Toscana.Tests
 
             // Assert
             cloudServiceArchive.CapabilityTypes["connectable"].DerivedFrom.Should().Be("tosca.capabilities.Root");
-            cloudServiceArchive.CapabilityTypes["connectable"].Base.Should().NotBeNull();
+            cloudServiceArchive.CapabilityTypes["connectable"].GetDerivedFromEntity().Should().NotBeNull();
         }
 
         [Test]
@@ -352,7 +352,7 @@ node_types:
 
             // Assert
             cloudServiceArchive.NodeTypes["device"].DerivedFrom.Should().Be("tosca.nodes.Root");
-            cloudServiceArchive.NodeTypes["device"].Base.Should().NotBeNull();
+            cloudServiceArchive.NodeTypes["device"].GetDerivedFromEntity().Should().NotBeNull();
         }
 
         [Test]

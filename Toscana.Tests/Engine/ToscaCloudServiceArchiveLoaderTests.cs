@@ -191,8 +191,7 @@ node_types:
                     {
                         "tosca.network_device"
                     });
-            toscaCloudServiceArchive.GetEntryLeafNodeTypes()["tosca.network_device"]
-                .Base.Properties.Should().ContainKey("price");
+            toscaCloudServiceArchive.GetEntryLeafNodeTypes()["tosca.network_device"].GetDerivedFromEntity().Properties.Should().ContainKey("price");
         }
 
         [Test]
@@ -262,8 +261,8 @@ node_types:
             // Assert
             toscaCloudServiceArchive.CapabilityTypes.Should()
                 .Contain(a => a.Key == "cloudshell.capabilities.AutoDiscovery");
-            toscaCloudServiceArchive.CapabilityTypes["cloudshell.capabilities.AutoDiscovery"].Base.Should().NotBeNull();
-            toscaCloudServiceArchive.CapabilityTypes["tosca.capabilities.Root"].Base.Should().BeNull();
+            toscaCloudServiceArchive.CapabilityTypes["cloudshell.capabilities.AutoDiscovery"].GetDerivedFromEntity().Should().NotBeNull();
+            toscaCloudServiceArchive.CapabilityTypes["tosca.capabilities.Root"].GetDerivedFromEntity().Should().BeNull();
         }
 
         [Test]
@@ -393,7 +392,7 @@ node_types:
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
 
             // Assert
-            toscaCloudServiceArchive.NodeTypes["tosca.network_device"].Base.Attributes.Should().ContainKey("tosca_name");
+            toscaCloudServiceArchive.NodeTypes["tosca.network_device"].GetDerivedFromEntity().Attributes.Should().ContainKey("tosca_name");
             toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Root");
             toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Root");
             toscaCloudServiceArchive.CapabilityTypes.Should().ContainSingle(a => a.Key == "tosca.capabilities.Node");

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Toscana.Exceptions
 {
     /// <summary>
-    /// Base TOSCA Exception class to be used as a base class in Toscana for all the exceptions
+    /// GetDerivedFromEntity TOSCA Exception class to be used as a base class in Toscana for all the exceptions
     /// </summary>
     [Serializable]
     public class ToscaBaseException : Exception

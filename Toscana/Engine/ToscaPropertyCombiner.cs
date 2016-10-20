@@ -16,7 +16,7 @@ namespace Toscana.Engine
             where T : IToscaEntityWithProperties<T>
         {
             var combinedProperties = new Dictionary<string, List<ToscaPropertyDefinition>>();
-            for (var currNodeType = toscaEntity; currNodeType != null; currNodeType = currNodeType.Base)
+            for (var currNodeType = toscaEntity; currNodeType != null; currNodeType = currNodeType.GetDerivedFromEntity())
                 foreach (var propertyKeyValue in currNodeType.Properties)
                 {
                     if (!combinedProperties.ContainsKey(propertyKeyValue.Key))

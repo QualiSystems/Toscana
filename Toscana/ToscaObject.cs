@@ -1,4 +1,8 @@
-﻿using YamlDotNet.Serialization;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using DataAnnotationsValidator;
+using YamlDotNet.Serialization;
+using static System.Linq.Enumerable;
 
 namespace Toscana
 {
@@ -18,7 +22,7 @@ namespace Toscana
         /// If this entity is root, null will be returned
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
-        T Base { get; }
+        T GetDerivedFromEntity();
 
         /// <summary>
         /// Returns True if this entity is the root, which other entities derive from it.
@@ -35,7 +39,7 @@ namespace Toscana
     }
 
     /// <summary>
-    /// Base object for TOSCA entities that support inheritance
+    /// GetDerivedFromEntity object for TOSCA entities that support inheritance
     /// </summary>
     public abstract class ToscaObject<T> : IDerivableToscaEntity<T> where T: ToscaObject<T>
     {
@@ -54,11 +58,7 @@ namespace Toscana
         /// If this entity is root, null will be returned
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
-        [YamlIgnore]
-        public abstract T Base
-        {
-            get;
-        }
+        public abstract T GetDerivedFromEntity();
 
         /// <summary>
         /// Returns True if this entity is the root, which other entities derive from it.
@@ -84,5 +84,28 @@ namespace Toscana
         /// </summary>
         /// <param name="name">Object name</param>
         public abstract void SetDerivedFromToRoot(string name);
+
+        /// <summary>
+        /// Validates for circular dependency
+        /// </summary>
+        /// <returns></returns>
+        protected IEnumerable<ValidationResult> ValidateCircularDependency() 
+        {
+            List<string> nodeTypeInheritanceList = new List<string>();
+            for (var currEntity = this; currEntity != null; currEntity = currEntity.GetDerivedFromEntity())
+            {
+                if (nodeTypeInheritanceList.Contains(currEntity.DerivedFrom))
+                {
+                    return new [] {new ValidationResult(string.Format("Circular dependency detected on {0}: '{1}'", GetEntityName(), currEntity.DerivedFrom), new[] { "DerivedFrom" })};
+                }
+                nodeTypeInheritanceList.Add(currEntity.DerivedFrom);
+            }
+            return Empty<ValidationResult>();
+        }
+
+        private string GetEntityName()
+        {
+            return GetType().Name.Substring(5);
+        }
     }
 }

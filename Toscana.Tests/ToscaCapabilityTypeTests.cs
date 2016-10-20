@@ -45,7 +45,7 @@ namespace Toscana.Tests
 
             // Act
             ToscaCapabilityType baseCapabilityType;
-            Action action = () => baseCapabilityType = toscaCapabilityType.Base;
+            Action action = () => baseCapabilityType = toscaCapabilityType.GetDerivedFromEntity();
 
             // Assert
             action.ShouldThrow<ToscaCapabilityTypeNotFoundException>().WithMessage("Capability type 'base' not found");

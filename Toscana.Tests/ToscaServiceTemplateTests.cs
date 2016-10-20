@@ -262,5 +262,65 @@ node_types:
 
 
         }
+
+        [Test]
+        public void Exception_Thrown_When_Cyclic_Dependency_Between_Node_Types_Exists()
+        {
+            string toscaServiceTemplate = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+node_types:
+    tosca.nodes.SoftwareComponent:
+        derived_from: tosca.nodes.BasicComponent
+        properties:
+            # domain-specific software component version
+            component_version:
+                type: version
+                required: false
+            admin_credential:
+                type: tosca.datatypes.Credential
+                required: false
+    tosca.nodes.BasicComponent:
+        derived_from: tosca.nodes.SoftwareComponent
+";
+
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaServiceTemplate.ToMemoryStream());
+
+            var toscaMetadata = new ToscaMetadata
+                { CsarVersion = new Version(1,1), EntryDefinitions = "tosca.yml", ToscaMetaFileVersion = new Version(1,1), CreatedBy = "anonymous" };
+            var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results).Should().BeFalse();
+            results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on NodeType: 'tosca.nodes.BasicComponent'"));
+            results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on NodeType: 'tosca.nodes.SoftwareComponent'"));
+        }
+
+        [Test]
+        public void Exception_Thrown_When_Cyclic_Dependency_Between_Capability_Types_Exists()
+        {
+            string toscaServiceTemplate = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+capability_types:
+    tosca.types.SoftwareComponent:
+        derived_from: tosca.types.BasicComponent
+    tosca.types.BasicComponent:
+        derived_from: tosca.types.SoftwareComponent
+";
+
+            var serviceTemplate = ToscaServiceTemplate.Load(toscaServiceTemplate.ToMemoryStream());
+
+            var toscaMetadata = new ToscaMetadata
+                { CsarVersion = new Version(1,1), EntryDefinitions = "tosca.yml", ToscaMetaFileVersion = new Version(1,1), CreatedBy = "anonymous" };
+            var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results).Should().BeFalse();
+            results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on CapabilityType: 'tosca.types.BasicComponent'"));
+            results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on CapabilityType: 'tosca.types.SoftwareComponent'"));
+        }
     }
 }

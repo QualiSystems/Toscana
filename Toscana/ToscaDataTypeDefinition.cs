@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -7,7 +8,7 @@ namespace Toscana
     /// <summary>
     /// A Data Type definition defines the schema for new named datatypes in TOSCA. 
     /// </summary>
-    public class ToscaDataTypeDefinition : ToscaObject<ToscaDataTypeDefinition>
+    public class ToscaDataTypeDefinition : ToscaObject<ToscaDataTypeDefinition>, IValidatableObject
     {
         /// <summary>
         /// Initializes an instance of <see cref="ToscaDataTypeDefinition"/>
@@ -43,18 +44,15 @@ namespace Toscana
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
         /// <exception cref="ToscaDataTypeNotFoundException" accessor="get">When derived from data type not found in the Cloud Service Archive.</exception>
-        public override ToscaDataTypeDefinition Base
+        public override ToscaDataTypeDefinition GetDerivedFromEntity()
         {
-            get
+            if (CloudServiceArchive == null || IsRoot()) return null;
+            ToscaDataTypeDefinition datatype;
+            if (CloudServiceArchive.DataTypes.TryGetValue(DerivedFrom, out datatype))
             {
-                if (CloudServiceArchive == null || IsRoot()) return null;
-                ToscaDataTypeDefinition datatype;
-                if (CloudServiceArchive.DataTypes.TryGetValue(DerivedFrom, out datatype))
-                {
-                    return datatype;
-                }
-                throw new ToscaDataTypeNotFoundException(string.Format("Data type '{0}' not found", DerivedFrom));
+                return datatype;
             }
+            throw new ToscaDataTypeNotFoundException(string.Format("Data type '{0}' not found", DerivedFrom));
         }
 
         /// <summary>
@@ -67,6 +65,11 @@ namespace Toscana
             {
                 DerivedFrom = ToscaDefaults.ToscaDataTypeRoot;
             }
+        }
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            return ValidateCircularDependency();
         }
     }
 }
