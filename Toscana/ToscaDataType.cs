@@ -8,14 +8,14 @@ namespace Toscana
     /// <summary>
     /// A Data Type definition defines the schema for new named datatypes in TOSCA. 
     /// </summary>
-    public class ToscaDataTypeDefinition : ToscaObject<ToscaDataTypeDefinition>, IValidatableObject
+    public class ToscaDataType : ToscaObject<ToscaDataType>, IValidatableObject
     {
         /// <summary>
-        /// Initializes an instance of <see cref="ToscaDataTypeDefinition"/>
+        /// Initializes an instance of <see cref="ToscaDataType"/>
         /// </summary>
-        public ToscaDataTypeDefinition()
+        public ToscaDataType()
         {
-            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+            Properties = new Dictionary<string, ToscaProperty>();
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Toscana
         /// <summary>
         /// The optional list property definitions that comprise the schema for a complex Data Type in TOSCA.
         /// </summary>
-        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaProperty> Properties { get; set; }
 
         /// <summary>
         /// Returns an entity that this entity derives from.
@@ -44,10 +44,10 @@ namespace Toscana
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
         /// <exception cref="ToscaDataTypeNotFoundException" accessor="get">When derived from data type not found in the Cloud Service Archive.</exception>
-        public override ToscaDataTypeDefinition GetDerivedFromEntity()
+        public override ToscaDataType GetDerivedFromEntity()
         {
             if (CloudServiceArchive == null || IsRoot()) return null;
-            ToscaDataTypeDefinition datatype;
+            ToscaDataType datatype;
             if (CloudServiceArchive.DataTypes.TryGetValue(DerivedFrom, out datatype))
             {
                 return datatype;

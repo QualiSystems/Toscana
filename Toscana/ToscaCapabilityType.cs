@@ -15,8 +15,8 @@ namespace Toscana
         /// </summary>
         public ToscaCapabilityType()
         {
-            Attributes = new Dictionary<string, ToscaAttributeDefinition>();
-            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+            Attributes = new Dictionary<string, ToscaAttribute>();
+            Properties = new Dictionary<string, ToscaProperty>();
             ValidSourceTypes = new string[0];
         }
 
@@ -33,19 +33,19 @@ namespace Toscana
         /// <summary>
         /// An optional list of property definitions for the Capability Type.
         /// </summary>
-        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaProperty> Properties { get; set; }
 
         /// <summary>
         /// An optional list of attribute definitions for the Capability Type.
         /// </summary>
-        public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
+        public Dictionary<string, ToscaAttribute> Attributes { get; set; }
 
         /// <summary>
         /// Returns all the properties of the capability type and its ancestors
         /// </summary>
         /// <returns></returns>
         /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
-        public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
+        public IReadOnlyDictionary<string, ToscaProperty> GetAllProperties()
         {
             return Bootstrapper.Current.GetPropertyMerger().CombineAndMerge(this);
         }

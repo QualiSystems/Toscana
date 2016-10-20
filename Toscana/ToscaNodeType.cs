@@ -22,8 +22,8 @@ namespace Toscana
         /// </summary>
         public ToscaNodeType()
         {
-            Properties = new Dictionary<string, ToscaPropertyDefinition>();
-            Attributes = new Dictionary<string, ToscaAttributeDefinition>();
+            Properties = new Dictionary<string, ToscaProperty>();
+            Attributes = new Dictionary<string, ToscaAttribute>();
             Requirements = new List<Dictionary<string, ToscaRequirement>>();
             Capabilities = new Dictionary<string, ToscaCapability>();
             Interfaces = new Dictionary<string, Dictionary<string, object>>();
@@ -44,12 +44,12 @@ namespace Toscana
         /// <summary>
         /// An optional list of property definitions for the Node Type.
         /// </summary>
-        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaProperty> Properties { get; set; }
 
         /// <summary>
         /// An optional list of attribute definitions for the Node Type.
         /// </summary>
-        public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
+        public Dictionary<string, ToscaAttribute> Attributes { get; set; }
 
         /// <summary>
         /// An optional sequenced list of requirement definitions for the Node Type.
@@ -151,7 +151,7 @@ namespace Toscana
         /// </summary>
         /// <returns></returns>
         /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
-        public IReadOnlyDictionary<string, ToscaPropertyDefinition> GetAllProperties()
+        public IReadOnlyDictionary<string, ToscaProperty> GetAllProperties()
         {
             return Bootstrapper.Current.GetPropertyMerger().CombineAndMerge(this);
         }

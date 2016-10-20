@@ -103,7 +103,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private readonly Dictionary<string, ToscaCapabilityType> capabilityTypes;
         private readonly Dictionary<string, ToscaArtifactType> artifactTypes;
         private readonly Dictionary<string, ToscaRelationshipType> relationshipTypes;
-        private readonly Dictionary<string, ToscaDataTypeDefinition> dataTypes;
+        private readonly Dictionary<string, ToscaDataType> dataTypes;
         private readonly ToscaMetadata toscaMetadata;
 
         #endregion
@@ -125,7 +125,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
             artifactTypes = new Dictionary<string, ToscaArtifactType>();
             relationshipTypes = new Dictionary<string, ToscaRelationshipType>();
             fileContents = new Dictionary<string, byte[]>(new PathEqualityComparer());
-            dataTypes = new Dictionary<string, ToscaDataTypeDefinition>();
+            dataTypes = new Dictionary<string, ToscaDataType>();
             FillDefaults();
         }
 
@@ -191,7 +191,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <summary>
         ///     Returns data types from all the Service Templates
         /// </summary>
-        public IReadOnlyDictionary<string, ToscaDataTypeDefinition> DataTypes
+        public IReadOnlyDictionary<string, ToscaDataType> DataTypes
         {
             get { return dataTypes; }
         }
@@ -276,7 +276,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
             }
         }
 
-        private void AddDataType(string dataTypeName, ToscaDataTypeDefinition dataType)
+        private void AddDataType(string dataTypeName, ToscaDataType dataType)
         {
             dataTypes.Add(dataTypeName, dataType);
             dataType.SetToscaCloudServiceArchive(this);
@@ -432,7 +432,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
             AddNodeType("tosca.nodes.Compute", CreateComputeNodeType());
             AddCapabilityType("tosca.capabilities.Container", CreateContainerCapabilityType());
             var endpointAdminCapabilityType = new ToscaCapabilityType {DerivedFrom = "tosca.capabilities.Endpoint" };
-            endpointAdminCapabilityType.Properties.Add("secure", new ToscaPropertyDefinition { Type = "boolean", Default = true});
+            endpointAdminCapabilityType.Properties.Add("secure", new ToscaProperty { Type = "boolean", Default = true});
             AddCapabilityType("tosca.capabilities.Endpoint.Admin", endpointAdminCapabilityType);
             AddCapabilityType("tosca.capabilities.Endpoint", CreateEndpointCapabilityType());
             AddCapabilityType("tosca.capabilities.Attachment", new ToscaCapabilityType { DerivedFrom = "tosca.capabilities.Root" });
@@ -442,11 +442,11 @@ Examples of valid values for an “type” of “Linux” would include:  debian
             AddCapabilityType("tosca.capabilities.Scalable", CreateScalableCapabilityType());
             AddCapabilityType("tosca.capabilities.network.Bindable", CreateBindableCapabilityType());
             AddDataType(ToscaDefaults.ToscaDataTypeRoot, ToscaDefaults.GetRootDataType());
-            AddDataType("string", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
-            AddDataType("integer", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
-            AddDataType("float", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
-            AddDataType("boolean", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
-            AddDataType("null", new ToscaDataTypeDefinition {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
+            AddDataType("string", new ToscaDataType {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
+            AddDataType("integer", new ToscaDataType {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
+            AddDataType("float", new ToscaDataType {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
+            AddDataType("boolean", new ToscaDataType {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
+            AddDataType("null", new ToscaDataType {DerivedFrom = ToscaDefaults.ToscaDataTypeRoot});
         }
 
         private static ToscaCapabilityType CreateBindableCapabilityType()
@@ -457,54 +457,54 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private static ToscaCapabilityType CreateScalableCapabilityType()
         {
             var scalableCapabilityType = new ToscaCapabilityType() { DerivedFrom = "tosca.capabilities.Root" };
-            scalableCapabilityType.Properties.Add("min_instances", new ToscaPropertyDefinition { Type = "integer", Default = 1});
-            scalableCapabilityType.Properties.Add("max_instances", new ToscaPropertyDefinition { Type = "integer", Default = 1});
-            scalableCapabilityType.Properties.Add("default_instances", new ToscaPropertyDefinition { Type = "integer" });
+            scalableCapabilityType.Properties.Add("min_instances", new ToscaProperty { Type = "integer", Default = 1});
+            scalableCapabilityType.Properties.Add("max_instances", new ToscaProperty { Type = "integer", Default = 1});
+            scalableCapabilityType.Properties.Add("default_instances", new ToscaProperty { Type = "integer" });
             return scalableCapabilityType;
         }
 
         private static ToscaCapabilityType CreateOperatingSystemCapabilityType()
         {
             var operatingSystemCapabilityType = new ToscaCapabilityType { DerivedFrom = "tosca.capabilities.Root" };
-            operatingSystemCapabilityType.Properties.Add("architecture", new ToscaPropertyDefinition { Type = "string", Required = false, Description = ArchitectureDescription });
-            operatingSystemCapabilityType.Properties.Add("type", new ToscaPropertyDefinition { Type = "string", Required = false, Description = OperatingSystemTypeDescription });
-            operatingSystemCapabilityType.Properties.Add("distribution", new ToscaPropertyDefinition { Type = "string", Required = false, Description = OperationSystemDistributionDescription });
-            operatingSystemCapabilityType.Properties.Add("version", new ToscaPropertyDefinition { Type = "version", Required = false, Description = OperatingSystemVersionDescription });
+            operatingSystemCapabilityType.Properties.Add("architecture", new ToscaProperty { Type = "string", Required = false, Description = ArchitectureDescription });
+            operatingSystemCapabilityType.Properties.Add("type", new ToscaProperty { Type = "string", Required = false, Description = OperatingSystemTypeDescription });
+            operatingSystemCapabilityType.Properties.Add("distribution", new ToscaProperty { Type = "string", Required = false, Description = OperationSystemDistributionDescription });
+            operatingSystemCapabilityType.Properties.Add("version", new ToscaProperty { Type = "version", Required = false, Description = OperatingSystemVersionDescription });
             return operatingSystemCapabilityType;
         }
 
         private static ToscaCapabilityType CreateEndpointCapabilityType()
         {
             var endpointCapabilityType = new ToscaCapabilityType { DerivedFrom = "tosca.capabilities.Root" };
-            endpointCapabilityType.Properties.Add("protocol", new ToscaPropertyDefinition { Type = "string", Default = "tcp"});
-            endpointCapabilityType.Properties.Add("port", new ToscaPropertyDefinition { Type = "PortDef", Required = false });
-            endpointCapabilityType.Properties.Add("secure", new ToscaPropertyDefinition { Type = "boolean", Default = false });
-            endpointCapabilityType.Properties.Add("url_path", new ToscaPropertyDefinition { Type = "string", Required = false });
-            endpointCapabilityType.Properties.Add("port_name", new ToscaPropertyDefinition { Type = "string", Required = false });
-            endpointCapabilityType.Properties.Add("network_name", new ToscaPropertyDefinition { Type = "string", Required = false, Default = "PRIVATE"});
-            var initiatorProperty = new ToscaPropertyDefinition { Type = "string", Default = "source"};
+            endpointCapabilityType.Properties.Add("protocol", new ToscaProperty { Type = "string", Default = "tcp"});
+            endpointCapabilityType.Properties.Add("port", new ToscaProperty { Type = "PortDef", Required = false });
+            endpointCapabilityType.Properties.Add("secure", new ToscaProperty { Type = "boolean", Default = false });
+            endpointCapabilityType.Properties.Add("url_path", new ToscaProperty { Type = "string", Required = false });
+            endpointCapabilityType.Properties.Add("port_name", new ToscaProperty { Type = "string", Required = false });
+            endpointCapabilityType.Properties.Add("network_name", new ToscaProperty { Type = "string", Required = false, Default = "PRIVATE"});
+            var initiatorProperty = new ToscaProperty { Type = "string", Default = "source"};
             initiatorProperty.AddConstraint("valid_values", new [] {"source", "target", "peer"});
             endpointCapabilityType.Properties.Add("initiator", initiatorProperty);
-            var portsProperty = new ToscaPropertyDefinition { Type = "map", Required = false, EntrySchema = new ToscaPropertyEntrySchema { Type = "PortSpec"} };
+            var portsProperty = new ToscaProperty { Type = "map", Required = false, EntrySchema = new ToscaPropertyEntrySchema { Type = "PortSpec"} };
             portsProperty.AddConstraint("min_length", 1);
             endpointCapabilityType.Properties.Add("ports", portsProperty);
-            endpointCapabilityType.Attributes.Add("ip_address", new ToscaAttributeDefinition { Type = "string"});
+            endpointCapabilityType.Attributes.Add("ip_address", new ToscaAttribute { Type = "string"});
             return endpointCapabilityType;
         }
 
         private static ToscaCapabilityType CreateContainerCapabilityType()
         {
             var containerCapabilityType = new ToscaCapabilityType { DerivedFrom = "tosca.capabilities.Root" };
-            var numCpusProperty = new ToscaPropertyDefinition { Type = "integer", Required = false};
+            var numCpusProperty = new ToscaProperty { Type = "integer", Required = false};
             numCpusProperty.AddConstraint("greater_or_equal", "1");
             containerCapabilityType.Properties.Add("num_cpus", numCpusProperty);
-            var cpuFrequencyProperty = new ToscaPropertyDefinition {Type = "scalar-unit.frequency", Required = false};
+            var cpuFrequencyProperty = new ToscaProperty {Type = "scalar-unit.frequency", Required = false};
             cpuFrequencyProperty.AddConstraint("greater_or_equal", "0.1 GHz");
             containerCapabilityType.Properties.Add("cpu_frequency", cpuFrequencyProperty);
-            var diskSizeProperty = new ToscaPropertyDefinition { Type = "scalar-unit.size", Required = false };
+            var diskSizeProperty = new ToscaProperty { Type = "scalar-unit.size", Required = false };
             diskSizeProperty.AddConstraint("greater_or_equal", "O MB");
             containerCapabilityType.Properties.Add("disk_size", diskSizeProperty);
-            var memSizeProperty = new ToscaPropertyDefinition { Type = "scalar-unit.size", Required = false};
+            var memSizeProperty = new ToscaProperty { Type = "scalar-unit.size", Required = false};
             memSizeProperty.AddConstraint("greater_or_equal", "0 MB");
             containerCapabilityType.Properties.Add("mem_size", memSizeProperty);
             return containerCapabilityType;
@@ -513,11 +513,11 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private static ToscaNodeType CreateBlockStorageNodeType()
         {
             var blockStorageNodeType = new ToscaNodeType {DerivedFrom = "tosca.nodes.Root"};
-            var sizeProperty = new ToscaPropertyDefinition {Type = "scalar-unit.size"};
+            var sizeProperty = new ToscaProperty {Type = "scalar-unit.size"};
             sizeProperty.AddConstraint("greater_or_equal", "1 MB");
             blockStorageNodeType.Properties.Add("size", sizeProperty);
-            blockStorageNodeType.Properties.Add("volume_id", new ToscaPropertyDefinition {Type = "string", Required = false});
-            blockStorageNodeType.Properties.Add("snapshot_id", new ToscaPropertyDefinition {Type = "string", Required = false});
+            blockStorageNodeType.Properties.Add("volume_id", new ToscaProperty {Type = "string", Required = false});
+            blockStorageNodeType.Properties.Add("snapshot_id", new ToscaProperty {Type = "string", Required = false});
             blockStorageNodeType.Capabilities.Add("attachment", new ToscaCapability {Type = "tosca.capabilities.Attachment"});
             return blockStorageNodeType;
         }
@@ -525,20 +525,20 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private static ToscaNodeType CreateComputeNodeType()
         {
             var computeNodeType = new ToscaNodeType {DerivedFrom = ToscaDefaults.ToscaNodesRoot};
-            computeNodeType.Attributes.Add("private_address", new ToscaAttributeDefinition {Type = "string"});
-            computeNodeType.Attributes.Add("public_address", new ToscaAttributeDefinition {Type = "string"});
-            computeNodeType.Attributes.Add("networks", new ToscaAttributeDefinition
+            computeNodeType.Attributes.Add("private_address", new ToscaAttribute {Type = "string"});
+            computeNodeType.Attributes.Add("public_address", new ToscaAttribute {Type = "string"});
+            computeNodeType.Attributes.Add("networks", new ToscaAttribute
             {
                 Type = "map",
-                EntrySchema = new ToscaAttributeDefinition
+                EntrySchema = new ToscaAttribute
                 {
                     Type = "tosca.datatypes.network.NetworkInfo"
                 }
             });
-            computeNodeType.Attributes.Add("ports", new ToscaAttributeDefinition
+            computeNodeType.Attributes.Add("ports", new ToscaAttribute
             {
                 Type = "map",
-                EntrySchema = new ToscaAttributeDefinition
+                EntrySchema = new ToscaAttribute
                 {
                     Type = "tosca.datatypes.network.PortInfo"
                 }

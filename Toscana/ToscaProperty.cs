@@ -15,14 +15,14 @@ namespace Toscana
     ///     indicate their “desired state” when they are instantiated.  The value of a property can be
     ///     retrieved using the get_property function within TOSCA Service Templates.
     /// </summary>
-    public class ToscaPropertyDefinition : IValidatableObject
+    public class ToscaProperty : IValidatableObject
     {
         private const string ValidValues = "valid_values";
 
         /// <summary>
-        ///     Initializes an instance of ToscaPropertyDefinition
+        ///     Initializes an instance of ToscaProperty
         /// </summary>
-        public ToscaPropertyDefinition()
+        public ToscaProperty()
         {
             Required = true;
             Constraints = new List<Dictionary<string, object>>();

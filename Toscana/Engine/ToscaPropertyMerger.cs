@@ -5,7 +5,7 @@ namespace Toscana.Engine
 {
     internal interface IToscaPropertyMerger
     {
-        IReadOnlyDictionary<string, ToscaPropertyDefinition> CombineAndMerge<T>(IToscaEntityWithProperties<T> toscaEntity)
+        IReadOnlyDictionary<string, ToscaProperty> CombineAndMerge<T>(IToscaEntityWithProperties<T> toscaEntity)
             where T : IToscaEntityWithProperties<T>;
     }
 
@@ -18,16 +18,16 @@ namespace Toscana.Engine
             this.toscaPropertyCombiner = toscaPropertyCombiner;
         }
 
-        public IReadOnlyDictionary<string, ToscaPropertyDefinition> CombineAndMerge<T>(IToscaEntityWithProperties<T> toscaEntity)
+        public IReadOnlyDictionary<string, ToscaProperty> CombineAndMerge<T>(IToscaEntityWithProperties<T> toscaEntity)
             where T : IToscaEntityWithProperties<T>
         {
             var combineProperties = toscaPropertyCombiner.CombineProperties(toscaEntity);
             return MergeProperties(combineProperties);
         }
 
-        private Dictionary<string, ToscaPropertyDefinition> MergeProperties(Dictionary<string, List<ToscaPropertyDefinition>> combinedProperties)
+        private Dictionary<string, ToscaProperty> MergeProperties(Dictionary<string, List<ToscaProperty>> combinedProperties)
         {
-            var mergedProperties = new Dictionary<string, ToscaPropertyDefinition>();
+            var mergedProperties = new Dictionary<string, ToscaProperty>();
             foreach (var property in combinedProperties)
             {
                 var mergedProperty = property.Value.Last();
@@ -44,7 +44,7 @@ namespace Toscana.Engine
             return mergedProperties;
         }
 
-        private static void MergeProperty(ToscaPropertyDefinition overridingProperty, ToscaPropertyDefinition mergedProperty)
+        private static void MergeProperty(ToscaProperty overridingProperty, ToscaProperty mergedProperty)
         {
             if (overridingProperty.Default != null)
             {

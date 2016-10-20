@@ -78,7 +78,7 @@ namespace Toscana.Tests
         {
             // Arrange
             var derivedCapabilityType = new ToscaCapabilityType { DerivedFrom = "base" };
-            derivedCapabilityType.Properties.Add("speed", new ToscaPropertyDefinition
+            derivedCapabilityType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string",
                 Required = false,
@@ -86,7 +86,7 @@ namespace Toscana.Tests
                 Description = "derived description"
             });
             var baseCapabilityType = new ToscaCapabilityType();
-            baseCapabilityType.Properties.Add("speed", new ToscaPropertyDefinition
+            baseCapabilityType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string",
                 Required = true,
@@ -118,12 +118,12 @@ namespace Toscana.Tests
         {
             // Arrange
             var derivedCapabilityType = new ToscaCapabilityType { DerivedFrom = "base" };
-            derivedCapabilityType.Properties.Add("speed", new ToscaPropertyDefinition
+            derivedCapabilityType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string"
             });
             var baseCapabilityType = new ToscaCapabilityType();
-            baseCapabilityType.Properties.Add("speed", new ToscaPropertyDefinition
+            baseCapabilityType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string",
                 Required = true,

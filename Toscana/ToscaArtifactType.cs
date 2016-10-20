@@ -16,7 +16,7 @@ namespace Toscana
         public ToscaArtifactType()
         {
             string[] a = new string[0];
-            Properties = new Dictionary<string, ToscaPropertyDefinition>();
+            Properties = new Dictionary<string, ToscaProperty>();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Toscana
         /// <summary>
         /// An optional list of property definitions for the Artifact Type.
         /// </summary>
-        public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
+        public Dictionary<string, ToscaProperty> Properties { get; set; }
 
         /// <summary>
         /// Returns an entity that this entity derives from.

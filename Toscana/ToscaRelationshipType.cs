@@ -15,9 +15,9 @@ namespace Toscana
         /// </summary>
         public ToscaRelationshipType()
         {
-            Properties = new List<ToscaPropertyDefinition>();
-            Attributes = new List<ToscaAttributeDefinition>();
-            Interfaces = new Dictionary<string, ToscaInterfaceDefinition>();
+            Properties = new List<ToscaProperty>();
+            Attributes = new List<ToscaAttribute>();
+            Interfaces = new Dictionary<string, ToscaInterface>();
             ValidTargetTypes = new List<string>();
         }
 
@@ -63,17 +63,17 @@ namespace Toscana
         /// <summary>
         /// An optional list of property definitions for the Relationship Type.
         /// </summary>
-        public List<ToscaPropertyDefinition> Properties { get; set; }
+        public List<ToscaProperty> Properties { get; set; }
 
         /// <summary>
         /// An optional list of attribute definitions for the Relationship Type.
         /// </summary>
-        public List<ToscaAttributeDefinition> Attributes { get; set; }
+        public List<ToscaAttribute> Attributes { get; set; }
 
         /// <summary>
         /// An optional list of interface definitions interfaces supported by the Relationship Type.
         /// </summary>
-        public Dictionary<string, ToscaInterfaceDefinition> Interfaces { get; set; }
+        public Dictionary<string, ToscaInterface> Interfaces { get; set; }
 
         /// <summary>
         /// An optional list of one or more names of Capability Types that are valid targets for this relationship.

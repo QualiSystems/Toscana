@@ -109,9 +109,9 @@ namespace Toscana.Tests
         {
             // Arrange
             var switchNodeType = new ToscaNodeType();
-            switchNodeType.Properties.Add("speed",new ToscaPropertyDefinition { Type = "string"} );
+            switchNodeType.Properties.Add("speed",new ToscaProperty { Type = "string"} );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
-            nxosNodeType.Properties.Add("storage", new ToscaPropertyDefinition { Type = "string"});
+            nxosNodeType.Properties.Add("storage", new ToscaProperty { Type = "string"});
 
             var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
             serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
@@ -143,7 +143,7 @@ namespace Toscana.Tests
         {
             // Arrange
             var switchNodeType = new ToscaNodeType();
-            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            switchNodeType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string",
                 Default = "10MBps",
@@ -152,7 +152,7 @@ namespace Toscana.Tests
                 Tags = new List<string>(new [] {"read_only"})
             } );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
-            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            nxosNodeType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string",
                 Default = "1GBps",
@@ -193,12 +193,12 @@ namespace Toscana.Tests
         {
             // Arrange
             var switchNodeType = new ToscaNodeType();
-            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            switchNodeType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "string"
             } );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
-            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition
+            nxosNodeType.Properties.Add("speed", new ToscaProperty
             {
                 Type = "integer"
             });
@@ -229,9 +229,9 @@ namespace Toscana.Tests
         {
             // Arrange
             var switchNodeType = new ToscaNodeType();
-            switchNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "string", Default = "10MBps", Required = true} );
+            switchNodeType.Properties.Add("speed", new ToscaProperty { Type = "string", Default = "10MBps", Required = true} );
             var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
-            nxosNodeType.Properties.Add("speed", new ToscaPropertyDefinition { Type = "string", Required = false });
+            nxosNodeType.Properties.Add("speed", new ToscaProperty { Type = "string", Required = false });
 
             var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
             serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
