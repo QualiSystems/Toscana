@@ -5,9 +5,9 @@ items:
   id: ToscaObject`1
   parent: Toscana
   children:
-  - Toscana.ToscaObject`1.Base
-  - Toscana.ToscaObject`1.CloudServiceArchive
   - Toscana.ToscaObject`1.DerivedFrom
+  - Toscana.ToscaObject`1.GetCloudServiceArchive
+  - Toscana.ToscaObject`1.GetDerivedFromEntity
   - Toscana.ToscaObject`1.IsRoot
   - Toscana.ToscaObject`1.SetDerivedFromToRoot(System.String)
   langs:
@@ -20,15 +20,15 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaObject
     path: Toscana/ToscaObject.cs
-    startLine: 39
+    startLine: 43
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nBase object for TOSCA entities that support inheritance\n"
+  summary: "\nGetDerivedFromEntity object for TOSCA entities that support inheritance\n"
   example: []
   syntax:
     content: 'public abstract class ToscaObject<T> : IDerivableToscaEntity<T> where T : ToscaObject<T>'
@@ -63,41 +63,6 @@ items:
   - Class
   fullName.vb: Toscana.ToscaObject(Of T)
   name.vb: ToscaObject(Of T)
-- uid: Toscana.ToscaObject`1.CloudServiceArchive
-  commentId: F:Toscana.ToscaObject`1.CloudServiceArchive
-  id: CloudServiceArchive
-  parent: Toscana.ToscaObject`1
-  langs:
-  - csharp
-  - vb
-  name: CloudServiceArchive
-  nameWithType: ToscaObject<T>.CloudServiceArchive
-  fullName: Toscana.ToscaObject<T>.CloudServiceArchive
-  type: Field
-  source:
-    remote:
-      path: Toscana/ToscaObject.cs
-      branch: develop
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: CloudServiceArchive
-    path: Toscana/ToscaObject.cs
-    startLine: 44
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nReference to the <xref href=\"Toscana.ToscaCloudServiceArchive\" data-throw-if-not-resolved=\"false\"></xref> the entity belongs \n"
-  example: []
-  syntax:
-    content: protected ToscaCloudServiceArchive CloudServiceArchive
-    content.vb: Protected CloudServiceArchive As ToscaCloudServiceArchive
-    return:
-      type: Toscana.ToscaCloudServiceArchive
-  nameWithType.vb: ToscaObject(Of T).CloudServiceArchive
-  modifiers.csharp:
-  - protected
-  modifiers.vb:
-  - Protected
-  fullName.vb: Toscana.ToscaObject(Of T).CloudServiceArchive
 - uid: Toscana.ToscaObject`1.DerivedFrom
   commentId: P:Toscana.ToscaObject`1.DerivedFrom
   id: DerivedFrom
@@ -112,11 +77,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: DerivedFrom
     path: Toscana/ToscaObject.cs
-    startLine: 49
+    startLine: 53
   assemblies:
   - Toscana
   namespace: Toscana
@@ -138,58 +103,80 @@ items:
   modifiers.vb:
   - Public
   fullName.vb: Toscana.ToscaObject(Of T).DerivedFrom
-- uid: Toscana.ToscaObject`1.Base
-  commentId: P:Toscana.ToscaObject`1.Base
-  id: Base
+- uid: Toscana.ToscaObject`1.GetCloudServiceArchive
+  commentId: M:Toscana.ToscaObject`1.GetCloudServiceArchive
+  id: GetCloudServiceArchive
   parent: Toscana.ToscaObject`1
   langs:
   - csharp
   - vb
-  name: Base
-  nameWithType: ToscaObject<T>.Base
-  fullName: Toscana.ToscaObject<T>.Base
-  type: Property
+  name: GetCloudServiceArchive()
+  nameWithType: ToscaObject<T>.GetCloudServiceArchive()
+  fullName: Toscana.ToscaObject<T>.GetCloudServiceArchive()
+  type: Method
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Base
+    id: GetCloudServiceArchive
     path: Toscana/ToscaObject.cs
-    startLine: 56
+    startLine: 58
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nReference to the <xref href=\"Toscana.ToscaCloudServiceArchive\" data-throw-if-not-resolved=\"false\"></xref> the entity belongs \n"
+  example: []
+  syntax:
+    content: protected ToscaCloudServiceArchive GetCloudServiceArchive()
+    content.vb: Protected Function GetCloudServiceArchive As ToscaCloudServiceArchive
+    return:
+      type: Toscana.ToscaCloudServiceArchive
+  nameWithType.vb: ToscaObject(Of T).GetCloudServiceArchive()
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Toscana.ToscaObject(Of T).GetCloudServiceArchive()
+- uid: Toscana.ToscaObject`1.GetDerivedFromEntity
+  commentId: M:Toscana.ToscaObject`1.GetDerivedFromEntity
+  id: GetDerivedFromEntity
+  parent: Toscana.ToscaObject`1
+  langs:
+  - csharp
+  - vb
+  name: GetDerivedFromEntity()
+  nameWithType: ToscaObject<T>.GetDerivedFromEntity()
+  fullName: Toscana.ToscaObject<T>.GetDerivedFromEntity()
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaObject.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: GetDerivedFromEntity
+    path: Toscana/ToscaObject.cs
+    startLine: 77
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nReturns an entity that this entity derives from.\nIf this entity is root, null will be returned\nIf this entity derives from a non existing entity exception will be thrown\n"
   example: []
   syntax:
-    content: >-
-      [YamlIgnore]
-
-      public abstract T Base { get; }
-    content.vb: >-
-      <YamlIgnore>
-
-      Public MustOverride ReadOnly Property Base As T
-    parameters: []
+    content: public abstract T GetDerivedFromEntity()
+    content.vb: Public MustOverride Function GetDerivedFromEntity As T
     return:
       type: '{T}'
   implements:
-  - Toscana.IDerivableToscaEntity{{T}}.Base
-  attributes:
-  - type: YamlDotNet.Serialization.YamlIgnoreAttribute
-    ctor: YamlDotNet.Serialization.YamlIgnoreAttribute.#ctor
-    arguments: []
-  nameWithType.vb: ToscaObject(Of T).Base
+  - Toscana.IDerivableToscaEntity{{T}}.GetDerivedFromEntity
+  nameWithType.vb: ToscaObject(Of T).GetDerivedFromEntity()
   modifiers.csharp:
   - public
   - abstract
-  - get
   modifiers.vb:
   - Public
   - MustOverride
-  - ReadOnly
-  fullName.vb: Toscana.ToscaObject(Of T).Base
+  fullName.vb: Toscana.ToscaObject(Of T).GetDerivedFromEntity()
 - uid: Toscana.ToscaObject`1.IsRoot
   commentId: M:Toscana.ToscaObject`1.IsRoot
   id: IsRoot
@@ -204,11 +191,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: IsRoot
     path: Toscana/ToscaObject.cs
-    startLine: 67
+    startLine: 84
   assemblies:
   - Toscana
   namespace: Toscana
@@ -242,11 +229,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaObject.cs
-    startLine: 85
+    startLine: 93
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1166,13 +1153,6 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: Toscana.ToscaCloudServiceArchive
-  commentId: T:Toscana.ToscaCloudServiceArchive
-  parent: Toscana
-  isExternal: false
-  name: ToscaCloudServiceArchive
-  nameWithType: ToscaCloudServiceArchive
-  fullName: Toscana.ToscaCloudServiceArchive
 - uid: Toscana.IDerivableToscaEntity{{T}}.DerivedFrom
   commentId: P:Toscana.IDerivableToscaEntity{`0}.DerivedFrom
   parent: Toscana.IDerivableToscaEntity{{T}}
@@ -1197,29 +1177,80 @@ references:
   fullName: Toscana.IDerivableToscaEntity<T>.DerivedFrom
   nameWithType.vb: IDerivableToscaEntity(Of T).DerivedFrom
   fullname.vb: Toscana.IDerivableToscaEntity(Of T).DerivedFrom
-- uid: Toscana.IDerivableToscaEntity{{T}}.Base
-  commentId: P:Toscana.IDerivableToscaEntity{`0}.Base
+- uid: Toscana.ToscaCloudServiceArchive
+  commentId: T:Toscana.ToscaCloudServiceArchive
+  parent: Toscana
+  isExternal: false
+  name: ToscaCloudServiceArchive
+  nameWithType: ToscaCloudServiceArchive
+  fullName: Toscana.ToscaCloudServiceArchive
+- uid: Toscana.IDerivableToscaEntity{{T}}.GetDerivedFromEntity
+  commentId: M:Toscana.IDerivableToscaEntity{`0}.GetDerivedFromEntity
   parent: Toscana.IDerivableToscaEntity{{T}}
-  definition: Toscana.IDerivableToscaEntity`1.Base
-  name: Base
-  nameWithType: IDerivableToscaEntity<T>.Base
-  fullName: Toscana.IDerivableToscaEntity<T>.Base
-  nameWithType.vb: IDerivableToscaEntity(Of T).Base
-  fullname.vb: Toscana.IDerivableToscaEntity(Of T).Base
+  definition: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+  name: GetDerivedFromEntity()
+  nameWithType: IDerivableToscaEntity<T>.GetDerivedFromEntity()
+  fullName: Toscana.IDerivableToscaEntity<T>.GetDerivedFromEntity()
+  nameWithType.vb: IDerivableToscaEntity(Of T).GetDerivedFromEntity()
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T).GetDerivedFromEntity()
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+    name: GetDerivedFromEntity
+    nameWithType: IDerivableToscaEntity<T>.GetDerivedFromEntity
+    fullName: Toscana.IDerivableToscaEntity<T>.GetDerivedFromEntity
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+    name: GetDerivedFromEntity
+    nameWithType: IDerivableToscaEntity(Of T).GetDerivedFromEntity
+    fullName: Toscana.IDerivableToscaEntity(Of T).GetDerivedFromEntity
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: '{T}'
   commentId: '!:T'
   definition: T
   name: T
   nameWithType: T
   fullName: T
-- uid: Toscana.IDerivableToscaEntity`1.Base
-  commentId: P:Toscana.IDerivableToscaEntity`1.Base
+- uid: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+  commentId: M:Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
   isExternal: false
-  name: Base
-  nameWithType: IDerivableToscaEntity<T>.Base
-  fullName: Toscana.IDerivableToscaEntity<T>.Base
-  nameWithType.vb: IDerivableToscaEntity(Of T).Base
-  fullname.vb: Toscana.IDerivableToscaEntity(Of T).Base
+  name: GetDerivedFromEntity()
+  nameWithType: IDerivableToscaEntity<T>.GetDerivedFromEntity()
+  fullName: Toscana.IDerivableToscaEntity<T>.GetDerivedFromEntity()
+  nameWithType.vb: IDerivableToscaEntity(Of T).GetDerivedFromEntity()
+  fullname.vb: Toscana.IDerivableToscaEntity(Of T).GetDerivedFromEntity()
+  spec.csharp:
+  - uid: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+    name: GetDerivedFromEntity
+    nameWithType: IDerivableToscaEntity<T>.GetDerivedFromEntity
+    fullName: Toscana.IDerivableToscaEntity<T>.GetDerivedFromEntity
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+    name: GetDerivedFromEntity
+    nameWithType: IDerivableToscaEntity(Of T).GetDerivedFromEntity
+    fullName: Toscana.IDerivableToscaEntity(Of T).GetDerivedFromEntity
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: T
   isExternal: false
   name: T

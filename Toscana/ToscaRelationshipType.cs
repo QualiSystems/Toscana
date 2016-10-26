@@ -29,9 +29,9 @@ namespace Toscana
         /// <exception cref="ToscaRelationshipTypeNotFound" accessor="get">Thrown when relationship type not found in any of the service templates.</exception>
         public override ToscaRelationshipType GetDerivedFromEntity()
         {
-            if (CloudServiceArchive == null || IsRoot()) return null;
+            if (GetCloudServiceArchive() == null || IsRoot()) return null;
             ToscaRelationshipType relationshipType;
-            if (CloudServiceArchive.RelationshipTypes.TryGetValue(DerivedFrom, out relationshipType))
+            if (GetCloudServiceArchive().RelationshipTypes.TryGetValue(DerivedFrom, out relationshipType))
             {
                 return relationshipType;
             }

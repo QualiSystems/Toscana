@@ -79,6 +79,12 @@ Examples of valid values for an “type” of “Linux” would include:  debian
                         }
                     }
                 }
+
+                var circularDependencyValidationResults = nodeTypeKeyValue.Value.ValidateCircularDependency().ToList();
+                if (circularDependencyValidationResults.Any())
+                {
+                    return validationResults.Concat(circularDependencyValidationResults);
+                }
             }
             if (!validationResults.Any())
             {
@@ -297,7 +303,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private void AddDataType(string dataTypeName, ToscaDataType dataType)
         {
             dataTypes.Add(dataTypeName, dataType);
-            dataType.SetToscaCloudServiceArchive(this);
+            dataType.SetCloudServiceArchive(this);
             dataType.SetDerivedFromToRoot(dataTypeName);
         }
 
@@ -423,7 +429,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private void AddCapabilityType(string capabilityTypeName, ToscaCapabilityType capabilityType)
         {
             capabilityTypes.Add(capabilityTypeName, capabilityType);
-            capabilityType.SetToscaCloudServiceArchive(this);
+            capabilityType.SetCloudServiceArchive(this);
             capabilityType.SetDerivedFromToRoot(capabilityTypeName);
         }
 
@@ -436,7 +442,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private void AddNodeType(string nodeTypeName, ToscaNodeType nodeType)
         {
             nodeTypes.Add(nodeTypeName, nodeType);
-            nodeType.SetToscaCloudServiceArchive(this);
+            nodeType.SetCloudServiceArchive(this);
             nodeType.SetDerivedFromToRoot(nodeTypeName);
         }
 

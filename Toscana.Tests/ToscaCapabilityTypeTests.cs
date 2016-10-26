@@ -40,7 +40,7 @@ namespace Toscana.Tests
         {
             var toscaCapabilityType = new ToscaCapabilityType();
 
-            toscaCapabilityType.SetToscaCloudServiceArchive(new ToscaCloudServiceArchive(new ToscaMetadata()));
+            toscaCapabilityType.SetCloudServiceArchive(new ToscaCloudServiceArchive(new ToscaMetadata()));
             toscaCapabilityType.DerivedFrom = "base";
 
             // Act

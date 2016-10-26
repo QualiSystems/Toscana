@@ -76,9 +76,9 @@ namespace Toscana
         /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
         public override ToscaNodeType GetDerivedFromEntity()
         {
-            if (CloudServiceArchive == null || IsRoot()) return null;
+            if (GetCloudServiceArchive() == null || IsRoot()) return null;
             ToscaNodeType baseNodeType;
-            if (CloudServiceArchive.NodeTypes.TryGetValue(DerivedFrom, out baseNodeType))
+            if (GetCloudServiceArchive().NodeTypes.TryGetValue(DerivedFrom, out baseNodeType))
             {
                 return baseNodeType;
             }
@@ -89,14 +89,14 @@ namespace Toscana
         /// Returns requirements of the ToscaNodeType and its ancestors
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, ToscaRequirement> GetAllRequirements()
+        public List<ToscaRequirement> GetAllRequirements()
         {
-            var requirements = new Dictionary<string, ToscaRequirement>();
+            var requirements = new List<ToscaRequirement>();
             for (var currNodeType = this; currNodeType != null; currNodeType = currNodeType.GetDerivedFromEntity())
             {
                 foreach (var requirementKeyValue in currNodeType.Requirements.SelectMany(r => r))
                 {
-                    requirements.Add(requirementKeyValue.Key, requirementKeyValue.Value);
+                    requirements.Add(requirementKeyValue.Value);
                 }
             }
             return requirements;
@@ -113,7 +113,7 @@ namespace Toscana
             {
                 foreach (var capability in currNodeType.Capabilities.Values)
                 {
-                    allCapabilityTypes.Add(capability.Type, CloudServiceArchive.CapabilityTypes[capability.Type]);
+                    allCapabilityTypes.Add(capability.Type, GetCloudServiceArchive().CapabilityTypes[capability.Type]);
                 }
             }
             return allCapabilityTypes;
@@ -156,16 +156,16 @@ namespace Toscana
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (CloudServiceArchive == null) return Enumerable.Empty<ValidationResult>();
+            if (GetCloudServiceArchive() == null) return Enumerable.Empty<ValidationResult>();
 
-            var validationResults = Artifacts.Where(toscaArtifact => !CloudServiceArchive.ContainsArtifact(toscaArtifact.Value.File))
+            var validationResults = Artifacts.Where(toscaArtifact => !GetCloudServiceArchive().ContainsArtifact(toscaArtifact.Value.File))
                 .Select(artifact => new ValidationResult(string.Format("Artifact '{0}' not found in Cloud Service Archive.", artifact.Value.File)))
                 .ToList();
 
-            var circularDependencyValidationResults = ValidateCircularDependency().ToList();
-            if (circularDependencyValidationResults.Any())
+            // no need to add circular validation results, as they have been already added in Validate of CloudServiceArchive
+            if (ValidateCircularDependency().Any())
             {
-                return validationResults.Concat(circularDependencyValidationResults);
+                return validationResults;
             }
 
             var combineProperties = toscaPropertyCombiner.CombineProperties(this);

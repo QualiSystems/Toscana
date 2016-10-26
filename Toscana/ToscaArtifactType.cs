@@ -51,9 +51,9 @@ namespace Toscana
         /// </summary>
         public override ToscaArtifactType GetDerivedFromEntity()
         {
-            if (CloudServiceArchive == null || IsRoot()) return null;
+            if (GetCloudServiceArchive() == null || IsRoot()) return null;
             ToscaArtifactType artifactType;
-            if (CloudServiceArchive.ArtifactTypes.TryGetValue(DerivedFrom, out artifactType))
+            if (GetCloudServiceArchive().ArtifactTypes.TryGetValue(DerivedFrom, out artifactType))
             {
                 return artifactType;
             }

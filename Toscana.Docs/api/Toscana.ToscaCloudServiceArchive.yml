@@ -24,6 +24,7 @@ items:
   - Toscana.ToscaCloudServiceArchive.NodeTypes
   - Toscana.ToscaCloudServiceArchive.RelationshipTypes
   - Toscana.ToscaCloudServiceArchive.Save(System.IO.Stream)
+  - Toscana.ToscaCloudServiceArchive.Save(System.String)
   - Toscana.ToscaCloudServiceArchive.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
   - Toscana.ToscaCloudServiceArchive.ToscaMetaFileVersion
   - Toscana.ToscaCloudServiceArchive.ToscaServiceTemplates
@@ -40,7 +41,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCloudServiceArchive
     path: Toscana/ToscaCloudServiceArchive.cs
@@ -92,7 +93,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaCloudServiceArchive.cs
@@ -130,11 +131,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 91
+    startLine: 105
   assemblies:
   - Toscana
   namespace: Toscana
@@ -147,6 +148,41 @@ items:
     - id: stream
       type: System.IO.Stream
       description: Stream to save
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Toscana.ToscaCloudServiceArchive.Save(System.String)
+  commentId: M:Toscana.ToscaCloudServiceArchive.Save(System.String)
+  id: Save(System.String)
+  parent: Toscana.ToscaCloudServiceArchive
+  langs:
+  - csharp
+  - vb
+  name: Save(String)
+  nameWithType: ToscaCloudServiceArchive.Save(String)
+  fullName: Toscana.ToscaCloudServiceArchive.Save(System.String)
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaCloudServiceArchive.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Save
+    path: Toscana/ToscaCloudServiceArchive.cs
+    startLine: 115
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nSaves Cloud Service Archive to file \n"
+  example: []
+  syntax:
+    content: public void Save(string filePath)
+    content.vb: Public Sub Save(filePath As String)
+    parameters:
+    - id: filePath
+      type: System.String
+      description: Path to file to save
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -165,11 +201,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 118
+    startLine: 142
   assemblies:
   - Toscana
   namespace: Toscana
@@ -200,11 +236,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaServiceTemplates
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 145
+    startLine: 169
   assemblies:
   - Toscana
   namespace: Toscana
@@ -236,11 +272,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 153
+    startLine: 177
   assemblies:
   - Toscana
   namespace: Toscana
@@ -272,11 +308,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: CapabilityTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 161
+    startLine: 185
   assemblies:
   - Toscana
   namespace: Toscana
@@ -308,11 +344,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ArtifactTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 169
+    startLine: 193
   assemblies:
   - Toscana
   namespace: Toscana
@@ -344,11 +380,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: RelationshipTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 177
+    startLine: 201
   assemblies:
   - Toscana
   namespace: Toscana
@@ -380,11 +416,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Artifacts
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 185
+    startLine: 209
   assemblies:
   - Toscana
   namespace: Toscana
@@ -416,22 +452,22 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: DataTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 193
+    startLine: 217
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\n    Returns data types from all the Service Templates\n"
   example: []
   syntax:
-    content: public IReadOnlyDictionary<string, ToscaDataTypeDefinition> DataTypes { get; }
-    content.vb: Public ReadOnly Property DataTypes As IReadOnlyDictionary(Of String, ToscaDataTypeDefinition)
+    content: public IReadOnlyDictionary<string, ToscaDataType> DataTypes { get; }
+    content.vb: Public ReadOnly Property DataTypes As IReadOnlyDictionary(Of String, ToscaDataType)
     parameters: []
     return:
-      type: System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaDataTypeDefinition}
+      type: System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaDataType}
   modifiers.csharp:
   - public
   - get
@@ -452,11 +488,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetEntryPointServiceTemplate
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 206
+    startLine: 230
   assemblies:
   - Toscana
   namespace: Toscana
@@ -486,11 +522,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 223
+    startLine: 247
   assemblies:
   - Toscana
   namespace: Toscana
@@ -539,11 +575,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 240
+    startLine: 264
   assemblies:
   - Toscana
   namespace: Toscana
@@ -589,11 +625,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddToscaServiceTemplate
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 256
+    startLine: 280
   assemblies:
   - Toscana
   namespace: Toscana
@@ -634,11 +670,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetEntryLeafNodeTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 290
+    startLine: 314
   assemblies:
   - Toscana
   namespace: Toscana
@@ -668,11 +704,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetArtifactBytes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 306
+    startLine: 330
   assemblies:
   - Toscana
   namespace: Toscana
@@ -710,11 +746,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ContainsArtifact
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 323
+    startLine: 347
   assemblies:
   - Toscana
   namespace: Toscana
@@ -748,11 +784,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddArtifact
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 333
+    startLine: 357
   assemblies:
   - Toscana
   namespace: Toscana
@@ -789,11 +825,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: TryValidate
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 343
+    startLine: 367
   assemblies:
   - Toscana
   namespace: Toscana
@@ -830,11 +866,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: TraverseNodeTypesInheritance
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 353
+    startLine: 377
   assemblies:
   - Toscana
   namespace: Toscana
@@ -868,11 +904,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: TraverseNodeTypesByRequirements
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 365
+    startLine: 389
   assemblies:
   - Toscana
   namespace: Toscana
@@ -913,11 +949,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetaFileVersion
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 571
+    startLine: 595
   assemblies:
   - Toscana
   namespace: Toscana
@@ -951,11 +987,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: CsarVersion
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 581
+    startLine: 605
   assemblies:
   - Toscana
   namespace: Toscana
@@ -989,11 +1025,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: CreatedBy
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 589
+    startLine: 613
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1027,11 +1063,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntryDefinitions
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 598
+    startLine: 622
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1953,6 +1989,13 @@ references:
   name: System.IO
   nameWithType: System.IO
   fullName: System.IO
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
 - uid: Toscana.ToscaCloudServiceArchive
   commentId: T:Toscana.ToscaCloudServiceArchive
   parent: Toscana
@@ -2374,16 +2417,16 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaDataTypeDefinition}
-  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaDataTypeDefinition}
+- uid: System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaDataType}
+  commentId: T:System.Collections.Generic.IReadOnlyDictionary{System.String,Toscana.ToscaDataType}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IReadOnlyDictionary`2
-  name: IReadOnlyDictionary<String, ToscaDataTypeDefinition>
-  nameWithType: IReadOnlyDictionary<String, ToscaDataTypeDefinition>
-  fullName: System.Collections.Generic.IReadOnlyDictionary<System.String, Toscana.ToscaDataTypeDefinition>
-  nameWithType.vb: IReadOnlyDictionary(Of String, ToscaDataTypeDefinition)
-  fullname.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.String, Toscana.ToscaDataTypeDefinition)
-  name.vb: IReadOnlyDictionary(Of String, ToscaDataTypeDefinition)
+  name: IReadOnlyDictionary<String, ToscaDataType>
+  nameWithType: IReadOnlyDictionary<String, ToscaDataType>
+  fullName: System.Collections.Generic.IReadOnlyDictionary<System.String, Toscana.ToscaDataType>
+  nameWithType.vb: IReadOnlyDictionary(Of String, ToscaDataType)
+  fullname.vb: System.Collections.Generic.IReadOnlyDictionary(Of System.String, Toscana.ToscaDataType)
+  name.vb: IReadOnlyDictionary(Of String, ToscaDataType)
   spec.csharp:
   - uid: System.Collections.Generic.IReadOnlyDictionary`2
     name: IReadOnlyDictionary
@@ -2401,10 +2444,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaDataTypeDefinition
-    name: ToscaDataTypeDefinition
-    nameWithType: ToscaDataTypeDefinition
-    fullName: Toscana.ToscaDataTypeDefinition
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -2425,10 +2468,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaDataTypeDefinition
-    name: ToscaDataTypeDefinition
-    nameWithType: ToscaDataTypeDefinition
-    fullName: Toscana.ToscaDataTypeDefinition
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: )
     nameWithType: )
     fullName: )
@@ -2457,13 +2500,6 @@ references:
   name: ToscaImportFileNotFoundException
   nameWithType: ToscaImportFileNotFoundException
   fullName: Toscana.Exceptions.ToscaImportFileNotFoundException
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
 - uid: Toscana.Exceptions.ToscaArtifactNotFoundException
   commentId: T:Toscana.Exceptions.ToscaArtifactNotFoundException
   isExternal: false
