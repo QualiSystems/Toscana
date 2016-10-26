@@ -1,55 +1,54 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.ToscaArtifactType
-  commentId: T:Toscana.ToscaArtifactType
-  id: ToscaArtifactType
+- uid: Toscana.ToscaDataType
+  commentId: T:Toscana.ToscaDataType
+  id: ToscaDataType
   parent: Toscana
   children:
-  - Toscana.ToscaArtifactType.#ctor
-  - Toscana.ToscaArtifactType.Description
-  - Toscana.ToscaArtifactType.FileExt
-  - Toscana.ToscaArtifactType.GetDerivedFromEntity
-  - Toscana.ToscaArtifactType.MimeType
-  - Toscana.ToscaArtifactType.Properties
-  - Toscana.ToscaArtifactType.SetDerivedFromToRoot(System.String)
-  - Toscana.ToscaArtifactType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
-  - Toscana.ToscaArtifactType.Version
+  - Toscana.ToscaDataType.#ctor
+  - Toscana.ToscaDataType.Constraints
+  - Toscana.ToscaDataType.Description
+  - Toscana.ToscaDataType.GetDerivedFromEntity
+  - Toscana.ToscaDataType.Properties
+  - Toscana.ToscaDataType.SetDerivedFromToRoot(System.String)
+  - Toscana.ToscaDataType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  - Toscana.ToscaDataType.Version
   langs:
   - csharp
   - vb
-  name: ToscaArtifactType
-  nameWithType: ToscaArtifactType
-  fullName: Toscana.ToscaArtifactType
+  name: ToscaDataType
+  nameWithType: ToscaDataType
+  fullName: Toscana.ToscaDataType
   type: Class
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaArtifactType
-    path: Toscana/ToscaArtifactType.cs
+    id: ToscaDataType
+    path: Toscana/ToscaDataType.cs
     startLine: 10
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn Artifact Type is a reusable entity that defines the type of one or more files that are used to define implementation or deployment artifacts that are referenced by nodes or relationships on their operations\n"
+  summary: "\nA Data Type definition defines the schema for new named datatypes in TOSCA. \n"
   example: []
   syntax:
-    content: 'public class ToscaArtifactType : ToscaObject<ToscaArtifactType>, IDerivableToscaEntity<ToscaArtifactType>, IValidatableObject'
+    content: 'public class ToscaDataType : ToscaObject<ToscaDataType>, IDerivableToscaEntity<ToscaDataType>, IValidatableObject'
     content.vb: >-
-      Public Class ToscaArtifactType
-          Inherits ToscaObject(Of ToscaArtifactType)
-          Implements IDerivableToscaEntity(Of ToscaArtifactType), IValidatableObject
+      Public Class ToscaDataType
+          Inherits ToscaObject(Of ToscaDataType)
+          Implements IDerivableToscaEntity(Of ToscaDataType), IValidatableObject
   inheritance:
   - System.Object
-  - Toscana.ToscaObject{Toscana.ToscaArtifactType}
+  - Toscana.ToscaObject{Toscana.ToscaDataType}
   implements:
-  - Toscana.IDerivableToscaEntity{Toscana.ToscaArtifactType}
+  - Toscana.IDerivableToscaEntity{Toscana.ToscaDataType}
   - System.ComponentModel.DataAnnotations.IValidatableObject
   inheritedMembers:
-  - Toscana.ToscaObject{Toscana.ToscaArtifactType}.DerivedFrom
-  - Toscana.ToscaObject{Toscana.ToscaArtifactType}.GetCloudServiceArchive
-  - Toscana.ToscaObject{Toscana.ToscaArtifactType}.IsRoot
+  - Toscana.ToscaObject{Toscana.ToscaDataType}.DerivedFrom
+  - Toscana.ToscaObject{Toscana.ToscaDataType}.GetCloudServiceArchive
+  - Toscana.ToscaObject{Toscana.ToscaDataType}.IsRoot
   - System.Object.ToString
   - System.Object.Equals(System.Object)
   - System.Object.Equals(System.Object,System.Object)
@@ -58,68 +57,68 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   extensionMethods:
-  - Toscana.ToscaArtifactType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaArtifactType,Toscana.ToscaArtifactType},System.Func{Toscana.ToscaArtifactType,System.Boolean})
-  - Toscana.ToscaArtifactType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaArtifactType,Toscana.ToscaArtifactType})
+  - Toscana.ToscaDataType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaDataType,Toscana.ToscaDataType},System.Func{Toscana.ToscaDataType,System.Boolean})
+  - Toscana.ToscaDataType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaDataType,Toscana.ToscaDataType})
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: Toscana.ToscaArtifactType.#ctor
-  commentId: M:Toscana.ToscaArtifactType.#ctor
+- uid: Toscana.ToscaDataType.#ctor
+  commentId: M:Toscana.ToscaDataType.#ctor
   id: '#ctor'
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
-  name: ToscaArtifactType()
-  nameWithType: ToscaArtifactType.ToscaArtifactType()
-  fullName: Toscana.ToscaArtifactType.ToscaArtifactType()
+  name: ToscaDataType()
+  nameWithType: ToscaDataType.ToscaDataType()
+  fullName: Toscana.ToscaDataType.ToscaDataType()
   type: Constructor
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/ToscaArtifactType.cs
+    path: Toscana/ToscaDataType.cs
     startLine: 15
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nInitilizes an instance of <xref href=\"Toscana.ToscaArtifactType\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaDataType\" data-throw-if-not-resolved=\"false\"></xref>\n"
   example: []
   syntax:
-    content: public ToscaArtifactType()
+    content: public ToscaDataType()
     content.vb: Public Sub New
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaArtifactType.Version
-  commentId: P:Toscana.ToscaArtifactType.Version
+- uid: Toscana.ToscaDataType.Version
+  commentId: P:Toscana.ToscaDataType.Version
   id: Version
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
   name: Version
-  nameWithType: ToscaArtifactType.Version
-  fullName: Toscana.ToscaArtifactType.Version
+  nameWithType: ToscaDataType.Version
+  fullName: Toscana.ToscaDataType.Version
   type: Property
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 24
+    path: Toscana/ToscaDataType.cs
+    startLine: 23
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional version for the Artifact Type definition.\n"
+  summary: "\nAn optional version for the Data Type definition.\n"
   example: []
   syntax:
     content: public Version Version { get; set; }
@@ -133,29 +132,29 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaArtifactType.Description
-  commentId: P:Toscana.ToscaArtifactType.Description
+- uid: Toscana.ToscaDataType.Description
+  commentId: P:Toscana.ToscaDataType.Description
   id: Description
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
   name: Description
-  nameWithType: ToscaArtifactType.Description
-  fullName: Toscana.ToscaArtifactType.Description
+  nameWithType: ToscaDataType.Description
+  fullName: Toscana.ToscaDataType.Description
   type: Property
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 29
+    path: Toscana/ToscaDataType.cs
+    startLine: 28
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional description for the Artifact Type.\n"
+  summary: "\nThe optional description for the Data Type.\n"
   example: []
   syntax:
     content: public string Description { get; set; }
@@ -169,101 +168,65 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaArtifactType.MimeType
-  commentId: P:Toscana.ToscaArtifactType.MimeType
-  id: MimeType
-  parent: Toscana.ToscaArtifactType
+- uid: Toscana.ToscaDataType.Constraints
+  commentId: P:Toscana.ToscaDataType.Constraints
+  id: Constraints
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
-  name: MimeType
-  nameWithType: ToscaArtifactType.MimeType
-  fullName: Toscana.ToscaArtifactType.MimeType
+  name: Constraints
+  nameWithType: ToscaDataType.Constraints
+  fullName: Toscana.ToscaDataType.Constraints
   type: Property
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: MimeType
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 34
+    id: Constraints
+    path: Toscana/ToscaDataType.cs
+    startLine: 33
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nThe required mime type property for the Artifact Type.\n"
+  summary: "\nThe optional list of sequenced constraint clauses for the Data Type. \n"
   example: []
   syntax:
-    content: public string MimeType { get; set; }
-    content.vb: Public Property MimeType As String
+    content: public List<Dictionary<string, object>> Constraints { get; set; }
+    content.vb: Public Property Constraints As List(Of Dictionary(Of String, Object))
     parameters: []
     return:
-      type: System.String
+      type: System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}}
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaArtifactType.FileExt
-  commentId: P:Toscana.ToscaArtifactType.FileExt
-  id: FileExt
-  parent: Toscana.ToscaArtifactType
-  langs:
-  - csharp
-  - vb
-  name: FileExt
-  nameWithType: ToscaArtifactType.FileExt
-  fullName: Toscana.ToscaArtifactType.FileExt
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaArtifactType.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: FileExt
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 39
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nThe required file extension property for the Artifact Type.\n"
-  example: []
-  syntax:
-    content: public string[] FileExt { get; set; }
-    content.vb: Public Property FileExt As String()
-    parameters: []
-    return:
-      type: System.String[]
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Toscana.ToscaArtifactType.Properties
-  commentId: P:Toscana.ToscaArtifactType.Properties
+- uid: Toscana.ToscaDataType.Properties
+  commentId: P:Toscana.ToscaDataType.Properties
   id: Properties
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
   name: Properties
-  nameWithType: ToscaArtifactType.Properties
-  fullName: Toscana.ToscaArtifactType.Properties
+  nameWithType: ToscaDataType.Properties
+  fullName: Toscana.ToscaDataType.Properties
   type: Property
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 44
+    path: Toscana/ToscaDataType.cs
+    startLine: 38
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional list of property definitions for the Artifact Type.\n"
+  summary: "\nThe optional list property definitions that comprise the schema for a complex Data Type in TOSCA.\n"
   example: []
   syntax:
     content: public Dictionary<string, ToscaProperty> Properties { get; set; }
@@ -277,61 +240,65 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaArtifactType.GetDerivedFromEntity
-  commentId: M:Toscana.ToscaArtifactType.GetDerivedFromEntity
+- uid: Toscana.ToscaDataType.GetDerivedFromEntity
+  commentId: M:Toscana.ToscaDataType.GetDerivedFromEntity
   id: GetDerivedFromEntity
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
   name: GetDerivedFromEntity()
-  nameWithType: ToscaArtifactType.GetDerivedFromEntity()
-  fullName: Toscana.ToscaArtifactType.GetDerivedFromEntity()
+  nameWithType: ToscaDataType.GetDerivedFromEntity()
+  fullName: Toscana.ToscaDataType.GetDerivedFromEntity()
   type: Method
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetDerivedFromEntity
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 51
+    path: Toscana/ToscaDataType.cs
+    startLine: 46
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nReturns an entity that this entity derives from.\nIf this entity is root, null will be returned\nIf this entity derives from a non existing entity exception will be thrown\n"
   example: []
   syntax:
-    content: public override ToscaArtifactType GetDerivedFromEntity()
-    content.vb: Public Overrides Function GetDerivedFromEntity As ToscaArtifactType
+    content: public override ToscaDataType GetDerivedFromEntity()
+    content.vb: Public Overrides Function GetDerivedFromEntity As ToscaDataType
     return:
-      type: Toscana.ToscaArtifactType
-  overridden: Toscana.ToscaObject{Toscana.ToscaArtifactType}.GetDerivedFromEntity
+      type: Toscana.ToscaDataType
+  overridden: Toscana.ToscaObject{Toscana.ToscaDataType}.GetDerivedFromEntity
+  exceptions:
+  - type: Toscana.Exceptions.ToscaDataTypeNotFoundException
+    commentId: T:Toscana.Exceptions.ToscaDataTypeNotFoundException
+    description: When derived from data type not found in the Cloud Service Archive.
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: Toscana.ToscaArtifactType.SetDerivedFromToRoot(System.String)
-  commentId: M:Toscana.ToscaArtifactType.SetDerivedFromToRoot(System.String)
+- uid: Toscana.ToscaDataType.SetDerivedFromToRoot(System.String)
+  commentId: M:Toscana.ToscaDataType.SetDerivedFromToRoot(System.String)
   id: SetDerivedFromToRoot(System.String)
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
   name: SetDerivedFromToRoot(String)
-  nameWithType: ToscaArtifactType.SetDerivedFromToRoot(String)
-  fullName: Toscana.ToscaArtifactType.SetDerivedFromToRoot(System.String)
+  nameWithType: ToscaDataType.SetDerivedFromToRoot(String)
+  fullName: Toscana.ToscaDataType.SetDerivedFromToRoot(System.String)
   type: Method
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 66
+    path: Toscana/ToscaDataType.cs
+    startLine: 61
   assemblies:
   - Toscana
   namespace: Toscana
@@ -344,33 +311,33 @@ items:
     - id: name
       type: System.String
       description: Object name
-  overridden: Toscana.ToscaObject{Toscana.ToscaArtifactType}.SetDerivedFromToRoot(System.String)
+  overridden: Toscana.ToscaObject{Toscana.ToscaDataType}.SetDerivedFromToRoot(System.String)
   modifiers.csharp:
   - public
   - override
   modifiers.vb:
   - Public
   - Overrides
-- uid: Toscana.ToscaArtifactType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
-  commentId: M:Toscana.ToscaArtifactType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+- uid: Toscana.ToscaDataType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  commentId: M:Toscana.ToscaDataType.System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
   id: System#ComponentModel#DataAnnotations#IValidatableObject#Validate(System.ComponentModel.DataAnnotations.ValidationContext)
   isEii: true
-  parent: Toscana.ToscaArtifactType
+  parent: Toscana.ToscaDataType
   langs:
   - csharp
   - vb
   name: IValidatableObject.Validate(ValidationContext)
-  nameWithType: ToscaArtifactType.IValidatableObject.Validate(ValidationContext)
-  fullName: Toscana.ToscaArtifactType.System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
+  nameWithType: ToscaDataType.IValidatableObject.Validate(ValidationContext)
+  fullName: Toscana.ToscaDataType.System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
   type: Method
   source:
     remote:
-      path: Toscana/ToscaArtifactType.cs
+      path: Toscana/ToscaDataType.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
-    path: Toscana/ToscaArtifactType.cs
-    startLine: 74
+    path: Toscana/ToscaDataType.cs
+    startLine: 69
   assemblies:
   - Toscana
   namespace: Toscana
@@ -384,7 +351,7 @@ items:
       type: System.Collections.Generic.IEnumerable{System.ComponentModel.DataAnnotations.ValidationResult}
   implements:
   - System.ComponentModel.DataAnnotations.IValidatableObject.Validate(System.ComponentModel.DataAnnotations.ValidationContext)
-  nameWithType.vb: ToscaArtifactType.System.ComponentModel.DataAnnotations.IValidatableObject.Validate(ValidationContext)
+  nameWithType.vb: ToscaDataType.System.ComponentModel.DataAnnotations.IValidatableObject.Validate(ValidationContext)
   name.vb: System.ComponentModel.DataAnnotations.IValidatableObject.Validate(ValidationContext)
 references:
 - uid: Toscana
@@ -400,16 +367,16 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Toscana.ToscaObject{Toscana.ToscaArtifactType}
-  commentId: T:Toscana.ToscaObject{Toscana.ToscaArtifactType}
+- uid: Toscana.ToscaObject{Toscana.ToscaDataType}
+  commentId: T:Toscana.ToscaObject{Toscana.ToscaDataType}
   parent: Toscana
   definition: Toscana.ToscaObject`1
-  name: ToscaObject<ToscaArtifactType>
-  nameWithType: ToscaObject<ToscaArtifactType>
-  fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>
-  nameWithType.vb: ToscaObject(Of ToscaArtifactType)
-  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType)
-  name.vb: ToscaObject(Of ToscaArtifactType)
+  name: ToscaObject<ToscaDataType>
+  nameWithType: ToscaObject<ToscaDataType>
+  fullName: Toscana.ToscaObject<Toscana.ToscaDataType>
+  nameWithType.vb: ToscaObject(Of ToscaDataType)
+  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaDataType)
+  name.vb: ToscaObject(Of ToscaDataType)
   spec.csharp:
   - uid: Toscana.ToscaObject`1
     name: ToscaObject
@@ -418,10 +385,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -433,23 +400,23 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaArtifactType}
-  commentId: T:Toscana.IDerivableToscaEntity{Toscana.ToscaArtifactType}
+- uid: Toscana.IDerivableToscaEntity{Toscana.ToscaDataType}
+  commentId: T:Toscana.IDerivableToscaEntity{Toscana.ToscaDataType}
   parent: Toscana
   definition: Toscana.IDerivableToscaEntity`1
-  name: IDerivableToscaEntity<ToscaArtifactType>
-  nameWithType: IDerivableToscaEntity<ToscaArtifactType>
-  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaArtifactType>
-  nameWithType.vb: IDerivableToscaEntity(Of ToscaArtifactType)
-  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaArtifactType)
-  name.vb: IDerivableToscaEntity(Of ToscaArtifactType)
+  name: IDerivableToscaEntity<ToscaDataType>
+  nameWithType: IDerivableToscaEntity<ToscaDataType>
+  fullName: Toscana.IDerivableToscaEntity<Toscana.ToscaDataType>
+  nameWithType.vb: IDerivableToscaEntity(Of ToscaDataType)
+  fullname.vb: Toscana.IDerivableToscaEntity(Of Toscana.ToscaDataType)
+  name.vb: IDerivableToscaEntity(Of ToscaDataType)
   spec.csharp:
   - uid: Toscana.IDerivableToscaEntity`1
     name: IDerivableToscaEntity
@@ -458,10 +425,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -473,10 +440,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: )
     nameWithType: )
     fullName: )
@@ -487,29 +454,29 @@ references:
   name: IValidatableObject
   nameWithType: IValidatableObject
   fullName: System.ComponentModel.DataAnnotations.IValidatableObject
-- uid: Toscana.ToscaObject{Toscana.ToscaArtifactType}.DerivedFrom
-  commentId: P:Toscana.ToscaObject{Toscana.ToscaArtifactType}.DerivedFrom
-  parent: Toscana.ToscaObject{Toscana.ToscaArtifactType}
+- uid: Toscana.ToscaObject{Toscana.ToscaDataType}.DerivedFrom
+  commentId: P:Toscana.ToscaObject{Toscana.ToscaDataType}.DerivedFrom
+  parent: Toscana.ToscaObject{Toscana.ToscaDataType}
   definition: Toscana.ToscaObject`1.DerivedFrom
   name: DerivedFrom
-  nameWithType: ToscaObject<ToscaArtifactType>.DerivedFrom
-  fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.DerivedFrom
-  nameWithType.vb: ToscaObject(Of ToscaArtifactType).DerivedFrom
-  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).DerivedFrom
-- uid: Toscana.ToscaObject{Toscana.ToscaArtifactType}.GetCloudServiceArchive
-  commentId: M:Toscana.ToscaObject{Toscana.ToscaArtifactType}.GetCloudServiceArchive
-  parent: Toscana.ToscaObject{Toscana.ToscaArtifactType}
+  nameWithType: ToscaObject<ToscaDataType>.DerivedFrom
+  fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.DerivedFrom
+  nameWithType.vb: ToscaObject(Of ToscaDataType).DerivedFrom
+  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaDataType).DerivedFrom
+- uid: Toscana.ToscaObject{Toscana.ToscaDataType}.GetCloudServiceArchive
+  commentId: M:Toscana.ToscaObject{Toscana.ToscaDataType}.GetCloudServiceArchive
+  parent: Toscana.ToscaObject{Toscana.ToscaDataType}
   definition: Toscana.ToscaObject`1.GetCloudServiceArchive
   name: GetCloudServiceArchive()
-  nameWithType: ToscaObject<ToscaArtifactType>.GetCloudServiceArchive()
-  fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.GetCloudServiceArchive()
-  nameWithType.vb: ToscaObject(Of ToscaArtifactType).GetCloudServiceArchive()
-  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).GetCloudServiceArchive()
+  nameWithType: ToscaObject<ToscaDataType>.GetCloudServiceArchive()
+  fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.GetCloudServiceArchive()
+  nameWithType.vb: ToscaObject(Of ToscaDataType).GetCloudServiceArchive()
+  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaDataType).GetCloudServiceArchive()
   spec.csharp:
   - uid: Toscana.ToscaObject`1.GetCloudServiceArchive
     name: GetCloudServiceArchive
-    nameWithType: ToscaObject<ToscaArtifactType>.GetCloudServiceArchive
-    fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.GetCloudServiceArchive
+    nameWithType: ToscaObject<ToscaDataType>.GetCloudServiceArchive
+    fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.GetCloudServiceArchive
   - name: (
     nameWithType: (
     fullName: (
@@ -519,28 +486,28 @@ references:
   spec.vb:
   - uid: Toscana.ToscaObject`1.GetCloudServiceArchive
     name: GetCloudServiceArchive
-    nameWithType: ToscaObject(Of ToscaArtifactType).GetCloudServiceArchive
-    fullName: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).GetCloudServiceArchive
+    nameWithType: ToscaObject(Of ToscaDataType).GetCloudServiceArchive
+    fullName: Toscana.ToscaObject(Of Toscana.ToscaDataType).GetCloudServiceArchive
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaObject{Toscana.ToscaArtifactType}.IsRoot
-  commentId: M:Toscana.ToscaObject{Toscana.ToscaArtifactType}.IsRoot
-  parent: Toscana.ToscaObject{Toscana.ToscaArtifactType}
+- uid: Toscana.ToscaObject{Toscana.ToscaDataType}.IsRoot
+  commentId: M:Toscana.ToscaObject{Toscana.ToscaDataType}.IsRoot
+  parent: Toscana.ToscaObject{Toscana.ToscaDataType}
   definition: Toscana.ToscaObject`1.IsRoot
   name: IsRoot()
-  nameWithType: ToscaObject<ToscaArtifactType>.IsRoot()
-  fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.IsRoot()
-  nameWithType.vb: ToscaObject(Of ToscaArtifactType).IsRoot()
-  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).IsRoot()
+  nameWithType: ToscaObject<ToscaDataType>.IsRoot()
+  fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.IsRoot()
+  nameWithType.vb: ToscaObject(Of ToscaDataType).IsRoot()
+  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaDataType).IsRoot()
   spec.csharp:
   - uid: Toscana.ToscaObject`1.IsRoot
     name: IsRoot
-    nameWithType: ToscaObject<ToscaArtifactType>.IsRoot
-    fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.IsRoot
+    nameWithType: ToscaObject<ToscaDataType>.IsRoot
+    fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.IsRoot
   - name: (
     nameWithType: (
     fullName: (
@@ -550,8 +517,8 @@ references:
   spec.vb:
   - uid: Toscana.ToscaObject`1.IsRoot
     name: IsRoot
-    nameWithType: ToscaObject(Of ToscaArtifactType).IsRoot
-    fullName: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).IsRoot
+    nameWithType: ToscaObject(Of ToscaDataType).IsRoot
+    fullName: Toscana.ToscaObject(Of Toscana.ToscaDataType).IsRoot
   - name: (
     nameWithType: (
     fullName: (
@@ -837,21 +804,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaArtifactType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaArtifactType,Toscana.ToscaArtifactType},System.Func{Toscana.ToscaArtifactType,System.Boolean})
+- uid: Toscana.ToscaDataType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaDataType,Toscana.ToscaDataType},System.Func{Toscana.ToscaDataType,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<ToscaArtifactType>(Func<ToscaArtifactType, ToscaArtifactType>, Func<ToscaArtifactType, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaArtifactType>(Func<ToscaArtifactType, ToscaArtifactType>, Func<ToscaArtifactType, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaArtifactType>(System.Func<Toscana.ToscaArtifactType, Toscana.ToscaArtifactType>, System.Func<Toscana.ToscaArtifactType, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaArtifactType)(Func(Of ToscaArtifactType, ToscaArtifactType), Func(Of ToscaArtifactType, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaArtifactType)(System.Func(Of Toscana.ToscaArtifactType, Toscana.ToscaArtifactType), System.Func(Of Toscana.ToscaArtifactType, System.Boolean))
-  name.vb: FromHierarchy(Of ToscaArtifactType)(Func(Of ToscaArtifactType, ToscaArtifactType), Func(Of ToscaArtifactType, Boolean))
+  name: FromHierarchy<ToscaDataType>(Func<ToscaDataType, ToscaDataType>, Func<ToscaDataType, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataType>(Func<ToscaDataType, ToscaDataType>, Func<ToscaDataType, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaDataType>(System.Func<Toscana.ToscaDataType, Toscana.ToscaDataType>, System.Func<Toscana.ToscaDataType, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaDataType)(Func(Of ToscaDataType, ToscaDataType), Func(Of ToscaDataType, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaDataType)(System.Func(Of Toscana.ToscaDataType, Toscana.ToscaDataType), System.Func(Of Toscana.ToscaDataType, System.Boolean))
+  name.vb: FromHierarchy(Of ToscaDataType)(Func(Of ToscaDataType, ToscaDataType), Func(Of ToscaDataType, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<ToscaArtifactType>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaArtifactType>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaArtifactType>
+    name: FromHierarchy<ToscaDataType>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataType>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaDataType>
   - name: (
     nameWithType: (
     fullName: (
@@ -863,17 +830,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -888,10 +855,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -908,9 +875,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of ToscaArtifactType)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaArtifactType)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaArtifactType)
+    name: FromHierarchy(Of ToscaDataType)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaDataType)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaDataType)
   - name: (
     nameWithType: (
     fullName: (
@@ -922,17 +889,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: )
     nameWithType: )
     fullName: )
@@ -947,10 +914,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -965,21 +932,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaArtifactType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaArtifactType,Toscana.ToscaArtifactType})
+- uid: Toscana.ToscaDataType.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaDataType,Toscana.ToscaDataType})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<ToscaArtifactType>(Func<ToscaArtifactType, ToscaArtifactType>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaArtifactType>(Func<ToscaArtifactType, ToscaArtifactType>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaArtifactType>(System.Func<Toscana.ToscaArtifactType, Toscana.ToscaArtifactType>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaArtifactType)(Func(Of ToscaArtifactType, ToscaArtifactType))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaArtifactType)(System.Func(Of Toscana.ToscaArtifactType, Toscana.ToscaArtifactType))
-  name.vb: FromHierarchy(Of ToscaArtifactType)(Func(Of ToscaArtifactType, ToscaArtifactType))
+  name: FromHierarchy<ToscaDataType>(Func<ToscaDataType, ToscaDataType>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataType>(Func<ToscaDataType, ToscaDataType>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaDataType>(System.Func<Toscana.ToscaDataType, Toscana.ToscaDataType>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaDataType)(Func(Of ToscaDataType, ToscaDataType))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaDataType)(System.Func(Of Toscana.ToscaDataType, Toscana.ToscaDataType))
+  name.vb: FromHierarchy(Of ToscaDataType)(Func(Of ToscaDataType, ToscaDataType))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<ToscaArtifactType>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaArtifactType>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaArtifactType>
+    name: FromHierarchy<ToscaDataType>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataType>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaDataType>
   - name: (
     nameWithType: (
     fullName: (
@@ -991,17 +958,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1010,9 +977,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of ToscaArtifactType)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaArtifactType)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaArtifactType)
+    name: FromHierarchy(Of ToscaDataType)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaDataType)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaDataType)
   - name: (
     nameWithType: (
     fullName: (
@@ -1024,17 +991,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaArtifactType
-    name: ToscaArtifactType
-    nameWithType: ToscaArtifactType
-    fullName: Toscana.ToscaArtifactType
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
+    nameWithType: ToscaDataType
+    fullName: Toscana.ToscaDataType
   - name: )
     nameWithType: )
     fullName: )
@@ -1424,13 +1391,13 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: Toscana.ToscaArtifactType
-  commentId: T:Toscana.ToscaArtifactType
+- uid: Toscana.ToscaDataType
+  commentId: T:Toscana.ToscaDataType
   parent: Toscana
   isExternal: false
-  name: ToscaArtifactType
-  nameWithType: ToscaArtifactType
-  fullName: Toscana.ToscaArtifactType
+  name: ToscaDataType
+  nameWithType: ToscaDataType
+  fullName: Toscana.ToscaDataType
 - uid: System.Version
   commentId: T:System.Version
   parent: System
@@ -1445,31 +1412,133 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: System.String[]
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullname.vb: System.String()
-  name.vb: String()
+- uid: System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}}
+  commentId: T:System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  name: List<Dictionary<String, Object>>
+  nameWithType: List<Dictionary<String, Object>>
+  fullName: System.Collections.Generic.List<System.Collections.Generic.Dictionary<System.String, System.Object>>
+  nameWithType.vb: List(Of Dictionary(Of String, Object))
+  fullname.vb: System.Collections.Generic.List(Of System.Collections.Generic.Dictionary(Of System.String, System.Object))
+  name.vb: List(Of Dictionary(Of String, Object))
   spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: System.Collections.Generic.Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
   - uid: System.String
     name: String
     nameWithType: String
     fullName: System.String
     isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullname.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    nameWithType: List
+    fullName: System.Collections.Generic.List
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaProperty}
   commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaProperty}
   parent: System.Collections.Generic
@@ -1579,26 +1648,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
-  isExternal: false
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-- uid: Toscana.ToscaObject{Toscana.ToscaArtifactType}.GetDerivedFromEntity
-  commentId: M:Toscana.ToscaObject{Toscana.ToscaArtifactType}.GetDerivedFromEntity
-  parent: Toscana.ToscaObject{Toscana.ToscaArtifactType}
+- uid: Toscana.ToscaObject{Toscana.ToscaDataType}.GetDerivedFromEntity
+  commentId: M:Toscana.ToscaObject{Toscana.ToscaDataType}.GetDerivedFromEntity
+  parent: Toscana.ToscaObject{Toscana.ToscaDataType}
   definition: Toscana.ToscaObject`1.GetDerivedFromEntity
   name: GetDerivedFromEntity()
-  nameWithType: ToscaObject<ToscaArtifactType>.GetDerivedFromEntity()
-  fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.GetDerivedFromEntity()
-  nameWithType.vb: ToscaObject(Of ToscaArtifactType).GetDerivedFromEntity()
-  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).GetDerivedFromEntity()
+  nameWithType: ToscaObject<ToscaDataType>.GetDerivedFromEntity()
+  fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.GetDerivedFromEntity()
+  nameWithType.vb: ToscaObject(Of ToscaDataType).GetDerivedFromEntity()
+  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaDataType).GetDerivedFromEntity()
   spec.csharp:
   - uid: Toscana.ToscaObject`1.GetDerivedFromEntity
     name: GetDerivedFromEntity
-    nameWithType: ToscaObject<ToscaArtifactType>.GetDerivedFromEntity
-    fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.GetDerivedFromEntity
+    nameWithType: ToscaObject<ToscaDataType>.GetDerivedFromEntity
+    fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.GetDerivedFromEntity
   - name: (
     nameWithType: (
     fullName: (
@@ -1608,14 +1671,20 @@ references:
   spec.vb:
   - uid: Toscana.ToscaObject`1.GetDerivedFromEntity
     name: GetDerivedFromEntity
-    nameWithType: ToscaObject(Of ToscaArtifactType).GetDerivedFromEntity
-    fullName: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).GetDerivedFromEntity
+    nameWithType: ToscaObject(Of ToscaDataType).GetDerivedFromEntity
+    fullName: Toscana.ToscaObject(Of Toscana.ToscaDataType).GetDerivedFromEntity
   - name: (
     nameWithType: (
     fullName: (
   - name: )
     nameWithType: )
     fullName: )
+- uid: Toscana.Exceptions.ToscaDataTypeNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaDataTypeNotFoundException
+  isExternal: false
+  name: ToscaDataTypeNotFoundException
+  nameWithType: ToscaDataTypeNotFoundException
+  fullName: Toscana.Exceptions.ToscaDataTypeNotFoundException
 - uid: Toscana.ToscaObject`1.GetDerivedFromEntity
   commentId: M:Toscana.ToscaObject`1.GetDerivedFromEntity
   isExternal: false
@@ -1646,20 +1715,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaObject{Toscana.ToscaArtifactType}.SetDerivedFromToRoot(System.String)
-  commentId: M:Toscana.ToscaObject{Toscana.ToscaArtifactType}.SetDerivedFromToRoot(System.String)
-  parent: Toscana.ToscaObject{Toscana.ToscaArtifactType}
+- uid: Toscana.ToscaObject{Toscana.ToscaDataType}.SetDerivedFromToRoot(System.String)
+  commentId: M:Toscana.ToscaObject{Toscana.ToscaDataType}.SetDerivedFromToRoot(System.String)
+  parent: Toscana.ToscaObject{Toscana.ToscaDataType}
   definition: Toscana.ToscaObject`1.SetDerivedFromToRoot(System.String)
   name: SetDerivedFromToRoot(String)
-  nameWithType: ToscaObject<ToscaArtifactType>.SetDerivedFromToRoot(String)
-  fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.SetDerivedFromToRoot(System.String)
-  nameWithType.vb: ToscaObject(Of ToscaArtifactType).SetDerivedFromToRoot(String)
-  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).SetDerivedFromToRoot(System.String)
+  nameWithType: ToscaObject<ToscaDataType>.SetDerivedFromToRoot(String)
+  fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.SetDerivedFromToRoot(System.String)
+  nameWithType.vb: ToscaObject(Of ToscaDataType).SetDerivedFromToRoot(String)
+  fullname.vb: Toscana.ToscaObject(Of Toscana.ToscaDataType).SetDerivedFromToRoot(System.String)
   spec.csharp:
   - uid: Toscana.ToscaObject`1.SetDerivedFromToRoot(System.String)
     name: SetDerivedFromToRoot
-    nameWithType: ToscaObject<ToscaArtifactType>.SetDerivedFromToRoot
-    fullName: Toscana.ToscaObject<Toscana.ToscaArtifactType>.SetDerivedFromToRoot
+    nameWithType: ToscaObject<ToscaDataType>.SetDerivedFromToRoot
+    fullName: Toscana.ToscaObject<Toscana.ToscaDataType>.SetDerivedFromToRoot
   - name: (
     nameWithType: (
     fullName: (
@@ -1674,8 +1743,8 @@ references:
   spec.vb:
   - uid: Toscana.ToscaObject`1.SetDerivedFromToRoot(System.String)
     name: SetDerivedFromToRoot
-    nameWithType: ToscaObject(Of ToscaArtifactType).SetDerivedFromToRoot
-    fullName: Toscana.ToscaObject(Of Toscana.ToscaArtifactType).SetDerivedFromToRoot
+    nameWithType: ToscaObject(Of ToscaDataType).SetDerivedFromToRoot
+    fullName: Toscana.ToscaObject(Of Toscana.ToscaDataType).SetDerivedFromToRoot
   - name: (
     nameWithType: (
     fullName: (

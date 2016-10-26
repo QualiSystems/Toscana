@@ -262,7 +262,6 @@ node_types:
         }
 
         [Test]
-        [Ignore]
         public void Exception_Thrown_When_Cyclic_Dependency_Between_Node_Types_Exists()
         {
             string toscaServiceTemplate = @"
@@ -290,10 +289,12 @@ node_types:
             var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
             cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
 
+            // Act
             List<ValidationResult> results;
-            cloudServiceArchive.TryValidate(out results).Should().BeFalse();
+            cloudServiceArchive.TryValidate(out results);
+
+            // Assert
             results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on NodeType: 'tosca.nodes.BasicComponent'"));
-            results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on NodeType: 'tosca.nodes.SoftwareComponent'"));
         }
 
         [Test]

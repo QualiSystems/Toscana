@@ -63,9 +63,9 @@ namespace Toscana
         /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
         public override ToscaCapabilityType GetDerivedFromEntity()
         {
-            if (CloudServiceArchive == null || IsRoot()) return null;
+            if (GetCloudServiceArchive() == null || IsRoot()) return null;
             ToscaCapabilityType baseCapabilityType;
-            if (CloudServiceArchive.CapabilityTypes.TryGetValue(DerivedFrom, out baseCapabilityType))
+            if (GetCloudServiceArchive().CapabilityTypes.TryGetValue(DerivedFrom, out baseCapabilityType))
             {
                 return baseCapabilityType;
             }

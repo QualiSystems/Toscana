@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaGroup
     path: Toscana/ToscaGroup.cs
@@ -67,7 +67,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaGroup.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaGroup.cs
@@ -151,7 +151,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaGroup.cs
@@ -187,7 +187,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaGroup.cs
@@ -223,7 +223,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Members
     path: Toscana/ToscaGroup.cs
@@ -259,7 +259,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaGroup.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaGroup.cs
@@ -270,11 +270,11 @@ items:
   summary: "\nAn optional list of named interface definitions for the group definition.\n"
   example: []
   syntax:
-    content: public Dictionary<string, ToscaInterfaceDefinition> Interfaces { get; set; }
-    content.vb: Public Property Interfaces As Dictionary(Of String, ToscaInterfaceDefinition)
+    content: public Dictionary<string, ToscaInterface> Interfaces { get; set; }
+    content.vb: Public Property Interfaces As Dictionary(Of String, ToscaInterface)
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterfaceDefinition}
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterface}
   modifiers.csharp:
   - public
   - get
@@ -1166,16 +1166,16 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterfaceDefinition}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterfaceDefinition}
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterface}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterface}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaInterfaceDefinition>
-  nameWithType: Dictionary<String, ToscaInterfaceDefinition>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaInterfaceDefinition>
-  nameWithType.vb: Dictionary(Of String, ToscaInterfaceDefinition)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaInterfaceDefinition)
-  name.vb: Dictionary(Of String, ToscaInterfaceDefinition)
+  name: Dictionary<String, ToscaInterface>
+  nameWithType: Dictionary<String, ToscaInterface>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaInterface>
+  nameWithType.vb: Dictionary(Of String, ToscaInterface)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaInterface)
+  name.vb: Dictionary(Of String, ToscaInterface)
   spec.csharp:
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
@@ -1193,10 +1193,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaInterfaceDefinition
-    name: ToscaInterfaceDefinition
-    nameWithType: ToscaInterfaceDefinition
-    fullName: Toscana.ToscaInterfaceDefinition
+  - uid: Toscana.ToscaInterface
+    name: ToscaInterface
+    nameWithType: ToscaInterface
+    fullName: Toscana.ToscaInterface
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1217,10 +1217,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaInterfaceDefinition
-    name: ToscaInterfaceDefinition
-    nameWithType: ToscaInterfaceDefinition
-    fullName: Toscana.ToscaInterfaceDefinition
+  - uid: Toscana.ToscaInterface
+    name: ToscaInterface
+    nameWithType: ToscaInterface
+    fullName: Toscana.ToscaInterface
   - name: )
     nameWithType: )
     fullName: )

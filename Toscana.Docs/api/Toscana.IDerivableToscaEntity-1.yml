@@ -5,8 +5,8 @@ items:
   id: IDerivableToscaEntity`1
   parent: Toscana
   children:
-  - Toscana.IDerivableToscaEntity`1.Base
   - Toscana.IDerivableToscaEntity`1.DerivedFrom
+  - Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
   - Toscana.IDerivableToscaEntity`1.IsRoot
   - Toscana.IDerivableToscaEntity`1.SetDerivedFromToRoot(System.String)
   langs:
@@ -19,11 +19,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: IDerivableToscaEntity
     path: Toscana/ToscaObject.cs
-    startLine: 8
+    startLine: 12
   assemblies:
   - Toscana
   namespace: Toscana
@@ -63,11 +63,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: DerivedFrom
     path: Toscana/ToscaObject.cs
-    startLine: 13
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
@@ -84,42 +84,37 @@ items:
   - get
   - set
   fullName.vb: Toscana.IDerivableToscaEntity(Of T).DerivedFrom
-- uid: Toscana.IDerivableToscaEntity`1.Base
-  commentId: P:Toscana.IDerivableToscaEntity`1.Base
-  id: Base
+- uid: Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+  commentId: M:Toscana.IDerivableToscaEntity`1.GetDerivedFromEntity
+  id: GetDerivedFromEntity
   parent: Toscana.IDerivableToscaEntity`1
   langs:
   - csharp
   - vb
-  name: Base
-  nameWithType: IDerivableToscaEntity<T>.Base
-  fullName: Toscana.IDerivableToscaEntity<T>.Base
-  type: Property
+  name: GetDerivedFromEntity()
+  nameWithType: IDerivableToscaEntity<T>.GetDerivedFromEntity()
+  fullName: Toscana.IDerivableToscaEntity<T>.GetDerivedFromEntity()
+  type: Method
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Base
+    id: GetDerivedFromEntity
     path: Toscana/ToscaObject.cs
-    startLine: 20
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
   summary: "\nReturns an entity that this entity derives from.\nIf this entity is root, null will be returned\nIf this entity derives from a non existing entity exception will be thrown\n"
   example: []
   syntax:
-    content: T Base { get; }
-    content.vb: ReadOnly Property Base As T
-    parameters: []
+    content: T GetDerivedFromEntity()
+    content.vb: Function GetDerivedFromEntity As T
     return:
       type: '{T}'
-  nameWithType.vb: IDerivableToscaEntity(Of T).Base
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-  fullName.vb: Toscana.IDerivableToscaEntity(Of T).Base
+  nameWithType.vb: IDerivableToscaEntity(Of T).GetDerivedFromEntity()
+  fullName.vb: Toscana.IDerivableToscaEntity(Of T).GetDerivedFromEntity()
 - uid: Toscana.IDerivableToscaEntity`1.IsRoot
   commentId: M:Toscana.IDerivableToscaEntity`1.IsRoot
   id: IsRoot
@@ -134,11 +129,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: IsRoot
     path: Toscana/ToscaObject.cs
-    startLine: 27
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
@@ -166,11 +161,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaObject.cs
-    startLine: 33
+    startLine: 37
   assemblies:
   - Toscana
   namespace: Toscana

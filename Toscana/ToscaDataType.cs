@@ -46,9 +46,9 @@ namespace Toscana
         /// <exception cref="ToscaDataTypeNotFoundException" accessor="get">When derived from data type not found in the Cloud Service Archive.</exception>
         public override ToscaDataType GetDerivedFromEntity()
         {
-            if (CloudServiceArchive == null || IsRoot()) return null;
+            if (GetCloudServiceArchive() == null || IsRoot()) return null;
             ToscaDataType datatype;
-            if (CloudServiceArchive.DataTypes.TryGetValue(DerivedFrom, out datatype))
+            if (GetCloudServiceArchive().DataTypes.TryGetValue(DerivedFrom, out datatype))
             {
                 return datatype;
             }

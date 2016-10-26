@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyEntrySchema.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaPropertyEntrySchema
     path: Toscana/ToscaPropertyEntrySchema.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyEntrySchema.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaPropertyEntrySchema.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyEntrySchema.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaPropertyEntrySchema.cs
@@ -137,7 +137,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyEntrySchema.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaPropertyEntrySchema.cs
@@ -173,7 +173,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPropertyEntrySchema.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaPropertyEntrySchema.cs

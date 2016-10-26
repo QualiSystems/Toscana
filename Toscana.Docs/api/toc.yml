@@ -14,10 +14,10 @@
     name: ToscaArtifact
   - uid: Toscana.ToscaArtifactType
     name: ToscaArtifactType
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
   - uid: Toscana.ToscaAttributeAssignment
     name: ToscaAttributeAssignment
-  - uid: Toscana.ToscaAttributeDefinition
-    name: ToscaAttributeDefinition
   - uid: Toscana.ToscaCapability
     name: ToscaCapability
   - uid: Toscana.ToscaCapabilityAssignment
@@ -28,16 +28,16 @@
     name: ToscaCloudServiceArchive
   - uid: Toscana.ToscaCredential
     name: ToscaCredential
-  - uid: Toscana.ToscaDataTypeDefinition
-    name: ToscaDataTypeDefinition
+  - uid: Toscana.ToscaDataType
+    name: ToscaDataType
   - uid: Toscana.ToscaDefaults
     name: ToscaDefaults
   - uid: Toscana.ToscaGroup
     name: ToscaGroup
   - uid: Toscana.ToscaImport
     name: ToscaImport
-  - uid: Toscana.ToscaInterfaceDefinition
-    name: ToscaInterfaceDefinition
+  - uid: Toscana.ToscaInterface
+    name: ToscaInterface
   - uid: Toscana.ToscaMetadata
     name: ToscaMetadata
   - uid: Toscana.ToscaNodeTemplate
@@ -51,10 +51,10 @@
     name: ToscaParameter
   - uid: Toscana.ToscaPolicy
     name: ToscaPolicy
+  - uid: Toscana.ToscaProperty
+    name: ToscaProperty
   - uid: Toscana.ToscaPropertyAssignment
     name: ToscaPropertyAssignment
-  - uid: Toscana.ToscaPropertyDefinition
-    name: ToscaPropertyDefinition
   - uid: Toscana.ToscaPropertyEntrySchema
     name: ToscaPropertyEntrySchema
   - uid: Toscana.ToscaPropertyStatus

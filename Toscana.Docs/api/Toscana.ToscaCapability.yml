@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapability
     path: Toscana/ToscaCapability.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCapability.cs
@@ -99,7 +99,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaCapability.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaCapability.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaCapability.cs
@@ -199,11 +199,11 @@ items:
   summary: "\nAn optional list of property definitions for the Capability definition.\n"
   example: []
   syntax:
-    content: public Dictionary<string, ToscaPropertyDefinition> Properties { get; set; }
-    content.vb: Public Property Properties As Dictionary(Of String, ToscaPropertyDefinition)
+    content: public Dictionary<string, ToscaProperty> Properties { get; set; }
+    content.vb: Public Property Properties As Dictionary(Of String, ToscaProperty)
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyDefinition}
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaProperty}
   modifiers.csharp:
   - public
   - get
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaCapability.cs
@@ -235,11 +235,11 @@ items:
   summary: "\nAn optional list of attribute definitions for the Capability definition.\n"
   example: []
   syntax:
-    content: public Dictionary<string, ToscaAttributeDefinition> Attributes { get; set; }
-    content.vb: Public Property Attributes As Dictionary(Of String, ToscaAttributeDefinition)
+    content: public Dictionary<string, ToscaAttribute> Attributes { get; set; }
+    content.vb: Public Property Attributes As Dictionary(Of String, ToscaAttribute)
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeDefinition}
+      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttribute}
   modifiers.csharp:
   - public
   - get
@@ -260,7 +260,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ValidSourceTypes
     path: Toscana/ToscaCapability.cs
@@ -296,7 +296,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaCapability.cs
@@ -1064,16 +1064,16 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyDefinition}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyDefinition}
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaProperty}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaProperty}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaPropertyDefinition>
-  nameWithType: Dictionary<String, ToscaPropertyDefinition>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaPropertyDefinition>
-  nameWithType.vb: Dictionary(Of String, ToscaPropertyDefinition)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaPropertyDefinition)
-  name.vb: Dictionary(Of String, ToscaPropertyDefinition)
+  name: Dictionary<String, ToscaProperty>
+  nameWithType: Dictionary<String, ToscaProperty>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaProperty>
+  nameWithType.vb: Dictionary(Of String, ToscaProperty)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaProperty)
+  name.vb: Dictionary(Of String, ToscaProperty)
   spec.csharp:
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
@@ -1091,10 +1091,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaPropertyDefinition
-    name: ToscaPropertyDefinition
-    nameWithType: ToscaPropertyDefinition
-    fullName: Toscana.ToscaPropertyDefinition
+  - uid: Toscana.ToscaProperty
+    name: ToscaProperty
+    nameWithType: ToscaProperty
+    fullName: Toscana.ToscaProperty
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1115,10 +1115,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaPropertyDefinition
-    name: ToscaPropertyDefinition
-    nameWithType: ToscaPropertyDefinition
-    fullName: Toscana.ToscaPropertyDefinition
+  - uid: Toscana.ToscaProperty
+    name: ToscaProperty
+    nameWithType: ToscaProperty
+    fullName: Toscana.ToscaProperty
   - name: )
     nameWithType: )
     fullName: )
@@ -1179,16 +1179,16 @@ references:
   name: System.Collections.Generic
   nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeDefinition}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeDefinition}
+- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttribute}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttribute}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaAttributeDefinition>
-  nameWithType: Dictionary<String, ToscaAttributeDefinition>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaAttributeDefinition>
-  nameWithType.vb: Dictionary(Of String, ToscaAttributeDefinition)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaAttributeDefinition)
-  name.vb: Dictionary(Of String, ToscaAttributeDefinition)
+  name: Dictionary<String, ToscaAttribute>
+  nameWithType: Dictionary<String, ToscaAttribute>
+  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaAttribute>
+  nameWithType.vb: Dictionary(Of String, ToscaAttribute)
+  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaAttribute)
+  name.vb: Dictionary(Of String, ToscaAttribute)
   spec.csharp:
   - uid: System.Collections.Generic.Dictionary`2
     name: Dictionary
@@ -1206,10 +1206,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaAttributeDefinition
-    name: ToscaAttributeDefinition
-    nameWithType: ToscaAttributeDefinition
-    fullName: Toscana.ToscaAttributeDefinition
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1230,10 +1230,10 @@ references:
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaAttributeDefinition
-    name: ToscaAttributeDefinition
-    nameWithType: ToscaAttributeDefinition
-    fullName: Toscana.ToscaAttributeDefinition
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: )
     nameWithType: )
     fullName: )
