@@ -1,12 +1,10 @@
-﻿
-
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace Toscana.Tests
 {
     [TestFixture]
-    public class ToscaInterfaceDefinitionTests
+    public class ToscaInterfaceTests
     {
         [Test]
         public void Inputs_Should_Be_Empty_Upon_Initialization()
@@ -19,4 +17,3 @@ namespace Toscana.Tests
         }
     }
 }
-

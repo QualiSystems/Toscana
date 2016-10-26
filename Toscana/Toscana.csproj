@@ -86,6 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloudServiceArchiveValidator.cs" />
     <Compile Include="Common\EnumerableExtensions.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
     <Compile Include="Common\PathEqualityComparer.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Common\ZipArchiveExtensions.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateSaver.cs" />
+    <Compile Include="Engine\ToscaFileSystemSaver.cs" />
     <Compile Include="Engine\ToscaBooleanDataTypeConverter.cs" />
     <Compile Include="Engine\ToscaFloatDataTypeConverter.cs" />
     <Compile Include="Engine\ToscaIntegerDataTypeConverter.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="ToscaAttribute.cs" />
     <Compile Include="ToscaInterface.cs" />
     <Compile Include="ToscaMetadata.cs" />
-    <Compile Include="ToscaNodeTypeRequirementsWalker.cs" />
+    <Compile Include="ToscaNodeTypeRequirementsGraph.cs" />
     <Compile Include="ToscaParameter.cs" />
     <Compile Include="ToscaPolicy.cs" />
     <Compile Include="ToscaPropertyAssignment.cs" />

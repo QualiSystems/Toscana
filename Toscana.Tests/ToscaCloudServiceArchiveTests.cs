@@ -41,7 +41,7 @@ namespace Toscana.Tests
             });
 
             // Act
-            toscaCloudServiceArchive.AddToscaServiceTemplate("definition", toscaServiceTemplate);
+            toscaCloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", toscaServiceTemplate);
             List<ValidationResult> validationResults;
             toscaCloudServiceArchive.TryValidate(out validationResults);
 
@@ -176,7 +176,7 @@ data_types:
             {
                 // Act
                 var serviceTemplate = ToscaServiceTemplate.Load(memoryStream);
-                cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+                cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
 
                 List<ValidationResult> results;
                 cloudServiceArchive.TryValidate(out results);
@@ -531,6 +531,36 @@ node_types:
         }
 
         [Test]
+        public void TraverseNodeTypesByRequirements_Should_Not_Throw_Exception_When_Node_Is_Null()
+        {
+            // Arrange
+            var switchNodeType = new ToscaNodeType();
+            switchNodeType.AddRequirement("internet", new ToscaRequirement { Capability = "wi-fi" });
+            var nxosNodeType = new ToscaNodeType { DerivedFrom = "cloudshell.nodes.Switch" };
+            nxosNodeType.AddRequirement("storage", new ToscaRequirement { Capability = "ssd" });
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("cloudshell.nodes.Switch", switchNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.switch.NXOS", nxosNodeType);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            // Act
+            Action action = ()=> cloudServiceArchive.TraverseNodeTypesByRequirements("vendor.switch.NXOS", (a,b)=> {});
+
+            // Assert
+            action.ShouldNotThrow<Exception>();
+        }
+
+
+        [Test]
         public void TraverseNodeTypesInheritance_Traverses_Nodes_From_Root_To_Its_Derived_Node_Types()
         {
             // Arrange
@@ -577,7 +607,7 @@ data_types:
             {
                 // Act
                 var serviceTemplate = ToscaServiceTemplate.Load(memoryStream);
-                cloudServiceArchive.AddToscaServiceTemplate("tosca.yml", serviceTemplate);
+                cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
 
                 // Assert
                 List<ValidationResult> results;

@@ -74,7 +74,7 @@
     <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
     <Compile Include="Engine\BootstrapperTests.cs" />
     <Compile Include="Engine\FileSystemExtentions.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateSaverTests.cs" />
+    <Compile Include="Engine\ToscaFileSystemSaverTests.cs" />
     <Compile Include="Engine\PathEqualityComparerTests.cs" />
     <Compile Include="Engine\SimpleIocContainerTests.cs" />
     <Compile Include="Engine\ToscaBooleanDataTypeConverterTests.cs" />
@@ -105,14 +105,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempFile.cs" />
     <Compile Include="ToscaArtifactTypeTests.cs" />
-    <Compile Include="ToscaAttributeDefinitionTests.cs" />
+    <Compile Include="ToscaAttributeTests.cs" />
     <Compile Include="ToscaCapabilityAssignmentTests.cs" />
     <Compile Include="ToscaCapabilityTests.cs" />
     <Compile Include="ToscaCapabilityTypeTests.cs" />
     <Compile Include="ToscaCloudServiceArchiveTests.cs" />
     <Compile Include="ToscaDataTypeTests.cs" />
     <Compile Include="ToscaGroupTests.cs" />
-    <Compile Include="ToscaInterfaceDefinitionTests.cs" />
+    <Compile Include="ToscaInterfaceTests.cs" />
     <Compile Include="ToscaMetadataTests.cs" />
     <Compile Include="ToscaNodeTemplateTests.cs" />
     <Compile Include="ToscaNodeTypeTests.cs" />

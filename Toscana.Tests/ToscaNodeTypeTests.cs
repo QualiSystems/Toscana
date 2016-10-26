@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
@@ -446,6 +447,74 @@ node_types:
         }
 
         [Test]
+        public void GetAllRequirements_Shall_Not_Throw_Validation_Exception_When_Circular_Dependency_Exists()
+        {
+            // Arrange
+            var portNodeType = new ToscaNodeType();
+            portNodeType.AddRequirement("internet", new ToscaRequirement { Capability = "tosca.capabilities.Attachment", Node = "vendor.devices.Switch" });
+            var switchNodetype = new ToscaNodeType();
+            switchNodetype.AddRequirement("port", new ToscaRequirement { Capability = "tosca.capabilities.Attachment", Node = "vendor.parts.Port" });
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("vendor.parts.Port", portNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.devices.Switch", switchNodetype);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            // Act
+            List<ValidationResult> validationResults;
+            cloudServiceArchive.TryValidate(out validationResults);
+
+            // Assert
+            validationResults.Should().ContainSingle(r =>
+                        r.ErrorMessage.Equals("Circular dependency detected by requirements on node type"));
+        }
+
+        [Test]
+        public void Validation_Should_Not_Pass_When_Archive_With_Cyclic_Reference_Between_Requirements_Is_Loaded()
+        {
+            // Arrange
+            var portNodeType = new ToscaNodeType();
+            portNodeType.AddRequirement("internet", new ToscaRequirement { Capability = "tosca.capabilities.Attachment", Node = "vendor.devices.Switch" });
+            var switchNodetype = new ToscaNodeType();
+            switchNodetype.AddRequirement("port", new ToscaRequirement { Capability = "tosca.capabilities.Attachment", Node = "vendor.parts.Port" });
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.NodeTypes.Add("vendor.parts.Port", portNodeType);
+            serviceTemplate.NodeTypes.Add("vendor.devices.Switch", switchNodetype);
+
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1,2,3),
+                EntryDefinitions = "tosca.yaml",
+                ToscaMetaFileVersion = new Version(1, 1)
+            });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            byte[] buffer;
+            using (var memoryStream = new MemoryStream())
+            {
+                cloudServiceArchive.Save(memoryStream);
+                memoryStream.Flush();
+                buffer = memoryStream.GetBuffer();
+            }
+
+            // Act
+            Action action = () => ToscaCloudServiceArchive.Load(new MemoryStream(buffer));
+            
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Circular dependency detected by requirements on node type");
+        }
+
+        [Test]
         public void GetAllCapabilityTypes_Return_Capability_Types_Of_Base_Node_Type()
         {
             // Arrange
@@ -482,6 +551,5 @@ node_types:
             allCapabilityTypes.Should().ContainKey("capabilities.internet");
             allCapabilityTypes.Should().ContainKey("tosca.capabilities.Node");
         }
-
     }
 }
