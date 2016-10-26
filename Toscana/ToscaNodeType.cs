@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using DataAnnotationsValidator;
 using Toscana.Engine;
 using Toscana.Exceptions;
-using YamlDotNet.Serialization;
 
 namespace Toscana
 {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Abstractions;
 using System.IO.Compression;
 
 namespace Toscana.Engine
@@ -8,17 +9,20 @@ namespace Toscana.Engine
     internal interface IToscaCloudServiceArchiveSaver
     {
         void Save(ToscaCloudServiceArchive toscaCloudServiceArchive, Stream stream);
+        void Save(ToscaCloudServiceArchive toscaCloudServiceArchive, string filePath);
     }
 
     internal class ToscaCloudServiceArchiveSaver : IToscaCloudServiceArchiveSaver
     {
         private readonly IToscaSerializer<ToscaMetadata> metadataSerializer;
         private readonly IToscaSerializer<ToscaServiceTemplate> serviceTemplateSerializer;
+        private readonly IFileSystem fileSystem;
 
-        public ToscaCloudServiceArchiveSaver(IToscaSerializer<ToscaMetadata> metadataSerializer, IToscaSerializer<ToscaServiceTemplate> serviceTemplateSerializer)
+        public ToscaCloudServiceArchiveSaver(IToscaSerializer<ToscaMetadata> metadataSerializer, IToscaSerializer<ToscaServiceTemplate> serviceTemplateSerializer, IFileSystem fileSystem)
         {
             this.metadataSerializer = metadataSerializer;
             this.serviceTemplateSerializer = serviceTemplateSerializer;
+            this.fileSystem = fileSystem;
         }
 
         /// <summary>
@@ -42,6 +46,14 @@ namespace Toscana.Engine
                 {
                     SaveArtifact(zipArchive, artifact.Key, artifact.Value);
                 }
+            }
+        }
+
+        public void Save(ToscaCloudServiceArchive toscaCloudServiceArchive, string filePath)
+        {
+            using (var stream = fileSystem.File.Create(filePath))
+            {
+                Save(toscaCloudServiceArchive, stream);
             }
         }
 

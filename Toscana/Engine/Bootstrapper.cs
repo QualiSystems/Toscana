@@ -27,10 +27,11 @@ namespace Toscana.Engine
             container.Register<IToscaCloudServiceArchiveSaver, ToscaCloudServiceArchiveSaver>();
             container.Register<IToscaSerializer<ToscaMetadata>, ToscaSerializer<ToscaMetadata>>();
             container.Register<IToscaSerializer<ToscaServiceTemplate>, ToscaSerializer<ToscaServiceTemplate>>();
-            container.Register<IToscaServiceTemplateSaver, ToscaServiceTemplateSaver>();
+            container.Register<IToscaFileSystemSaver<ToscaServiceTemplate>, ToscaFileSystemSaver<ToscaServiceTemplate>>();
             container.Register<ITypeConvertersFactory, TypeConvertersFactory>();
             container.Register<IToscaPropertyMerger, ToscaPropertyMerger>();
             container.Register<IToscaPropertyCombiner, ToscaPropertyCombiner>();
+            container.Register<ICloudServiceArchiveValidator, CloudServiceArchiveValidator>();
             container.Register<IToscaParserFactory>(
                 () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
                 {
@@ -68,9 +69,9 @@ namespace Toscana.Engine
             return container.GetInstance<IToscaParser<ToscaMetadata>>();
         }
 
-        internal IToscaValidator<ToscaCloudServiceArchive> GetToscaCloudServiceValidator()
+        internal ICloudServiceArchiveValidator GetToscaCloudServiceValidator()
         {
-            return container.GetInstance<IToscaValidator<ToscaCloudServiceArchive>>();
+            return container.GetInstance<ICloudServiceArchiveValidator>();
         }
 
         internal IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
@@ -89,9 +90,9 @@ namespace Toscana.Engine
             return container.GetInstance<IToscaSerializer<ToscaServiceTemplate>>();
         }
 
-        internal IToscaServiceTemplateSaver GetToscaServiceTemplateSaver()
+        internal IToscaFileSystemSaver<ToscaServiceTemplate> GetToscaServiceTemplateSaver()
         {
-            return container.GetInstance<IToscaServiceTemplateSaver>();
+            return container.GetInstance<IToscaFileSystemSaver<ToscaServiceTemplate>>();
         }
 
         internal IToscaPropertyMerger GetPropertyMerger()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Compression;
@@ -38,10 +39,10 @@ namespace Toscana.Engine
         private readonly IFileSystem fileSystem;
         private readonly IToscaParser<ToscaMetadata> metadataParser;
         private readonly IToscaParser<ToscaServiceTemplate> serviceTemplateParser;
-        private readonly IToscaValidator<ToscaCloudServiceArchive> validator;
+        private readonly ICloudServiceArchiveValidator validator;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
-            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser, IToscaValidator<ToscaCloudServiceArchive> validator)
+            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser, ICloudServiceArchiveValidator validator)
         {
             this.fileSystem = fileSystem;
             this.metadataParser = metadataParser;
@@ -88,8 +89,19 @@ namespace Toscana.Engine
                 var toscaMetadata = metadataParser.Parse(toscaMetaArchiveEntry.Open());
                 var toscaCloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
                 LoadDependenciesRecursively(toscaCloudServiceArchive, archiveEntries, toscaMetadata.EntryDefinitions, alternativePath);
-                validator.Validate(toscaCloudServiceArchive);
+                ValidateCloudServiceArchive(toscaCloudServiceArchive);
                 return toscaCloudServiceArchive;
+            }
+        }
+
+        private static void ValidateCloudServiceArchive(ToscaCloudServiceArchive toscaCloudServiceArchive)
+        {
+            List<ValidationResult> validationResults;
+            toscaCloudServiceArchive.TryValidate(out validationResults);
+            if (validationResults.Any())
+            {
+                throw new ToscaValidationException(string.Join(Environment.NewLine,
+                    validationResults.Select(r => r.ErrorMessage)));
             }
         }
 
