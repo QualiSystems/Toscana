@@ -9,14 +9,14 @@ using Toscana.Exceptions;
 namespace Toscana.Tests.Engine
 {
     [TestFixture]
-    public class ToscaServiceTemplateSaverTests
+    public class ToscaFileSystemSaverTests
     {
         [Test]
         public void It_Is_Possible_To_Save_Service_Template_To_File()
         {
             var mockFileSystem = new MockFileSystem();
             var bootstrapper = new Bootstrapper();
-            var serviceTemplateSaver = new ToscaServiceTemplateSaver(mockFileSystem,
+            var serviceTemplateSaver = new ToscaFileSystemSaver<ToscaServiceTemplate>(mockFileSystem,
                 bootstrapper.GetToscaServiceTemplateSerializer());
 
             var serviceTemplate = new ToscaServiceTemplate

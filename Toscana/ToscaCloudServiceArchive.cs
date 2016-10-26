@@ -80,6 +80,14 @@ Examples of valid values for an “type” of “Linux” would include:  debian
                     }
                 }
             }
+            if (!validationResults.Any())
+            {
+                var requirementsGraph = new ToscaNodeTypeRequirementsGraph(this);
+                if (requirementsGraph.ContainsCyclicLoop())
+                {
+                    validationResults.Add(new ValidationResult("Circular dependency detected by requirements on node type"));
+                }
+            }
             return validationResults;
         }
 
@@ -93,6 +101,16 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         {
             var cloudServiceArchiveSaver = Bootstrapper.Current.GetToscaCloudServiceArchiveSaver();
             cloudServiceArchiveSaver.Save(this, stream);
+        }
+
+        /// <summary>
+        /// Saves Cloud Service Archive to file 
+        /// </summary>
+        /// <param name="filePath">Path to file to save</param>
+        public void Save(string filePath)
+        {
+            var toscaCloudServiceArchiveSaver = Bootstrapper.Current.GetToscaCloudServiceArchiveSaver();
+            toscaCloudServiceArchiveSaver.Save(this, filePath);
         }
 
         #region Private fields
@@ -344,7 +362,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         public bool TryValidate(out List<ValidationResult> validationResults)
         {
             var cloudServiceValidator = Bootstrapper.Current.GetToscaCloudServiceValidator();
-            return cloudServiceValidator.TryValidateRecursively(this, out validationResults);
+            return cloudServiceValidator.ValidateCloudServiceArchive(this, out validationResults);
         }
 
         /// <summary>
@@ -369,8 +387,8 @@ Examples of valid values for an “type” of “Linux” would include:  debian
             {
                 throw new ToscaNodeTypeNotFoundException(string.Format("Node type '{0}' not found", nodeTypeNameToStart));
             }
-            var serviceArchiveWalker = new ToscaNodeTypeRequirementsWalker(this, action);
-            serviceArchiveWalker.Walk(nodeTypeNameToStart);
+            var serviceArchiveWalker = new ToscaNodeTypeRequirementsGraph(this);
+            serviceArchiveWalker.Walk(nodeTypeNameToStart, action);
         }
 
         #endregion
@@ -466,10 +484,10 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         private static ToscaCapabilityType CreateOperatingSystemCapabilityType()
         {
             var operatingSystemCapabilityType = new ToscaCapabilityType { DerivedFrom = "tosca.capabilities.Root" };
-            operatingSystemCapabilityType.Properties.Add("architecture", new ToscaProperty { Type = "string", Required = false, Description = ArchitectureDescription });
-            operatingSystemCapabilityType.Properties.Add("type", new ToscaProperty { Type = "string", Required = false, Description = OperatingSystemTypeDescription });
-            operatingSystemCapabilityType.Properties.Add("distribution", new ToscaProperty { Type = "string", Required = false, Description = OperationSystemDistributionDescription });
-            operatingSystemCapabilityType.Properties.Add("version", new ToscaProperty { Type = "version", Required = false, Description = OperatingSystemVersionDescription });
+            operatingSystemCapabilityType.Properties.Add("architecture", new ToscaProperty { Type = "string", Required = false, Description = ToscaCloudServiceArchive.ArchitectureDescription });
+            operatingSystemCapabilityType.Properties.Add("type", new ToscaProperty { Type = "string", Required = false, Description = ToscaCloudServiceArchive.OperatingSystemTypeDescription });
+            operatingSystemCapabilityType.Properties.Add("distribution", new ToscaProperty { Type = "string", Required = false, Description = ToscaCloudServiceArchive.OperationSystemDistributionDescription });
+            operatingSystemCapabilityType.Properties.Add("version", new ToscaProperty { Type = "version", Required = false, Description = ToscaCloudServiceArchive.OperatingSystemVersionDescription });
             return operatingSystemCapabilityType;
         }
 

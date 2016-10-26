@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using QuickGraph;
+using QuickGraph.Algorithms;
 using QuickGraph.Algorithms.Search;
 using Toscana.Engine;
 
 namespace Toscana
 {
-    internal class ToscaNodeTypeRequirementsWalker
+    internal class ToscaNodeTypeRequirementsGraph
     {
-        private readonly Action<string, ToscaNodeType> action;
         private readonly AdjacencyGraph<string, ToscaGraphEdge> graph;
         private readonly IReadOnlyDictionary<string, ToscaNodeType> nodeTypes;
 
-        public ToscaNodeTypeRequirementsWalker(ToscaCloudServiceArchive cloudServiceArchive,
-            Action<string, ToscaNodeType> action)
+        public ToscaNodeTypeRequirementsGraph(ToscaCloudServiceArchive cloudServiceArchive)
         {
             nodeTypes = cloudServiceArchive.NodeTypes;
             graph = new AdjacencyGraph<string, ToscaGraphEdge>();
@@ -25,20 +24,38 @@ namespace Toscana
 
                 foreach (var requirement in toscaNodeType.Value.GetAllRequirements().Values)
                 {
-                    if (requirement.Node == ToscaDefaults.ToscaNodesRoot) continue;
+                    if (requirement.Node == null || 
+                        requirement.Node == ToscaDefaults.ToscaNodesRoot 
+                        // || !cloudServiceArchive.NodeTypes.ContainsKey(requirement.Node)
+                        )
+                    {
+                        continue;
+                    }
 
                     graph.AddEdge(new ToscaGraphEdge(toscaNodeType.Key, requirement.Node));
                 }
             }
-
-            this.action = action;
         }
 
-        public void Walk(string nodeTypeNameToStart)
+        public void Walk(string nodeTypeNameToStart, Action<string, ToscaNodeType> action)
         {
             var breadthFirstSearchAlgorithm = new BreadthFirstSearchAlgorithm<string, ToscaGraphEdge>(graph);
-            breadthFirstSearchAlgorithm.DiscoverVertex += nodeTypeName => { action(nodeTypeName, nodeTypes[nodeTypeName]); };
+            breadthFirstSearchAlgorithm.DiscoverVertex +=
+                nodeTypeName => { action(nodeTypeName, nodeTypes[nodeTypeName]); };
             breadthFirstSearchAlgorithm.Compute(nodeTypeNameToStart);
+        }
+
+        public bool ContainsCyclicLoop()
+        {
+            try
+            {
+                graph.TopologicalSort();
+                return false;
+            }
+            catch (NonAcyclicGraphException)
+            {
+                return true;
+            }
         }
     }
 }
