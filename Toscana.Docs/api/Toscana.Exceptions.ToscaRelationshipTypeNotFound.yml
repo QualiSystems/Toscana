@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRelationshipTypeNotFound
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
@@ -205,7 +205,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
-      branch: develop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs

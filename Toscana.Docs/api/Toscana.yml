@@ -9,26 +9,26 @@ items:
   - Toscana.IToscaMetadata
   - Toscana.ToscaArtifact
   - Toscana.ToscaArtifactType
+  - Toscana.ToscaAttribute
   - Toscana.ToscaAttributeAssignment
-  - Toscana.ToscaAttributeDefinition
   - Toscana.ToscaCapability
   - Toscana.ToscaCapabilityAssignment
   - Toscana.ToscaCapabilityType
   - Toscana.ToscaCloudServiceArchive
   - Toscana.ToscaCredential
-  - Toscana.ToscaDataTypeDefinition
+  - Toscana.ToscaDataType
   - Toscana.ToscaDefaults
   - Toscana.ToscaGroup
   - Toscana.ToscaImport
-  - Toscana.ToscaInterfaceDefinition
+  - Toscana.ToscaInterface
   - Toscana.ToscaMetadata
   - Toscana.ToscaNodeTemplate
   - Toscana.ToscaNodeType
   - Toscana.ToscaObject`1
   - Toscana.ToscaParameter
   - Toscana.ToscaPolicy
+  - Toscana.ToscaProperty
   - Toscana.ToscaPropertyAssignment
-  - Toscana.ToscaPropertyDefinition
   - Toscana.ToscaPropertyEntrySchema
   - Toscana.ToscaPropertyStatus
   - Toscana.ToscaRelationshipTemplate
@@ -140,13 +140,13 @@ references:
   name: ToscaCredential
   nameWithType: ToscaCredential
   fullName: Toscana.ToscaCredential
-- uid: Toscana.ToscaDataTypeDefinition
-  commentId: T:Toscana.ToscaDataTypeDefinition
+- uid: Toscana.ToscaDataType
+  commentId: T:Toscana.ToscaDataType
   parent: Toscana
   isExternal: false
-  name: ToscaDataTypeDefinition
-  nameWithType: ToscaDataTypeDefinition
-  fullName: Toscana.ToscaDataTypeDefinition
+  name: ToscaDataType
+  nameWithType: ToscaDataType
+  fullName: Toscana.ToscaDataType
 - uid: Toscana.ToscaDefaults
   commentId: T:Toscana.ToscaDefaults
   isExternal: false
@@ -166,19 +166,19 @@ references:
   name: ToscaImport
   nameWithType: ToscaImport
   fullName: Toscana.ToscaImport
-- uid: Toscana.ToscaAttributeDefinition
-  commentId: T:Toscana.ToscaAttributeDefinition
+- uid: Toscana.ToscaAttribute
+  commentId: T:Toscana.ToscaAttribute
   parent: Toscana
   isExternal: false
-  name: ToscaAttributeDefinition
-  nameWithType: ToscaAttributeDefinition
-  fullName: Toscana.ToscaAttributeDefinition
-- uid: Toscana.ToscaInterfaceDefinition
-  commentId: T:Toscana.ToscaInterfaceDefinition
+  name: ToscaAttribute
+  nameWithType: ToscaAttribute
+  fullName: Toscana.ToscaAttribute
+- uid: Toscana.ToscaInterface
+  commentId: T:Toscana.ToscaInterface
   isExternal: false
-  name: ToscaInterfaceDefinition
-  nameWithType: ToscaInterfaceDefinition
-  fullName: Toscana.ToscaInterfaceDefinition
+  name: ToscaInterface
+  nameWithType: ToscaInterface
+  fullName: Toscana.ToscaInterface
 - uid: Toscana.IToscaMetadata
   commentId: T:Toscana.IToscaMetadata
   parent: Toscana
@@ -212,12 +212,12 @@ references:
   name: ToscaPropertyAssignment
   nameWithType: ToscaPropertyAssignment
   fullName: Toscana.ToscaPropertyAssignment
-- uid: Toscana.ToscaPropertyDefinition
-  commentId: T:Toscana.ToscaPropertyDefinition
+- uid: Toscana.ToscaProperty
+  commentId: T:Toscana.ToscaProperty
   isExternal: false
-  name: ToscaPropertyDefinition
-  nameWithType: ToscaPropertyDefinition
-  fullName: Toscana.ToscaPropertyDefinition
+  name: ToscaProperty
+  nameWithType: ToscaProperty
+  fullName: Toscana.ToscaProperty
 - uid: Toscana.ToscaNodeTemplate
   commentId: T:Toscana.ToscaNodeTemplate
   isExternal: false

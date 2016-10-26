@@ -1,40 +1,39 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.ToscaRelationshipTemplate
-  commentId: T:Toscana.ToscaRelationshipTemplate
-  id: ToscaRelationshipTemplate
+- uid: Toscana.ToscaAttribute
+  commentId: T:Toscana.ToscaAttribute
+  id: ToscaAttribute
   parent: Toscana
   children:
-  - Toscana.ToscaRelationshipTemplate.#ctor
-  - Toscana.ToscaRelationshipTemplate.Assignments
-  - Toscana.ToscaRelationshipTemplate.Copy
-  - Toscana.ToscaRelationshipTemplate.Description
-  - Toscana.ToscaRelationshipTemplate.Interfaces
-  - Toscana.ToscaRelationshipTemplate.Properties
-  - Toscana.ToscaRelationshipTemplate.Type
+  - Toscana.ToscaAttribute.#ctor
+  - Toscana.ToscaAttribute.Default
+  - Toscana.ToscaAttribute.Description
+  - Toscana.ToscaAttribute.EntrySchema
+  - Toscana.ToscaAttribute.Status
+  - Toscana.ToscaAttribute.Type
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTemplate
-  nameWithType: ToscaRelationshipTemplate
-  fullName: Toscana.ToscaRelationshipTemplate
+  name: ToscaAttribute
+  nameWithType: ToscaAttribute
+  fullName: Toscana.ToscaAttribute
   type: Class
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaRelationshipTemplate
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 10
+    id: ToscaAttribute
+    path: Toscana/ToscaAttribute.cs
+    startLine: 12
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nA Relationship Template specifies the occurrence of a manageable relationship between node templates \nas part of an application’s topology model that is defined in a TOSCA Service Template.  \nA Relationship template is an instance of a specified Relationship Type and can provide customized properties, \nconstraints or operations which override the defaults provided by its Relationship Type and its implementations.\n"
+  summary: "\nAn attribute definition defines a named, typed value that can be associated with an entity \ndefined in this specification (e.g., a Node, Relationship or Capability Type).  \nSpecifically, it is used to expose the “actual state” of some property of a TOSCA entity \nafter it has been deployed and instantiated (as set by the TOSCA orchestrator).  \nAttribute values can be retrieved via the get_attribute function from the instance model \nand used as values to other entities within TOSCA Service Templates.\n"
   example: []
   syntax:
-    content: public class ToscaRelationshipTemplate
-    content.vb: Public Class ToscaRelationshipTemplate
+    content: public class ToscaAttribute
+    content.vb: Public Class ToscaAttribute
   inheritance:
   - System.Object
   inheritedMembers:
@@ -46,104 +45,118 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   extensionMethods:
-  - Toscana.ToscaRelationshipTemplate.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaRelationshipTemplate,Toscana.ToscaRelationshipTemplate},System.Func{Toscana.ToscaRelationshipTemplate,System.Boolean})
-  - Toscana.ToscaRelationshipTemplate.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaRelationshipTemplate,Toscana.ToscaRelationshipTemplate})
+  - Toscana.ToscaAttribute.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaAttribute,Toscana.ToscaAttribute},System.Func{Toscana.ToscaAttribute,System.Boolean})
+  - Toscana.ToscaAttribute.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaAttribute,Toscana.ToscaAttribute})
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: Toscana.ToscaRelationshipTemplate.#ctor
-  commentId: M:Toscana.ToscaRelationshipTemplate.#ctor
+- uid: Toscana.ToscaAttribute.#ctor
+  commentId: M:Toscana.ToscaAttribute.#ctor
   id: '#ctor'
-  parent: Toscana.ToscaRelationshipTemplate
+  parent: Toscana.ToscaAttribute
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTemplate()
-  nameWithType: ToscaRelationshipTemplate.ToscaRelationshipTemplate()
-  fullName: Toscana.ToscaRelationshipTemplate.ToscaRelationshipTemplate()
+  name: ToscaAttribute()
+  nameWithType: ToscaAttribute.ToscaAttribute()
+  fullName: Toscana.ToscaAttribute.ToscaAttribute()
   type: Constructor
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 15
+    path: Toscana/ToscaAttribute.cs
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaRelationshipTemplate\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaAttribute\" data-throw-if-not-resolved=\"false\"></xref>\n"
   example: []
   syntax:
-    content: public ToscaRelationshipTemplate()
+    content: public ToscaAttribute()
     content.vb: Public Sub New
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaRelationshipTemplate.Type
-  commentId: P:Toscana.ToscaRelationshipTemplate.Type
+- uid: Toscana.ToscaAttribute.Type
+  commentId: P:Toscana.ToscaAttribute.Type
   id: Type
-  parent: Toscana.ToscaRelationshipTemplate
+  parent: Toscana.ToscaAttribute
   langs:
   - csharp
   - vb
   name: Type
-  nameWithType: ToscaRelationshipTemplate.Type
-  fullName: Toscana.ToscaRelationshipTemplate.Type
+  nameWithType: ToscaAttribute.Type
+  fullName: Toscana.ToscaAttribute.Type
   type: Property
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
-    path: Toscana/ToscaRelationshipTemplate.cs
+    path: Toscana/ToscaAttribute.cs
     startLine: 25
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nThe required name of the Relationship Type the Relationship Template is based upon.\n"
+  summary: "\nThe required data type for the attribute.\n"
   example: []
   syntax:
-    content: public string Type { get; set; }
-    content.vb: Public Property Type As String
+    content: >-
+      [Required(ErrorMessage = "type is required on attribute")]
+
+      public string Type { get; set; }
+    content.vb: >-
+      <Required(ErrorMessage:="type is required on attribute")>
+
+      Public Property Type As String
     parameters: []
     return:
       type: System.String
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+    namedArguments:
+    - name: ErrorMessage
+      type: System.String
+      value: type is required on attribute
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaRelationshipTemplate.Description
-  commentId: P:Toscana.ToscaRelationshipTemplate.Description
+- uid: Toscana.ToscaAttribute.Description
+  commentId: P:Toscana.ToscaAttribute.Description
   id: Description
-  parent: Toscana.ToscaRelationshipTemplate
+  parent: Toscana.ToscaAttribute
   langs:
   - csharp
   - vb
   name: Description
-  nameWithType: ToscaRelationshipTemplate.Description
-  fullName: Toscana.ToscaRelationshipTemplate.Description
+  nameWithType: ToscaAttribute.Description
+  fullName: Toscana.ToscaAttribute.Description
   type: Property
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 30
+    path: Toscana/ToscaAttribute.cs
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional description for the Relationship Template.\n"
+  summary: "\nThe optional description for the attribute.\n"
   example: []
   syntax:
     content: public string Description { get; set; }
@@ -157,144 +170,108 @@ items:
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaRelationshipTemplate.Properties
-  commentId: P:Toscana.ToscaRelationshipTemplate.Properties
-  id: Properties
-  parent: Toscana.ToscaRelationshipTemplate
+- uid: Toscana.ToscaAttribute.Default
+  commentId: P:Toscana.ToscaAttribute.Default
+  id: Default
+  parent: Toscana.ToscaAttribute
   langs:
   - csharp
   - vb
-  name: Properties
-  nameWithType: ToscaRelationshipTemplate.Properties
-  fullName: Toscana.ToscaRelationshipTemplate.Properties
+  name: Default
+  nameWithType: ToscaAttribute.Default
+  fullName: Toscana.ToscaAttribute.Default
   type: Property
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Properties
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 35
+    id: Default
+    path: Toscana/ToscaAttribute.cs
+    startLine: 37
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional list of property assignments for the Relationship Template.\n"
+  summary: "\nAn optional key that may provide a value to be used as a default if not provided by another means. \nThis value SHALL be type compatible with the type declared by the property definition’s type keyname.\n"
   example: []
   syntax:
-    content: public Dictionary<string, ToscaPropertyAssignment> Properties { get; set; }
-    content.vb: Public Property Properties As Dictionary(Of String, ToscaPropertyAssignment)
+    content: public object Default { get; set; }
+    content.vb: Public Property Default As Object
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyAssignment}
+      type: System.Object
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaRelationshipTemplate.Assignments
-  commentId: P:Toscana.ToscaRelationshipTemplate.Assignments
-  id: Assignments
-  parent: Toscana.ToscaRelationshipTemplate
+- uid: Toscana.ToscaAttribute.Status
+  commentId: P:Toscana.ToscaAttribute.Status
+  id: Status
+  parent: Toscana.ToscaAttribute
   langs:
   - csharp
   - vb
-  name: Assignments
-  nameWithType: ToscaRelationshipTemplate.Assignments
-  fullName: Toscana.ToscaRelationshipTemplate.Assignments
+  name: Status
+  nameWithType: ToscaAttribute.Status
+  fullName: Toscana.ToscaAttribute.Status
   type: Property
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Assignments
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 40
+    id: Status
+    path: Toscana/ToscaAttribute.cs
+    startLine: 42
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional list of attribute assignments for the Relationship Template.\n"
+  summary: "\nThe optional status of the attribute relative to the specification or implementation.  \n"
   example: []
   syntax:
-    content: public Dictionary<string, ToscaAttributeAssignment> Assignments { get; set; }
-    content.vb: Public Property Assignments As Dictionary(Of String, ToscaAttributeAssignment)
+    content: public ToscaPropertyStatus Status { get; set; }
+    content.vb: Public Property Status As ToscaPropertyStatus
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeAssignment}
+      type: Toscana.ToscaPropertyStatus
   modifiers.csharp:
   - public
   - get
   - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaRelationshipTemplate.Interfaces
-  commentId: P:Toscana.ToscaRelationshipTemplate.Interfaces
-  id: Interfaces
-  parent: Toscana.ToscaRelationshipTemplate
+- uid: Toscana.ToscaAttribute.EntrySchema
+  commentId: P:Toscana.ToscaAttribute.EntrySchema
+  id: EntrySchema
+  parent: Toscana.ToscaAttribute
   langs:
   - csharp
   - vb
-  name: Interfaces
-  nameWithType: ToscaRelationshipTemplate.Interfaces
-  fullName: Toscana.ToscaRelationshipTemplate.Interfaces
+  name: EntrySchema
+  nameWithType: ToscaAttribute.EntrySchema
+  fullName: Toscana.ToscaAttribute.EntrySchema
   type: Property
   source:
     remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
+      path: Toscana/ToscaAttribute.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Interfaces
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 45
+    id: EntrySchema
+    path: Toscana/ToscaAttribute.cs
+    startLine: 47
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nAn optional list of named interface definitions for the Node Template.\n"
+  summary: "\nThe optional key that is used to declare the name of the Datatype definition for entries of set types such as the TOSCA list or map.\n"
   example: []
   syntax:
-    content: public Dictionary<string, ToscaInterface> Interfaces { get; set; }
-    content.vb: Public Property Interfaces As Dictionary(Of String, ToscaInterface)
+    content: public ToscaAttribute EntrySchema { get; set; }
+    content.vb: Public Property EntrySchema As ToscaAttribute
     parameters: []
     return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterface}
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Toscana.ToscaRelationshipTemplate.Copy
-  commentId: P:Toscana.ToscaRelationshipTemplate.Copy
-  id: Copy
-  parent: Toscana.ToscaRelationshipTemplate
-  langs:
-  - csharp
-  - vb
-  name: Copy
-  nameWithType: ToscaRelationshipTemplate.Copy
-  fullName: Toscana.ToscaRelationshipTemplate.Copy
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaRelationshipTemplate.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: Copy
-    path: Toscana/ToscaRelationshipTemplate.cs
-    startLine: 51
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nThe optional (symbolic) name of another relationship template \nto copy into (all keynames and values) and use as a basis for this relationship template.\n"
-  example: []
-  syntax:
-    content: public string Copy { get; set; }
-    content.vb: Public Property Copy As String
-    parameters: []
-    return:
-      type: System.String
+      type: Toscana.ToscaAttribute
   modifiers.csharp:
   - public
   - get
@@ -594,21 +571,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaRelationshipTemplate.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaRelationshipTemplate,Toscana.ToscaRelationshipTemplate},System.Func{Toscana.ToscaRelationshipTemplate,System.Boolean})
+- uid: Toscana.ToscaAttribute.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaAttribute,Toscana.ToscaAttribute},System.Func{Toscana.ToscaAttribute,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<ToscaRelationshipTemplate>(Func<ToscaRelationshipTemplate, ToscaRelationshipTemplate>, Func<ToscaRelationshipTemplate, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTemplate>(Func<ToscaRelationshipTemplate, ToscaRelationshipTemplate>, Func<ToscaRelationshipTemplate, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaRelationshipTemplate>(System.Func<Toscana.ToscaRelationshipTemplate, Toscana.ToscaRelationshipTemplate>, System.Func<Toscana.ToscaRelationshipTemplate, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTemplate)(Func(Of ToscaRelationshipTemplate, ToscaRelationshipTemplate), Func(Of ToscaRelationshipTemplate, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaRelationshipTemplate)(System.Func(Of Toscana.ToscaRelationshipTemplate, Toscana.ToscaRelationshipTemplate), System.Func(Of Toscana.ToscaRelationshipTemplate, System.Boolean))
-  name.vb: FromHierarchy(Of ToscaRelationshipTemplate)(Func(Of ToscaRelationshipTemplate, ToscaRelationshipTemplate), Func(Of ToscaRelationshipTemplate, Boolean))
+  name: FromHierarchy<ToscaAttribute>(Func<ToscaAttribute, ToscaAttribute>, Func<ToscaAttribute, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaAttribute>(Func<ToscaAttribute, ToscaAttribute>, Func<ToscaAttribute, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaAttribute>(System.Func<Toscana.ToscaAttribute, Toscana.ToscaAttribute>, System.Func<Toscana.ToscaAttribute, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaAttribute)(Func(Of ToscaAttribute, ToscaAttribute), Func(Of ToscaAttribute, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaAttribute)(System.Func(Of Toscana.ToscaAttribute, Toscana.ToscaAttribute), System.Func(Of Toscana.ToscaAttribute, System.Boolean))
+  name.vb: FromHierarchy(Of ToscaAttribute)(Func(Of ToscaAttribute, ToscaAttribute), Func(Of ToscaAttribute, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<ToscaRelationshipTemplate>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTemplate>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaRelationshipTemplate>
+    name: FromHierarchy<ToscaAttribute>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaAttribute>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaAttribute>
   - name: (
     nameWithType: (
     fullName: (
@@ -620,17 +597,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -645,10 +622,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -665,9 +642,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of ToscaRelationshipTemplate)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTemplate)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaRelationshipTemplate)
+    name: FromHierarchy(Of ToscaAttribute)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaAttribute)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaAttribute)
   - name: (
     nameWithType: (
     fullName: (
@@ -679,17 +656,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: )
     nameWithType: )
     fullName: )
@@ -704,10 +681,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -722,21 +699,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaRelationshipTemplate.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaRelationshipTemplate,Toscana.ToscaRelationshipTemplate})
+- uid: Toscana.ToscaAttribute.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaAttribute,Toscana.ToscaAttribute})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<ToscaRelationshipTemplate>(Func<ToscaRelationshipTemplate, ToscaRelationshipTemplate>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTemplate>(Func<ToscaRelationshipTemplate, ToscaRelationshipTemplate>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaRelationshipTemplate>(System.Func<Toscana.ToscaRelationshipTemplate, Toscana.ToscaRelationshipTemplate>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTemplate)(Func(Of ToscaRelationshipTemplate, ToscaRelationshipTemplate))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaRelationshipTemplate)(System.Func(Of Toscana.ToscaRelationshipTemplate, Toscana.ToscaRelationshipTemplate))
-  name.vb: FromHierarchy(Of ToscaRelationshipTemplate)(Func(Of ToscaRelationshipTemplate, ToscaRelationshipTemplate))
+  name: FromHierarchy<ToscaAttribute>(Func<ToscaAttribute, ToscaAttribute>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaAttribute>(Func<ToscaAttribute, ToscaAttribute>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaAttribute>(System.Func<Toscana.ToscaAttribute, Toscana.ToscaAttribute>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaAttribute)(Func(Of ToscaAttribute, ToscaAttribute))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaAttribute)(System.Func(Of Toscana.ToscaAttribute, Toscana.ToscaAttribute))
+  name.vb: FromHierarchy(Of ToscaAttribute)(Func(Of ToscaAttribute, ToscaAttribute))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<ToscaRelationshipTemplate>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTemplate>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaRelationshipTemplate>
+    name: FromHierarchy<ToscaAttribute>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaAttribute>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaAttribute>
   - name: (
     nameWithType: (
     fullName: (
@@ -748,17 +725,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -767,9 +744,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of ToscaRelationshipTemplate)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTemplate)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaRelationshipTemplate)
+    name: FromHierarchy(Of ToscaAttribute)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaAttribute)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaAttribute)
   - name: (
     nameWithType: (
     fullName: (
@@ -781,17 +758,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaRelationshipTemplate
-    name: ToscaRelationshipTemplate
-    nameWithType: ToscaRelationshipTemplate
-    fullName: Toscana.ToscaRelationshipTemplate
+  - uid: Toscana.ToscaAttribute
+    name: ToscaAttribute
+    nameWithType: ToscaAttribute
+    fullName: Toscana.ToscaAttribute
   - name: )
     nameWithType: )
     fullName: )
@@ -1033,12 +1010,13 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: Toscana.ToscaRelationshipTemplate
-  commentId: T:Toscana.ToscaRelationshipTemplate
+- uid: Toscana.ToscaAttribute
+  commentId: T:Toscana.ToscaAttribute
+  parent: Toscana
   isExternal: false
-  name: ToscaRelationshipTemplate
-  nameWithType: ToscaRelationshipTemplate
-  fullName: Toscana.ToscaRelationshipTemplate
+  name: ToscaAttribute
+  nameWithType: ToscaAttribute
+  fullName: Toscana.ToscaAttribute
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -1046,234 +1024,10 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyAssignment}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyAssignment}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaPropertyAssignment>
-  nameWithType: Dictionary<String, ToscaPropertyAssignment>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaPropertyAssignment>
-  nameWithType.vb: Dictionary(Of String, ToscaPropertyAssignment)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaPropertyAssignment)
-  name.vb: Dictionary(Of String, ToscaPropertyAssignment)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaPropertyAssignment
-    name: ToscaPropertyAssignment
-    nameWithType: ToscaPropertyAssignment
-    fullName: Toscana.ToscaPropertyAssignment
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaPropertyAssignment
-    name: ToscaPropertyAssignment
-    nameWithType: ToscaPropertyAssignment
-    fullName: Toscana.ToscaPropertyAssignment
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.Dictionary`2
-  commentId: T:System.Collections.Generic.Dictionary`2
-  isExternal: true
-  name: Dictionary<TKey, TValue>
-  nameWithType: Dictionary<TKey, TValue>
-  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
-  nameWithType.vb: Dictionary(Of TKey, TValue)
-  fullname.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
-  name.vb: Dictionary(Of TKey, TValue)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
+- uid: Toscana.ToscaPropertyStatus
+  commentId: T:Toscana.ToscaPropertyStatus
+  parent: Toscana
   isExternal: false
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeAssignment}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaAttributeAssignment}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaAttributeAssignment>
-  nameWithType: Dictionary<String, ToscaAttributeAssignment>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaAttributeAssignment>
-  nameWithType.vb: Dictionary(Of String, ToscaAttributeAssignment)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaAttributeAssignment)
-  name.vb: Dictionary(Of String, ToscaAttributeAssignment)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaAttributeAssignment
-    name: ToscaAttributeAssignment
-    nameWithType: ToscaAttributeAssignment
-    fullName: Toscana.ToscaAttributeAssignment
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaAttributeAssignment
-    name: ToscaAttributeAssignment
-    nameWithType: ToscaAttributeAssignment
-    fullName: Toscana.ToscaAttributeAssignment
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterface}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaInterface}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaInterface>
-  nameWithType: Dictionary<String, ToscaInterface>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaInterface>
-  nameWithType.vb: Dictionary(Of String, ToscaInterface)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaInterface)
-  name.vb: Dictionary(Of String, ToscaInterface)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaInterface
-    name: ToscaInterface
-    nameWithType: ToscaInterface
-    fullName: Toscana.ToscaInterface
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaInterface
-    name: ToscaInterface
-    nameWithType: ToscaInterface
-    fullName: Toscana.ToscaInterface
-  - name: )
-    nameWithType: )
-    fullName: )
+  name: ToscaPropertyStatus
+  nameWithType: ToscaPropertyStatus
+  fullName: Toscana.ToscaPropertyStatus

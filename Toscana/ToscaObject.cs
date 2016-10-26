@@ -46,12 +46,29 @@ namespace Toscana
         /// <summary>
         /// Reference to the <see cref="ToscaCloudServiceArchive"/> the entity belongs 
         /// </summary>
-        protected ToscaCloudServiceArchive CloudServiceArchive;
+        private ToscaCloudServiceArchive cloudServiceArchive;
 
         /// <summary>
         /// An optional name of parent entity this new entity derives from.
         /// </summary>
         public string DerivedFrom { get; set; }
+
+        /// <summary>
+        /// Reference to the <see cref="ToscaCloudServiceArchive"/> the entity belongs 
+        /// </summary>
+        protected ToscaCloudServiceArchive GetCloudServiceArchive()
+        {
+            return cloudServiceArchive;
+        }
+
+        /// <summary>
+        /// Sets archive that the node belongs to
+        /// </summary>
+        /// <param name="newCloudServiceArchive"></param>
+        internal void SetCloudServiceArchive(ToscaCloudServiceArchive newCloudServiceArchive)
+        {
+            cloudServiceArchive = newCloudServiceArchive;
+        }
 
         /// <summary>
         /// Returns an entity that this entity derives from.
@@ -71,15 +88,6 @@ namespace Toscana
         }
 
         /// <summary>
-        /// Sets archive that the node belongs to
-        /// </summary>
-        /// <param name="cloudServiceArchive"></param>
-        internal void SetToscaCloudServiceArchive(ToscaCloudServiceArchive cloudServiceArchive)
-        {
-            CloudServiceArchive = cloudServiceArchive;
-        }
-
-        /// <summary>
         /// Sets DerivedFrom to point to root if it's not set
         /// </summary>
         /// <param name="name">Object name</param>
@@ -89,7 +97,7 @@ namespace Toscana
         /// Validates for circular dependency
         /// </summary>
         /// <returns></returns>
-        protected IEnumerable<ValidationResult> ValidateCircularDependency() 
+        internal IEnumerable<ValidationResult> ValidateCircularDependency() 
         {
             List<string> nodeTypeInheritanceList = new List<string>();
             for (var currEntity = this; currEntity != null; currEntity = currEntity.GetDerivedFromEntity())

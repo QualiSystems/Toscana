@@ -22,12 +22,11 @@ namespace Toscana
             {
                 if (toscaNodeType.Value.IsRoot()) continue;
 
-                foreach (var requirement in toscaNodeType.Value.GetAllRequirements().Values)
+                foreach (var requirement in toscaNodeType.Value.GetAllRequirements())
                 {
                     if (requirement.Node == null || 
-                        requirement.Node == ToscaDefaults.ToscaNodesRoot 
-                        // || !cloudServiceArchive.NodeTypes.ContainsKey(requirement.Node)
-                        )
+                        requirement.Node == ToscaDefaults.ToscaNodesRoot ||
+                        !nodeTypes.ContainsKey(requirement.Node))
                     {
                         continue;
                     }

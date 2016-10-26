@@ -11,6 +11,7 @@ using Toscana.Common;
 
 namespace Toscana.Tests
 {
+    // ReSharper disable once TestFileNameWarning
     public class GithubRepositoryTests
     {
         public const string GithubRepositoryZip = "https://github.com/qualisystems/tosca/archive/master.zip";
