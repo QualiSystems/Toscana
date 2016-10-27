@@ -114,6 +114,48 @@ namespace Toscana.Tests
         }
 
         [Test]
+        public void GetAllProperties_Description_Should_Not_Be_Overriden_When_Another_Capability_Type_Overrides_It()
+        {
+            // Arrange
+            var simpleCapabilityType = new ToscaCapabilityType { DerivedFrom = "base" };
+            simpleCapabilityType.Properties.Add("list", new ToscaProperty()
+            {
+                Type = "list", Default = new object[] {}
+            });
+
+            var derivedCapabilityType = new ToscaCapabilityType { DerivedFrom = "base" };
+            derivedCapabilityType.Properties.Add("description", new ToscaProperty
+            {
+                Type = "string",
+                Default = "derived description"
+            });
+            var baseCapabilityType = new ToscaCapabilityType();
+            baseCapabilityType.Properties.Add("description", new ToscaProperty
+            {
+                Type = "string",
+                Default = "base description"
+            });
+
+            var serviceTemplate = new ToscaServiceTemplate { ToscaDefinitionsVersion = "tosca_simple_yaml_1_0" };
+            serviceTemplate.CapabilityTypes.Add("base", baseCapabilityType);
+            serviceTemplate.CapabilityTypes.Add("derived", derivedCapabilityType);
+            serviceTemplate.CapabilityTypes.Add("simple", simpleCapabilityType);
+            var cloudServiceArchive = new ToscaCloudServiceArchive(new ToscaMetadata { CreatedBy = "Anonymous", CsarVersion = new Version(1, 1), EntryDefinitions = "tosca.yaml", ToscaMetaFileVersion = new Version(1, 1) });
+            cloudServiceArchive.AddToscaServiceTemplate("tosca.yaml", serviceTemplate);
+
+            List<ValidationResult> validationResults;
+            cloudServiceArchive.TryValidate(out validationResults)
+                .Should().BeTrue(string.Join(Environment.NewLine, validationResults.Select(r => r.ErrorMessage)));
+
+            // Act
+            var descriptionProperty = derivedCapabilityType.GetAllProperties()["description"];
+            descriptionProperty = simpleCapabilityType.GetAllProperties()["description"];
+
+            // Assert
+            descriptionProperty.Default.Should().Be("base description");
+        }
+
+        [Test]
         public void GetAllProperties_Does_Not_Override_Base_Properties()
         {
             // Arrange
