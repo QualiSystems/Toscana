@@ -138,5 +138,14 @@ namespace Toscana
         {
             Constraints = constraints.Select(c => new Dictionary<string, object> {{c.Key, c.Value}}).ToList();
         }
+
+        /// <summary>
+        /// Clones the property 
+        /// </summary>
+        /// <returns>A new instance of property with same attribute values</returns>
+        public ToscaProperty Clone()
+        {
+            return (ToscaProperty) MemberwiseClone();
+        }
     }
 }

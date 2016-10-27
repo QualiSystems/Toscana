@@ -30,7 +30,7 @@ namespace Toscana.Engine
             var mergedProperties = new Dictionary<string, ToscaProperty>();
             foreach (var property in combinedProperties)
             {
-                var mergedProperty = property.Value.Last();
+                var mergedProperty = property.Value.Last().Clone();
                 if (property.Value.Count > 1)
                 {
                     for (int i = property.Value.Count - 2; i >= 0; i--)
