@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaImport.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaImport
     path: Toscana/ToscaImport.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaImport.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: File
     path: Toscana/ToscaImport.cs
@@ -119,7 +119,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaImport.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Repository
     path: Toscana/ToscaImport.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaImport.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: NamespaceUri
     path: Toscana/ToscaImport.cs
@@ -191,7 +191,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaImport.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: NamespacePrefix
     path: Toscana/ToscaImport.cs
@@ -227,7 +227,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaImport.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaImport.cs

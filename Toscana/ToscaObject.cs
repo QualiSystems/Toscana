@@ -99,14 +99,14 @@ namespace Toscana
         /// <returns></returns>
         internal IEnumerable<ValidationResult> ValidateCircularDependency() 
         {
-            List<string> nodeTypeInheritanceList = new List<string>();
+            List<string> inheritanceList = new List<string>();
             for (var currEntity = this; currEntity != null; currEntity = currEntity.GetDerivedFromEntity())
             {
-                if (nodeTypeInheritanceList.Contains(currEntity.DerivedFrom))
+                if (inheritanceList.Contains(currEntity.DerivedFrom))
                 {
                     return new [] {new ValidationResult(string.Format("Circular dependency detected on {0}: '{1}'", GetEntityName(), currEntity.DerivedFrom), new[] { "DerivedFrom" })};
                 }
-                nodeTypeInheritanceList.Add(currEntity.DerivedFrom);
+                inheritanceList.Add(currEntity.DerivedFrom);
             }
             return Empty<ValidationResult>();
         }

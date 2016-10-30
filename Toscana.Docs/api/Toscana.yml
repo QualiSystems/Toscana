@@ -214,6 +214,7 @@ references:
   fullName: Toscana.ToscaPropertyAssignment
 - uid: Toscana.ToscaProperty
   commentId: T:Toscana.ToscaProperty
+  parent: Toscana
   isExternal: false
   name: ToscaProperty
   nameWithType: ToscaProperty

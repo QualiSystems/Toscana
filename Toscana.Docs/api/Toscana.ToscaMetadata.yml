@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaMetadata.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetadata
     path: Toscana/ToscaMetadata.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaMetadata.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetaFileVersion
     path: Toscana/ToscaMetadata.cs
@@ -135,7 +135,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaMetadata.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: CsarVersion
     path: Toscana/ToscaMetadata.cs
@@ -201,7 +201,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaMetadata.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: CreatedBy
     path: Toscana/ToscaMetadata.cs
@@ -267,7 +267,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaMetadata.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntryDefinitions
     path: Toscana/ToscaMetadata.cs
