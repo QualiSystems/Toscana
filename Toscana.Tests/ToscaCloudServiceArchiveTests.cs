@@ -614,5 +614,35 @@ data_types:
                 cloudServiceArchive.TryValidate(out results).Should().BeTrue(string.Join(Environment.NewLine, results));
             }
         }
+
+        [Test]
+        public void Validation_Shall_Fail_When_Circular_Dependency_Detected_Between_Imports()
+        {
+            // Arrange
+            var toscaMetadata = new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1, 2),
+                EntryDefinitions = "definitions.yaml",
+                ToscaMetaFileVersion = new Version(1, 0)
+            };
+            var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+
+            var definitions = new ToscaServiceTemplate {ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"};
+            definitions.Imports.Add(new Dictionary<string, ToscaImport>{ {"import", new ToscaImport { File = "import.yaml"} } });
+
+            var import = new ToscaServiceTemplate {ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"};
+            import.Imports.Add(new Dictionary<string, ToscaImport> { {"import", new ToscaImport { File = "definitions.yaml" } } });
+
+            cloudServiceArchive.AddToscaServiceTemplate("import.yaml", import);
+            cloudServiceArchive.AddToscaServiceTemplate("definitions.yaml", definitions);
+
+            // Act
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results);
+            
+            // Assert
+            results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on import \'import.yaml\'"));
+        }
     }
 }

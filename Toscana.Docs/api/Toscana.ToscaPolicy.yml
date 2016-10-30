@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPolicy.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaPolicy
     path: Toscana/ToscaPolicy.cs
@@ -66,7 +66,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPolicy.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaPolicy.cs
@@ -97,7 +97,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPolicy.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaPolicy.cs
@@ -150,7 +150,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPolicy.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaPolicy.cs
@@ -186,7 +186,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPolicy.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaPolicy.cs
@@ -222,7 +222,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaPolicy.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Targets
     path: Toscana/ToscaPolicy.cs

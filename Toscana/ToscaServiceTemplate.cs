@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 using Toscana.Common;
 using Toscana.Engine;
 using Toscana.Exceptions;
@@ -135,6 +136,11 @@ namespace Toscana
         {
             var toscaServiceTemplateSaver = Bootstrapper.Current.GetToscaServiceTemplateSaver();
             toscaServiceTemplateSaver.Save(path, this);
+        }
+
+        internal List<ToscaImport> GetImports()
+        {
+            return Imports.SelectMany(i=>i).Select(r=>r.Value).ToList();
         }
     }
 }

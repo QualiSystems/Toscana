@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaInterface.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaInterface
     path: Toscana/ToscaInterface.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaInterface.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaInterface.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaInterface.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Inputs
     path: Toscana/ToscaInterface.cs

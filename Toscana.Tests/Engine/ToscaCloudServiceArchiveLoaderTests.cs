@@ -776,5 +776,39 @@ node_types:
 
             action.ShouldThrow<ToscaInvalidFileException>("Load Tosca CSAR should not support non zip files");
         }
+
+        [Test]
+        public void Validation_Shall_Fail_When_Circular_Dependency_Detected_Between_Imports()
+        {
+            var toscaMetaContent = @"
+TOSCA-Meta-File-Version: 1.1.2
+CSAR-Version: 1.1.2
+Created-By: Anonymous
+Entry-Definitions: definitions.yaml";
+
+            var definitionsContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - import: import.yaml";
+
+            var importContent = @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+imports:
+  - import: definitions.yaml";
+            var fileContents = new List<FileContent>
+            {
+                new FileContent(@"TOSCA-Metadata/TOSCA.meta", toscaMetaContent),
+                new FileContent("definitions.yaml", definitionsContent),
+                new FileContent("import.yaml", importContent),
+            };
+
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+
+            // Act
+            Action action = () => toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            action.ShouldThrow<ToscaValidationException>().WithMessage("Circular dependency detected on import 'import.yaml'");
+        }
     }
 }

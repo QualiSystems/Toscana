@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapability
     path: Toscana/ToscaCapability.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCapability.cs
@@ -99,7 +99,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaCapability.cs
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaCapability.cs
@@ -188,7 +188,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaCapability.cs
@@ -224,7 +224,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaCapability.cs
@@ -260,7 +260,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ValidSourceTypes
     path: Toscana/ToscaCapability.cs
@@ -296,7 +296,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCapability.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaCapability.cs

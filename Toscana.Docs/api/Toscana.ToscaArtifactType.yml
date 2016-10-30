@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaArtifactType
     path: Toscana/ToscaArtifactType.cs
@@ -80,7 +80,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaArtifactType.cs
@@ -111,7 +111,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaArtifactType.cs
@@ -147,7 +147,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaArtifactType.cs
@@ -183,7 +183,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: MimeType
     path: Toscana/ToscaArtifactType.cs
@@ -219,7 +219,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: FileExt
     path: Toscana/ToscaArtifactType.cs
@@ -255,7 +255,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaArtifactType.cs
@@ -291,7 +291,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetDerivedFromEntity
     path: Toscana/ToscaArtifactType.cs
@@ -327,7 +327,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaArtifactType.cs
@@ -366,7 +366,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaArtifactType.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaArtifactType.cs

@@ -7,6 +7,7 @@ items:
   children:
   - Toscana.ToscaProperty.#ctor
   - Toscana.ToscaProperty.AddConstraint(System.String,System.Object)
+  - Toscana.ToscaProperty.Clone
   - Toscana.ToscaProperty.Constraints
   - Toscana.ToscaProperty.Default
   - Toscana.ToscaProperty.Description
@@ -29,7 +30,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaProperty
     path: Toscana/ToscaProperty.cs
@@ -79,7 +80,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaProperty.cs
@@ -110,7 +111,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaProperty.cs
@@ -163,7 +164,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaProperty.cs
@@ -199,7 +200,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Required
     path: Toscana/ToscaProperty.cs
@@ -235,7 +236,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Default
     path: Toscana/ToscaProperty.cs
@@ -271,7 +272,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Status
     path: Toscana/ToscaProperty.cs
@@ -307,7 +308,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaProperty.cs
@@ -343,7 +344,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntrySchema
     path: Toscana/ToscaProperty.cs
@@ -379,7 +380,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: Tags
     path: Toscana/ToscaProperty.cs
@@ -415,7 +416,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: StringValue
     path: Toscana/ToscaProperty.cs
@@ -462,7 +463,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaProperty.cs
@@ -496,7 +497,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddConstraint
     path: Toscana/ToscaProperty.cs
@@ -534,7 +535,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetConstraintsDictionary
     path: Toscana/ToscaProperty.cs
@@ -568,7 +569,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetConstraints
     path: Toscana/ToscaProperty.cs
@@ -592,6 +593,40 @@ items:
   - Public
   fullName.vb: Toscana.ToscaProperty.SetConstraints(System.Collections.Generic.Dictionary(Of System.String, System.Object))
   name.vb: SetConstraints(Dictionary(Of String, Object))
+- uid: Toscana.ToscaProperty.Clone
+  commentId: M:Toscana.ToscaProperty.Clone
+  id: Clone
+  parent: Toscana.ToscaProperty
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: ToscaProperty.Clone()
+  fullName: Toscana.ToscaProperty.Clone()
+  type: Method
+  source:
+    remote:
+      path: Toscana/ToscaProperty.cs
+      branch: feature/borismod_loop
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Clone
+    path: Toscana/ToscaProperty.cs
+    startLine: 145
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nClones the property \n"
+  example: []
+  syntax:
+    content: public ToscaProperty Clone()
+    content.vb: Public Function Clone As ToscaProperty
+    return:
+      type: Toscana.ToscaProperty
+      description: A new instance of property with same attribute values
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 references:
 - uid: Toscana
   commentId: N:Toscana
@@ -1778,3 +1813,10 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Toscana.ToscaProperty
+  commentId: T:Toscana.ToscaProperty
+  parent: Toscana
+  isExternal: false
+  name: ToscaProperty
+  nameWithType: ToscaProperty
+  fullName: Toscana.ToscaProperty
