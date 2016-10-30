@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaServiceTemplateAlreadyExistsException
     path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
@@ -205,7 +205,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaServiceTemplateAlreadyExistsException.cs

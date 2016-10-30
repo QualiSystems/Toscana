@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: IDerivableToscaEntity
     path: Toscana/ToscaObject.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: DerivedFrom
     path: Toscana/ToscaObject.cs
@@ -98,7 +98,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetDerivedFromEntity
     path: Toscana/ToscaObject.cs
@@ -129,7 +129,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: IsRoot
     path: Toscana/ToscaObject.cs
@@ -161,7 +161,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaObject.cs
-      branch: master
+      branch: feature/borismod_loop
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaObject.cs

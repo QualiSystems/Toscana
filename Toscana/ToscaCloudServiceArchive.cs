@@ -86,6 +86,11 @@ Examples of valid values for an “type” of “Linux” would include:  debian
                     return validationResults.Concat(circularDependencyValidationResults);
                 }
             }
+
+            var importCircularValidationResults = ValidateImportsCircularDependency();
+            if ( importCircularValidationResults.Any())
+                    return validationResults.Concat(importCircularValidationResults);
+
             if (!validationResults.Any())
             {
                 var requirementsGraph = new ToscaNodeTypeRequirementsGraph(this);
@@ -95,6 +100,29 @@ Examples of valid values for an “type” of “Linux” would include:  debian
                 }
             }
             return validationResults;
+        }
+
+        private List<ValidationResult> ValidateImportsCircularDependency()
+        {
+            var imports = new HashSet<string>();
+            return ValidationImportsRecuresively(imports, GetEntryPointServiceTemplate());
+        }
+
+        private List<ValidationResult> ValidationImportsRecuresively(HashSet<string> imports, ToscaServiceTemplate serviceTemplate)
+        {
+            foreach (var import in serviceTemplate.GetImports())
+            {
+                if (imports.Contains(import.File))
+                {
+                    return new List<ValidationResult>
+                    {
+                        new ValidationResult(string.Format("Circular dependency detected on import '{0}'", import.File))
+                    };
+                }
+                imports.Add(import.File);
+                return ValidationImportsRecuresively(imports, ToscaServiceTemplates[import.File]);
+            }
+            return new List<ValidationResult>();
         }
 
         #endregion
