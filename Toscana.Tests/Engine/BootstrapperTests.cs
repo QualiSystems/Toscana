@@ -10,8 +10,7 @@ namespace Toscana.Tests.Engine
         [Test]
         public void GetToscaCloudServiceArchiveLoader_Should_Return_Not_Null()
         {
-            var bootstrapper = new Bootstrapper();
-            var toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
+            var toscaCloudServiceArchiveLoader = Bootstrapper.GetToscaCloudServiceArchiveLoader();
 
             toscaCloudServiceArchiveLoader.Should().NotBeNull();
         }
@@ -19,8 +18,7 @@ namespace Toscana.Tests.Engine
         [Test]
         public void GetToscaServiceTemplateLoader_Should_Return_Not_Null()
         {
-            var bootstrapper = new Bootstrapper();
-            var toscaServiceTemplateLoader = bootstrapper.GetToscaServiceTemplateLoader();
+            var toscaServiceTemplateLoader = Bootstrapper.GetToscaServiceTemplateLoader();
 
             toscaServiceTemplateLoader.Should().NotBeNull();
         }
@@ -28,8 +26,7 @@ namespace Toscana.Tests.Engine
         [Test]
         public void GetToscaServiceTemplateParser_Should_Return_Not_Null()
         {
-            var bootstrapper = new Bootstrapper();
-            var toscaServiceTemplateParser = bootstrapper.GetToscaServiceTemplateParser();
+            var toscaServiceTemplateParser = Bootstrapper.GetToscaServiceTemplateParser();
 
             toscaServiceTemplateParser.Should().NotBeNull();
         }
@@ -37,8 +34,7 @@ namespace Toscana.Tests.Engine
         [Test]
         public void GetToscaServiceTemplateSaver_Should_Return_Not_Null()
         {
-            var bootstrapper = new Bootstrapper();
-            var serviceTemplateSaver = bootstrapper.GetToscaServiceTemplateSaver();
+            var serviceTemplateSaver = Bootstrapper.GetToscaServiceTemplateSaver();
 
             serviceTemplateSaver.Should().NotBeNull();
         }

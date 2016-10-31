@@ -3,15 +3,11 @@ using System.IO.Abstractions;
 
 namespace Toscana.Engine
 {
-    internal class Bootstrapper
+    internal static class Bootstrapper
     {
-        public static Bootstrapper Current = new Bootstrapper();
-
-        private readonly SimpleIocContainer container;
-
-        internal Bootstrapper()
+        static Bootstrapper()
         {
-            container = new SimpleIocContainer();
+            var container = new SimpleIocContainer();
             container.Register<IFileSystem, FileSystem>();
             container.Register<IToscaValidator<ToscaMetadata>, ToscaValidator<ToscaMetadata>>();
             container.Register<IToscaValidator<ToscaServiceTemplate>, ToscaValidator<ToscaServiceTemplate>>();
@@ -41,63 +37,57 @@ namespace Toscana.Engine
                     new ToscaFloatDataTypeConverter(),
                     new ToscaNullDataTypeConverter()
                 }));
+            DependencyResolver.SetResolver(container);
         }
 
-        internal IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
+        internal static IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()
         {
-            return container.GetInstance<IToscaParser<ToscaServiceTemplate>>();
+            return DependencyResolver.Current.GetService<IToscaParser<ToscaServiceTemplate>>();
         }
 
-        internal IToscaServiceTemplateLoader GetToscaServiceTemplateLoader()
+        internal static IToscaServiceTemplateLoader GetToscaServiceTemplateLoader()
         {
-            return container.GetInstance<IToscaServiceTemplateLoader>();
+            return DependencyResolver.Current.GetService<IToscaServiceTemplateLoader>();
         }
 
-        internal IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
+        internal static IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
         {
-            return container.GetInstance<IToscaCloudServiceArchiveLoader>();
+            return DependencyResolver.Current.GetService<IToscaCloudServiceArchiveLoader>();
         }
 
-        public Bootstrapper Replace<T>(T instance)
+        internal static IToscaParser<ToscaMetadata> GetToscaMetadataParser()
         {
-            container.RegisterSingleton(instance);
-            return this;
+            return DependencyResolver.Current.GetService<IToscaParser<ToscaMetadata>>();
         }
 
-        internal IToscaParser<ToscaMetadata> GetToscaMetadataParser()
+        internal static ICloudServiceArchiveValidator GetToscaCloudServiceValidator()
         {
-            return container.GetInstance<IToscaParser<ToscaMetadata>>();
+            return DependencyResolver.Current.GetService<ICloudServiceArchiveValidator>();
         }
 
-        internal ICloudServiceArchiveValidator GetToscaCloudServiceValidator()
+        internal static IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
         {
-            return container.GetInstance<ICloudServiceArchiveValidator>();
+            return DependencyResolver.Current.GetService<IToscaCloudServiceArchiveSaver>();
         }
 
-        internal IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()
+        internal static IToscaDataTypeValueConverter GetParser(string type)
         {
-            return container.GetInstance<IToscaCloudServiceArchiveSaver>();
+            return DependencyResolver.Current.GetService<IToscaParserFactory>().GetParser(type);
         }
 
-        internal IToscaDataTypeValueConverter GetParser<T>(string type)
+        internal static IToscaSerializer<ToscaServiceTemplate> GetToscaServiceTemplateSerializer()
         {
-            var toscaParserFactory = container.GetInstance<IToscaParserFactory>();
-            return toscaParserFactory.GetParser(type);
+            return DependencyResolver.Current.GetService<IToscaSerializer<ToscaServiceTemplate>>();
         }
 
-        internal IToscaSerializer<ToscaServiceTemplate> GetToscaServiceTemplateSerializer()
+        internal static IToscaFileSystemSaver<ToscaServiceTemplate> GetToscaServiceTemplateSaver()
         {
-            return container.GetInstance<IToscaSerializer<ToscaServiceTemplate>>();
+            return DependencyResolver.Current.GetService<IToscaFileSystemSaver<ToscaServiceTemplate>>();
         }
 
-        internal IToscaFileSystemSaver<ToscaServiceTemplate> GetToscaServiceTemplateSaver()
+        internal static IToscaPropertyMerger GetPropertyMerger()
         {
-            return container.GetInstance<IToscaFileSystemSaver<ToscaServiceTemplate>>();
+            return DependencyResolver.Current.GetService<IToscaPropertyMerger>();
         }
-
-        internal IToscaPropertyMerger GetPropertyMerger()
-        {
-            return container.GetInstance<IToscaPropertyMerger>();
-        }
-    }
+   }
 }

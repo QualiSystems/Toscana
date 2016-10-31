@@ -133,7 +133,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <param name="stream">Stream to save</param>
         public void Save(Stream stream)
         {
-            var cloudServiceArchiveSaver = Bootstrapper.Current.GetToscaCloudServiceArchiveSaver();
+            var cloudServiceArchiveSaver = Bootstrapper.GetToscaCloudServiceArchiveSaver();
             cloudServiceArchiveSaver.Save(this, stream);
         }
 
@@ -143,7 +143,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <param name="filePath">Path to file to save</param>
         public void Save(string filePath)
         {
-            var toscaCloudServiceArchiveSaver = Bootstrapper.Current.GetToscaCloudServiceArchiveSaver();
+            var toscaCloudServiceArchiveSaver = Bootstrapper.GetToscaCloudServiceArchiveSaver();
             toscaCloudServiceArchiveSaver.Save(this, filePath);
         }
 
@@ -395,7 +395,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         /// <returns>True if valid, false otherwise</returns>
         public bool TryValidate(out List<ValidationResult> validationResults)
         {
-            var cloudServiceValidator = Bootstrapper.Current.GetToscaCloudServiceValidator();
+            var cloudServiceValidator = Bootstrapper.GetToscaCloudServiceValidator();
             return cloudServiceValidator.ValidateCloudServiceArchive(this, out validationResults);
         }
 
@@ -431,7 +431,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
 
         private static IToscaCloudServiceArchiveLoader GetToscaCloudServiceArchiveLoader()
         {
-            return Bootstrapper.Current.GetToscaCloudServiceArchiveLoader();
+            return Bootstrapper.GetToscaCloudServiceArchiveLoader();
         }
 
         private ValidationResult CreateCapabilityTypeValidationResult(string nodeTypeName, string capabilityType,
