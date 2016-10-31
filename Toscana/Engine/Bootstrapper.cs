@@ -5,7 +5,7 @@ namespace Toscana.Engine
 {
     internal static class Bootstrapper
     {
-        static Bootstrapper()
+        internal static SimpleIocContainer RegisterTypes()
         {
             var container = new SimpleIocContainer();
             container.Register<IFileSystem, FileSystem>();
@@ -37,7 +37,7 @@ namespace Toscana.Engine
                     new ToscaFloatDataTypeConverter(),
                     new ToscaNullDataTypeConverter()
                 }));
-            DependencyResolver.SetResolver(container);
+            return container;
         }
 
         internal static IToscaParser<ToscaServiceTemplate> GetToscaServiceTemplateParser()

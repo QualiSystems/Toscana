@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using Toscana.Engine;
 
 namespace Toscana
 {
@@ -47,6 +48,11 @@ namespace Toscana
     /// </summary>
     public class DependencyResolver
     {
+        static DependencyResolver()
+        {
+            SetResolver(Bootstrapper.RegisterTypes());
+        }
+
         private static readonly DependencyResolver Instance = new DependencyResolver();
 
         private IDependencyResolver current;
