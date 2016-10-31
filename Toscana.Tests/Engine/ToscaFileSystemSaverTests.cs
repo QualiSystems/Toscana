@@ -15,9 +15,8 @@ namespace Toscana.Tests.Engine
         public void It_Is_Possible_To_Save_Service_Template_To_File()
         {
             var mockFileSystem = new MockFileSystem();
-            var bootstrapper = new Bootstrapper();
             var serviceTemplateSaver = new ToscaFileSystemSaver<ToscaServiceTemplate>(mockFileSystem,
-                bootstrapper.GetToscaServiceTemplateSerializer());
+                Bootstrapper.GetToscaServiceTemplateSerializer());
 
             var serviceTemplate = new ToscaServiceTemplate
             {
@@ -36,9 +35,9 @@ namespace Toscana.Tests.Engine
             mockFileSystem.AddDirectory(@"C:\Dir\SubDir");
             var filePath = @"C:\Dir\SubDir\service_template.yml";
 
-            var bootstrapper = new Bootstrapper().Replace<IFileSystem>(mockFileSystem);
-            var serviceTemplateSaver = bootstrapper.GetToscaServiceTemplateSaver();
-            var serviceTemplateLoader = bootstrapper.GetToscaServiceTemplateLoader();
+            DependencyResolver.Current.Replace(mockFileSystem);
+            var serviceTemplateSaver = Bootstrapper.GetToscaServiceTemplateSaver();
+            var serviceTemplateLoader = Bootstrapper.GetToscaServiceTemplateLoader();
 
             #region Prepare a YAML file with some definitions
 
