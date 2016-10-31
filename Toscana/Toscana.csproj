@@ -94,6 +94,7 @@
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\ZipArchiveExtensions.cs" />
+    <Compile Include="DependencyResolver.cs" />
     <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\Bootstrapper.cs" />
     <Compile Include="Engine\ToscaFileSystemSaver.cs" />

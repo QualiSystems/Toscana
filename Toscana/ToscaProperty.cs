@@ -82,12 +82,12 @@ namespace Toscana
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            var validatuResults = new List<ValidationResult>();
+            var validationResults = new List<ValidationResult>();
 
             var validValuesConstraint = Constraints.FirstOrDefault(c => c.ContainsKey(ValidValues));
             if (validValuesConstraint != null)
             {
-                var parser = Bootstrapper.Current.GetParser<object>(Type);
+                var parser = Bootstrapper.GetParser(Type);
                 var validValues = validValuesConstraint[ValidValues];
                 if (!(validValues is List<object>))
                 {
@@ -100,7 +100,7 @@ namespace Toscana
                     object result;
                     if (!parser.TryParse(validValue, out result))
                     {
-                        validatuResults.Add(
+                        validationResults.Add(
                             new ValidationResult(
                                 String.Format(
                                     "Value '{0}' of constraint '{1}' cannot be parsed according to property data type '{2}'",
@@ -108,7 +108,7 @@ namespace Toscana
                     }
                 }
             }
-            return validatuResults;
+            return validationResults;
         }
 
         /// <summary>

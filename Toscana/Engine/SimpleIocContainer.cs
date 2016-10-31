@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace Toscana.Engine
 {
-    internal class SimpleIocContainer
+    internal class SimpleIocContainer : IDependencyResolver
     {
         private readonly Dictionary<Type, Func<object>> registrations = new Dictionary<Type, Func<object>>();
 
         public void Register<TService, TImpl>() where TImpl : TService
         {
-            registrations.Add(typeof (TService), () => GetInstance(typeof (TImpl)));
+            registrations[typeof (TService)] = () => GetInstance(typeof (TImpl));
         }
 
         public void Register<TService>(Func<TService> instanceCreator)
         {
-            registrations.Add(typeof (TService), () => instanceCreator());
+            registrations[typeof (TService)] = () => instanceCreator();
         }
 
         public void RegisterSingleton<TService>(TService instance)
@@ -60,6 +60,26 @@ namespace Toscana.Engine
             var parameterTypes = ctor.GetParameters().Select(p => p.ParameterType);
             var dependencies = parameterTypes.Select(t => GetInstance(t)).ToArray();
             return Activator.CreateInstance(implementationType, dependencies);
+        }
+
+        public object GetService(Type serviceType)
+        {
+            return GetInstance(serviceType);
+        }
+
+        public IEnumerable<object> GetServices(Type serviceType)
+        {
+            return new []{ GetInstance(serviceType) };
+        }
+
+        public T GetService<T>()
+        {
+            return GetInstance<T>();
+        }
+
+        public void Replace<T>(T instance)
+        {
+            Register(() => instance);
         }
     }
 }

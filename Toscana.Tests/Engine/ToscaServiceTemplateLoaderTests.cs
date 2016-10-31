@@ -21,7 +21,7 @@ node_types:
           num_cpus:
             type: integer
 "));
-            var serviceTemplateLoader = new ToscaServiceTemplateLoader(fileSystem, new Bootstrapper().GetToscaServiceTemplateParser());
+            var serviceTemplateLoader = new ToscaServiceTemplateLoader(fileSystem, Bootstrapper.GetToscaServiceTemplateParser());
             var serviceTemplate = serviceTemplateLoader.Load("some_defs.yaml");
 
             serviceTemplate.Description.Should().Be("Common definitions");

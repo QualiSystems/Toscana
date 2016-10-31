@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
+using System.Net;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
@@ -17,9 +18,8 @@ namespace Toscana.Tests.Engine
         public void SetUp()
         {
             fileSystem = new MockFileSystem();
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Replace<IFileSystem>(fileSystem);
-            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
+            DependencyResolver.Current.Replace<IFileSystem>(fileSystem);
+            toscaCloudServiceArchiveLoader = Bootstrapper.GetToscaCloudServiceArchiveLoader();
         }
 
         private MockFileSystem fileSystem;
@@ -28,11 +28,6 @@ namespace Toscana.Tests.Engine
         [Test]
         public void Archive_With_Two_Templates_One_Of_Them_Resides_In_Alternative_Path_Loaded()
         {
-            var mockFileSystem = new MockFileSystem();
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Replace<IFileSystem>(mockFileSystem);
-            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
-
             // Arrange
             var toscaMetaContent = @"
 TOSCA-Meta-File-Version: 1.0
@@ -58,8 +53,8 @@ node_types:
                 new FileContent(@"definitions\tosca_elk.yaml", toscaSimpleProfileContent)
             };
 
-            mockFileSystem.CreateArchive("tosca.zip", fileContents);
-            mockFileSystem.AddFile(
+            fileSystem.CreateArchive("tosca.zip", fileContents);
+            fileSystem.AddFile(
                 @"c:\alternative\base.yaml",
                 new MockFileData(
                     @"tosca_definitions_version: tosca_simple_yaml_1_0
@@ -148,11 +143,6 @@ node_types:
             GetEntryLeafNodeTypes_Returns_Derived_Node_Type_In_Archive_With_A_Template_Containing_Base_And_Derived_Node_Types
             ()
         {
-            var mockFileSystem = new MockFileSystem();
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Replace<IFileSystem>(mockFileSystem);
-            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
-
             // Arrange
             const string toscaMetaContent =
                 @"TOSCA-Meta-File-Version: 1.0
@@ -179,7 +169,7 @@ node_types:
                 new FileContent("tosca.yaml", derivedTosca)
             };
 
-            mockFileSystem.CreateArchive("tosca.zip", fileContents);
+            fileSystem.CreateArchive("tosca.zip", fileContents);
 
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
@@ -355,11 +345,6 @@ INVALID";
         [Test]
         public void Tosca_Defaults_Should_Be_Loaded()
         {
-            var mockFileSystem = new MockFileSystem();
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Replace<IFileSystem>(mockFileSystem);
-            toscaCloudServiceArchiveLoader = bootstrapper.GetToscaCloudServiceArchiveLoader();
-
             // Arrange
             const string toscaMetaContent =
                 @"
@@ -386,7 +371,7 @@ node_types:
                 new FileContent("tosca.yaml", toscaTemplate)
             };
 
-            mockFileSystem.CreateArchive("tosca.zip", fileContents);
+            fileSystem.CreateArchive("tosca.zip", fileContents);
 
             // Act
             var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
