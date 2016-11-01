@@ -151,7 +151,7 @@ namespace Toscana
         /// <exception cref="ToscaNodeTypeNotFoundException">Thrown when Node Type pointed by Derived From not found</exception>
         public IReadOnlyDictionary<string, ToscaProperty> GetAllProperties()
         {
-            return Bootstrapper.GetPropertyMerger().CombineAndMerge(this);
+            return DependencyResolver.GetPropertyMerger().CombineAndMerge(this);
         }
 
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)

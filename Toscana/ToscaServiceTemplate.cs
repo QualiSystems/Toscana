@@ -102,7 +102,7 @@ namespace Toscana
         /// <exception cref="ToscaParsingException">Thrown when YAML is not valid</exception>
         public static ToscaServiceTemplate Load(Stream stream)
         {
-            var toscaServiceTemplateParser = Bootstrapper.GetToscaServiceTemplateParser();
+            var toscaServiceTemplateParser = DependencyResolver.GetToscaServiceTemplateParser();
             return toscaServiceTemplateParser.Parse(stream);
         }
 
@@ -114,7 +114,7 @@ namespace Toscana
         /// <exception cref="ToscaParsingException">Thrown when file is not valid according to YAML or TOSCA</exception>
         public static ToscaServiceTemplate Load(string filePath)
         {
-            var toscaServiceTemplateParser = Bootstrapper.GetToscaServiceTemplateLoader();
+            var toscaServiceTemplateParser = DependencyResolver.GetToscaServiceTemplateLoader();
             return toscaServiceTemplateParser.Load(filePath);
         }
 
@@ -124,7 +124,7 @@ namespace Toscana
         /// <param name="stream">Stream to save</param>
         public void Save(Stream stream)
         {
-            var toscaServiceTemplateSerializer = Bootstrapper.GetToscaServiceTemplateSerializer();
+            var toscaServiceTemplateSerializer = DependencyResolver.GetToscaServiceTemplateSerializer();
             toscaServiceTemplateSerializer.Serialize(stream, this);
         }
 
@@ -134,7 +134,7 @@ namespace Toscana
         /// <param name="path">File path to save</param>
         public void Save(string path)
         {
-            var toscaServiceTemplateSaver = Bootstrapper.GetToscaServiceTemplateSaver();
+            var toscaServiceTemplateSaver = DependencyResolver.GetToscaServiceTemplateSaver();
             toscaServiceTemplateSaver.Save(path, this);
         }
 

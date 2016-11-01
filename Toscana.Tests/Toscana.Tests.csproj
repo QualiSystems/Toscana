@@ -72,7 +72,8 @@
   <ItemGroup>
     <Compile Include="Common\RestrictedValuesAttributeTests.cs" />
     <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
-    <Compile Include="Engine\BootstrapperTests.cs" />
+    <Compile Include="CustomerTests.cs" />
+    <Compile Include="Engine\DependencyResolverTests.cs" />
     <Compile Include="Engine\FileSystemExtentions.cs" />
     <Compile Include="Engine\ToscaFileSystemSaverTests.cs" />
     <Compile Include="Engine\PathEqualityComparerTests.cs" />

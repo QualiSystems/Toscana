@@ -96,7 +96,7 @@
     <Compile Include="Common\ZipArchiveExtensions.cs" />
     <Compile Include="DependencyResolver.cs" />
     <Compile Include="Engine\Bfs.cs" />
-    <Compile Include="Engine\Bootstrapper.cs" />
+    <Compile Include="Engine\DependencyResolver.cs" />
     <Compile Include="Engine\ToscaFileSystemSaver.cs" />
     <Compile Include="Engine\ToscaBooleanDataTypeConverter.cs" />
     <Compile Include="Engine\ToscaFloatDataTypeConverter.cs" />

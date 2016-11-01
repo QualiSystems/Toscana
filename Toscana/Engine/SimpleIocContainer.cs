@@ -62,16 +62,6 @@ namespace Toscana.Engine
             return Activator.CreateInstance(implementationType, dependencies);
         }
 
-        public object GetService(Type serviceType)
-        {
-            return GetInstance(serviceType);
-        }
-
-        public IEnumerable<object> GetServices(Type serviceType)
-        {
-            return new []{ GetInstance(serviceType) };
-        }
-
         public T GetService<T>()
         {
             return GetInstance<T>();
