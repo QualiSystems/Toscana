@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using NUnit.Framework;
@@ -16,7 +15,7 @@ namespace Toscana.Tests.Engine
         {
             var mockFileSystem = new MockFileSystem();
             var serviceTemplateSaver = new ToscaFileSystemSaver<ToscaServiceTemplate>(mockFileSystem,
-                Bootstrapper.GetToscaServiceTemplateSerializer());
+                DependencyResolver.GetToscaServiceTemplateSerializer());
 
             var serviceTemplate = new ToscaServiceTemplate
             {
@@ -36,8 +35,8 @@ namespace Toscana.Tests.Engine
             var filePath = @"C:\Dir\SubDir\service_template.yml";
 
             DependencyResolver.Current.Replace(mockFileSystem);
-            var serviceTemplateSaver = Bootstrapper.GetToscaServiceTemplateSaver();
-            var serviceTemplateLoader = Bootstrapper.GetToscaServiceTemplateLoader();
+            var serviceTemplateSaver = DependencyResolver.GetToscaServiceTemplateSaver();
+            var serviceTemplateLoader = DependencyResolver.GetToscaServiceTemplateLoader();
 
             #region Prepare a YAML file with some definitions
 
