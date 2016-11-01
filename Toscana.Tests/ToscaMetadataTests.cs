@@ -15,7 +15,7 @@ namespace Toscana.Tests
         [SetUp]
         public void SetUp()
         {
-            metadataParser = Bootstrapper.GetToscaMetadataParser();
+            metadataParser = DependencyResolver.GetToscaMetadataParser();
         }
 
         [Test]

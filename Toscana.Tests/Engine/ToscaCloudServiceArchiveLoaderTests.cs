@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
-using System.Net;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Engine;
@@ -19,7 +17,7 @@ namespace Toscana.Tests.Engine
         {
             fileSystem = new MockFileSystem();
             DependencyResolver.Current.Replace<IFileSystem>(fileSystem);
-            toscaCloudServiceArchiveLoader = Bootstrapper.GetToscaCloudServiceArchiveLoader();
+            toscaCloudServiceArchiveLoader = DependencyResolver.GetToscaCloudServiceArchiveLoader();
         }
 
         private MockFileSystem fileSystem;

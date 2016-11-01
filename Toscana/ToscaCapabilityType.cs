@@ -47,7 +47,7 @@ namespace Toscana
         /// <exception cref="ToscaCapabilityTypeNotFoundException">Thrown when this Capability Type derives from a non existing Capability Type</exception>
         public IReadOnlyDictionary<string, ToscaProperty> GetAllProperties()
         {
-            return Bootstrapper.GetPropertyMerger().CombineAndMerge(this);
+            return DependencyResolver.GetPropertyMerger().CombineAndMerge(this);
         }
 
         /// <summary>
