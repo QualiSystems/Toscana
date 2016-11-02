@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: Toscana/IToscaEntityWithProperties.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: IToscaEntityWithProperties
     path: Toscana/IToscaEntityWithProperties.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: Toscana/IToscaEntityWithProperties.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/IToscaEntityWithProperties.cs

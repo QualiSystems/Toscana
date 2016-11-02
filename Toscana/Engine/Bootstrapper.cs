@@ -28,8 +28,8 @@ namespace Toscana.Engine
             container.Register<IToscaPropertyMerger, ToscaPropertyMerger>();
             container.Register<IToscaPropertyCombiner, ToscaPropertyCombiner>();
             container.Register<ICloudServiceArchiveValidator, CloudServiceArchiveValidator>();
-            container.Register<IToscaParserFactory>(
-                () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
+            container.RegisterSingleton<IToscaDataTypeRegistry>(
+                () => new ToscaDataTypeRegistry(new List<IToscaDataTypeValueConverter>
                 {
                     new ToscaBooleanDataTypeConverter(),
                     new ToscaStringDataTypeConverter(),
@@ -72,7 +72,11 @@ namespace Toscana.Engine
 
         internal static IToscaDataTypeValueConverter GetParser(string type)
         {
+<<<<<<< Updated upstream:Toscana/Engine/Bootstrapper.cs
             return DependencyResolver.Current.GetService<IToscaParserFactory>().GetParser(type);
+=======
+            return Current.GetService<IToscaDataTypeRegistry>().GetConverter(type);
+>>>>>>> Stashed changes:Toscana/Engine/DependencyResolver.cs
         }
 
         internal static IToscaSerializer<ToscaServiceTemplate> GetToscaServiceTemplateSerializer()
@@ -87,7 +91,40 @@ namespace Toscana.Engine
 
         internal static IToscaPropertyMerger GetPropertyMerger()
         {
+<<<<<<< Updated upstream:Toscana/Engine/Bootstrapper.cs
             return DependencyResolver.Current.GetService<IToscaPropertyMerger>();
+=======
+            return Current.GetService<IToscaPropertyMerger>();
+        }
+
+        /// <summary>
+        /// Returns type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetService<T>()
+        {
+            return container.GetService<T>();
+        }
+
+        /// <summary>
+        /// Replaces registration with a new instance
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance"></param>
+        public void Replace<T>(T instance)
+        {
+            container.RegisterSingleton(instance);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataTypeValueConverter"></param>
+        public void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter)
+        {
+            container.GetService<IToscaDataTypeRegistry>().Register(dataTypeValueConverter);
+>>>>>>> Stashed changes:Toscana/Engine/DependencyResolver.cs
         }
    }
 }

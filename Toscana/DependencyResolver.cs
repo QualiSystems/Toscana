@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -5,6 +6,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+=======
+﻿using Toscana.Engine;
+>>>>>>> Stashed changes
 
 namespace Toscana
 {
@@ -40,6 +44,12 @@ namespace Toscana
         /// <param name="instance"></param>
         /// <typeparam name="T"></typeparam>
         void Replace<T>(T instance);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataTypeValueConverter"></param>
+        void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter);
     }
 
     /// <summary>

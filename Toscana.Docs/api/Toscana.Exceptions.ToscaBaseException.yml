@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaBaseException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaBaseException
     path: Toscana/Exceptions/ToscaBaseException.cs
@@ -93,7 +93,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaBaseException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaBaseException.cs
@@ -124,7 +124,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaBaseException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaBaseException.cs
@@ -159,7 +159,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaBaseException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaBaseException.cs
@@ -204,7 +204,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaBaseException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaBaseException.cs

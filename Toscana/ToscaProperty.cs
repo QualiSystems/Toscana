@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Toscana.Engine;
+using Toscana.Exceptions;
 using YamlDotNet.Serialization;
 
 namespace Toscana
@@ -87,7 +88,15 @@ namespace Toscana
             var validValuesConstraint = Constraints.FirstOrDefault(c => c.ContainsKey(ValidValues));
             if (validValuesConstraint != null)
             {
+<<<<<<< Updated upstream
                 var parser = Bootstrapper.GetParser(Type);
+=======
+                var parser = DependencyResolver.GetParser(Type);
+                if (parser == null)
+                {
+                    throw new ToscaDataTypeParserNotFoundException(string.Format("Parser for data type '{0}' nod found.", Type));
+                }
+>>>>>>> Stashed changes
                 var validValues = validValuesConstraint[ValidValues];
                 if (!(validValues is List<object>))
                 {

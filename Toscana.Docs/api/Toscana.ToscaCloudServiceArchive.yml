@@ -41,7 +41,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCloudServiceArchive
     path: Toscana/ToscaCloudServiceArchive.cs
@@ -93,7 +93,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaCloudServiceArchive.cs
@@ -131,11 +131,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 105
+    startLine: 133
   assemblies:
   - Toscana
   namespace: Toscana
@@ -166,11 +166,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 115
+    startLine: 143
   assemblies:
   - Toscana
   namespace: Toscana
@@ -201,11 +201,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 142
+    startLine: 170
   assemblies:
   - Toscana
   namespace: Toscana
@@ -236,11 +236,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaServiceTemplates
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 169
+    startLine: 197
   assemblies:
   - Toscana
   namespace: Toscana
@@ -272,11 +272,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 177
+    startLine: 205
   assemblies:
   - Toscana
   namespace: Toscana
@@ -308,11 +308,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: CapabilityTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 185
+    startLine: 213
   assemblies:
   - Toscana
   namespace: Toscana
@@ -344,11 +344,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ArtifactTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 193
+    startLine: 221
   assemblies:
   - Toscana
   namespace: Toscana
@@ -380,11 +380,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: RelationshipTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 201
+    startLine: 229
   assemblies:
   - Toscana
   namespace: Toscana
@@ -416,11 +416,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Artifacts
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 209
+    startLine: 237
   assemblies:
   - Toscana
   namespace: Toscana
@@ -452,11 +452,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: DataTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 217
+    startLine: 245
   assemblies:
   - Toscana
   namespace: Toscana
@@ -488,11 +488,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetEntryPointServiceTemplate
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 230
+    startLine: 258
   assemblies:
   - Toscana
   namespace: Toscana
@@ -522,11 +522,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 247
+    startLine: 275
   assemblies:
   - Toscana
   namespace: Toscana
@@ -575,11 +575,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 264
+    startLine: 292
   assemblies:
   - Toscana
   namespace: Toscana
@@ -625,11 +625,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddToscaServiceTemplate
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 280
+    startLine: 308
   assemblies:
   - Toscana
   namespace: Toscana
@@ -670,11 +670,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetEntryLeafNodeTypes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 315
+    startLine: 342
   assemblies:
   - Toscana
   namespace: Toscana
@@ -704,11 +704,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetArtifactBytes
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 331
+    startLine: 358
   assemblies:
   - Toscana
   namespace: Toscana
@@ -746,11 +746,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ContainsArtifact
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 348
+    startLine: 375
   assemblies:
   - Toscana
   namespace: Toscana
@@ -784,11 +784,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddArtifact
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 358
+    startLine: 385
   assemblies:
   - Toscana
   namespace: Toscana
@@ -825,11 +825,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: TryValidate
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 368
+    startLine: 395
   assemblies:
   - Toscana
   namespace: Toscana
@@ -866,11 +866,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: TraverseNodeTypesInheritance
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 378
+    startLine: 405
   assemblies:
   - Toscana
   namespace: Toscana
@@ -904,11 +904,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: TraverseNodeTypesByRequirements
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 390
+    startLine: 417
   assemblies:
   - Toscana
   namespace: Toscana
@@ -949,11 +949,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetaFileVersion
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 596
+    startLine: 623
   assemblies:
   - Toscana
   namespace: Toscana
@@ -987,11 +987,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: CsarVersion
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 606
+    startLine: 633
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1025,11 +1025,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: CreatedBy
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 614
+    startLine: 641
   assemblies:
   - Toscana
   namespace: Toscana
@@ -1063,11 +1063,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaCloudServiceArchive.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntryDefinitions
     path: Toscana/ToscaCloudServiceArchive.cs
-    startLine: 623
+    startLine: 650
   assemblies:
   - Toscana
   namespace: Toscana
