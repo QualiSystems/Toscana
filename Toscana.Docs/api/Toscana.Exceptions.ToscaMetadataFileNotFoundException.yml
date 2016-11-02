@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaMetadataFileNotFoundException
     path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
@@ -198,7 +198,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaMetadataFileNotFoundException.cs

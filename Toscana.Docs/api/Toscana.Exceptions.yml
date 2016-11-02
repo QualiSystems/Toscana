@@ -9,6 +9,7 @@ items:
   - Toscana.Exceptions.ToscaCapabilityTypeNotFoundException
   - Toscana.Exceptions.ToscaCloudServiceArchiveFileNotFoundException
   - Toscana.Exceptions.ToscaDataTypeNotFoundException
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - Toscana.Exceptions.ToscaImportFileNotFoundException
   - Toscana.Exceptions.ToscaInvalidFileException
   - Toscana.Exceptions.ToscaMetadataFileNotFoundException
@@ -27,6 +28,12 @@ items:
   assemblies:
   - Toscana
 references:
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+  isExternal: false
+  name: ToscaDataTypeParserNotFoundException
+  nameWithType: ToscaDataTypeParserNotFoundException
+  fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
 - uid: Toscana.Exceptions.ToscaInvalidFileException
   commentId: T:Toscana.Exceptions.ToscaInvalidFileException
   isExternal: false

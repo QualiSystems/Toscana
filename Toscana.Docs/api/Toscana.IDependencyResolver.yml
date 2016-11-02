@@ -1,182 +1,149 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.IToscaMetadata
-  commentId: T:Toscana.IToscaMetadata
-  id: IToscaMetadata
+- uid: Toscana.IDependencyResolver
+  commentId: T:Toscana.IDependencyResolver
+  id: IDependencyResolver
   parent: Toscana
   children:
-  - Toscana.IToscaMetadata.CreatedBy
-  - Toscana.IToscaMetadata.CsarVersion
-  - Toscana.IToscaMetadata.EntryDefinitions
-  - Toscana.IToscaMetadata.ToscaMetaFileVersion
+  - Toscana.IDependencyResolver.GetService``1
+  - Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  - Toscana.IDependencyResolver.Replace``1(``0)
   langs:
   - csharp
   - vb
-  name: IToscaMetadata
-  nameWithType: IToscaMetadata
-  fullName: Toscana.IToscaMetadata
+  name: IDependencyResolver
+  nameWithType: IDependencyResolver
+  fullName: Toscana.IDependencyResolver
   type: Interface
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: IToscaMetadata
-    path: Toscana/ToscaMetadata.cs
-    startLine: 9
+    id: IDependencyResolver
+    path: Toscana/DependencyResolver.cs
+    startLine: 7
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nInterface to represent TOSCA.meta file content\n"
+  summary: "\nCommon interface for esolving dependencies\n"
   example: []
   syntax:
-    content: public interface IToscaMetadata
-    content.vb: Public Interface IToscaMetadata
+    content: public interface IDependencyResolver
+    content.vb: Public Interface IDependencyResolver
   extensionMethods:
-  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
-  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+  - Toscana.IDependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDependencyResolver,Toscana.IDependencyResolver},System.Func{Toscana.IDependencyResolver,System.Boolean})
+  - Toscana.IDependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDependencyResolver,Toscana.IDependencyResolver})
   modifiers.csharp:
   - public
   - interface
   modifiers.vb:
   - Public
   - Interface
-- uid: Toscana.IToscaMetadata.ToscaMetaFileVersion
-  commentId: P:Toscana.IToscaMetadata.ToscaMetaFileVersion
-  id: ToscaMetaFileVersion
-  parent: Toscana.IToscaMetadata
+- uid: Toscana.IDependencyResolver.GetService``1
+  commentId: M:Toscana.IDependencyResolver.GetService``1
+  id: GetService``1
+  parent: Toscana.IDependencyResolver
   langs:
   - csharp
   - vb
-  name: ToscaMetaFileVersion
-  nameWithType: IToscaMetadata.ToscaMetaFileVersion
-  fullName: Toscana.IToscaMetadata.ToscaMetaFileVersion
-  type: Property
+  name: GetService<T>()
+  nameWithType: IDependencyResolver.GetService<T>()
+  fullName: Toscana.IDependencyResolver.GetService<T>()
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaMetaFileVersion
-    path: Toscana/ToscaMetadata.cs
+    id: GetService
+    path: Toscana/DependencyResolver.cs
     startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nSpecifies TOSCA.meta file version\n"
+  summary: "\nResolves a service\n"
   example: []
   syntax:
-    content: Version ToscaMetaFileVersion { get; }
-    content.vb: ReadOnly Property ToscaMetaFileVersion As Version
-    parameters: []
+    content: T GetService<T>()
+    content.vb: Function GetService(Of T) As T
+    typeParameters:
+    - id: T
+      description: ''
     return:
-      type: System.Version
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.CsarVersion
-  commentId: P:Toscana.IToscaMetadata.CsarVersion
-  id: CsarVersion
-  parent: Toscana.IToscaMetadata
+      type: '{T}'
+      description: ''
+  nameWithType.vb: IDependencyResolver.GetService(Of T)()
+  fullName.vb: Toscana.IDependencyResolver.GetService(Of T)()
+  name.vb: GetService(Of T)()
+- uid: Toscana.IDependencyResolver.Replace``1(``0)
+  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
+  id: Replace``1(``0)
+  parent: Toscana.IDependencyResolver
   langs:
   - csharp
   - vb
-  name: CsarVersion
-  nameWithType: IToscaMetadata.CsarVersion
-  fullName: Toscana.IToscaMetadata.CsarVersion
-  type: Property
+  name: Replace<T>(T)
+  nameWithType: IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: CsarVersion
-    path: Toscana/ToscaMetadata.cs
+    id: Replace
+    path: Toscana/DependencyResolver.cs
     startLine: 21
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nDenotes the verison of CSAR\nDue to the simplified structure of the CSAR file and TOSCA.meta file compared to TOSCA 1.0, \nthe CSAR-Version keyword listed in block_0 of the meta-file is required to denote version 1.1.\n"
+  summary: "\nReplaces registration with a new instance\n"
   example: []
   syntax:
-    content: Version CsarVersion { get; }
-    content.vb: ReadOnly Property CsarVersion As Version
-    parameters: []
-    return:
-      type: System.Version
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.CreatedBy
-  commentId: P:Toscana.IToscaMetadata.CreatedBy
-  id: CreatedBy
-  parent: Toscana.IToscaMetadata
+    content: void Replace<T>(T instance)
+    content.vb: Sub Replace(Of T)(instance As T)
+    parameters:
+    - id: instance
+      type: '{T}'
+      description: ''
+    typeParameters:
+    - id: T
+      description: ''
+  nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
+  fullName.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
+- uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  id: RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  parent: Toscana.IDependencyResolver
   langs:
   - csharp
   - vb
-  name: CreatedBy
-  nameWithType: IToscaMetadata.CreatedBy
-  fullName: Toscana.IToscaMetadata.CreatedBy
-  type: Property
+  name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  nameWithType: IDependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: CreatedBy
-    path: Toscana/ToscaMetadata.cs
-    startLine: 26
+    id: RegisterDataTypeConverter
+    path: Toscana/DependencyResolver.cs
+    startLine: 27
   assemblies:
   - Toscana
   namespace: Toscana
-  summary: "\nSpecifies who created the CSAR  \n"
+  summary: "\n\n"
   example: []
   syntax:
-    content: string CreatedBy { get; }
-    content.vb: ReadOnly Property CreatedBy As String
-    parameters: []
-    return:
-      type: System.String
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.EntryDefinitions
-  commentId: P:Toscana.IToscaMetadata.EntryDefinitions
-  id: EntryDefinitions
-  parent: Toscana.IToscaMetadata
-  langs:
-  - csharp
-  - vb
-  name: EntryDefinitions
-  nameWithType: IToscaMetadata.EntryDefinitions
-  fullName: Toscana.IToscaMetadata.EntryDefinitions
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaMetadata.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: EntryDefinitions
-    path: Toscana/ToscaMetadata.cs
-    startLine: 32
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nEntry-Definitions keyword pointing to a valid TOSCA definitions YAML file that a TOSCA \norchestrator should use as entry for parsing the contents of the overall CSAR file.\n"
-  example: []
-  syntax:
-    content: string EntryDefinitions { get; }
-    content.vb: ReadOnly Property EntryDefinitions As String
-    parameters: []
-    return:
-      type: System.String
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
+    content: void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter)
+    content.vb: Sub RegisterDataTypeConverter(dataTypeValueConverter As IToscaDataTypeValueConverter)
+    parameters:
+    - id: dataTypeValueConverter
+      type: Toscana.Engine.IToscaDataTypeValueConverter
+      description: ''
 references:
 - uid: Toscana
   commentId: N:Toscana
@@ -184,21 +151,21 @@ references:
   name: Toscana
   nameWithType: Toscana
   fullName: Toscana
-- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
+- uid: Toscana.IDependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDependencyResolver,Toscana.IDependencyResolver},System.Func{Toscana.IDependencyResolver,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>, System.Func<Toscana.IToscaMetadata, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata), System.Func(Of Toscana.IToscaMetadata, System.Boolean))
-  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
+  name: FromHierarchy<IDependencyResolver>(Func<IDependencyResolver, IDependencyResolver>, Func<IDependencyResolver, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IDependencyResolver>(Func<IDependencyResolver, IDependencyResolver>, Func<IDependencyResolver, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDependencyResolver>(System.Func<Toscana.IDependencyResolver, Toscana.IDependencyResolver>, System.Func<Toscana.IDependencyResolver, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IDependencyResolver)(Func(Of IDependencyResolver, IDependencyResolver), Func(Of IDependencyResolver, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDependencyResolver)(System.Func(Of Toscana.IDependencyResolver, Toscana.IDependencyResolver), System.Func(Of Toscana.IDependencyResolver, System.Boolean))
+  name.vb: FromHierarchy(Of IDependencyResolver)(Func(Of IDependencyResolver, IDependencyResolver), Func(Of IDependencyResolver, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<IToscaMetadata>
-    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+    name: FromHierarchy<IDependencyResolver>
+    nameWithType: EnumerableExtensions.FromHierarchy<IDependencyResolver>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDependencyResolver>
   - name: (
     nameWithType: (
     fullName: (
@@ -210,17 +177,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -235,10 +202,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -255,9 +222,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of IToscaMetadata)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+    name: FromHierarchy(Of IDependencyResolver)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IDependencyResolver)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDependencyResolver)
   - name: (
     nameWithType: (
     fullName: (
@@ -269,17 +236,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: )
     nameWithType: )
     fullName: )
@@ -294,10 +261,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -312,21 +279,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+- uid: Toscana.IDependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IDependencyResolver,Toscana.IDependencyResolver})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
-  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata))
-  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
+  name: FromHierarchy<IDependencyResolver>(Func<IDependencyResolver, IDependencyResolver>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IDependencyResolver>(Func<IDependencyResolver, IDependencyResolver>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDependencyResolver>(System.Func<Toscana.IDependencyResolver, Toscana.IDependencyResolver>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IDependencyResolver)(Func(Of IDependencyResolver, IDependencyResolver))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDependencyResolver)(System.Func(Of Toscana.IDependencyResolver, Toscana.IDependencyResolver))
+  name.vb: FromHierarchy(Of IDependencyResolver)(Func(Of IDependencyResolver, IDependencyResolver))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<IToscaMetadata>
-    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+    name: FromHierarchy<IDependencyResolver>
+    nameWithType: EnumerableExtensions.FromHierarchy<IDependencyResolver>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IDependencyResolver>
   - name: (
     nameWithType: (
     fullName: (
@@ -338,17 +305,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -357,9 +324,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of IToscaMetadata)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+    name: FromHierarchy(Of IDependencyResolver)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IDependencyResolver)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IDependencyResolver)
   - name: (
     nameWithType: (
     fullName: (
@@ -371,17 +338,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
+    nameWithType: IDependencyResolver
+    fullName: Toscana.IDependencyResolver
   - name: )
     nameWithType: )
     fullName: )
@@ -617,23 +584,27 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: System.Version
-  commentId: T:System.Version
-  parent: System
-  isExternal: true
-  name: Version
-  nameWithType: Version
-  fullName: System.Version
-- uid: System
-  commentId: N:System
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
   isExternal: false
-  name: System
-  nameWithType: System
-  fullName: System
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Toscana.Engine.IToscaDataTypeValueConverter
+  commentId: T:Toscana.Engine.IToscaDataTypeValueConverter
+  parent: Toscana.Engine
+  isExternal: false
+  name: IToscaDataTypeValueConverter
+  nameWithType: IToscaDataTypeValueConverter
+  fullName: Toscana.Engine.IToscaDataTypeValueConverter
+- uid: Toscana.Engine
+  commentId: N:Toscana.Engine
+  isExternal: false
+  name: Toscana.Engine
+  nameWithType: Toscana.Engine
+  fullName: Toscana.Engine

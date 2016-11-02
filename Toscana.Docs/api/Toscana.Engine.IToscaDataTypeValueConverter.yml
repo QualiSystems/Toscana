@@ -1,204 +1,140 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.IToscaMetadata
-  commentId: T:Toscana.IToscaMetadata
-  id: IToscaMetadata
-  parent: Toscana
+- uid: Toscana.Engine.IToscaDataTypeValueConverter
+  commentId: T:Toscana.Engine.IToscaDataTypeValueConverter
+  id: IToscaDataTypeValueConverter
+  parent: Toscana.Engine
   children:
-  - Toscana.IToscaMetadata.CreatedBy
-  - Toscana.IToscaMetadata.CsarVersion
-  - Toscana.IToscaMetadata.EntryDefinitions
-  - Toscana.IToscaMetadata.ToscaMetaFileVersion
+  - Toscana.Engine.IToscaDataTypeValueConverter.CanConvert(System.String)
+  - Toscana.Engine.IToscaDataTypeValueConverter.TryParse(System.Object,System.Object@)
   langs:
   - csharp
   - vb
-  name: IToscaMetadata
-  nameWithType: IToscaMetadata
-  fullName: Toscana.IToscaMetadata
+  name: IToscaDataTypeValueConverter
+  nameWithType: IToscaDataTypeValueConverter
+  fullName: Toscana.Engine.IToscaDataTypeValueConverter
   type: Interface
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/Engine/StringToscaDataTypeConverter.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: IToscaMetadata
-    path: Toscana/ToscaMetadata.cs
-    startLine: 9
+    id: IToscaDataTypeValueConverter
+    path: Toscana/Engine/StringToscaDataTypeConverter.cs
+    startLine: 5
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nInterface to represent TOSCA.meta file content\n"
+  namespace: Toscana.Engine
+  summary: "\nRepresents an interface for parsing custom data types\n"
   example: []
   syntax:
-    content: public interface IToscaMetadata
-    content.vb: Public Interface IToscaMetadata
+    content: public interface IToscaDataTypeValueConverter
+    content.vb: Public Interface IToscaDataTypeValueConverter
   extensionMethods:
-  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
-  - Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+  - Toscana.Engine.IToscaDataTypeValueConverter.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.IToscaDataTypeValueConverter,Toscana.Engine.IToscaDataTypeValueConverter},System.Func{Toscana.Engine.IToscaDataTypeValueConverter,System.Boolean})
+  - Toscana.Engine.IToscaDataTypeValueConverter.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.IToscaDataTypeValueConverter,Toscana.Engine.IToscaDataTypeValueConverter})
   modifiers.csharp:
   - public
   - interface
   modifiers.vb:
   - Public
   - Interface
-- uid: Toscana.IToscaMetadata.ToscaMetaFileVersion
-  commentId: P:Toscana.IToscaMetadata.ToscaMetaFileVersion
-  id: ToscaMetaFileVersion
-  parent: Toscana.IToscaMetadata
+- uid: Toscana.Engine.IToscaDataTypeValueConverter.CanConvert(System.String)
+  commentId: M:Toscana.Engine.IToscaDataTypeValueConverter.CanConvert(System.String)
+  id: CanConvert(System.String)
+  parent: Toscana.Engine.IToscaDataTypeValueConverter
   langs:
   - csharp
   - vb
-  name: ToscaMetaFileVersion
-  nameWithType: IToscaMetadata.ToscaMetaFileVersion
-  fullName: Toscana.IToscaMetadata.ToscaMetaFileVersion
-  type: Property
+  name: CanConvert(String)
+  nameWithType: IToscaDataTypeValueConverter.CanConvert(String)
+  fullName: Toscana.Engine.IToscaDataTypeValueConverter.CanConvert(System.String)
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/Engine/StringToscaDataTypeConverter.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaMetaFileVersion
-    path: Toscana/ToscaMetadata.cs
-    startLine: 14
+    id: CanConvert
+    path: Toscana/Engine/StringToscaDataTypeConverter.cs
+    startLine: 12
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nSpecifies TOSCA.meta file version\n"
+  namespace: Toscana.Engine
+  summary: "\nDetermines whether can parse data type\n"
   example: []
   syntax:
-    content: Version ToscaMetaFileVersion { get; }
-    content.vb: ReadOnly Property ToscaMetaFileVersion As Version
-    parameters: []
+    content: bool CanConvert(string dataTypeName)
+    content.vb: Function CanConvert(dataTypeName As String) As Boolean
+    parameters:
+    - id: dataTypeName
+      type: System.String
+      description: ''
     return:
-      type: System.Version
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.CsarVersion
-  commentId: P:Toscana.IToscaMetadata.CsarVersion
-  id: CsarVersion
-  parent: Toscana.IToscaMetadata
+      type: System.Boolean
+      description: ''
+- uid: Toscana.Engine.IToscaDataTypeValueConverter.TryParse(System.Object,System.Object@)
+  commentId: M:Toscana.Engine.IToscaDataTypeValueConverter.TryParse(System.Object,System.Object@)
+  id: TryParse(System.Object,System.Object@)
+  parent: Toscana.Engine.IToscaDataTypeValueConverter
   langs:
   - csharp
   - vb
-  name: CsarVersion
-  nameWithType: IToscaMetadata.CsarVersion
-  fullName: Toscana.IToscaMetadata.CsarVersion
-  type: Property
+  name: TryParse(Object, out Object)
+  nameWithType: IToscaDataTypeValueConverter.TryParse(Object, out Object)
+  fullName: Toscana.Engine.IToscaDataTypeValueConverter.TryParse(System.Object, out System.Object)
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaMetadata.cs
+      path: Toscana/Engine/StringToscaDataTypeConverter.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: CsarVersion
-    path: Toscana/ToscaMetadata.cs
+    id: TryParse
+    path: Toscana/Engine/StringToscaDataTypeConverter.cs
     startLine: 21
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nDenotes the verison of CSAR\nDue to the simplified structure of the CSAR file and TOSCA.meta file compared to TOSCA 1.0, \nthe CSAR-Version keyword listed in block_0 of the meta-file is required to denote version 1.1.\n"
+  namespace: Toscana.Engine
+  summary: "\nTries to parse and returns whether it succeeded or not\n"
   example: []
   syntax:
-    content: Version CsarVersion { get; }
-    content.vb: ReadOnly Property CsarVersion As Version
-    parameters: []
+    content: bool TryParse(object dataTypeValue, out object result)
+    content.vb: Function TryParse(dataTypeValue As Object, ByRef result As Object) As Boolean
+    parameters:
+    - id: dataTypeValue
+      type: System.Object
+      description: Raw value to parse
+    - id: result
+      type: System.Object
+      description: Parsed value
     return:
-      type: System.Version
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.CreatedBy
-  commentId: P:Toscana.IToscaMetadata.CreatedBy
-  id: CreatedBy
-  parent: Toscana.IToscaMetadata
-  langs:
-  - csharp
-  - vb
-  name: CreatedBy
-  nameWithType: IToscaMetadata.CreatedBy
-  fullName: Toscana.IToscaMetadata.CreatedBy
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaMetadata.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: CreatedBy
-    path: Toscana/ToscaMetadata.cs
-    startLine: 26
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nSpecifies who created the CSAR  \n"
-  example: []
-  syntax:
-    content: string CreatedBy { get; }
-    content.vb: ReadOnly Property CreatedBy As String
-    parameters: []
-    return:
-      type: System.String
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
-- uid: Toscana.IToscaMetadata.EntryDefinitions
-  commentId: P:Toscana.IToscaMetadata.EntryDefinitions
-  id: EntryDefinitions
-  parent: Toscana.IToscaMetadata
-  langs:
-  - csharp
-  - vb
-  name: EntryDefinitions
-  nameWithType: IToscaMetadata.EntryDefinitions
-  fullName: Toscana.IToscaMetadata.EntryDefinitions
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaMetadata.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: EntryDefinitions
-    path: Toscana/ToscaMetadata.cs
-    startLine: 32
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nEntry-Definitions keyword pointing to a valid TOSCA definitions YAML file that a TOSCA \norchestrator should use as entry for parsing the contents of the overall CSAR file.\n"
-  example: []
-  syntax:
-    content: string EntryDefinitions { get; }
-    content.vb: ReadOnly Property EntryDefinitions As String
-    parameters: []
-    return:
-      type: System.String
-  modifiers.csharp:
-  - get
-  modifiers.vb:
-  - ReadOnly
+      type: System.Boolean
+      description: True if succeeded to parser, False otherwise
+  nameWithType.vb: IToscaDataTypeValueConverter.TryParse(Object, ByRef Object)
+  fullName.vb: Toscana.Engine.IToscaDataTypeValueConverter.TryParse(System.Object, ByRef System.Object)
+  name.vb: TryParse(Object, ByRef Object)
 references:
-- uid: Toscana
-  commentId: N:Toscana
+- uid: Toscana.Engine
+  commentId: N:Toscana.Engine
   isExternal: false
-  name: Toscana
-  nameWithType: Toscana
-  fullName: Toscana
-- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata},System.Func{Toscana.IToscaMetadata,System.Boolean})
+  name: Toscana.Engine
+  nameWithType: Toscana.Engine
+  fullName: Toscana.Engine
+- uid: Toscana.Engine.IToscaDataTypeValueConverter.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.IToscaDataTypeValueConverter,Toscana.Engine.IToscaDataTypeValueConverter},System.Func{Toscana.Engine.IToscaDataTypeValueConverter,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>, Func<IToscaMetadata, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>, System.Func<Toscana.IToscaMetadata, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata), System.Func(Of Toscana.IToscaMetadata, System.Boolean))
-  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata), Func(Of IToscaMetadata, Boolean))
+  name: FromHierarchy<IToscaDataTypeValueConverter>(Func<IToscaDataTypeValueConverter, IToscaDataTypeValueConverter>, Func<IToscaDataTypeValueConverter, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IToscaDataTypeValueConverter>(Func<IToscaDataTypeValueConverter, IToscaDataTypeValueConverter>, Func<IToscaDataTypeValueConverter, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.IToscaDataTypeValueConverter>(System.Func<Toscana.Engine.IToscaDataTypeValueConverter, Toscana.Engine.IToscaDataTypeValueConverter>, System.Func<Toscana.Engine.IToscaDataTypeValueConverter, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaDataTypeValueConverter)(Func(Of IToscaDataTypeValueConverter, IToscaDataTypeValueConverter), Func(Of IToscaDataTypeValueConverter, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.IToscaDataTypeValueConverter)(System.Func(Of Toscana.Engine.IToscaDataTypeValueConverter, Toscana.Engine.IToscaDataTypeValueConverter), System.Func(Of Toscana.Engine.IToscaDataTypeValueConverter, System.Boolean))
+  name.vb: FromHierarchy(Of IToscaDataTypeValueConverter)(Func(Of IToscaDataTypeValueConverter, IToscaDataTypeValueConverter), Func(Of IToscaDataTypeValueConverter, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<IToscaMetadata>
-    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+    name: FromHierarchy<IToscaDataTypeValueConverter>
+    nameWithType: EnumerableExtensions.FromHierarchy<IToscaDataTypeValueConverter>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.IToscaDataTypeValueConverter>
   - name: (
     nameWithType: (
     fullName: (
@@ -210,17 +146,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -235,10 +171,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -255,9 +191,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of IToscaMetadata)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+    name: FromHierarchy(Of IToscaDataTypeValueConverter)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaDataTypeValueConverter)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.IToscaDataTypeValueConverter)
   - name: (
     nameWithType: (
     fullName: (
@@ -269,17 +205,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: )
     nameWithType: )
     fullName: )
@@ -294,10 +230,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -312,21 +248,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.IToscaMetadata.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.IToscaMetadata,Toscana.IToscaMetadata})
+- uid: Toscana.Engine.IToscaDataTypeValueConverter.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.IToscaDataTypeValueConverter,Toscana.Engine.IToscaDataTypeValueConverter})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
-  nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>(Func<IToscaMetadata, IToscaMetadata>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>(System.Func<Toscana.IToscaMetadata, Toscana.IToscaMetadata>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)(System.Func(Of Toscana.IToscaMetadata, Toscana.IToscaMetadata))
-  name.vb: FromHierarchy(Of IToscaMetadata)(Func(Of IToscaMetadata, IToscaMetadata))
+  name: FromHierarchy<IToscaDataTypeValueConverter>(Func<IToscaDataTypeValueConverter, IToscaDataTypeValueConverter>)
+  nameWithType: EnumerableExtensions.FromHierarchy<IToscaDataTypeValueConverter>(Func<IToscaDataTypeValueConverter, IToscaDataTypeValueConverter>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.IToscaDataTypeValueConverter>(System.Func<Toscana.Engine.IToscaDataTypeValueConverter, Toscana.Engine.IToscaDataTypeValueConverter>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of IToscaDataTypeValueConverter)(Func(Of IToscaDataTypeValueConverter, IToscaDataTypeValueConverter))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.IToscaDataTypeValueConverter)(System.Func(Of Toscana.Engine.IToscaDataTypeValueConverter, Toscana.Engine.IToscaDataTypeValueConverter))
+  name.vb: FromHierarchy(Of IToscaDataTypeValueConverter)(Func(Of IToscaDataTypeValueConverter, IToscaDataTypeValueConverter))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<IToscaMetadata>
-    nameWithType: EnumerableExtensions.FromHierarchy<IToscaMetadata>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.IToscaMetadata>
+    name: FromHierarchy<IToscaDataTypeValueConverter>
+    nameWithType: EnumerableExtensions.FromHierarchy<IToscaDataTypeValueConverter>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.IToscaDataTypeValueConverter>
   - name: (
     nameWithType: (
     fullName: (
@@ -338,17 +274,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -357,9 +293,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of IToscaMetadata)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaMetadata)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.IToscaMetadata)
+    name: FromHierarchy(Of IToscaDataTypeValueConverter)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of IToscaDataTypeValueConverter)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.IToscaDataTypeValueConverter)
   - name: (
     nameWithType: (
     fullName: (
@@ -371,17 +307,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.IToscaMetadata
-    name: IToscaMetadata
-    nameWithType: IToscaMetadata
-    fullName: Toscana.IToscaMetadata
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
   - name: )
     nameWithType: )
     fullName: )
@@ -617,19 +553,6 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: System.Version
-  commentId: T:System.Version
-  parent: System
-  isExternal: true
-  name: Version
-  nameWithType: Version
-  fullName: System.Version
-- uid: System
-  commentId: N:System
-  isExternal: false
-  name: System
-  nameWithType: System
-  fullName: System
 - uid: System.String
   commentId: T:System.String
   parent: System
@@ -637,3 +560,23 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object

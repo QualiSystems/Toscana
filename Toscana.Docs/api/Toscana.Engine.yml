@@ -1,0 +1,37 @@
+### YamlMime:ManagedReference
+items:
+- uid: Toscana.Engine
+  commentId: N:Toscana.Engine
+  id: Toscana.Engine
+  children:
+  - Toscana.Engine.DependencyResolver
+  - Toscana.Engine.IToscaDataTypeValueConverter
+  langs:
+  - csharp
+  - vb
+  name: Toscana.Engine
+  nameWithType: Toscana.Engine
+  fullName: Toscana.Engine
+  type: Namespace
+  assemblies:
+  - Toscana
+references:
+- uid: Toscana.Engine.DependencyResolver
+  commentId: T:Toscana.Engine.DependencyResolver
+  isExternal: false
+  name: DependencyResolver
+  nameWithType: DependencyResolver
+  fullName: Toscana.Engine.DependencyResolver
+- uid: Toscana.Engine.IToscaDataTypeValueConverter
+  commentId: T:Toscana.Engine.IToscaDataTypeValueConverter
+  parent: Toscana.Engine
+  isExternal: false
+  name: IToscaDataTypeValueConverter
+  nameWithType: IToscaDataTypeValueConverter
+  fullName: Toscana.Engine.IToscaDataTypeValueConverter
+- uid: Toscana.Engine
+  commentId: N:Toscana.Engine
+  isExternal: false
+  name: Toscana.Engine
+  nameWithType: Toscana.Engine
+  fullName: Toscana.Engine

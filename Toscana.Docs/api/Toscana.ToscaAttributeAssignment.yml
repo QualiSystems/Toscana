@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeAssignment.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaAttributeAssignment
     path: Toscana/ToscaAttributeAssignment.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeAssignment.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaAttributeAssignment.cs
@@ -100,7 +100,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeAssignment.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: Value
     path: Toscana/ToscaAttributeAssignment.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaAttributeAssignment.cs
-      branch: feature/borismod_loop
+      branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: op_Implicit
     path: Toscana/ToscaAttributeAssignment.cs

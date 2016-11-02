@@ -3,23 +3,29 @@ using System.Linq;
 
 namespace Toscana.Engine
 {
-    internal interface IToscaParserFactory
+    internal interface IToscaDataTypeRegistry
     {
-        IToscaDataTypeValueConverter GetParser(string type);
+        IToscaDataTypeValueConverter GetConverter(string type);
+        void Register(IToscaDataTypeValueConverter dataTypeValueConverter);
     }
 
-    internal class ToscaParserFactory : IToscaParserFactory
+    internal class ToscaDataTypeRegistry : IToscaDataTypeRegistry
     {
         private readonly IList<IToscaDataTypeValueConverter> converters;
 
-        public ToscaParserFactory(IList<IToscaDataTypeValueConverter> converters)
+        public ToscaDataTypeRegistry(IList<IToscaDataTypeValueConverter> converters)
         {
             this.converters = converters;
         }
 
-        public IToscaDataTypeValueConverter GetParser(string type)
+        public IToscaDataTypeValueConverter GetConverter(string type)
         {
             return converters.FirstOrDefault(c => c.CanConvert(type));
+        }
+
+        public void Register(IToscaDataTypeValueConverter dataTypeValueConverter)
+        {
+            converters.Add(dataTypeValueConverter);
         }
     }
 }

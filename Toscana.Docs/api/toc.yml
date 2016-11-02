@@ -2,6 +2,8 @@
 - uid: Toscana
   name: Toscana
   items:
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
   - uid: Toscana.IDerivableToscaEntity`1
     name: IDerivableToscaEntity<T>
     name.vb: IDerivableToscaEntity(Of T)
@@ -75,6 +77,13 @@
     name: ToscaServiceTemplateMetadata
   - uid: Toscana.ToscaTopologyTemplate
     name: ToscaTopologyTemplate
+- uid: Toscana.Engine
+  name: Toscana.Engine
+  items:
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
 - uid: Toscana.Exceptions
   name: Toscana.Exceptions
   items:
@@ -88,6 +97,8 @@
     name: ToscaCloudServiceArchiveFileNotFoundException
   - uid: Toscana.Exceptions.ToscaDataTypeNotFoundException
     name: ToscaDataTypeNotFoundException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
   - uid: Toscana.Exceptions.ToscaImportFileNotFoundException
     name: ToscaImportFileNotFoundException
   - uid: Toscana.Exceptions.ToscaInvalidFileException

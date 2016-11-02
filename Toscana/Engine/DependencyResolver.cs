@@ -56,8 +56,8 @@ namespace Toscana.Engine
             container.Register<IToscaPropertyMerger, ToscaPropertyMerger>();
             container.Register<IToscaPropertyCombiner, ToscaPropertyCombiner>();
             container.Register<ICloudServiceArchiveValidator, CloudServiceArchiveValidator>();
-            container.Register<IToscaParserFactory>(
-                () => new ToscaParserFactory(new List<IToscaDataTypeValueConverter>
+            container.RegisterSingleton<IToscaDataTypeRegistry>(
+                () => new ToscaDataTypeRegistry(new List<IToscaDataTypeValueConverter>
                 {
                     new ToscaBooleanDataTypeConverter(),
                     new ToscaStringDataTypeConverter(),
@@ -99,7 +99,7 @@ namespace Toscana.Engine
 
         internal static IToscaDataTypeValueConverter GetParser(string type)
         {
-            return Current.GetService<IToscaParserFactory>().GetParser(type);
+            return Current.GetService<IToscaDataTypeRegistry>().GetConverter(type);
         }
 
         internal static IToscaSerializer<ToscaServiceTemplate> GetToscaServiceTemplateSerializer()
@@ -134,7 +134,16 @@ namespace Toscana.Engine
         /// <param name="instance"></param>
         public void Replace<T>(T instance)
         {
-            container.RegisterSingleton(instance); 
+            container.RegisterSingleton(instance);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataTypeValueConverter"></param>
+        public void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter)
+        {
+            container.GetService<IToscaDataTypeRegistry>().Register(dataTypeValueConverter);
         }
     }
 }

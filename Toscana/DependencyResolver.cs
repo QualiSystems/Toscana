@@ -1,4 +1,6 @@
-﻿namespace Toscana
+﻿using Toscana.Engine;
+
+namespace Toscana
 {
     /// <summary>
     /// Common interface for esolving dependencies
@@ -18,5 +20,11 @@
         /// <param name="instance"></param>
         /// <typeparam name="T"></typeparam>
         void Replace<T>(T instance);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataTypeValueConverter"></param>
+        void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter);
     }
 }
