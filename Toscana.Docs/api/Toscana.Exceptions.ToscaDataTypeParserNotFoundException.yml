@@ -1,43 +1,43 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.Exceptions.ToscaInvalidFileException
-  commentId: T:Toscana.Exceptions.ToscaInvalidFileException
-  id: ToscaInvalidFileException
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+  id: ToscaDataTypeParserNotFoundException
   parent: Toscana.Exceptions
   children:
-  - Toscana.Exceptions.ToscaInvalidFileException.#ctor
-  - Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  - Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.String)
-  - Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.String,System.Exception)
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.String)
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
-  name: ToscaInvalidFileException
-  nameWithType: ToscaInvalidFileException
-  fullName: Toscana.Exceptions.ToscaInvalidFileException
+  name: ToscaDataTypeParserNotFoundException
+  nameWithType: ToscaDataTypeParserNotFoundException
+  fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   type: Class
   source:
     remote:
-      path: Toscana/Exceptions/ToscaInvalidFileException.cs
+      path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaInvalidFileException
-    path: Toscana/Exceptions/ToscaInvalidFileException.cs
+    id: ToscaDataTypeParserNotFoundException
+    path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
     startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\nThrown when a file to load is not valid (not a zip file)\n"
+  summary: "\nThrown when parser for custom data type not found\n"
   example: []
   syntax:
     content: >-
       [Serializable]
 
-      public class ToscaInvalidFileException : ToscaBaseException, ISerializable, _Exception
+      public class ToscaDataTypeParserNotFoundException : ToscaBaseException, ISerializable, _Exception
     content.vb: >-
       <Serializable>
 
-      Public Class ToscaInvalidFileException
+      Public Class ToscaDataTypeParserNotFoundException
           Inherits ToscaBaseException
           Implements ISerializable, _Exception
   inheritance:
@@ -67,8 +67,8 @@ items:
   - System.Object.GetHashCode
   - System.Object.MemberwiseClone
   extensionMethods:
-  - Toscana.Exceptions.ToscaInvalidFileException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaInvalidFileException,Toscana.Exceptions.ToscaInvalidFileException},System.Func{Toscana.Exceptions.ToscaInvalidFileException,System.Boolean})
-  - Toscana.Exceptions.ToscaInvalidFileException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaInvalidFileException,Toscana.Exceptions.ToscaInvalidFileException})
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaDataTypeParserNotFoundException,Toscana.Exceptions.ToscaDataTypeParserNotFoundException},System.Func{Toscana.Exceptions.ToscaDataTypeParserNotFoundException,System.Boolean})
+  - Toscana.Exceptions.ToscaDataTypeParserNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaDataTypeParserNotFoundException,Toscana.Exceptions.ToscaDataTypeParserNotFoundException})
   - System.Exception.Toscana.Common.ExceptionExtensions.GetaAllMessages
   attributes:
   - type: System.SerializableAttribute
@@ -80,63 +80,63 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Toscana.Exceptions.ToscaInvalidFileException.#ctor
-  commentId: M:Toscana.Exceptions.ToscaInvalidFileException.#ctor
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor
+  commentId: M:Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor
   id: '#ctor'
-  parent: Toscana.Exceptions.ToscaInvalidFileException
+  parent: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaInvalidFileException()
-  nameWithType: ToscaInvalidFileException.ToscaInvalidFileException()
-  fullName: Toscana.Exceptions.ToscaInvalidFileException.ToscaInvalidFileException()
+  name: ToscaDataTypeParserNotFoundException()
+  nameWithType: ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException()
+  fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException()
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaInvalidFileException.cs
+      path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaInvalidFileException.cs
+    path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
     startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\nInitializes an exception\n"
+  summary: "\nDefault constructor\n"
   example: []
   syntax:
-    content: public ToscaInvalidFileException()
+    content: public ToscaDataTypeParserNotFoundException()
     content.vb: Public Sub New
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.String)
-  commentId: M:Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.String)
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.String)
+  commentId: M:Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.String)
   id: '#ctor(System.String)'
-  parent: Toscana.Exceptions.ToscaInvalidFileException
+  parent: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaInvalidFileException(String)
-  nameWithType: ToscaInvalidFileException.ToscaInvalidFileException(String)
-  fullName: Toscana.Exceptions.ToscaInvalidFileException.ToscaInvalidFileException(System.String)
+  name: ToscaDataTypeParserNotFoundException(String)
+  nameWithType: ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException(String)
+  fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException(System.String)
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaInvalidFileException.cs
+      path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaInvalidFileException.cs
-    startLine: 21
+    path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\n/// Initializes an exception with a message\n"
+  summary: "\nConstructor with message\n"
   example: []
   syntax:
-    content: public ToscaInvalidFileException(string message)
+    content: public ToscaDataTypeParserNotFoundException(string message)
     content.vb: Public Sub New(message As String)
     parameters:
     - id: message
@@ -146,32 +146,32 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  commentId: M:Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   id: '#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)'
-  parent: Toscana.Exceptions.ToscaInvalidFileException
+  parent: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaInvalidFileException(SerializationInfo, StreamingContext)
-  nameWithType: ToscaInvalidFileException.ToscaInvalidFileException(SerializationInfo, StreamingContext)
-  fullName: Toscana.Exceptions.ToscaInvalidFileException.ToscaInvalidFileException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  name: ToscaDataTypeParserNotFoundException(SerializationInfo, StreamingContext)
+  nameWithType: ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException(SerializationInfo, StreamingContext)
+  fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaInvalidFileException.cs
+      path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaInvalidFileException.cs
-    startLine: 32
+    path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
+    startLine: 31
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\nInitializes an exception from serialization info and streaming context\n"
+  summary: "\nConstructor for serialization\n"
   example: []
   syntax:
-    content: public ToscaInvalidFileException(SerializationInfo info, StreamingContext context)
+    content: public ToscaDataTypeParserNotFoundException(SerializationInfo info, StreamingContext context)
     content.vb: Public Sub New(info As SerializationInfo, context As StreamingContext)
     parameters:
     - id: info
@@ -180,51 +180,44 @@ items:
     - id: context
       type: System.Runtime.Serialization.StreamingContext
       description: ''
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: 'The <em>info</em> parameter is null. '
-  - type: System.Runtime.Serialization.SerializationException
-    commentId: T:System.Runtime.Serialization.SerializationException
-    description: 'The class name is null or <xref href="System.Exception.HResult" data-throw-if-not-resolved="false"></xref> is zero (0). '
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.String,System.Exception)
-  commentId: M:Toscana.Exceptions.ToscaInvalidFileException.#ctor(System.String,System.Exception)
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.String,System.Exception)
+  commentId: M:Toscana.Exceptions.ToscaDataTypeParserNotFoundException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: Toscana.Exceptions.ToscaInvalidFileException
+  parent: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaInvalidFileException(String, Exception)
-  nameWithType: ToscaInvalidFileException.ToscaInvalidFileException(String, Exception)
-  fullName: Toscana.Exceptions.ToscaInvalidFileException.ToscaInvalidFileException(System.String, System.Exception)
+  name: ToscaDataTypeParserNotFoundException(String, Exception)
+  nameWithType: ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException(String, Exception)
+  fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.ToscaDataTypeParserNotFoundException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaInvalidFileException.cs
+      path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaInvalidFileException.cs
-    startLine: 41
+    path: Toscana/Exceptions/ToscaDataTypeParserNotFoundException.cs
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana.Exceptions
-  summary: "\nInitializes an exception from with a custom message and an inner exception\n"
+  summary: "\nConstructor with message and an inner exception\n"
   example: []
   syntax:
-    content: public ToscaInvalidFileException(string message, Exception innerException)
-    content.vb: Public Sub New(message As String, innerException As Exception)
+    content: public ToscaDataTypeParserNotFoundException(string message, Exception exception)
+    content.vb: Public Sub New(message As String, exception As Exception)
     parameters:
     - id: message
       type: System.String
       description: ''
-    - id: innerException
+    - id: exception
       type: System.Exception
-      description: The inner exception that occured and is now handled
+      description: ''
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -701,21 +694,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.Exceptions.ToscaInvalidFileException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaInvalidFileException,Toscana.Exceptions.ToscaInvalidFileException},System.Func{Toscana.Exceptions.ToscaInvalidFileException,System.Boolean})
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaDataTypeParserNotFoundException,Toscana.Exceptions.ToscaDataTypeParserNotFoundException},System.Func{Toscana.Exceptions.ToscaDataTypeParserNotFoundException,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<ToscaInvalidFileException>(Func<ToscaInvalidFileException, ToscaInvalidFileException>, Func<ToscaInvalidFileException, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaInvalidFileException>(Func<ToscaInvalidFileException, ToscaInvalidFileException>, Func<ToscaInvalidFileException, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaInvalidFileException>(System.Func<Toscana.Exceptions.ToscaInvalidFileException, Toscana.Exceptions.ToscaInvalidFileException>, System.Func<Toscana.Exceptions.ToscaInvalidFileException, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaInvalidFileException)(Func(Of ToscaInvalidFileException, ToscaInvalidFileException), Func(Of ToscaInvalidFileException, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaInvalidFileException)(System.Func(Of Toscana.Exceptions.ToscaInvalidFileException, Toscana.Exceptions.ToscaInvalidFileException), System.Func(Of Toscana.Exceptions.ToscaInvalidFileException, System.Boolean))
-  name.vb: FromHierarchy(Of ToscaInvalidFileException)(Func(Of ToscaInvalidFileException, ToscaInvalidFileException), Func(Of ToscaInvalidFileException, Boolean))
+  name: FromHierarchy<ToscaDataTypeParserNotFoundException>(Func<ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException>, Func<ToscaDataTypeParserNotFoundException, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataTypeParserNotFoundException>(Func<ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException>, Func<ToscaDataTypeParserNotFoundException, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaDataTypeParserNotFoundException>(System.Func<Toscana.Exceptions.ToscaDataTypeParserNotFoundException, Toscana.Exceptions.ToscaDataTypeParserNotFoundException>, System.Func<Toscana.Exceptions.ToscaDataTypeParserNotFoundException, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaDataTypeParserNotFoundException)(Func(Of ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException), Func(Of ToscaDataTypeParserNotFoundException, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException)(System.Func(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException, Toscana.Exceptions.ToscaDataTypeParserNotFoundException), System.Func(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException, System.Boolean))
+  name.vb: FromHierarchy(Of ToscaDataTypeParserNotFoundException)(Func(Of ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException), Func(Of ToscaDataTypeParserNotFoundException, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<ToscaInvalidFileException>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaInvalidFileException>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaInvalidFileException>
+    name: FromHierarchy<ToscaDataTypeParserNotFoundException>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataTypeParserNotFoundException>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaDataTypeParserNotFoundException>
   - name: (
     nameWithType: (
     fullName: (
@@ -727,17 +720,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -752,10 +745,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -772,9 +765,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of ToscaInvalidFileException)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaInvalidFileException)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaInvalidFileException)
+    name: FromHierarchy(Of ToscaDataTypeParserNotFoundException)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaDataTypeParserNotFoundException)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException)
   - name: (
     nameWithType: (
     fullName: (
@@ -786,17 +779,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: )
     nameWithType: )
     fullName: )
@@ -811,10 +804,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -829,21 +822,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.Exceptions.ToscaInvalidFileException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaInvalidFileException,Toscana.Exceptions.ToscaInvalidFileException})
+- uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaDataTypeParserNotFoundException,Toscana.Exceptions.ToscaDataTypeParserNotFoundException})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<ToscaInvalidFileException>(Func<ToscaInvalidFileException, ToscaInvalidFileException>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaInvalidFileException>(Func<ToscaInvalidFileException, ToscaInvalidFileException>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaInvalidFileException>(System.Func<Toscana.Exceptions.ToscaInvalidFileException, Toscana.Exceptions.ToscaInvalidFileException>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaInvalidFileException)(Func(Of ToscaInvalidFileException, ToscaInvalidFileException))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaInvalidFileException)(System.Func(Of Toscana.Exceptions.ToscaInvalidFileException, Toscana.Exceptions.ToscaInvalidFileException))
-  name.vb: FromHierarchy(Of ToscaInvalidFileException)(Func(Of ToscaInvalidFileException, ToscaInvalidFileException))
+  name: FromHierarchy<ToscaDataTypeParserNotFoundException>(Func<ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataTypeParserNotFoundException>(Func<ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaDataTypeParserNotFoundException>(System.Func<Toscana.Exceptions.ToscaDataTypeParserNotFoundException, Toscana.Exceptions.ToscaDataTypeParserNotFoundException>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaDataTypeParserNotFoundException)(Func(Of ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException)(System.Func(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException, Toscana.Exceptions.ToscaDataTypeParserNotFoundException))
+  name.vb: FromHierarchy(Of ToscaDataTypeParserNotFoundException)(Func(Of ToscaDataTypeParserNotFoundException, ToscaDataTypeParserNotFoundException))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<ToscaInvalidFileException>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaInvalidFileException>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaInvalidFileException>
+    name: FromHierarchy<ToscaDataTypeParserNotFoundException>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaDataTypeParserNotFoundException>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaDataTypeParserNotFoundException>
   - name: (
     nameWithType: (
     fullName: (
@@ -855,17 +848,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -874,9 +867,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of ToscaInvalidFileException)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaInvalidFileException)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaInvalidFileException)
+    name: FromHierarchy(Of ToscaDataTypeParserNotFoundException)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaDataTypeParserNotFoundException)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaDataTypeParserNotFoundException)
   - name: (
     nameWithType: (
     fullName: (
@@ -888,17 +881,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaInvalidFileException
-    name: ToscaInvalidFileException
-    nameWithType: ToscaInvalidFileException
-    fullName: Toscana.Exceptions.ToscaInvalidFileException
+  - uid: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
+    name: ToscaDataTypeParserNotFoundException
+    nameWithType: ToscaDataTypeParserNotFoundException
+    fullName: Toscana.Exceptions.ToscaDataTypeParserNotFoundException
   - name: )
     nameWithType: )
     fullName: )
@@ -1233,10 +1226,6 @@ references:
   name: String
   nameWithType: String
   fullName: System.String
-- uid: System.ArgumentNullException
-  commentId: T:System.ArgumentNullException
-- uid: System.Runtime.Serialization.SerializationException
-  commentId: T:System.Runtime.Serialization.SerializationException
 - uid: System.Runtime.Serialization.SerializationInfo
   commentId: T:System.Runtime.Serialization.SerializationInfo
   parent: System.Runtime.Serialization

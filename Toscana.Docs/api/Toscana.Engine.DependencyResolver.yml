@@ -1,40 +1,44 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.ToscaPolicy
-  commentId: T:Toscana.ToscaPolicy
-  id: ToscaPolicy
-  parent: Toscana
+- uid: Toscana.Engine.DependencyResolver
+  commentId: T:Toscana.Engine.DependencyResolver
+  id: DependencyResolver
+  parent: Toscana.Engine
   children:
-  - Toscana.ToscaPolicy.#ctor
-  - Toscana.ToscaPolicy.Description
-  - Toscana.ToscaPolicy.Properties
-  - Toscana.ToscaPolicy.Targets
-  - Toscana.ToscaPolicy.Type
+  - Toscana.Engine.DependencyResolver.Current
+  - Toscana.Engine.DependencyResolver.GetService``1
+  - Toscana.Engine.DependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  - Toscana.Engine.DependencyResolver.Replace``1(``0)
+  - Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
   langs:
   - csharp
   - vb
-  name: ToscaPolicy
-  nameWithType: ToscaPolicy
-  fullName: Toscana.ToscaPolicy
+  name: DependencyResolver
+  nameWithType: DependencyResolver
+  fullName: Toscana.Engine.DependencyResolver
   type: Class
   source:
     remote:
-      path: Toscana/ToscaPolicy.cs
+      path: Toscana/Engine/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaPolicy
-    path: Toscana/ToscaPolicy.cs
-    startLine: 9
+    id: DependencyResolver
+    path: Toscana/Engine/DependencyResolver.cs
+    startLine: 8
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nA policy definition defines a policy that can be associated \nwith a TOSCA topology or top-level entity definition (e.g., group definition, node template, etc.).\n"
+  namespace: Toscana.Engine
+  summary: "\nRegisteres all the types\n"
   example: []
   syntax:
-    content: public class ToscaPolicy
-    content.vb: Public Class ToscaPolicy
+    content: 'public class DependencyResolver : IDependencyResolver'
+    content.vb: >-
+      Public Class DependencyResolver
+          Implements IDependencyResolver
   inheritance:
   - System.Object
+  implements:
+  - Toscana.IDependencyResolver
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -44,213 +48,218 @@ items:
   - System.Object.GetType
   - System.Object.MemberwiseClone
   extensionMethods:
-  - Toscana.ToscaPolicy.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaPolicy,Toscana.ToscaPolicy},System.Func{Toscana.ToscaPolicy,System.Boolean})
-  - Toscana.ToscaPolicy.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaPolicy,Toscana.ToscaPolicy})
+  - Toscana.Engine.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.DependencyResolver,Toscana.Engine.DependencyResolver},System.Func{Toscana.Engine.DependencyResolver,System.Boolean})
+  - Toscana.Engine.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.DependencyResolver,Toscana.Engine.DependencyResolver})
   modifiers.csharp:
   - public
   - class
   modifiers.vb:
   - Public
   - Class
-- uid: Toscana.ToscaPolicy.#ctor
-  commentId: M:Toscana.ToscaPolicy.#ctor
-  id: '#ctor'
-  parent: Toscana.ToscaPolicy
+- uid: Toscana.Engine.DependencyResolver.Current
+  commentId: P:Toscana.Engine.DependencyResolver.Current
+  id: Current
+  parent: Toscana.Engine.DependencyResolver
   langs:
   - csharp
   - vb
-  name: ToscaPolicy()
-  nameWithType: ToscaPolicy.ToscaPolicy()
-  fullName: Toscana.ToscaPolicy.ToscaPolicy()
-  type: Constructor
+  name: Current
+  nameWithType: DependencyResolver.Current
+  fullName: Toscana.Engine.DependencyResolver.Current
+  type: Property
   source:
     remote:
-      path: Toscana/ToscaPolicy.cs
+      path: Toscana/Engine/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: .ctor
-    path: Toscana/ToscaPolicy.cs
-    startLine: 14
+    id: Current
+    path: Toscana/Engine/DependencyResolver.cs
+    startLine: 21
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nInitializes an instance of <xref href=\"Toscana.ToscaPolicy\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  namespace: Toscana.Engine
+  summary: "\nReturns the current Dependency Resolver\n"
   example: []
   syntax:
-    content: public ToscaPolicy()
-    content.vb: Public Sub New
+    content: public static IDependencyResolver Current { get; }
+    content.vb: Public Shared ReadOnly Property Current As IDependencyResolver
+    parameters: []
+    return:
+      type: Toscana.IDependencyResolver
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  commentId: M:Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  id: SetResolver(Toscana.IDependencyResolver)
+  parent: Toscana.Engine.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: SetResolver(IDependencyResolver)
+  nameWithType: DependencyResolver.SetResolver(IDependencyResolver)
+  fullName: Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  type: Method
+  source:
+    remote:
+      path: Toscana/Engine/DependencyResolver.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: SetResolver
+    path: Toscana/Engine/DependencyResolver.cs
+    startLine: 30
+  assemblies:
+  - Toscana
+  namespace: Toscana.Engine
+  summary: "\nSets the current Dependency Resolver\n"
+  example: []
+  syntax:
+    content: public static void SetResolver(IDependencyResolver resolver)
+    content.vb: Public Shared Sub SetResolver(resolver As IDependencyResolver)
+    parameters:
+    - id: resolver
+      type: Toscana.IDependencyResolver
+      description: ''
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Toscana.Engine.DependencyResolver.GetService``1
+  commentId: M:Toscana.Engine.DependencyResolver.GetService``1
+  id: GetService``1
+  parent: Toscana.Engine.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: GetService<T>()
+  nameWithType: DependencyResolver.GetService<T>()
+  fullName: Toscana.Engine.DependencyResolver.GetService<T>()
+  type: Method
+  source:
+    remote:
+      path: Toscana/Engine/DependencyResolver.cs
+      branch: master
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: GetService
+    path: Toscana/Engine/DependencyResolver.cs
+    startLine: 124
+  assemblies:
+  - Toscana
+  namespace: Toscana.Engine
+  summary: "\nReturns type\n"
+  example: []
+  syntax:
+    content: public T GetService<T>()
+    content.vb: Public Function GetService(Of T) As T
+    typeParameters:
+    - id: T
+      description: ''
+    return:
+      type: '{T}'
+      description: ''
+  implements:
+  - Toscana.IDependencyResolver.GetService``1
+  nameWithType.vb: DependencyResolver.GetService(Of T)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaPolicy.Type
-  commentId: P:Toscana.ToscaPolicy.Type
-  id: Type
-  parent: Toscana.ToscaPolicy
+  fullName.vb: Toscana.Engine.DependencyResolver.GetService(Of T)()
+  name.vb: GetService(Of T)()
+- uid: Toscana.Engine.DependencyResolver.Replace``1(``0)
+  commentId: M:Toscana.Engine.DependencyResolver.Replace``1(``0)
+  id: Replace``1(``0)
+  parent: Toscana.Engine.DependencyResolver
   langs:
   - csharp
   - vb
-  name: Type
-  nameWithType: ToscaPolicy.Type
-  fullName: Toscana.ToscaPolicy.Type
-  type: Property
+  name: Replace<T>(T)
+  nameWithType: DependencyResolver.Replace<T>(T)
+  fullName: Toscana.Engine.DependencyResolver.Replace<T>(T)
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaPolicy.cs
+      path: Toscana/Engine/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Type
-    path: Toscana/ToscaPolicy.cs
-    startLine: 23
+    id: Replace
+    path: Toscana/Engine/DependencyResolver.cs
+    startLine: 134
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nThe required name of the policy type the policy definition is based upon.\n"
+  namespace: Toscana.Engine
+  summary: "\nReplaces registration with a new instance\n"
   example: []
   syntax:
-    content: >-
-      [Required(ErrorMessage = "Type is required on policy.", AllowEmptyStrings = false)]
-
-      public string Type { get; set; }
-    content.vb: >-
-      <Required(ErrorMessage:="Type is required on policy.", AllowEmptyStrings:=False)>
-
-      Public Property Type As String
-    parameters: []
-    return:
-      type: System.String
-  attributes:
-  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
-    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
-    arguments: []
-    namedArguments:
-    - name: ErrorMessage
-      type: System.String
-      value: Type is required on policy.
-    - name: AllowEmptyStrings
-      type: System.Boolean
-      value: false
+    content: public void Replace<T>(T instance)
+    content.vb: Public Sub Replace(Of T)(instance As T)
+    parameters:
+    - id: instance
+      type: '{T}'
+      description: ''
+    typeParameters:
+    - id: T
+      description: ''
+  implements:
+  - Toscana.IDependencyResolver.Replace``1({T})
+  nameWithType.vb: DependencyResolver.Replace(Of T)(T)
   modifiers.csharp:
   - public
-  - get
-  - set
   modifiers.vb:
   - Public
-- uid: Toscana.ToscaPolicy.Description
-  commentId: P:Toscana.ToscaPolicy.Description
-  id: Description
-  parent: Toscana.ToscaPolicy
+  fullName.vb: Toscana.Engine.DependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
+- uid: Toscana.Engine.DependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.Engine.DependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  id: RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  parent: Toscana.Engine.DependencyResolver
   langs:
   - csharp
   - vb
-  name: Description
-  nameWithType: ToscaPolicy.Description
-  fullName: Toscana.ToscaPolicy.Description
-  type: Property
+  name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  nameWithType: DependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  fullName: Toscana.Engine.DependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  type: Method
   source:
     remote:
-      path: Toscana/ToscaPolicy.cs
+      path: Toscana/Engine/DependencyResolver.cs
       branch: master
       repo: https://github.com/QualiSystems/Toscana.git
-    id: Description
-    path: Toscana/ToscaPolicy.cs
-    startLine: 29
+    id: RegisterDataTypeConverter
+    path: Toscana/Engine/DependencyResolver.cs
+    startLine: 143
   assemblies:
   - Toscana
-  namespace: Toscana
-  summary: "\nThe optional description for the policy definition.\n"
+  namespace: Toscana.Engine
+  summary: "\n\n"
   example: []
   syntax:
-    content: public string Description { get; set; }
-    content.vb: Public Property Description As String
-    parameters: []
-    return:
-      type: System.String
+    content: public void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter)
+    content.vb: Public Sub RegisterDataTypeConverter(dataTypeValueConverter As IToscaDataTypeValueConverter)
+    parameters:
+    - id: dataTypeValueConverter
+      type: Toscana.Engine.IToscaDataTypeValueConverter
+      description: ''
+  implements:
+  - Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
   modifiers.csharp:
   - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Toscana.ToscaPolicy.Properties
-  commentId: P:Toscana.ToscaPolicy.Properties
-  id: Properties
-  parent: Toscana.ToscaPolicy
-  langs:
-  - csharp
-  - vb
-  name: Properties
-  nameWithType: ToscaPolicy.Properties
-  fullName: Toscana.ToscaPolicy.Properties
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaPolicy.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: Properties
-    path: Toscana/ToscaPolicy.cs
-    startLine: 34
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nAn optional list of property value assignments for the policy definition.\n"
-  example: []
-  syntax:
-    content: public Dictionary<string, ToscaPropertyAssignment> Properties { get; set; }
-    content.vb: Public Property Properties As Dictionary(Of String, ToscaPropertyAssignment)
-    parameters: []
-    return:
-      type: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyAssignment}
-  modifiers.csharp:
-  - public
-  - get
-  - set
-  modifiers.vb:
-  - Public
-- uid: Toscana.ToscaPolicy.Targets
-  commentId: P:Toscana.ToscaPolicy.Targets
-  id: Targets
-  parent: Toscana.ToscaPolicy
-  langs:
-  - csharp
-  - vb
-  name: Targets
-  nameWithType: ToscaPolicy.Targets
-  fullName: Toscana.ToscaPolicy.Targets
-  type: Property
-  source:
-    remote:
-      path: Toscana/ToscaPolicy.cs
-      branch: master
-      repo: https://github.com/QualiSystems/Toscana.git
-    id: Targets
-    path: Toscana/ToscaPolicy.cs
-    startLine: 39
-  assemblies:
-  - Toscana
-  namespace: Toscana
-  summary: "\nAn optional list of valid Node Templates or Groups the Policy can be applied to.\n"
-  example: []
-  syntax:
-    content: public string[] Targets { get; set; }
-    content.vb: Public Property Targets As String()
-    parameters: []
-    return:
-      type: System.String[]
-  modifiers.csharp:
-  - public
-  - get
-  - set
   modifiers.vb:
   - Public
 references:
-- uid: Toscana
-  commentId: N:Toscana
+- uid: Toscana.Engine
+  commentId: N:Toscana.Engine
   isExternal: false
-  name: Toscana
-  nameWithType: Toscana
-  fullName: Toscana
+  name: Toscana.Engine
+  nameWithType: Toscana.Engine
+  fullName: Toscana.Engine
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -258,6 +267,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
+- uid: Toscana.IDependencyResolver
+  commentId: T:Toscana.IDependencyResolver
+  parent: Toscana
+  isExternal: false
+  name: IDependencyResolver
+  nameWithType: IDependencyResolver
+  fullName: Toscana.IDependencyResolver
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -537,21 +553,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaPolicy.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaPolicy,Toscana.ToscaPolicy},System.Func{Toscana.ToscaPolicy,System.Boolean})
+- uid: Toscana.Engine.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.DependencyResolver,Toscana.Engine.DependencyResolver},System.Func{Toscana.Engine.DependencyResolver,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<ToscaPolicy>(Func<ToscaPolicy, ToscaPolicy>, Func<ToscaPolicy, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaPolicy>(Func<ToscaPolicy, ToscaPolicy>, Func<ToscaPolicy, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaPolicy>(System.Func<Toscana.ToscaPolicy, Toscana.ToscaPolicy>, System.Func<Toscana.ToscaPolicy, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaPolicy)(Func(Of ToscaPolicy, ToscaPolicy), Func(Of ToscaPolicy, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaPolicy)(System.Func(Of Toscana.ToscaPolicy, Toscana.ToscaPolicy), System.Func(Of Toscana.ToscaPolicy, System.Boolean))
-  name.vb: FromHierarchy(Of ToscaPolicy)(Func(Of ToscaPolicy, ToscaPolicy), Func(Of ToscaPolicy, Boolean))
+  name: FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>, Func<DependencyResolver, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>, Func<DependencyResolver, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.DependencyResolver>(System.Func<Toscana.Engine.DependencyResolver, Toscana.Engine.DependencyResolver>, System.Func<Toscana.Engine.DependencyResolver, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver), Func(Of DependencyResolver, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.DependencyResolver)(System.Func(Of Toscana.Engine.DependencyResolver, Toscana.Engine.DependencyResolver), System.Func(Of Toscana.Engine.DependencyResolver, System.Boolean))
+  name.vb: FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver), Func(Of DependencyResolver, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<ToscaPolicy>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaPolicy>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaPolicy>
+    name: FromHierarchy<DependencyResolver>
+    nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.DependencyResolver>
   - name: (
     nameWithType: (
     fullName: (
@@ -563,17 +579,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -588,10 +604,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -608,9 +624,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of ToscaPolicy)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaPolicy)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaPolicy)
+    name: FromHierarchy(Of DependencyResolver)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of DependencyResolver)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.DependencyResolver)
   - name: (
     nameWithType: (
     fullName: (
@@ -622,17 +638,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: )
     nameWithType: )
     fullName: )
@@ -647,10 +663,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -665,21 +681,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.ToscaPolicy.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.ToscaPolicy,Toscana.ToscaPolicy})
+- uid: Toscana.Engine.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Engine.DependencyResolver,Toscana.Engine.DependencyResolver})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<ToscaPolicy>(Func<ToscaPolicy, ToscaPolicy>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaPolicy>(Func<ToscaPolicy, ToscaPolicy>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaPolicy>(System.Func<Toscana.ToscaPolicy, Toscana.ToscaPolicy>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaPolicy)(Func(Of ToscaPolicy, ToscaPolicy))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaPolicy)(System.Func(Of Toscana.ToscaPolicy, Toscana.ToscaPolicy))
-  name.vb: FromHierarchy(Of ToscaPolicy)(Func(Of ToscaPolicy, ToscaPolicy))
+  name: FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>)
+  nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.DependencyResolver>(System.Func<Toscana.Engine.DependencyResolver, Toscana.Engine.DependencyResolver>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.DependencyResolver)(System.Func(Of Toscana.Engine.DependencyResolver, Toscana.Engine.DependencyResolver))
+  name.vb: FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<ToscaPolicy>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaPolicy>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.ToscaPolicy>
+    name: FromHierarchy<DependencyResolver>
+    nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Engine.DependencyResolver>
   - name: (
     nameWithType: (
     fullName: (
@@ -691,17 +707,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -710,9 +726,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of ToscaPolicy)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaPolicy)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.ToscaPolicy)
+    name: FromHierarchy(Of DependencyResolver)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of DependencyResolver)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Engine.DependencyResolver)
   - name: (
     nameWithType: (
     fullName: (
@@ -724,17 +740,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.ToscaPolicy
-    name: ToscaPolicy
-    nameWithType: ToscaPolicy
-    fullName: Toscana.ToscaPolicy
+  - uid: Toscana.Engine.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.Engine.DependencyResolver
   - name: )
     nameWithType: )
     fullName: )
@@ -747,6 +763,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
+- uid: Toscana
+  commentId: N:Toscana
+  isExternal: false
+  name: Toscana
+  nameWithType: Toscana
+  fullName: Toscana
 - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   isExternal: true
@@ -976,156 +998,165 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: Toscana.ToscaPolicy
-  commentId: T:Toscana.ToscaPolicy
-  isExternal: false
-  name: ToscaPolicy
-  nameWithType: ToscaPolicy
-  fullName: Toscana.ToscaPolicy
-- uid: System.String
-  commentId: T:System.String
-  parent: System
-  isExternal: true
-  name: String
-  nameWithType: String
-  fullName: System.String
-- uid: System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyAssignment}
-  commentId: T:System.Collections.Generic.Dictionary{System.String,Toscana.ToscaPropertyAssignment}
-  parent: System.Collections.Generic
-  definition: System.Collections.Generic.Dictionary`2
-  name: Dictionary<String, ToscaPropertyAssignment>
-  nameWithType: Dictionary<String, ToscaPropertyAssignment>
-  fullName: System.Collections.Generic.Dictionary<System.String, Toscana.ToscaPropertyAssignment>
-  nameWithType.vb: Dictionary(Of String, ToscaPropertyAssignment)
-  fullname.vb: System.Collections.Generic.Dictionary(Of System.String, Toscana.ToscaPropertyAssignment)
-  name.vb: Dictionary(Of String, ToscaPropertyAssignment)
+- uid: Toscana.IDependencyResolver.GetService``1
+  commentId: M:Toscana.IDependencyResolver.GetService``1
+  parent: Toscana.IDependencyResolver
+  definition: Toscana.IDependencyResolver.GetService``1
+  name: GetService<T>()
+  nameWithType: IDependencyResolver.GetService<T>()
+  fullName: Toscana.IDependencyResolver.GetService<T>()
+  nameWithType.vb: IDependencyResolver.GetService(Of T)()
+  fullname.vb: Toscana.IDependencyResolver.GetService(Of T)()
+  name.vb: GetService(Of T)()
   spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaPropertyAssignment
-    name: ToscaPropertyAssignment
-    nameWithType: ToscaPropertyAssignment
-    fullName: Toscana.ToscaPropertyAssignment
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - uid: Toscana.ToscaPropertyAssignment
-    name: ToscaPropertyAssignment
-    nameWithType: ToscaPropertyAssignment
-    fullName: Toscana.ToscaPropertyAssignment
+  - uid: Toscana.IDependencyResolver.GetService``1
+    name: GetService<T>
+    nameWithType: IDependencyResolver.GetService<T>
+    fullName: Toscana.IDependencyResolver.GetService<T>
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic.Dictionary`2
-  commentId: T:System.Collections.Generic.Dictionary`2
-  isExternal: true
-  name: Dictionary<TKey, TValue>
-  nameWithType: Dictionary<TKey, TValue>
-  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
-  nameWithType.vb: Dictionary(Of TKey, TValue)
-  fullname.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
-  name.vb: Dictionary(Of TKey, TValue)
-  spec.csharp:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
   spec.vb:
-  - uid: System.Collections.Generic.Dictionary`2
-    name: Dictionary
-    nameWithType: Dictionary
-    fullName: System.Collections.Generic.Dictionary
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TKey
-    nameWithType: TKey
-    fullName: TKey
-  - name: ', '
-    nameWithType: ', '
-    fullName: ', '
-  - name: TValue
-    nameWithType: TValue
-    fullName: TValue
+  - uid: Toscana.IDependencyResolver.GetService``1
+    name: GetService(Of T)
+    nameWithType: IDependencyResolver.GetService(Of T)
+    fullName: Toscana.IDependencyResolver.GetService(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.Collections.Generic
-  commentId: N:System.Collections.Generic
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
   isExternal: false
-  name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
-  fullName: System.Collections.Generic
-- uid: System.String[]
-  name: String[]
-  nameWithType: String[]
-  fullName: System.String[]
-  nameWithType.vb: String()
-  fullname.vb: System.String()
-  name.vb: String()
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Toscana.IDependencyResolver.Replace``1({T})
+  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
+  parent: Toscana.IDependencyResolver
+  definition: Toscana.IDependencyResolver.Replace``1(``0)
+  name: Replace<T>(T)
+  nameWithType: IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
+  fullname.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
   spec.csharp:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: '[]'
-    nameWithType: '[]'
-    fullName: '[]'
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace<T>
+    nameWithType: IDependencyResolver.Replace<T>
+    fullName: Toscana.IDependencyResolver.Replace<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
   spec.vb:
-  - uid: System.String
-    name: String
-    nameWithType: String
-    fullName: System.String
-    isExternal: true
-  - name: ()
-    nameWithType: ()
-    fullName: ()
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace(Of T)
+    nameWithType: IDependencyResolver.Replace(Of T)
+    fullName: Toscana.IDependencyResolver.Replace(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDependencyResolver.Replace``1(``0)
+  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
+  isExternal: false
+  name: Replace<T>(T)
+  nameWithType: IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
+  fullname.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
+  spec.csharp:
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace<T>
+    nameWithType: IDependencyResolver.Replace<T>
+    fullName: Toscana.IDependencyResolver.Replace<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace(Of T)
+    nameWithType: IDependencyResolver.Replace(Of T)
+    fullName: Toscana.IDependencyResolver.Replace(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  parent: Toscana.IDependencyResolver
+  isExternal: false
+  name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  nameWithType: IDependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  spec.csharp:
+  - uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+    name: RegisterDataTypeConverter
+    nameWithType: IDependencyResolver.RegisterDataTypeConverter
+    fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+    name: RegisterDataTypeConverter
+    nameWithType: IDependencyResolver.RegisterDataTypeConverter
+    fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Toscana.Engine.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.Engine.IToscaDataTypeValueConverter
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Engine.IToscaDataTypeValueConverter
+  commentId: T:Toscana.Engine.IToscaDataTypeValueConverter
+  parent: Toscana.Engine
+  isExternal: false
+  name: IToscaDataTypeValueConverter
+  nameWithType: IToscaDataTypeValueConverter
+  fullName: Toscana.Engine.IToscaDataTypeValueConverter

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Common;
+using Toscana.Engine;
 using Toscana.Exceptions;
 using Toscana.Tests.Engine;
 
@@ -643,6 +644,102 @@ data_types:
             
             // Assert
             results.Should().ContainSingle(r => r.ErrorMessage.Equals("Circular dependency detected on import \'import.yaml\'"));
+        }
+
+        [Test]
+        public void Exception_Should_Be_Thrown_When_Parser_For_Custom_Data_Type_Not_Defined()
+        {
+            // Arrange
+            var toscaMetadata = new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1, 2),
+                EntryDefinitions = "definitions.yaml",
+                ToscaMetaFileVersion = new Version(1, 0)
+            };
+            var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+
+            var definitions = new ToscaServiceTemplate {ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"};
+            var complexDataType = new ToscaDataType();
+            var realProperty = new ToscaProperty { Type = "float" };
+            complexDataType.Properties.Add("real", realProperty);
+            complexDataType.Properties.Add("imaginary", new ToscaProperty { Type = "float"});
+            definitions.DataTypes.Add("tosca.standard.Complex", complexDataType);
+
+            var complexProperty = new ToscaProperty {Type = "tosca.standard.Complex"};
+            complexProperty.Constraints.Add(new Dictionary<string, object> {{"valid_values", new List<object> {"1 + 1i"}}});
+
+            var basicNodetype = new ToscaNodeType();
+            basicNodetype.Properties.Add("complex", complexProperty);
+
+            definitions.NodeTypes.Add("basic", basicNodetype);
+            cloudServiceArchive.AddToscaServiceTemplate("definitions.yaml", definitions);
+
+            // Act
+            List<ValidationResult> results;
+            Action action = () => cloudServiceArchive.TryValidate(out results);
+
+            // Assert
+            action.ShouldThrow<ToscaDataTypeParserNotFoundException>()
+                .WithMessage("Parser for data type 'tosca.standard.Complex' nod found.");
+        }
+
+        [Test]
+        public void Validation_Valid_Values_Of_Custom_Data_Type_Should_Pass_If_Proper_Parser_Registered()
+        {
+            // Arrange
+            var toscaMetadata = new ToscaMetadata
+            {
+                CreatedBy = "Anonymous",
+                CsarVersion = new Version(1, 1, 2),
+                EntryDefinitions = "definitions.yaml",
+                ToscaMetaFileVersion = new Version(1, 0)
+            };
+            var cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+
+            var definitions = new ToscaServiceTemplate {ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"};
+            var complexDataType = new ToscaDataType();
+            var realProperty = new ToscaProperty { Type = "float" };
+            complexDataType.Properties.Add("real", realProperty);
+            complexDataType.Properties.Add("imaginary", new ToscaProperty { Type = "float"});
+            definitions.DataTypes.Add("tosca.standard.Complex", complexDataType);
+
+            var complexProperty = new ToscaProperty {Type = "tosca.standard.Complex"};
+            complexProperty.Constraints.Add(new Dictionary<string, object> {{"valid_values", new List<object> {"1 + 1i"}}});
+
+            var basicNodetype = new ToscaNodeType();
+            basicNodetype.Properties.Add("complex", complexProperty);
+
+            definitions.NodeTypes.Add("basic", basicNodetype);
+            DependencyResolver.Current.RegisterDataTypeConverter(new CustomDataTypeConverter());
+            cloudServiceArchive.AddToscaServiceTemplate("definitions.yaml", definitions);
+
+            // Act
+            List<ValidationResult> results;
+            cloudServiceArchive.TryValidate(out results);
+
+            // Assert
+            results.Should().BeEmpty();
+        }
+    }
+
+    public class CustomDataTypeConverter : IToscaDataTypeValueConverter
+    {
+        public bool CanConvert(string dataTypeName)
+        {
+            return dataTypeName.Equals("tosca.standard.Complex");
+        }
+
+        public bool TryParse(object dataTypeValue, out object result)
+        {
+            var match = Regex.Match(dataTypeValue.ToString(), @"[0-9]{0,}\d\.[0-9]{0,}\d[i]|[0-9]{0,}\d[i]");
+            if (match.Success)
+            {
+                result = match.Value;
+                return match.Success;
+            }
+            result = null;
+            return false;
         }
     }
 }

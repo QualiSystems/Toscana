@@ -4,6 +4,7 @@ items:
   commentId: N:Toscana
   id: Toscana
   children:
+  - Toscana.IDependencyResolver
   - Toscana.IDerivableToscaEntity`1
   - Toscana.IToscaEntityWithProperties`1
   - Toscana.IToscaMetadata
@@ -49,6 +50,13 @@ items:
   assemblies:
   - Toscana
 references:
+- uid: Toscana.IDependencyResolver
+  commentId: T:Toscana.IDependencyResolver
+  parent: Toscana
+  isExternal: false
+  name: IDependencyResolver
+  nameWithType: IDependencyResolver
+  fullName: Toscana.IDependencyResolver
 - uid: Toscana.IToscaEntityWithProperties`1
   commentId: T:Toscana.IToscaEntityWithProperties`1
   isExternal: false

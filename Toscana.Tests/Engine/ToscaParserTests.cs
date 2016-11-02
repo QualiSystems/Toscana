@@ -904,7 +904,7 @@ Property 'unsupported_something' not found on type 'Toscana.ToscaServiceTemplate
                 new ToscaFloatDataTypeConverter(),
                 new ToscaNullDataTypeConverter()
             };
-            var toscaDataTypeValueConverter = new ToscaParserFactory(toscaDataTypeValueConverters).GetParser("string");
+            var toscaDataTypeValueConverter = new ToscaDataTypeRegistry(toscaDataTypeValueConverters).GetConverter("string");
 
             toscaDataTypeValueConverter.CanConvert("string").Should().BeTrue();
             object result;
