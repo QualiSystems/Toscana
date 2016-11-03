@@ -17,6 +17,13 @@ after_test:
     - codecov -f "Toscana_coverage.xml"
 deploy:
 - provider: NuGet
+  server: https://www.myget.org/F/toscana/api/v2/package
+  api_key:
+    secure: ChrBD/QOkbYlSsjfJKIcBHhlR5Oq5y9iz4dQpsCZTthy1RtHXLOQIHgtiTTZRuTH
+  artifact: /.*\.nupkg/
+  on:
+    branch: develop
+- provider: NuGet
   artifact: /.*\.nupkg/
   api_key:
     secure: 7fn0WOlE16mVKH/QyyCCU4D3bTtXKolXKNBMbLOZZmXydWKOeKxBN7ictdxCIKS+
