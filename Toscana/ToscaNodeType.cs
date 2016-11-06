@@ -175,8 +175,7 @@ namespace Toscana
                     .Select(
                         combineProperty =>
                             new ValidationResult(
-                                string.Format(
-                                    "Property '{0}' has different type when overriden, which is not allowed",
+                                string.Format("Failed to override property: '{0}', changing the data type is not allowed.",
                                     combineProperty.Key))));
             return validationResults;
         }
