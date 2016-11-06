@@ -222,7 +222,7 @@ namespace Toscana.Tests
             cloudServiceArchive.TryValidate(out validationResults);
             
             // Assert
-            validationResults.Should().Contain(r=>r.ErrorMessage.Equals("Property 'speed' has different type when overriden, which is not allowed"));
+            validationResults.Should().Contain(r=>r.ErrorMessage.Equals("Failed to override property: 'speed', changing the data type is not allowed."));
         }
 
         [Test]
