@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRelationshipType
     path: Toscana/ToscaRelationshipType.cs
@@ -81,7 +81,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaRelationshipType.cs
@@ -112,7 +112,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetDerivedFromEntity
     path: Toscana/ToscaRelationshipType.cs
@@ -129,8 +129,8 @@ items:
       type: Toscana.ToscaRelationshipType
   overridden: Toscana.ToscaObject{Toscana.ToscaRelationshipType}.GetDerivedFromEntity
   exceptions:
-  - type: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - type: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
     description: Thrown when relationship type not found in any of the service templates.
   modifiers.csharp:
   - public
@@ -152,7 +152,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaRelationshipType.cs
@@ -190,7 +190,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaRelationshipType.cs
@@ -226,7 +226,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaRelationshipType.cs
@@ -262,7 +262,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaRelationshipType.cs
@@ -298,7 +298,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaRelationshipType.cs
@@ -334,7 +334,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Interfaces
     path: Toscana/ToscaRelationshipType.cs
@@ -370,7 +370,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: ValidTargetTypes
     path: Toscana/ToscaRelationshipType.cs
@@ -407,7 +407,7 @@ items:
   source:
     remote:
       path: Toscana/ToscaRelationshipType.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaRelationshipType.cs
@@ -1503,12 +1503,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFound
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   isExternal: false
-  name: ToscaRelationshipTypeNotFound
-  nameWithType: ToscaRelationshipTypeNotFound
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  name: ToscaRelationshipTypeNotFoundException
+  nameWithType: ToscaRelationshipTypeNotFoundException
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
 - uid: Toscana.ToscaObject`1.GetDerivedFromEntity
   commentId: M:Toscana.ToscaObject`1.GetDerivedFromEntity
   isExternal: false

@@ -2,8 +2,6 @@
 - uid: Toscana
   name: Toscana
   items:
-  - uid: Toscana.IDependencyResolver
-    name: IDependencyResolver
   - uid: Toscana.IDerivableToscaEntity`1
     name: IDerivableToscaEntity<T>
     name.vb: IDerivableToscaEntity(Of T)
@@ -82,6 +80,8 @@
   items:
   - uid: Toscana.Engine.DependencyResolver
     name: DependencyResolver
+  - uid: Toscana.Engine.IDependencyResolver
+    name: IDependencyResolver
   - uid: Toscana.Engine.IToscaDataTypeValueConverter
     name: IToscaDataTypeValueConverter
 - uid: Toscana.Exceptions
@@ -109,8 +109,8 @@
     name: ToscaNodeTypeNotFoundException
   - uid: Toscana.Exceptions.ToscaParsingException
     name: ToscaParsingException
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
   - uid: Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
     name: ToscaServiceTemplateAlreadyExistsException
   - uid: Toscana.Exceptions.ToscaValidationException

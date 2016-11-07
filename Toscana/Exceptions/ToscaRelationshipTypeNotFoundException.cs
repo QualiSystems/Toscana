@@ -7,12 +7,12 @@ namespace Toscana.Exceptions
     /// Thrown when relationship type not found
     /// </summary>
     [Serializable]
-    public class ToscaRelationshipTypeNotFound : ToscaBaseException
+    public class ToscaRelationshipTypeNotFoundException : ToscaBaseException
     {
         /// <summary>
         /// Initializes an exception
         /// </summary>
-        public ToscaRelationshipTypeNotFound()
+        public ToscaRelationshipTypeNotFoundException()
         {
         }
 
@@ -20,7 +20,7 @@ namespace Toscana.Exceptions
         /// Initializes an exception with a message
         /// </summary>
         /// <param name="message"></param>
-        public ToscaRelationshipTypeNotFound(string message) : base(message)
+        public ToscaRelationshipTypeNotFoundException(string message) : base(message)
         {
         }
 
@@ -31,7 +31,7 @@ namespace Toscana.Exceptions
         /// <param name="context"></param>
         /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
         /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
-        public ToscaRelationshipTypeNotFound(SerializationInfo info, StreamingContext context) : base(info, context)
+        public ToscaRelationshipTypeNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 
@@ -40,7 +40,7 @@ namespace Toscana.Exceptions
         /// </summary>
         /// <param name="message">Error message</param>
         /// <param name="exception">Inner exception</param>
-        public ToscaRelationshipTypeNotFound(string message, Exception exception) : base(message, exception)
+        public ToscaRelationshipTypeNotFoundException(string message, Exception exception) : base(message, exception)
         {
         }
     }

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using Toscana.Engine;
 
-namespace Toscana
+namespace Toscana.Engine
 {
     internal interface ICloudServiceArchiveValidator
     {

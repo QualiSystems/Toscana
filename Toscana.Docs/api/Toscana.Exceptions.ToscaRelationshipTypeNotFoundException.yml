@@ -1,28 +1,28 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFound
-  id: ToscaRelationshipTypeNotFound
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+  id: ToscaRelationshipTypeNotFoundException
   parent: Toscana.Exceptions
   children:
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.String)
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.String,System.Exception)
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.String)
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.String,System.Exception)
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTypeNotFound
-  nameWithType: ToscaRelationshipTypeNotFound
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  name: ToscaRelationshipTypeNotFoundException
+  nameWithType: ToscaRelationshipTypeNotFoundException
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   type: Class
   source:
     remote:
-      path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+      path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
       branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
-    id: ToscaRelationshipTypeNotFound
-    path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+    id: ToscaRelationshipTypeNotFoundException
+    path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
     startLine: 8
   assemblies:
   - Toscana
@@ -33,11 +33,11 @@ items:
     content: >-
       [Serializable]
 
-      public class ToscaRelationshipTypeNotFound : ToscaBaseException, ISerializable, _Exception
+      public class ToscaRelationshipTypeNotFoundException : ToscaBaseException, ISerializable, _Exception
     content.vb: >-
       <Serializable>
 
-      Public Class ToscaRelationshipTypeNotFound
+      Public Class ToscaRelationshipTypeNotFoundException
           Inherits ToscaBaseException
           Implements ISerializable, _Exception
   inheritance:
@@ -67,8 +67,8 @@ items:
   - System.Object.GetHashCode
   - System.Object.MemberwiseClone
   extensionMethods:
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,Toscana.Exceptions.ToscaRelationshipTypeNotFound},System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,System.Boolean})
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,Toscana.Exceptions.ToscaRelationshipTypeNotFound})
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFoundException,Toscana.Exceptions.ToscaRelationshipTypeNotFoundException},System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFoundException,System.Boolean})
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFoundException,Toscana.Exceptions.ToscaRelationshipTypeNotFoundException})
   - System.Exception.Toscana.Common.ExceptionExtensions.GetaAllMessages
   attributes:
   - type: System.SerializableAttribute
@@ -80,24 +80,24 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor
-  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor
+  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor
   id: '#ctor'
-  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTypeNotFound()
-  nameWithType: ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound()
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound()
+  name: ToscaRelationshipTypeNotFoundException()
+  nameWithType: ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException()
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException()
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+      path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
       branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+    path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
     startLine: 14
   assemblies:
   - Toscana
@@ -105,30 +105,30 @@ items:
   summary: "\nInitializes an exception\n"
   example: []
   syntax:
-    content: public ToscaRelationshipTypeNotFound()
+    content: public ToscaRelationshipTypeNotFoundException()
     content.vb: Public Sub New
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.String)
-  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.String)
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.String)
+  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.String)
   id: '#ctor(System.String)'
-  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTypeNotFound(String)
-  nameWithType: ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound(String)
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound(System.String)
+  name: ToscaRelationshipTypeNotFoundException(String)
+  nameWithType: ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException(String)
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException(System.String)
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+      path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
       branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+    path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
     startLine: 22
   assemblies:
   - Toscana
@@ -136,7 +136,7 @@ items:
   summary: "\nInitializes an exception with a message\n"
   example: []
   syntax:
-    content: public ToscaRelationshipTypeNotFound(string message)
+    content: public ToscaRelationshipTypeNotFoundException(string message)
     content.vb: Public Sub New(message As String)
     parameters:
     - id: message
@@ -146,24 +146,24 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   id: '#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)'
-  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTypeNotFound(SerializationInfo, StreamingContext)
-  nameWithType: ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound(SerializationInfo, StreamingContext)
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  name: ToscaRelationshipTypeNotFoundException(SerializationInfo, StreamingContext)
+  nameWithType: ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException(SerializationInfo, StreamingContext)
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+      path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
       branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+    path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
     startLine: 33
   assemblies:
   - Toscana
@@ -171,7 +171,7 @@ items:
   summary: "\nInitializes an exception from serialization info and streaming context\n"
   example: []
   syntax:
-    content: public ToscaRelationshipTypeNotFound(SerializationInfo info, StreamingContext context)
+    content: public ToscaRelationshipTypeNotFoundException(SerializationInfo info, StreamingContext context)
     content.vb: Public Sub New(info As SerializationInfo, context As StreamingContext)
     parameters:
     - id: info
@@ -191,24 +191,24 @@ items:
   - public
   modifiers.vb:
   - Public
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.String,System.Exception)
-  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFound.#ctor(System.String,System.Exception)
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.String,System.Exception)
+  commentId: M:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.#ctor(System.String,System.Exception)
   id: '#ctor(System.String,System.Exception)'
-  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  parent: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   langs:
   - csharp
   - vb
-  name: ToscaRelationshipTypeNotFound(String, Exception)
-  nameWithType: ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound(String, Exception)
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound.ToscaRelationshipTypeNotFound(System.String, System.Exception)
+  name: ToscaRelationshipTypeNotFoundException(String, Exception)
+  nameWithType: ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException(String, Exception)
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.ToscaRelationshipTypeNotFoundException(System.String, System.Exception)
   type: Constructor
   source:
     remote:
-      path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+      path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
       branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
-    path: Toscana/Exceptions/ToscaRelationshipTypeNotFound.cs
+    path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
     startLine: 42
   assemblies:
   - Toscana
@@ -216,7 +216,7 @@ items:
   summary: "\nInitializes an exception with an error message and inner exception\n"
   example: []
   syntax:
-    content: public ToscaRelationshipTypeNotFound(string message, Exception exception)
+    content: public ToscaRelationshipTypeNotFoundException(string message, Exception exception)
     content.vb: Public Sub New(message As String, exception As Exception)
     parameters:
     - id: message
@@ -701,21 +701,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,Toscana.Exceptions.ToscaRelationshipTypeNotFound},System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,System.Boolean})
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFoundException,Toscana.Exceptions.ToscaRelationshipTypeNotFoundException},System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFoundException,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
-  name: FromHierarchy<ToscaRelationshipTypeNotFound>(Func<ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound>, Func<ToscaRelationshipTypeNotFound, Boolean>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFound>(Func<ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound>, Func<ToscaRelationshipTypeNotFound, Boolean>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFound>(System.Func<Toscana.Exceptions.ToscaRelationshipTypeNotFound, Toscana.Exceptions.ToscaRelationshipTypeNotFound>, System.Func<Toscana.Exceptions.ToscaRelationshipTypeNotFound, System.Boolean>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFound)(Func(Of ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound), Func(Of ToscaRelationshipTypeNotFound, Boolean))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound)(System.Func(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound, Toscana.Exceptions.ToscaRelationshipTypeNotFound), System.Func(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound, System.Boolean))
-  name.vb: FromHierarchy(Of ToscaRelationshipTypeNotFound)(Func(Of ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound), Func(Of ToscaRelationshipTypeNotFound, Boolean))
+  name: FromHierarchy<ToscaRelationshipTypeNotFoundException>(Func<ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException>, Func<ToscaRelationshipTypeNotFoundException, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFoundException>(Func<ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException>, Func<ToscaRelationshipTypeNotFoundException, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException>(System.Func<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException, Toscana.Exceptions.ToscaRelationshipTypeNotFoundException>, System.Func<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFoundException)(Func(Of ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException), Func(Of ToscaRelationshipTypeNotFoundException, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException)(System.Func(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException, Toscana.Exceptions.ToscaRelationshipTypeNotFoundException), System.Func(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException, System.Boolean))
+  name.vb: FromHierarchy(Of ToscaRelationshipTypeNotFoundException)(Func(Of ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException), Func(Of ToscaRelationshipTypeNotFoundException, Boolean))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy<ToscaRelationshipTypeNotFound>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFound>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFound>
+    name: FromHierarchy<ToscaRelationshipTypeNotFoundException>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFoundException>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException>
   - name: (
     nameWithType: (
     fullName: (
@@ -727,17 +727,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -752,10 +752,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -772,9 +772,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
-    name: FromHierarchy(Of ToscaRelationshipTypeNotFound)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFound)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound)
+    name: FromHierarchy(Of ToscaRelationshipTypeNotFoundException)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFoundException)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException)
   - name: (
     nameWithType: (
     fullName: (
@@ -786,17 +786,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: )
     nameWithType: )
     fullName: )
@@ -811,10 +811,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
@@ -829,21 +829,21 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFound,Toscana.Exceptions.ToscaRelationshipTypeNotFound})
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.Exceptions.ToscaRelationshipTypeNotFoundException,Toscana.Exceptions.ToscaRelationshipTypeNotFoundException})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
   parent: Toscana.Common.EnumerableExtensions
   definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
-  name: FromHierarchy<ToscaRelationshipTypeNotFound>(Func<ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound>)
-  nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFound>(Func<ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound>)
-  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFound>(System.Func<Toscana.Exceptions.ToscaRelationshipTypeNotFound, Toscana.Exceptions.ToscaRelationshipTypeNotFound>)
-  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFound)(Func(Of ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound))
-  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound)(System.Func(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound, Toscana.Exceptions.ToscaRelationshipTypeNotFound))
-  name.vb: FromHierarchy(Of ToscaRelationshipTypeNotFound)(Func(Of ToscaRelationshipTypeNotFound, ToscaRelationshipTypeNotFound))
+  name: FromHierarchy<ToscaRelationshipTypeNotFoundException>(Func<ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException>)
+  nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFoundException>(Func<ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException>(System.Func<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException, Toscana.Exceptions.ToscaRelationshipTypeNotFoundException>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFoundException)(Func(Of ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException)(System.Func(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException, Toscana.Exceptions.ToscaRelationshipTypeNotFoundException))
+  name.vb: FromHierarchy(Of ToscaRelationshipTypeNotFoundException)(Func(Of ToscaRelationshipTypeNotFoundException, ToscaRelationshipTypeNotFoundException))
   spec.csharp:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy<ToscaRelationshipTypeNotFound>
-    nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFound>
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFound>
+    name: FromHierarchy<ToscaRelationshipTypeNotFoundException>
+    nameWithType: EnumerableExtensions.FromHierarchy<ToscaRelationshipTypeNotFoundException>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.Exceptions.ToscaRelationshipTypeNotFoundException>
   - name: (
     nameWithType: (
     fullName: (
@@ -855,17 +855,17 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -874,9 +874,9 @@ references:
     fullName: )
   spec.vb:
   - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
-    name: FromHierarchy(Of ToscaRelationshipTypeNotFound)
-    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFound)
-    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFound)
+    name: FromHierarchy(Of ToscaRelationshipTypeNotFoundException)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of ToscaRelationshipTypeNotFoundException)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.Exceptions.ToscaRelationshipTypeNotFoundException)
   - name: (
     nameWithType: (
     fullName: (
@@ -888,17 +888,17 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-    name: ToscaRelationshipTypeNotFound
-    nameWithType: ToscaRelationshipTypeNotFound
-    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+    name: ToscaRelationshipTypeNotFoundException
+    nameWithType: ToscaRelationshipTypeNotFoundException
+    fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - name: )
     nameWithType: )
     fullName: )

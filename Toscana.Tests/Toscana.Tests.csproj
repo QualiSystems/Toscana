@@ -98,7 +98,7 @@
     <Compile Include="Exceptions\ToscaInvalidFileExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaRelationshipTypeNotFoundTests.cs" />
+    <Compile Include="Exceptions\ToscaRelationshipTypeNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaServiceTemplateAlreadyExistsExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaParsingExceptionTests.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="ToscaRelationshipTemplateTests.cs" />
     <Compile Include="ToscaRelationshipTypeTests.cs" />
     <Compile Include="ToscaServiceTemplateTests.cs" />
-    <Compile Include="ToscaServiceTemplateBuilderTests.cs" />
     <Compile Include="ToscaServiceTemplateMetadataTests.cs" />
     <Compile Include="ToscaTopologyTemplateTests.cs" />
   </ItemGroup>

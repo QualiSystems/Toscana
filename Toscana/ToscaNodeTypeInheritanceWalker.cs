@@ -4,7 +4,7 @@ using System.Linq;
 using QuickGraph;
 using QuickGraph.Algorithms.Search;
 
-namespace Toscana.Engine
+namespace Toscana
 {
     internal class ToscaNodeTypeInheritanceWalker
     {

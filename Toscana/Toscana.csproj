@@ -82,7 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CloudServiceArchiveValidator.cs" />
+    <Compile Include="Engine\CloudServiceArchiveValidator.cs" />
     <Compile Include="Common\EnumerableExtensions.cs" />
     <Compile Include="Common\ExceptionExtensions.cs" />
     <Compile Include="Common\PathEqualityComparer.cs" />
@@ -90,8 +90,6 @@
     <Compile Include="Common\StreamExtensions.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\ZipArchiveExtensions.cs" />
-    <Compile Include="DependencyResolver.cs" />
-    <Compile Include="Engine\Bfs.cs" />
     <Compile Include="Engine\DependencyResolver.cs" />
     <Compile Include="Engine\ToscaFileSystemSaver.cs" />
     <Compile Include="Engine\ToscaBooleanDataTypeConverter.cs" />
@@ -104,9 +102,6 @@
     <Compile Include="Engine\SimpleIocContainer.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveLoader.cs" />
     <Compile Include="Engine\ToscaCloudServiceArchiveSaver.cs" />
-    <Compile Include="Engine\ToscaNodeTypeInheritanceWalker.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Engine\ToscaServiceTemplateLoader.cs" />
     <Compile Include="Engine\ToscaParser.cs" />
     <Compile Include="Engine\ToscaStringDataTypeConverter.cs" />
@@ -122,7 +117,7 @@
     <Compile Include="Exceptions\ToscaImportFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaMetadataFileNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaNodeTypeNotFoundException.cs" />
-    <Compile Include="Exceptions\ToscaRelationshipTypeNotFound.cs" />
+    <Compile Include="Exceptions\ToscaRelationshipTypeNotFoundException.cs" />
     <Compile Include="Exceptions\ToscaServiceTemplateAlreadyExistsException.cs" />
     <Compile Include="Exceptions\ToscaValidationException.cs" />
     <Compile Include="Exceptions\ToscaBaseException.cs" />
@@ -141,11 +136,13 @@
     <Compile Include="ToscaCredential.cs" />
     <Compile Include="ToscaDataType.cs" />
     <Compile Include="ToscaDefaults.cs" />
+    <Compile Include="ToscaGraphEdge.cs" />
     <Compile Include="ToscaGroup.cs" />
     <Compile Include="ToscaImport.cs" />
     <Compile Include="ToscaAttribute.cs" />
     <Compile Include="ToscaInterface.cs" />
     <Compile Include="ToscaMetadata.cs" />
+    <Compile Include="ToscaNodeTypeInheritanceWalker.cs" />
     <Compile Include="ToscaNodeTypeRequirementsGraph.cs" />
     <Compile Include="ToscaParameter.cs" />
     <Compile Include="ToscaPolicy.cs" />
@@ -164,7 +161,6 @@
     <Compile Include="ToscaRequirement.cs" />
     <Compile Include="ToscaRequirementAssignment.cs" />
     <Compile Include="ToscaServiceTemplate.cs" />
-    <Compile Include="ToscaServiceTemplateBuilder.cs" />
     <Compile Include="ToscaServiceTemplateMetadata.cs" />
     <Compile Include="ToscaTopologyTemplate.cs" />
   </ItemGroup>
