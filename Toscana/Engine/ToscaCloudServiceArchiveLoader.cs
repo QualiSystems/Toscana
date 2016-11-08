@@ -39,10 +39,10 @@ namespace Toscana.Engine
         private readonly IFileSystem fileSystem;
         private readonly IToscaParser<ToscaMetadata> metadataParser;
         private readonly IToscaParser<ToscaServiceTemplate> serviceTemplateParser;
-        private readonly ICloudServiceArchiveValidator validator;
+        private readonly IToscaValidator<ToscaCloudServiceArchive> validator;
 
         public ToscaCloudServiceArchiveLoader(IFileSystem fileSystem,
-            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser, ICloudServiceArchiveValidator validator)
+            IToscaParser<ToscaMetadata> metadataParser, IToscaParser<ToscaServiceTemplate> serviceTemplateParser, IToscaValidator<ToscaCloudServiceArchive> validator)
         {
             this.fileSystem = fileSystem;
             this.metadataParser = metadataParser;
@@ -94,10 +94,10 @@ namespace Toscana.Engine
             }
         }
 
-        private static void ValidateCloudServiceArchive(ToscaCloudServiceArchive toscaCloudServiceArchive)
+        private void ValidateCloudServiceArchive(ToscaCloudServiceArchive toscaCloudServiceArchive)
         {
             List<ValidationResult> validationResults;
-            toscaCloudServiceArchive.TryValidate(out validationResults);
+            validator.TryValidateRecursively(toscaCloudServiceArchive, out validationResults);
             if (validationResults.Any())
             {
                 throw new ToscaValidationException(string.Join(Environment.NewLine,
@@ -162,7 +162,8 @@ namespace Toscana.Engine
             catch (ToscaBaseException toscaBaseException)
             {
                 throw new ToscaParsingException(
-                    string.Format("Failed to load definitions file {0} due to an error: {1}", filePath, toscaBaseException.GetaAllMessages()));
+                    string.Format("Failed to load definitions file {0} due to an error: {1}", filePath, toscaBaseException.GetaAllMessages()), 
+                    toscaBaseException);
             }
         }
 

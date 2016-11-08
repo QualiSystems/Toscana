@@ -81,7 +81,6 @@ namespace Toscana.Engine
             container.Register<ITypeConvertersFactory, TypeConvertersFactory>();
             container.Register<IToscaPropertyMerger, ToscaPropertyMerger>();
             container.Register<IToscaPropertyCombiner, ToscaPropertyCombiner>();
-            container.Register<ICloudServiceArchiveValidator, CloudServiceArchiveValidator>();
             container.RegisterSingleton<IToscaDataTypeRegistry>(
                 () => new ToscaDataTypeRegistry(new List<IToscaDataTypeValueConverter>
                 {
@@ -113,9 +112,9 @@ namespace Toscana.Engine
             return Current.GetService<IToscaParser<ToscaMetadata>>();
         }
 
-        internal static ICloudServiceArchiveValidator GetToscaCloudServiceValidator()
+        internal static IToscaValidator<ToscaCloudServiceArchive> GetToscaCloudServiceValidator()
         {
-            return Current.GetService<ICloudServiceArchiveValidator>();
+            return Current.GetService<IToscaValidator<ToscaCloudServiceArchive>>();
         }
 
         internal static IToscaCloudServiceArchiveSaver GetToscaCloudServiceArchiveSaver()

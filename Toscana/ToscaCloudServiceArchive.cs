@@ -396,7 +396,7 @@ Examples of valid values for an “type” of “Linux” would include:  debian
         public bool TryValidate(out List<ValidationResult> validationResults)
         {
             var cloudServiceValidator = DependencyResolver.GetToscaCloudServiceValidator();
-            return cloudServiceValidator.ValidateCloudServiceArchive(this, out validationResults);
+            return cloudServiceValidator.TryValidateRecursively(this, out validationResults);
         }
 
         /// <summary>
