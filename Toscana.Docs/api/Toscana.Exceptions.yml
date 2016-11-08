@@ -15,7 +15,7 @@ items:
   - Toscana.Exceptions.ToscaMetadataFileNotFoundException
   - Toscana.Exceptions.ToscaNodeTypeNotFoundException
   - Toscana.Exceptions.ToscaParsingException
-  - Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  - Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   - Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
   - Toscana.Exceptions.ToscaValidationException
   langs:
@@ -82,12 +82,12 @@ references:
   name: ToscaNodeTypeNotFoundException
   nameWithType: ToscaNodeTypeNotFoundException
   fullName: Toscana.Exceptions.ToscaNodeTypeNotFoundException
-- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFound
-  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFound
+- uid: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
+  commentId: T:Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
   isExternal: false
-  name: ToscaRelationshipTypeNotFound
-  nameWithType: ToscaRelationshipTypeNotFound
-  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFound
+  name: ToscaRelationshipTypeNotFoundException
+  nameWithType: ToscaRelationshipTypeNotFoundException
+  fullName: Toscana.Exceptions.ToscaRelationshipTypeNotFoundException
 - uid: Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
   commentId: T:Toscana.Exceptions.ToscaServiceTemplateAlreadyExistsException
   isExternal: false

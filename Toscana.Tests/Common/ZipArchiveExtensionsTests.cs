@@ -6,7 +6,6 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Common;
-using Toscana.Tests.Engine;
 
 namespace Toscana.Tests.Common
 {

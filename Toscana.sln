@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F0EA28
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toscana.Docs", "Toscana.Docs\Toscana.Docs.csproj", "{5D82B32F-30A3-48FF-9156-1E4B322F530C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toscana.PS", "Toscana.PS\Toscana.PS.csproj", "{88B4B76B-B67D-4DCA-95BC-2B45C291D184}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,24 @@ Global
 		{5D82B32F-30A3-48FF-9156-1E4B322F530C}.Release-UnitySubset-v35|Any CPU.Build.0 = Release|Any CPU
 		{5D82B32F-30A3-48FF-9156-1E4B322F530C}.Release-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
 		{5D82B32F-30A3-48FF-9156-1E4B322F530C}.Release-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Debug-AOT|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Debug-AOT|Any CPU.Build.0 = Debug|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Debug-UnitySubset-v35|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Debug-UnitySubset-v35|Any CPU.Build.0 = Debug|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Portable-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Portable-Signed|Any CPU.Build.0 = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Portable-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Portable-Unsigned|Any CPU.Build.0 = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-UnitySubset-v35|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-UnitySubset-v35|Any CPU.Build.0 = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Unsigned|Any CPU.ActiveCfg = Release|Any CPU
+		{88B4B76B-B67D-4DCA-95BC-2B45C291D184}.Release-Unsigned|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

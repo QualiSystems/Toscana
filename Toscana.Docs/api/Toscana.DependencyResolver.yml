@@ -1,0 +1,1156 @@
+### YamlMime:ManagedReference
+items:
+- uid: Toscana.DependencyResolver
+  commentId: T:Toscana.DependencyResolver
+  id: DependencyResolver
+  parent: Toscana
+  children:
+  - Toscana.DependencyResolver.Current
+  - Toscana.DependencyResolver.GetService``1
+  - Toscana.DependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  - Toscana.DependencyResolver.Replace``1(``0)
+  - Toscana.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  langs:
+  - csharp
+  - vb
+  name: DependencyResolver
+  nameWithType: DependencyResolver
+  fullName: Toscana.DependencyResolver
+  type: Class
+  source:
+    remote:
+      path: Toscana/DependencyResolver.cs
+      branch: feature/borismod_add_github
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: DependencyResolver
+    path: Toscana/DependencyResolver.cs
+    startLine: 34
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nRegisteres all the types\n"
+  example: []
+  syntax:
+    content: 'public class DependencyResolver : IDependencyResolver'
+    content.vb: >-
+      Public Class DependencyResolver
+          Implements IDependencyResolver
+  inheritance:
+  - System.Object
+  implements:
+  - Toscana.IDependencyResolver
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - Toscana.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.DependencyResolver,Toscana.DependencyResolver},System.Func{Toscana.DependencyResolver,System.Boolean})
+  - Toscana.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.DependencyResolver,Toscana.DependencyResolver})
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Toscana.DependencyResolver.Current
+  commentId: P:Toscana.DependencyResolver.Current
+  id: Current
+  parent: Toscana.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: Current
+  nameWithType: DependencyResolver.Current
+  fullName: Toscana.DependencyResolver.Current
+  type: Property
+  source:
+    remote:
+      path: Toscana/DependencyResolver.cs
+      branch: feature/borismod_add_github
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Current
+    path: Toscana/DependencyResolver.cs
+    startLine: 47
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nReturns the current Dependency Resolver\n"
+  example: []
+  syntax:
+    content: public static IDependencyResolver Current { get; }
+    content.vb: Public Shared ReadOnly Property Current As IDependencyResolver
+    parameters: []
+    return:
+      type: Toscana.IDependencyResolver
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Toscana.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  commentId: M:Toscana.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  id: SetResolver(Toscana.IDependencyResolver)
+  parent: Toscana.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: SetResolver(IDependencyResolver)
+  nameWithType: DependencyResolver.SetResolver(IDependencyResolver)
+  fullName: Toscana.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  type: Method
+  source:
+    remote:
+      path: Toscana/DependencyResolver.cs
+      branch: feature/borismod_add_github
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: SetResolver
+    path: Toscana/DependencyResolver.cs
+    startLine: 56
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nSets the current Dependency Resolver\n"
+  example: []
+  syntax:
+    content: public static void SetResolver(IDependencyResolver resolver)
+    content.vb: Public Shared Sub SetResolver(resolver As IDependencyResolver)
+    parameters:
+    - id: resolver
+      type: Toscana.IDependencyResolver
+      description: ''
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Toscana.DependencyResolver.GetService``1
+  commentId: M:Toscana.DependencyResolver.GetService``1
+  id: GetService``1
+  parent: Toscana.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: GetService<T>()
+  nameWithType: DependencyResolver.GetService<T>()
+  fullName: Toscana.DependencyResolver.GetService<T>()
+  type: Method
+  source:
+    remote:
+      path: Toscana/DependencyResolver.cs
+      branch: feature/borismod_add_github
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: GetService
+    path: Toscana/DependencyResolver.cs
+    startLine: 149
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nReturns type\n"
+  example: []
+  syntax:
+    content: public T GetService<T>()
+    content.vb: Public Function GetService(Of T) As T
+    typeParameters:
+    - id: T
+      description: ''
+    return:
+      type: '{T}'
+      description: ''
+  implements:
+  - Toscana.IDependencyResolver.GetService``1
+  nameWithType.vb: DependencyResolver.GetService(Of T)()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Toscana.DependencyResolver.GetService(Of T)()
+  name.vb: GetService(Of T)()
+- uid: Toscana.DependencyResolver.Replace``1(``0)
+  commentId: M:Toscana.DependencyResolver.Replace``1(``0)
+  id: Replace``1(``0)
+  parent: Toscana.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: Replace<T>(T)
+  nameWithType: DependencyResolver.Replace<T>(T)
+  fullName: Toscana.DependencyResolver.Replace<T>(T)
+  type: Method
+  source:
+    remote:
+      path: Toscana/DependencyResolver.cs
+      branch: feature/borismod_add_github
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: Replace
+    path: Toscana/DependencyResolver.cs
+    startLine: 159
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\nReplaces registration with a new instance\n"
+  example: []
+  syntax:
+    content: public void Replace<T>(T instance)
+    content.vb: Public Sub Replace(Of T)(instance As T)
+    parameters:
+    - id: instance
+      type: '{T}'
+      description: ''
+    typeParameters:
+    - id: T
+      description: ''
+  implements:
+  - Toscana.IDependencyResolver.Replace``1({T})
+  nameWithType.vb: DependencyResolver.Replace(Of T)(T)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Toscana.DependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
+- uid: Toscana.DependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.DependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  id: RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  parent: Toscana.DependencyResolver
+  langs:
+  - csharp
+  - vb
+  name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  nameWithType: DependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  fullName: Toscana.DependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  type: Method
+  source:
+    remote:
+      path: Toscana/DependencyResolver.cs
+      branch: feature/borismod_add_github
+      repo: https://github.com/QualiSystems/Toscana.git
+    id: RegisterDataTypeConverter
+    path: Toscana/DependencyResolver.cs
+    startLine: 168
+  assemblies:
+  - Toscana
+  namespace: Toscana
+  summary: "\n\n"
+  example: []
+  syntax:
+    content: public void RegisterDataTypeConverter(IToscaDataTypeValueConverter dataTypeValueConverter)
+    content.vb: Public Sub RegisterDataTypeConverter(dataTypeValueConverter As IToscaDataTypeValueConverter)
+    parameters:
+    - id: dataTypeValueConverter
+      type: Toscana.IToscaDataTypeValueConverter
+      description: ''
+  implements:
+  - Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Toscana
+  commentId: N:Toscana
+  isExternal: false
+  name: Toscana
+  nameWithType: Toscana
+  fullName: Toscana
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Toscana.IDependencyResolver
+  commentId: T:Toscana.IDependencyResolver
+  parent: Toscana
+  isExternal: false
+  name: IDependencyResolver
+  nameWithType: IDependencyResolver
+  fullName: Toscana.IDependencyResolver
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.DependencyResolver,Toscana.DependencyResolver},System.Func{Toscana.DependencyResolver,System.Boolean})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  parent: Toscana.Common.EnumerableExtensions
+  definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  name: FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>, Func<DependencyResolver, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>, Func<DependencyResolver, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.DependencyResolver>(System.Func<Toscana.DependencyResolver, Toscana.DependencyResolver>, System.Func<Toscana.DependencyResolver, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver), Func(Of DependencyResolver, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.DependencyResolver)(System.Func(Of Toscana.DependencyResolver, Toscana.DependencyResolver), System.Func(Of Toscana.DependencyResolver, System.Boolean))
+  name.vb: FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver), Func(Of DependencyResolver, Boolean))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy<DependencyResolver>
+    nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.DependencyResolver>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy(Of DependencyResolver)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of DependencyResolver)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.DependencyResolver)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.DependencyResolver.Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{Toscana.DependencyResolver,Toscana.DependencyResolver})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  parent: Toscana.Common.EnumerableExtensions
+  definition: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  name: FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>)
+  nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>(Func<DependencyResolver, DependencyResolver>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.DependencyResolver>(System.Func<Toscana.DependencyResolver, Toscana.DependencyResolver>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.DependencyResolver)(System.Func(Of Toscana.DependencyResolver, Toscana.DependencyResolver))
+  name.vb: FromHierarchy(Of DependencyResolver)(Func(Of DependencyResolver, DependencyResolver))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
+    name: FromHierarchy<DependencyResolver>
+    nameWithType: EnumerableExtensions.FromHierarchy<DependencyResolver>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<Toscana.DependencyResolver>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(System.Func{``0,``0})
+    name: FromHierarchy(Of DependencyResolver)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of DependencyResolver)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of Toscana.DependencyResolver)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+    nameWithType: DependencyResolver
+    fullName: Toscana.DependencyResolver
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: false
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+  isExternal: true
+  name: FromHierarchy<TSource>(TSource, Func<TSource, TSource>, Func<TSource, Boolean>)
+  nameWithType: EnumerableExtensions.FromHierarchy<TSource>(TSource, Func<TSource, TSource>, Func<TSource, Boolean>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>(TSource, System.Func<TSource, TSource>, System.Func<TSource, System.Boolean>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource), Func(Of TSource, Boolean))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)(TSource, System.Func(Of TSource, TSource), System.Func(Of TSource, System.Boolean))
+  name.vb: FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource), Func(Of TSource, Boolean))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy<TSource>
+    nameWithType: EnumerableExtensions.FromHierarchy<TSource>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
+    name: FromHierarchy(Of TSource)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of TSource)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common.EnumerableExtensions
+  commentId: T:Toscana.Common.EnumerableExtensions
+  parent: Toscana.Common
+  isExternal: false
+  name: EnumerableExtensions
+  nameWithType: EnumerableExtensions
+  fullName: Toscana.Common.EnumerableExtensions
+- uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+  isExternal: true
+  name: FromHierarchy<TSource>(TSource, Func<TSource, TSource>)
+  nameWithType: EnumerableExtensions.FromHierarchy<TSource>(TSource, Func<TSource, TSource>)
+  fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>(TSource, System.Func<TSource, TSource>)
+  nameWithType.vb: EnumerableExtensions.FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource))
+  fullname.vb: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)(TSource, System.Func(Of TSource, TSource))
+  name.vb: FromHierarchy(Of TSource)(TSource, Func(Of TSource, TSource))
+  spec.csharp:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+    name: FromHierarchy<TSource>
+    nameWithType: EnumerableExtensions.FromHierarchy<TSource>
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy<TSource>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0})
+    name: FromHierarchy(Of TSource)
+    nameWithType: EnumerableExtensions.FromHierarchy(Of TSource)
+    fullName: Toscana.Common.EnumerableExtensions.FromHierarchy(Of TSource)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TSource
+    nameWithType: TSource
+    fullName: TSource
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.Common
+  commentId: N:Toscana.Common
+  isExternal: false
+  name: Toscana.Common
+  nameWithType: Toscana.Common
+  fullName: Toscana.Common
+- uid: Toscana.IDependencyResolver.GetService``1
+  commentId: M:Toscana.IDependencyResolver.GetService``1
+  parent: Toscana.IDependencyResolver
+  definition: Toscana.IDependencyResolver.GetService``1
+  name: GetService<T>()
+  nameWithType: IDependencyResolver.GetService<T>()
+  fullName: Toscana.IDependencyResolver.GetService<T>()
+  nameWithType.vb: IDependencyResolver.GetService(Of T)()
+  fullname.vb: Toscana.IDependencyResolver.GetService(Of T)()
+  name.vb: GetService(Of T)()
+  spec.csharp:
+  - uid: Toscana.IDependencyResolver.GetService``1
+    name: GetService<T>
+    nameWithType: IDependencyResolver.GetService<T>
+    fullName: Toscana.IDependencyResolver.GetService<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDependencyResolver.GetService``1
+    name: GetService(Of T)
+    nameWithType: IDependencyResolver.GetService(Of T)
+    fullName: Toscana.IDependencyResolver.GetService(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  isExternal: false
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Toscana.IDependencyResolver.Replace``1({T})
+  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
+  parent: Toscana.IDependencyResolver
+  definition: Toscana.IDependencyResolver.Replace``1(``0)
+  name: Replace<T>(T)
+  nameWithType: IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
+  fullname.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
+  spec.csharp:
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace<T>
+    nameWithType: IDependencyResolver.Replace<T>
+    fullName: Toscana.IDependencyResolver.Replace<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace(Of T)
+    nameWithType: IDependencyResolver.Replace(Of T)
+    fullName: Toscana.IDependencyResolver.Replace(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDependencyResolver.Replace``1(``0)
+  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
+  isExternal: false
+  name: Replace<T>(T)
+  nameWithType: IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
+  fullname.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  name.vb: Replace(Of T)(T)
+  spec.csharp:
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace<T>
+    nameWithType: IDependencyResolver.Replace<T>
+    fullName: Toscana.IDependencyResolver.Replace<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+    name: Replace(Of T)
+    nameWithType: IDependencyResolver.Replace(Of T)
+    fullName: Toscana.IDependencyResolver.Replace(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  parent: Toscana.IDependencyResolver
+  isExternal: false
+  name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  nameWithType: IDependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
+  fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  spec.csharp:
+  - uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+    name: RegisterDataTypeConverter
+    nameWithType: IDependencyResolver.RegisterDataTypeConverter
+    fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Toscana.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.IToscaDataTypeValueConverter
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+    name: RegisterDataTypeConverter
+    nameWithType: IDependencyResolver.RegisterDataTypeConverter
+    fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Toscana.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
+    nameWithType: IToscaDataTypeValueConverter
+    fullName: Toscana.IToscaDataTypeValueConverter
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Toscana.IToscaDataTypeValueConverter
+  commentId: T:Toscana.IToscaDataTypeValueConverter
+  parent: Toscana
+  isExternal: false
+  name: IToscaDataTypeValueConverter
+  nameWithType: IToscaDataTypeValueConverter
+  fullName: Toscana.IToscaDataTypeValueConverter

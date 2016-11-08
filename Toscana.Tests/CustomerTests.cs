@@ -4,8 +4,6 @@ using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using NUnit.Framework;
-using Toscana.Engine;
-using Toscana.Tests.Engine;
 
 namespace Toscana.Tests
 {

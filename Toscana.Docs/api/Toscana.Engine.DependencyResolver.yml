@@ -9,7 +9,7 @@ items:
   - Toscana.Engine.DependencyResolver.GetService``1
   - Toscana.Engine.DependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
   - Toscana.Engine.DependencyResolver.Replace``1(``0)
-  - Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  - Toscana.Engine.DependencyResolver.SetResolver(Toscana.Engine.IDependencyResolver)
   langs:
   - csharp
   - vb
@@ -20,11 +20,11 @@ items:
   source:
     remote:
       path: Toscana/Engine/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: DependencyResolver
     path: Toscana/Engine/DependencyResolver.cs
-    startLine: 8
+    startLine: 34
   assemblies:
   - Toscana
   namespace: Toscana.Engine
@@ -38,7 +38,7 @@ items:
   inheritance:
   - System.Object
   implements:
-  - Toscana.IDependencyResolver
+  - Toscana.Engine.IDependencyResolver
   inheritedMembers:
   - System.Object.ToString
   - System.Object.Equals(System.Object)
@@ -70,11 +70,11 @@ items:
   source:
     remote:
       path: Toscana/Engine/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Current
     path: Toscana/Engine/DependencyResolver.cs
-    startLine: 21
+    startLine: 47
   assemblies:
   - Toscana
   namespace: Toscana.Engine
@@ -85,7 +85,7 @@ items:
     content.vb: Public Shared ReadOnly Property Current As IDependencyResolver
     parameters: []
     return:
-      type: Toscana.IDependencyResolver
+      type: Toscana.Engine.IDependencyResolver
   modifiers.csharp:
   - public
   - static
@@ -94,25 +94,25 @@ items:
   - Public
   - Shared
   - ReadOnly
-- uid: Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
-  commentId: M:Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
-  id: SetResolver(Toscana.IDependencyResolver)
+- uid: Toscana.Engine.DependencyResolver.SetResolver(Toscana.Engine.IDependencyResolver)
+  commentId: M:Toscana.Engine.DependencyResolver.SetResolver(Toscana.Engine.IDependencyResolver)
+  id: SetResolver(Toscana.Engine.IDependencyResolver)
   parent: Toscana.Engine.DependencyResolver
   langs:
   - csharp
   - vb
   name: SetResolver(IDependencyResolver)
   nameWithType: DependencyResolver.SetResolver(IDependencyResolver)
-  fullName: Toscana.Engine.DependencyResolver.SetResolver(Toscana.IDependencyResolver)
+  fullName: Toscana.Engine.DependencyResolver.SetResolver(Toscana.Engine.IDependencyResolver)
   type: Method
   source:
     remote:
       path: Toscana/Engine/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetResolver
     path: Toscana/Engine/DependencyResolver.cs
-    startLine: 30
+    startLine: 56
   assemblies:
   - Toscana
   namespace: Toscana.Engine
@@ -123,7 +123,7 @@ items:
     content.vb: Public Shared Sub SetResolver(resolver As IDependencyResolver)
     parameters:
     - id: resolver
-      type: Toscana.IDependencyResolver
+      type: Toscana.Engine.IDependencyResolver
       description: ''
   modifiers.csharp:
   - public
@@ -145,11 +145,11 @@ items:
   source:
     remote:
       path: Toscana/Engine/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetService
     path: Toscana/Engine/DependencyResolver.cs
-    startLine: 124
+    startLine: 150
   assemblies:
   - Toscana
   namespace: Toscana.Engine
@@ -165,7 +165,7 @@ items:
       type: '{T}'
       description: ''
   implements:
-  - Toscana.IDependencyResolver.GetService``1
+  - Toscana.Engine.IDependencyResolver.GetService``1
   nameWithType.vb: DependencyResolver.GetService(Of T)()
   modifiers.csharp:
   - public
@@ -187,11 +187,11 @@ items:
   source:
     remote:
       path: Toscana/Engine/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Replace
     path: Toscana/Engine/DependencyResolver.cs
-    startLine: 134
+    startLine: 160
   assemblies:
   - Toscana
   namespace: Toscana.Engine
@@ -208,7 +208,7 @@ items:
     - id: T
       description: ''
   implements:
-  - Toscana.IDependencyResolver.Replace``1({T})
+  - Toscana.Engine.IDependencyResolver.Replace``1({T})
   nameWithType.vb: DependencyResolver.Replace(Of T)(T)
   modifiers.csharp:
   - public
@@ -230,11 +230,11 @@ items:
   source:
     remote:
       path: Toscana/Engine/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: RegisterDataTypeConverter
     path: Toscana/Engine/DependencyResolver.cs
-    startLine: 143
+    startLine: 169
   assemblies:
   - Toscana
   namespace: Toscana.Engine
@@ -248,7 +248,7 @@ items:
       type: Toscana.Engine.IToscaDataTypeValueConverter
       description: ''
   implements:
-  - Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  - Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -267,13 +267,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Toscana.IDependencyResolver
-  commentId: T:Toscana.IDependencyResolver
-  parent: Toscana
+- uid: Toscana.Engine.IDependencyResolver
+  commentId: T:Toscana.Engine.IDependencyResolver
+  parent: Toscana.Engine
   isExternal: false
   name: IDependencyResolver
   nameWithType: IDependencyResolver
-  fullName: Toscana.IDependencyResolver
+  fullName: Toscana.Engine.IDependencyResolver
 - uid: System.Object.ToString
   commentId: M:System.Object.ToString
   parent: System.Object
@@ -763,12 +763,6 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Toscana
-  commentId: N:Toscana
-  isExternal: false
-  name: Toscana
-  nameWithType: Toscana
-  fullName: Toscana
 - uid: Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   commentId: M:Toscana.Common.EnumerableExtensions.FromHierarchy``1(``0,System.Func{``0,``0},System.Func{``0,System.Boolean})
   isExternal: true
@@ -998,21 +992,21 @@ references:
   name: Toscana.Common
   nameWithType: Toscana.Common
   fullName: Toscana.Common
-- uid: Toscana.IDependencyResolver.GetService``1
-  commentId: M:Toscana.IDependencyResolver.GetService``1
-  parent: Toscana.IDependencyResolver
-  definition: Toscana.IDependencyResolver.GetService``1
+- uid: Toscana.Engine.IDependencyResolver.GetService``1
+  commentId: M:Toscana.Engine.IDependencyResolver.GetService``1
+  parent: Toscana.Engine.IDependencyResolver
+  definition: Toscana.Engine.IDependencyResolver.GetService``1
   name: GetService<T>()
   nameWithType: IDependencyResolver.GetService<T>()
-  fullName: Toscana.IDependencyResolver.GetService<T>()
+  fullName: Toscana.Engine.IDependencyResolver.GetService<T>()
   nameWithType.vb: IDependencyResolver.GetService(Of T)()
-  fullname.vb: Toscana.IDependencyResolver.GetService(Of T)()
+  fullname.vb: Toscana.Engine.IDependencyResolver.GetService(Of T)()
   name.vb: GetService(Of T)()
   spec.csharp:
-  - uid: Toscana.IDependencyResolver.GetService``1
+  - uid: Toscana.Engine.IDependencyResolver.GetService``1
     name: GetService<T>
     nameWithType: IDependencyResolver.GetService<T>
-    fullName: Toscana.IDependencyResolver.GetService<T>
+    fullName: Toscana.Engine.IDependencyResolver.GetService<T>
   - name: (
     nameWithType: (
     fullName: (
@@ -1020,10 +1014,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Toscana.IDependencyResolver.GetService``1
+  - uid: Toscana.Engine.IDependencyResolver.GetService``1
     name: GetService(Of T)
     nameWithType: IDependencyResolver.GetService(Of T)
-    fullName: Toscana.IDependencyResolver.GetService(Of T)
+    fullName: Toscana.Engine.IDependencyResolver.GetService(Of T)
   - name: (
     nameWithType: (
     fullName: (
@@ -1041,21 +1035,21 @@ references:
   name: T
   nameWithType: T
   fullName: T
-- uid: Toscana.IDependencyResolver.Replace``1({T})
-  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
-  parent: Toscana.IDependencyResolver
-  definition: Toscana.IDependencyResolver.Replace``1(``0)
+- uid: Toscana.Engine.IDependencyResolver.Replace``1({T})
+  commentId: M:Toscana.Engine.IDependencyResolver.Replace``1(``0)
+  parent: Toscana.Engine.IDependencyResolver
+  definition: Toscana.Engine.IDependencyResolver.Replace``1(``0)
   name: Replace<T>(T)
   nameWithType: IDependencyResolver.Replace<T>(T)
-  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.Engine.IDependencyResolver.Replace<T>(T)
   nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
-  fullname.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  fullname.vb: Toscana.Engine.IDependencyResolver.Replace(Of T)(T)
   name.vb: Replace(Of T)(T)
   spec.csharp:
-  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+  - uid: Toscana.Engine.IDependencyResolver.Replace``1(``0)
     name: Replace<T>
     nameWithType: IDependencyResolver.Replace<T>
-    fullName: Toscana.IDependencyResolver.Replace<T>
+    fullName: Toscana.Engine.IDependencyResolver.Replace<T>
   - name: (
     nameWithType: (
     fullName: (
@@ -1066,10 +1060,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+  - uid: Toscana.Engine.IDependencyResolver.Replace``1(``0)
     name: Replace(Of T)
     nameWithType: IDependencyResolver.Replace(Of T)
-    fullName: Toscana.IDependencyResolver.Replace(Of T)
+    fullName: Toscana.Engine.IDependencyResolver.Replace(Of T)
   - name: (
     nameWithType: (
     fullName: (
@@ -1079,20 +1073,20 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.IDependencyResolver.Replace``1(``0)
-  commentId: M:Toscana.IDependencyResolver.Replace``1(``0)
+- uid: Toscana.Engine.IDependencyResolver.Replace``1(``0)
+  commentId: M:Toscana.Engine.IDependencyResolver.Replace``1(``0)
   isExternal: false
   name: Replace<T>(T)
   nameWithType: IDependencyResolver.Replace<T>(T)
-  fullName: Toscana.IDependencyResolver.Replace<T>(T)
+  fullName: Toscana.Engine.IDependencyResolver.Replace<T>(T)
   nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
-  fullname.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
+  fullname.vb: Toscana.Engine.IDependencyResolver.Replace(Of T)(T)
   name.vb: Replace(Of T)(T)
   spec.csharp:
-  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+  - uid: Toscana.Engine.IDependencyResolver.Replace``1(``0)
     name: Replace<T>
     nameWithType: IDependencyResolver.Replace<T>
-    fullName: Toscana.IDependencyResolver.Replace<T>
+    fullName: Toscana.Engine.IDependencyResolver.Replace<T>
   - name: (
     nameWithType: (
     fullName: (
@@ -1103,10 +1097,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Toscana.IDependencyResolver.Replace``1(``0)
+  - uid: Toscana.Engine.IDependencyResolver.Replace``1(``0)
     name: Replace(Of T)
     nameWithType: IDependencyResolver.Replace(Of T)
-    fullName: Toscana.IDependencyResolver.Replace(Of T)
+    fullName: Toscana.Engine.IDependencyResolver.Replace(Of T)
   - name: (
     nameWithType: (
     fullName: (
@@ -1116,18 +1110,18 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
-  commentId: M:Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
-  parent: Toscana.IDependencyResolver
+- uid: Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  parent: Toscana.Engine.IDependencyResolver
   isExternal: false
   name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
   nameWithType: IDependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
-  fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  fullName: Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
   spec.csharp:
-  - uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  - uid: Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
     name: RegisterDataTypeConverter
     nameWithType: IDependencyResolver.RegisterDataTypeConverter
-    fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter
+    fullName: Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter
   - name: (
     nameWithType: (
     fullName: (
@@ -1139,10 +1133,10 @@ references:
     nameWithType: )
     fullName: )
   spec.vb:
-  - uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  - uid: Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
     name: RegisterDataTypeConverter
     nameWithType: IDependencyResolver.RegisterDataTypeConverter
-    fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter
+    fullName: Toscana.Engine.IDependencyResolver.RegisterDataTypeConverter
   - name: (
     nameWithType: (
     fullName: (
