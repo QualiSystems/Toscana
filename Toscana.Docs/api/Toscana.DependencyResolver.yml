@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: DependencyResolver
     path: Toscana/DependencyResolver.cs
@@ -70,7 +70,7 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: Current
     path: Toscana/DependencyResolver.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetResolver
     path: Toscana/DependencyResolver.cs
@@ -145,7 +145,7 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetService
     path: Toscana/DependencyResolver.cs
@@ -187,7 +187,7 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: Replace
     path: Toscana/DependencyResolver.cs
@@ -230,7 +230,7 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: RegisterDataTypeConverter
     path: Toscana/DependencyResolver.cs

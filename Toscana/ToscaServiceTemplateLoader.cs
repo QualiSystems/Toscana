@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.IO.Abstractions;
+using System.Threading;
 using Toscana.Exceptions;
 
 namespace Toscana
@@ -33,10 +34,12 @@ namespace Toscana
         /// <param name="filePath"></param>
         /// <returns></returns>
         /// <exception cref="ToscaParsingException">Thrown when file is not valid according to YAML or TOSCA</exception>
+        /// <exception cref="AbandonedMutexException">Condition.</exception>
         public ToscaServiceTemplate Load(string filePath)
         {
             using (var stream = fileSystem.File.Open(filePath, FileMode.Open))
             {
+                throw new AbandonedMutexException();
                 return toscaParser.Parse(stream);
             }
         }

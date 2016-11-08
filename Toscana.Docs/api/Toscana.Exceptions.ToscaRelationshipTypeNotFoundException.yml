@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaRelationshipTypeNotFoundException
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
@@ -160,7 +160,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
@@ -205,7 +205,7 @@ items:
   source:
     remote:
       path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
-      branch: feature/borismod_add_github
+      branch: feature/borismod_test1
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/Exceptions/ToscaRelationshipTypeNotFoundException.cs
