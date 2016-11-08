@@ -106,5 +106,20 @@ if ( !cloudServiceArchive.TryValidate(out results) )
 }
 ```
 
+### Documentation
+
+Toscana documentation is powered by DocFX Documentation Generation Tool for API Reference and Markdown files based on XML documentation comments.
+
+To build the documentation from command-line:
+
+```
+> docfx .\toscana.docs\docfx.json
+```
+
+To run a web server that hosts Toscana HTML documentation:
+```
+> docfx serve .\Toscana.Docs\_site
+```
+
 ### License
 The software is released under [Apache License v2.0](LICENSE). 
