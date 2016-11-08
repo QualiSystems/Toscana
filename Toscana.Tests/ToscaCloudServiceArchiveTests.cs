@@ -9,9 +9,7 @@ using System.Text.RegularExpressions;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Common;
-using Toscana.Engine;
 using Toscana.Exceptions;
-using Toscana.Tests.Engine;
 
 namespace Toscana.Tests
 {

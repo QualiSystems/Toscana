@@ -73,21 +73,21 @@
     <Compile Include="Common\RestrictedValuesAttributeTests.cs" />
     <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
     <Compile Include="CustomerTests.cs" />
-    <Compile Include="Engine\DependencyResolverTests.cs" />
-    <Compile Include="Engine\FileSystemExtentions.cs" />
-    <Compile Include="Engine\ToscaFileSystemSaverTests.cs" />
-    <Compile Include="Engine\PathEqualityComparerTests.cs" />
-    <Compile Include="Engine\SimpleIocContainerTests.cs" />
-    <Compile Include="Engine\ToscaBooleanDataTypeConverterTests.cs" />
-    <Compile Include="Engine\ToscaDeserializerTests.cs" />
-    <Compile Include="Engine\ToscaCloudServiceArchiveLoaderTests.cs" />
-    <Compile Include="Engine\ToscaFloatDataTypeConverterTests.cs" />
-    <Compile Include="Engine\ToscaIntegerDataTypeConverterTests.cs" />
-    <Compile Include="Engine\ToscaNullDataTypeConverterTests.cs" />
-    <Compile Include="Engine\ToscaSerializerTests.cs" />
-    <Compile Include="Engine\ToscaServiceTemplateLoaderTests.cs" />
-    <Compile Include="Engine\ToscaParserTests.cs" />
-    <Compile Include="Engine\ToscaValidatorTests.cs" />
+    <Compile Include="DependencyResolverTests.cs" />
+    <Compile Include="FileSystemExtentions.cs" />
+    <Compile Include="ToscaFileSystemSaverTests.cs" />
+    <Compile Include="Common\PathEqualityComparerTests.cs" />
+    <Compile Include="SimpleIocContainerTests.cs" />
+    <Compile Include="ToscaBooleanDataTypeConverterTests.cs" />
+    <Compile Include="ToscaDeserializerTests.cs" />
+    <Compile Include="ToscaCloudServiceArchiveLoaderTests.cs" />
+    <Compile Include="ToscaFloatDataTypeConverterTests.cs" />
+    <Compile Include="ToscaIntegerDataTypeConverterTests.cs" />
+    <Compile Include="ToscaNullDataTypeConverterTests.cs" />
+    <Compile Include="ToscaSerializerTests.cs" />
+    <Compile Include="ToscaServiceTemplateLoaderTests.cs" />
+    <Compile Include="ToscaParserTests.cs" />
+    <Compile Include="ToscaValidatorTests.cs" />
     <Compile Include="Exceptions\ToscaArtifactNotFoundExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
     <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundExceptionTests.cs" />
@@ -139,7 +139,9 @@
       <Name>Toscana</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Engine\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

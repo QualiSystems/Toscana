@@ -30,7 +30,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaCapabilityType
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 10
+    startLine: 9
   assemblies:
   - Toscana
   namespace: Toscana
@@ -87,7 +87,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 15
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana
@@ -118,7 +118,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Version
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
@@ -154,7 +154,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 30
+    startLine: 29
   assemblies:
   - Toscana
   namespace: Toscana
@@ -190,7 +190,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Properties
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 35
+    startLine: 34
   assemblies:
   - Toscana
   namespace: Toscana
@@ -228,7 +228,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: Attributes
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - Toscana
   namespace: Toscana
@@ -264,7 +264,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetAllProperties
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 47
+    startLine: 46
   assemblies:
   - Toscana
   namespace: Toscana
@@ -302,7 +302,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: ValidSourceTypes
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 55
+    startLine: 54
   assemblies:
   - Toscana
   namespace: Toscana
@@ -338,7 +338,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetDerivedFromEntity
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 63
+    startLine: 62
   assemblies:
   - Toscana
   namespace: Toscana
@@ -380,7 +380,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: IsDerivedFrom
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 79
+    startLine: 78
   assemblies:
   - Toscana
   namespace: Toscana
@@ -418,7 +418,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetDerivedFromToRoot
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 92
+    startLine: 91
   assemblies:
   - Toscana
   namespace: Toscana
@@ -459,7 +459,7 @@ items:
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaCapabilityType.cs
-    startLine: 100
+    startLine: 99
   assemblies:
   - Toscana
   namespace: Toscana

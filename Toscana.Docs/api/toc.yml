@@ -2,9 +2,15 @@
 - uid: Toscana
   name: Toscana
   items:
+  - uid: Toscana.DependencyResolver
+    name: DependencyResolver
+  - uid: Toscana.IDependencyResolver
+    name: IDependencyResolver
   - uid: Toscana.IDerivableToscaEntity`1
     name: IDerivableToscaEntity<T>
     name.vb: IDerivableToscaEntity(Of T)
+  - uid: Toscana.IToscaDataTypeValueConverter
+    name: IToscaDataTypeValueConverter
   - uid: Toscana.IToscaEntityWithProperties`1
     name: IToscaEntityWithProperties<T>
     name.vb: IToscaEntityWithProperties(Of T)
@@ -75,15 +81,6 @@
     name: ToscaServiceTemplateMetadata
   - uid: Toscana.ToscaTopologyTemplate
     name: ToscaTopologyTemplate
-- uid: Toscana.Engine
-  name: Toscana.Engine
-  items:
-  - uid: Toscana.Engine.DependencyResolver
-    name: DependencyResolver
-  - uid: Toscana.Engine.IDependencyResolver
-    name: IDependencyResolver
-  - uid: Toscana.Engine.IToscaDataTypeValueConverter
-    name: IToscaDataTypeValueConverter
 - uid: Toscana.Exceptions
   name: Toscana.Exceptions
   items:
