@@ -121,5 +121,32 @@ To run a web server that hosts Toscana HTML documentation:
 > docfx serve .\Toscana.Docs\_site
 ```
 
+### Powershell Module
+Toscana is also available as a Powershell module that allows loading and validating Tosca related files.
+
+**Installation**
+```PS
+PS>  Import-Module Toscana.PS\bin\Debug\Toscana.PS.dll
+```
+
+**Loading Cloud Service Archive**
+
+```PS
+PS>  Get-ToscaCloudServiceArchive Tosca.zip
+```
+
+**Loading Cloud Service Archive with imports at alternative path**
+
+```PS
+PS>  Get-ToscaCloudServiceArchive Tosca.zip C:\Imports
+```
+
+**Loading Cloud Service Template**
+
+```PS
+PS>  Get-ToscaServiceTemplate tosca.yaml
+```
+
+
 ### License
 The software is released under [Apache License v2.0](LICENSE). 
