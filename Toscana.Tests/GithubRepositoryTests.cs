@@ -117,21 +117,6 @@ namespace Toscana.Tests
         }
 
         [Test]
-        public void Build_Combined_Tosca_Service_Template_From_Github_Repo()
-        {
-            var filesContent = GithubRepositoryTestCasesFactory.GetYamlFilesContentFromUrl(GithubRepositoryZip, GithubRepositoryTestCasesFactory.IsYaml);
-            var toscaSimpleProfileBuilder = new ToscaServiceTemplateBuilder();
-            foreach (var fileContent in filesContent)
-            {
-                using (var memoryStream = fileContent.Content.ToMemoryStream())
-                {
-                    toscaSimpleProfileBuilder.Append(memoryStream);
-                }
-            }
-            toscaSimpleProfileBuilder.Build();
-        }
-
-        [Test]
         [Ignore]
         public void Load_Tosca_Cloud_Service_Archive_From_Github()
         {

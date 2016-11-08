@@ -32,11 +32,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaServiceTemplate
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 15
+    startLine: 14
   assemblies:
   - Toscana
   namespace: Toscana
@@ -78,11 +78,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 20
+    startLine: 19
   assemblies:
   - Toscana
   namespace: Toscana
@@ -109,11 +109,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaDefinitionsVersion
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 34
+    startLine: 33
   assemblies:
   - Toscana
   namespace: Toscana
@@ -163,11 +163,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Metadata
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 41
+    startLine: 40
   assemblies:
   - Toscana
   namespace: Toscana
@@ -199,11 +199,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 46
+    startLine: 45
   assemblies:
   - Toscana
   namespace: Toscana
@@ -235,11 +235,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: DslDefinitions
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 51
+    startLine: 50
   assemblies:
   - Toscana
   namespace: Toscana
@@ -271,11 +271,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Repositories
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 57
+    startLine: 56
   assemblies:
   - Toscana
   namespace: Toscana
@@ -307,11 +307,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Imports
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 63
+    startLine: 62
   assemblies:
   - Toscana
   namespace: Toscana
@@ -343,11 +343,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: ArtifactTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 68
+    startLine: 67
   assemblies:
   - Toscana
   namespace: Toscana
@@ -379,11 +379,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: CapabilityTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 73
+    startLine: 72
   assemblies:
   - Toscana
   namespace: Toscana
@@ -415,11 +415,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: TopologyTemplate
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 79
+    startLine: 78
   assemblies:
   - Toscana
   namespace: Toscana
@@ -451,11 +451,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: NodeTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 84
+    startLine: 83
   assemblies:
   - Toscana
   namespace: Toscana
@@ -487,11 +487,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: RelationshipTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 89
+    startLine: 88
   assemblies:
   - Toscana
   namespace: Toscana
@@ -523,11 +523,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: DataTypes
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 94
+    startLine: 93
   assemblies:
   - Toscana
   namespace: Toscana
@@ -559,11 +559,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 102
+    startLine: 101
   assemblies:
   - Toscana
   namespace: Toscana
@@ -603,11 +603,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Load
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 114
+    startLine: 113
   assemblies:
   - Toscana
   namespace: Toscana
@@ -647,11 +647,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 124
+    startLine: 123
   assemblies:
   - Toscana
   namespace: Toscana
@@ -682,11 +682,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaServiceTemplate.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Save
     path: Toscana/ToscaServiceTemplate.cs
-    startLine: 134
+    startLine: 133
   assemblies:
   - Toscana
   namespace: Toscana

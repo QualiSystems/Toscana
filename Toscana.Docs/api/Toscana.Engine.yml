@@ -5,6 +5,7 @@ items:
   id: Toscana.Engine
   children:
   - Toscana.Engine.DependencyResolver
+  - Toscana.Engine.IDependencyResolver
   - Toscana.Engine.IToscaDataTypeValueConverter
   langs:
   - csharp
@@ -16,6 +17,13 @@ items:
   assemblies:
   - Toscana
 references:
+- uid: Toscana.Engine.IDependencyResolver
+  commentId: T:Toscana.Engine.IDependencyResolver
+  parent: Toscana.Engine
+  isExternal: false
+  name: IDependencyResolver
+  nameWithType: IDependencyResolver
+  fullName: Toscana.Engine.IDependencyResolver
 - uid: Toscana.Engine.DependencyResolver
   commentId: T:Toscana.Engine.DependencyResolver
   isExternal: false

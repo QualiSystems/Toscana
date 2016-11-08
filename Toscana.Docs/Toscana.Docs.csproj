@@ -133,7 +133,8 @@
   </Target>
   <Import Project="..\packages\docfx.msbuild.2.3.0\build\docfx.msbuild.targets" Condition="Exists('..\packages\docfx.msbuild.2.3.0\build\docfx.msbuild.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>if NOT  "$(MSBuildProjectDirectory)" == "$(WebProjectOutputDir)" xcopy "$(MSBuildProjectDirectory)\*.*" "$(WebProjectOutputDir)" /s /y /R</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

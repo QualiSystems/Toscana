@@ -6,7 +6,7 @@ items:
   parent: Toscana
   children:
   - Toscana.IDependencyResolver.GetService``1
-  - Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  - Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
   - Toscana.IDependencyResolver.Replace``1(``0)
   langs:
   - csharp
@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: IDependencyResolver
     path: Toscana/DependencyResolver.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - Toscana
   namespace: Toscana
@@ -54,11 +54,11 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetService
     path: Toscana/DependencyResolver.cs
-    startLine: 14
+    startLine: 15
   assemblies:
   - Toscana
   namespace: Toscana
@@ -90,11 +90,11 @@ items:
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Replace
     path: Toscana/DependencyResolver.cs
-    startLine: 21
+    startLine: 22
   assemblies:
   - Toscana
   namespace: Toscana
@@ -113,25 +113,25 @@ items:
   nameWithType.vb: IDependencyResolver.Replace(Of T)(T)
   fullName.vb: Toscana.IDependencyResolver.Replace(Of T)(T)
   name.vb: Replace(Of T)(T)
-- uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
-  commentId: M:Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
-  id: RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+- uid: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  commentId: M:Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
+  id: RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
   parent: Toscana.IDependencyResolver
   langs:
   - csharp
   - vb
   name: RegisterDataTypeConverter(IToscaDataTypeValueConverter)
   nameWithType: IDependencyResolver.RegisterDataTypeConverter(IToscaDataTypeValueConverter)
-  fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.Engine.IToscaDataTypeValueConverter)
+  fullName: Toscana.IDependencyResolver.RegisterDataTypeConverter(Toscana.IToscaDataTypeValueConverter)
   type: Method
   source:
     remote:
       path: Toscana/DependencyResolver.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: RegisterDataTypeConverter
     path: Toscana/DependencyResolver.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - Toscana
   namespace: Toscana
@@ -142,7 +142,7 @@ items:
     content.vb: Sub RegisterDataTypeConverter(dataTypeValueConverter As IToscaDataTypeValueConverter)
     parameters:
     - id: dataTypeValueConverter
-      type: Toscana.Engine.IToscaDataTypeValueConverter
+      type: Toscana.IToscaDataTypeValueConverter
       description: ''
 references:
 - uid: Toscana
@@ -595,16 +595,10 @@ references:
   name: T
   nameWithType: T
   fullName: T
-- uid: Toscana.Engine.IToscaDataTypeValueConverter
-  commentId: T:Toscana.Engine.IToscaDataTypeValueConverter
-  parent: Toscana.Engine
+- uid: Toscana.IToscaDataTypeValueConverter
+  commentId: T:Toscana.IToscaDataTypeValueConverter
+  parent: Toscana
   isExternal: false
   name: IToscaDataTypeValueConverter
   nameWithType: IToscaDataTypeValueConverter
-  fullName: Toscana.Engine.IToscaDataTypeValueConverter
-- uid: Toscana.Engine
-  commentId: N:Toscana.Engine
-  isExternal: false
-  name: Toscana.Engine
-  nameWithType: Toscana.Engine
-  fullName: Toscana.Engine
+  fullName: Toscana.IToscaDataTypeValueConverter

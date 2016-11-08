@@ -6,7 +6,6 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Common;
-using Toscana.Engine;
 using Toscana.Exceptions;
 
 namespace Toscana.Tests

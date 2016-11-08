@@ -26,7 +26,7 @@ namespace Toscana
         /// If this entity is root, null will be returned
         /// If this entity derives from a non existing entity exception will be thrown
         /// </summary>
-        /// <exception cref="ToscaRelationshipTypeNotFound" accessor="get">Thrown when relationship type not found in any of the service templates.</exception>
+        /// <exception cref="ToscaRelationshipTypeNotFoundException" accessor="get">Thrown when relationship type not found in any of the service templates.</exception>
         public override ToscaRelationshipType GetDerivedFromEntity()
         {
             if (GetCloudServiceArchive() == null || IsRoot()) return null;
@@ -35,7 +35,7 @@ namespace Toscana
             {
                 return relationshipType;
             }
-            throw new ToscaRelationshipTypeNotFound(string.Format("Relationship type '{0}' not found", DerivedFrom));
+            throw new ToscaRelationshipTypeNotFoundException(string.Format("Relationship type '{0}' not found", DerivedFrom));
         }
 
         /// <summary>

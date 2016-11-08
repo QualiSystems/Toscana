@@ -30,11 +30,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: ToscaProperty
     path: Toscana/ToscaProperty.cs
-    startLine: 18
+    startLine: 17
   assemblies:
   - Toscana
   namespace: Toscana
@@ -80,11 +80,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: .ctor
     path: Toscana/ToscaProperty.cs
-    startLine: 25
+    startLine: 24
   assemblies:
   - Toscana
   namespace: Toscana
@@ -111,11 +111,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Type
     path: Toscana/ToscaProperty.cs
-    startLine: 34
+    startLine: 33
   assemblies:
   - Toscana
   namespace: Toscana
@@ -164,11 +164,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Description
     path: Toscana/ToscaProperty.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - Toscana
   namespace: Toscana
@@ -200,11 +200,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Required
     path: Toscana/ToscaProperty.cs
-    startLine: 45
+    startLine: 44
   assemblies:
   - Toscana
   namespace: Toscana
@@ -236,11 +236,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Default
     path: Toscana/ToscaProperty.cs
-    startLine: 50
+    startLine: 49
   assemblies:
   - Toscana
   namespace: Toscana
@@ -272,11 +272,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Status
     path: Toscana/ToscaProperty.cs
-    startLine: 55
+    startLine: 54
   assemblies:
   - Toscana
   namespace: Toscana
@@ -308,11 +308,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Constraints
     path: Toscana/ToscaProperty.cs
-    startLine: 60
+    startLine: 59
   assemblies:
   - Toscana
   namespace: Toscana
@@ -344,11 +344,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: EntrySchema
     path: Toscana/ToscaProperty.cs
-    startLine: 66
+    startLine: 65
   assemblies:
   - Toscana
   namespace: Toscana
@@ -380,11 +380,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Tags
     path: Toscana/ToscaProperty.cs
-    startLine: 71
+    startLine: 70
   assemblies:
   - Toscana
   namespace: Toscana
@@ -416,11 +416,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: StringValue
     path: Toscana/ToscaProperty.cs
-    startLine: 77
+    startLine: 76
   assemblies:
   - Toscana
   namespace: Toscana
@@ -463,11 +463,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: System.ComponentModel.DataAnnotations.IValidatableObject.Validate
     path: Toscana/ToscaProperty.cs
-    startLine: 83
+    startLine: 82
   assemblies:
   - Toscana
   namespace: Toscana
@@ -497,11 +497,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: AddConstraint
     path: Toscana/ToscaProperty.cs
-    startLine: 123
+    startLine: 122
   assemblies:
   - Toscana
   namespace: Toscana
@@ -535,11 +535,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: GetConstraintsDictionary
     path: Toscana/ToscaProperty.cs
-    startLine: 132
+    startLine: 131
   assemblies:
   - Toscana
   namespace: Toscana
@@ -569,11 +569,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: SetConstraints
     path: Toscana/ToscaProperty.cs
-    startLine: 141
+    startLine: 140
   assemblies:
   - Toscana
   namespace: Toscana
@@ -607,11 +607,11 @@ items:
   source:
     remote:
       path: Toscana/ToscaProperty.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: Clone
     path: Toscana/ToscaProperty.cs
-    startLine: 150
+    startLine: 149
   assemblies:
   - Toscana
   namespace: Toscana

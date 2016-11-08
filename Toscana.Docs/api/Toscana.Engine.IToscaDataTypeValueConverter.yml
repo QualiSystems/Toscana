@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: Toscana/Engine/StringToscaDataTypeConverter.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: IToscaDataTypeValueConverter
     path: Toscana/Engine/StringToscaDataTypeConverter.cs
@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: Toscana/Engine/StringToscaDataTypeConverter.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: CanConvert
     path: Toscana/Engine/StringToscaDataTypeConverter.cs
@@ -87,7 +87,7 @@ items:
   source:
     remote:
       path: Toscana/Engine/StringToscaDataTypeConverter.cs
-      branch: master
+      branch: feature/borismod_add_github
       repo: https://github.com/QualiSystems/Toscana.git
     id: TryParse
     path: Toscana/Engine/StringToscaDataTypeConverter.cs
