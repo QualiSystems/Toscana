@@ -10,29 +10,22 @@ From [TOSCA Simple Profile in YAML Version 1.0](http://docs.oasis-open.org/tosca
  
 In Toscana, Service Template is represented by **ToscaServiceTemplate** class.
 
-Toscana allows parsing YAML from an external file or from a stream.
+TOSCA YAML file is represented by _ToscaServiceTemplate_ class in Toscana library. 
+Toscana allows loading a single TOSCA YAML file into an instance of ToscaServiceTemplate class. 
+Only the content of the YAML file is loaded without other files referenced by imports.
 
-### Loading TOSCA Service Template from a file
-
-**Make sure to include the required usings**
+**Load a TOSCA Service Template file**
 ```C#
-using System.IO;
-using Toscana;
+ToscaServiceTemplate toscaServiceTemplate = ToscaServiceTemplate.Load("service-template.yaml");
 ```
 
-**Parse TOSCA Service Template from a YAML file**
+**Create a new TOSCA Service Template and save it to a file**
 ```C#
-ToscaServiceTemplate serviceTemplate = ToscaServiceTemplate.Parse("tosca.yaml");
-```
-
-### Loading TOSCA Service Template from stream
-**Make sure to include the required usings**
-```C#
-using Toscana;
-```
-
-**Parse TOSCA Service Template from a stream**
-```C#
-ToscaServiceTemplate serviceTemplate = ToscaServiceTemplate.Parse(stream);
+ToscaServiceTemplate toscaServiceTemplate = new ToscaServiceTemplate
+{
+    ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
+};
+toscaServiceTemplate.NodeTypes.Add("node_type_name", new ToscaNodeType() );
+toscaServiceTemplate.Save("service-template.yaml");
 ```
 

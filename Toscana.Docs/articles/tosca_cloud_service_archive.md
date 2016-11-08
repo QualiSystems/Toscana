@@ -14,7 +14,7 @@ imports another YAML file that is missing in the archive, loading will fail.
 +-- driver.zip
 </pre>
 
-**TOSCA.meta sample  
+**TOSCA.meta file structure** 
 <pre>
 TOSCA-Meta-File-Version: 1.0
 CSAR-Version: 1.1
@@ -32,4 +32,35 @@ ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Loa
 
 ```C#
 ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("tosca.zip", @"C:\tosca_imports\");
+```
+
+**Creating Cloud Service Archive**
+
+```C#
+ToscaMetadata toscaMetadata = new ToscaMetadata
+{ 
+    CsarVersion = new Version(1,0,0), 
+    EntryDefinitions = "entry.yaml", 
+    ToscaMetaFileVersion = new Version(1,0,0), 
+    CreatedBy = "Anonymous" 
+};
+ToscaServiceTemplate toscaServiceTemplate = new ToscaServiceTemplate
+{
+    ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
+};
+ToscaCloudServiceArchive cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+cloudServiceArchive.AddToscaServiceTemplate("entry.yaml", toscaServiceTemplate);
+```
+
+**Validating Cloud Service Archive**
+
+```C#
+List<ValidationResult> results;
+if ( !cloudServiceArchive.TryValidate(out results) )
+{
+    foreach(ValidationResult validationResult in results)
+    {
+        Console.WriteLine(validationResult.ErrorMessage);
+    }
+}
 ```

@@ -75,5 +75,36 @@ ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Loa
 ToscaCloudServiceArchive toscaCloudServiceArchive = ToscaCloudServiceArchive.Load("cloud-archive.zip", @"c:\cloud-imports\");
 ```
 
+**Creating Cloud Service Archive**
+
+```C#
+ToscaMetadata toscaMetadata = new ToscaMetadata
+{ 
+    CsarVersion = new Version(1,0,0), 
+    EntryDefinitions = "entry.yaml", 
+    ToscaMetaFileVersion = new Version(1,0,0), 
+    CreatedBy = "Anonymous" 
+};
+ToscaServiceTemplate toscaServiceTemplate = new ToscaServiceTemplate
+{
+    ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
+};
+ToscaCloudServiceArchive cloudServiceArchive = new ToscaCloudServiceArchive(toscaMetadata);
+cloudServiceArchive.AddToscaServiceTemplate("entry.yaml", toscaServiceTemplate);
+```
+
+**Validating Cloud Service Archive**
+
+```C#
+List<ValidationResult> results;
+if ( !cloudServiceArchive.TryValidate(out results) )
+{
+    foreach(ValidationResult validationResult in results)
+    {
+        Console.WriteLine(validationResult.ErrorMessage);
+    }
+}
+```
+
 ### License
 The software is released under [Apache License v2.0](LICENSE). 
