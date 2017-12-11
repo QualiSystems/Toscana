@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
+using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using Toscana.Exceptions;
@@ -250,6 +251,75 @@ node_types:
                 .Contain(a => a.Key == "cloudshell.capabilities.AutoDiscovery");
             toscaCloudServiceArchive.CapabilityTypes["cloudshell.capabilities.AutoDiscovery"].GetDerivedFromEntity().Should().NotBeNull();
             toscaCloudServiceArchive.CapabilityTypes["tosca.capabilities.Root"].GetDerivedFromEntity().Should().BeNull();
+        }
+
+        [Test]
+        public void Shell_With_Based_On_Property_Is_Parsed_Successfully()
+        {
+            // Arrange
+            fileSystem.CreateArchive(
+                "tosca.zip",
+                new[]
+                {
+                    new FileContent(
+                        "TOSCA.meta",
+                        @"
+TOSCA-Meta-File-Version: 1.0
+CSAR-Version: 1.1
+Created-By: OASIS TOSCA TC
+Entry-Definitions: tosca_elk.yaml
+"),
+                    new FileContent(
+                        "tosca_elk.yaml",
+                        @"
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  template_name: NXOS Shell
+  template_author: Meni Besso
+  template_version: 1.0.0
+  template_based_on: 1.1.0
+capability_types:
+  cloudshell.capabilities.AutoDiscovery:
+    derived_from: tosca.capabilities.Root
+    properties:
+      inventory_description:
+        type: string
+        default: This is the inventory description
+      enable_auto_discovery:
+        type: boolean
+        default: true
+      auto_discovery_description:
+        type: string
+        default: This is the auto discovery description
+  cloudshell.families.Switch:
+    properties:
+      family_name:
+        type: string
+node_types:
+  vendor.switch.NXOS:
+    description: Description of NXOS switch
+    derived_from: tosca.nodes.Root
+    capabilities:
+      cloudshell_family:
+        type: cloudshell.families.Switch
+      auto_discovery:
+        type: cloudshell.capabilities.AutoDiscovery
+        properties:
+          user_name:
+            type: string
+          password:
+            type: boolean
+    properties:
+      device_owner:
+        type: string
+")
+                });
+
+            // Act
+            var toscaCloudServiceArchive = toscaCloudServiceArchiveLoader.Load("tosca.zip");
+
+            // Assert
+            toscaCloudServiceArchive.ToscaServiceTemplates.First().Value.Metadata.TemplateBasedOn.Should().Be("1.1.0");
         }
 
         [Test]

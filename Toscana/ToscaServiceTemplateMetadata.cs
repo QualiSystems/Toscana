@@ -11,6 +11,17 @@ namespace Toscana
         private const string TemplateAuthorKeyName = "template_author";
         private const string TemplateNameKeyName = "template_name";
         private const string TemplateVersionKeyName = "template_version";
+        private const string TemplateBasedOnKeyName = "template_based_on";
+
+
+        /// <summary>
+        /// Gets or sets TOSCA Service Template based on version
+        /// </summary>
+        public string TemplateBasedOn
+        {
+            get { return SafelyGetValue(TemplateBasedOnKeyName); }
+            set { this[TemplateBasedOnKeyName] = value; }
+        }
 
         /// <summary>
         /// Gets or sets TOSCA Service Template name
