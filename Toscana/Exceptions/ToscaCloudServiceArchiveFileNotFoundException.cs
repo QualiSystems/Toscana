@@ -7,8 +7,8 @@ namespace Toscana.Exceptions
     /// Thrown when TOSCA Cloud Service Archive (CSAR) not found
     /// </summary>
     [Serializable]
-    public class ToscaCloudServiceArchiveFileNotFoundException : ToscaBaseException
-    {
+    public class ToscaCloudServiceArchiveFileNotFoundException : ToscaFileMissingException
+	{
         /// <summary>
         /// Initializes the exception without any message
         /// </summary>
@@ -43,5 +43,14 @@ namespace Toscana.Exceptions
         public ToscaCloudServiceArchiveFileNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
-    }
+
+		/// <summary>
+		/// Initializes the exception with specified message
+		/// </summary>		
+		/// <param name="message"></param>
+		/// <param name="missingFileNameName"></param>
+		public ToscaCloudServiceArchiveFileNotFoundException(string message, string missingFileNameName) : base(message, missingFileNameName)
+        {
+        }
+	}
 }

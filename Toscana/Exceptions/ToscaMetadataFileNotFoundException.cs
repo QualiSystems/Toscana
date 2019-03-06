@@ -7,8 +7,8 @@ namespace Toscana.Exceptions
     /// Thrown when TOSCA.meta file is not found inside TOSCA Cloud Service Archive (CSAR) ZIP file
     /// </summary>
     [Serializable]
-    public class ToscaMetadataFileNotFoundException : ToscaBaseException
-    {
+    public class ToscaMetadataFileNotFoundException : ToscaFileMissingException
+	{
         /// <summary>
         /// Initializes the exception
         /// </summary>
@@ -41,5 +41,13 @@ namespace Toscana.Exceptions
         protected ToscaMetadataFileNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
-    }
+        /// <summary>
+        /// Initializes the exception with specified message
+        /// </summary>		
+        /// <param name="message"></param>
+        /// <param name="missingFileNameName"></param>
+		public ToscaMetadataFileNotFoundException(string message, string missingFileNameName) : base(message, missingFileNameName)
+        {
+        }
+	}
 }
