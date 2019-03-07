@@ -63,7 +63,7 @@ namespace Toscana
         {
             if (!fileSystem.File.Exists(archiveFilePath))
             {
-                throw new ToscaCloudServiceArchiveFileNotFoundException(string.Format("Cloud Service Archive (CSAR) file '{0}' not found", archiveFilePath));
+                throw new ToscaCloudServiceArchiveFileNotFoundException(string.Format("Cloud Service Archive (CSAR) file '{0}' not found", archiveFilePath), archiveFilePath);
             }
             using (var zipToOpen = fileSystem.File.OpenRead(archiveFilePath))
             {
@@ -178,12 +178,12 @@ namespace Toscana
                     {
                         throw new ToscaImportFileNotFoundException(
                             string.Format(@"Import file '{0}' neither found within TOSCA Cloud Service Archive nor at alternative location '{1}'",
-                                zipEntryFileName, alternativePath));
+                                zipEntryFileName, alternativePath), zipEntryFileName);
                     }
                     return fileSystem.File.OpenRead(alternativeFullPath);
                 }
                 throw new ToscaImportFileNotFoundException(
-                    string.Format("Import file '{0}' not found within TOSCA Cloud Service Archive file.", zipEntryFileName));
+                    string.Format("Import file '{0}' not found within TOSCA Cloud Service Archive file.", zipEntryFileName), zipEntryFileName);
             }
             return zipArchiveEntry.Open();
         }
@@ -197,7 +197,7 @@ namespace Toscana
             if (toscaMetaArchiveEntry == null)
             {
                 throw new ToscaMetadataFileNotFoundException(
-                    string.Format("{0} file not found within TOSCA Cloud Service Archive file.", ToscaMetaFileName)); 
+                    string.Format("{0} file not found within TOSCA Cloud Service Archive file.", ToscaMetaFileName),ToscaMetaFileName); 
             }
             return toscaMetaArchiveEntry;
         }

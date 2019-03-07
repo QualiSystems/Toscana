@@ -90,6 +90,7 @@
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\ZipArchiveExtensions.cs" />
     <Compile Include="DependencyResolver.cs" />
+    <Compile Include="Exceptions\ToscaFileMissingException.cs" />
     <Compile Include="ToscaFileSystemSaver.cs" />
     <Compile Include="ToscaFloatDataTypeConverter.cs" />
     <Compile Include="ToscaIntegerDataTypeConverter.cs" />

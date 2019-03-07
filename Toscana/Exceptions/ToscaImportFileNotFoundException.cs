@@ -7,8 +7,8 @@ namespace Toscana.Exceptions
     /// Thrown when a file pointed by imports directive inside a TOSCA Service Template YAML file not found
     /// </summary>
     [Serializable]
-    public class ToscaImportFileNotFoundException : ToscaBaseException
-    {
+    public class ToscaImportFileNotFoundException : ToscaFileMissingException
+	{
         /// <summary>
         /// Initializes the exception
         /// </summary>
@@ -43,5 +43,13 @@ namespace Toscana.Exceptions
         protected ToscaImportFileNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
-    }
+        /// <summary>
+        /// Initializes the exception with specified message
+        /// </summary>		
+        /// <param name="message"></param>
+        /// <param name="missingFileNameName"></param>
+		public ToscaImportFileNotFoundException(string message, string missingFileNameName) : base(message, missingFileNameName)
+        {
+        }
+	}
 }
