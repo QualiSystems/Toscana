@@ -32,13 +32,6 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Toscana.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <ItemGroup>
     <PackageReference Include="DataAnnotationsValidatorNetStandard" Version="[1.0.3,2.0.0)" />
     <PackageReference Include="QuickGraph.NETStandard" Version="[3.8.0,4.0.0)" />
