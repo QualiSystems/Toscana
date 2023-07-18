@@ -888,8 +888,7 @@ data_types:
             };
 
             action.ShouldThrow<ToscaParsingException>()
-                .WithMessage(@"(Line: 1, Col: 1, Idx: 0) - (Line: 1, Col: 1, Idx: 0): Exception during deserialization
-Property 'unsupported_something' not found on type 'Toscana.ToscaServiceTemplate'.");
+                .WithMessage(@"Property 'unsupported_something' not found on type 'Toscana.ToscaServiceTemplate'.");
         }
 
         [Test]
