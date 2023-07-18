@@ -11,14 +11,19 @@ namespace Toscana
 
     internal class ToscaSerializer<T> : IToscaSerializer<T>
     {
-        private readonly Serializer serializer = new Serializer(namingConvention: new UnderscoredNamingConvention());
+        private readonly ISerializer serializer;
 
         public ToscaSerializer(ITypeConvertersFactory typeConvertersFactory)
         {
+            var serializerBuilder = new SerializerBuilder();
+                //.WithNamingConvention(UnderscoredNamingConvention.Instance);
+
             foreach (var yamlTypeConverter in typeConvertersFactory.GetTypeConverter())
             {
-                serializer.RegisterTypeConverter(yamlTypeConverter);
+                serializerBuilder.WithTypeConverter(yamlTypeConverter);
             }
+
+            serializer = serializerBuilder.Build();
         }
 
         public void Serialize(Stream stream, T toscaObject)

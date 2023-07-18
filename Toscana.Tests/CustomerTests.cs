@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -16,7 +17,7 @@ namespace Toscana.Tests
         {
             var mockFileSystem = new MockFileSystem();
             DependencyResolver.Current.Replace<IFileSystem>(mockFileSystem);
-
+            
             mockFileSystem.AddFile(Path.Combine(Environment.CurrentDirectory, "standard.yaml"),
                 new MockFileData(@"
 tosca_definitions_version: tosca_simple_yaml_1_0"));

@@ -107,7 +107,7 @@ namespace Toscana.Tests
         }
 
         [Test, TestCaseSource(typeof(LocalDirectoryTestCasesFactory), "TestCases")]
-        [Ignore]
+        [Ignore("")]
         public void Validate_Tosca_Files_In_Local_Directory(FileContent fileContent)
         {
             using (var memoryStream = fileContent.Content.ToMemoryStream())
@@ -117,7 +117,7 @@ namespace Toscana.Tests
         }
 
         [Test]
-        [Ignore]
+        [Ignore("")]
         public void Load_Tosca_Cloud_Service_Archive_From_Github()
         {
             using (var tempFile = new TempFile(Path.GetTempPath()))
