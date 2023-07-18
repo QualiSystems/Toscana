@@ -1,168 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
-  <Import Project="..\packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{03D00F9B-97D1-407F-BF73-00AD304E9259}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Toscana.Tests</RootNamespace>
-    <AssemblyName>Toscana.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net472</TargetFramework>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <AssemblyTitle>Toscana.Tests</AssemblyTitle>
+    <Product>Toscana.Tests</Product>
+    <Copyright>Copyright ©  2016</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>True</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Toscana.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="DataAnnotationsValidatorNetStandard, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DataAnnotationsValidatorNetStandard.1.0.3\lib\netstandard2.0\DataAnnotationsValidatorNetStandard.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions, Version=4.6.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.6.3\lib\net45\FluentAssertions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.6.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.6.3\lib\net45\FluentAssertions.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ComponentModel.Annotations.4.6.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.IO.Abstractions, Version=19.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.19.2.29\lib\net461\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Abstractions.TestingHelpers, Version=19.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IO.Abstractions.TestingHelpers.19.2.29\lib\net461\System.IO.Abstractions.TestingHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="TestableIO.System.IO.Abstractions, Version=19.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\TestableIO.System.IO.Abstractions.19.2.29\lib\net461\TestableIO.System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="TestableIO.System.IO.Abstractions.TestingHelpers, Version=19.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\TestableIO.System.IO.Abstractions.TestingHelpers.19.2.29\lib\net461\TestableIO.System.IO.Abstractions.TestingHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="TestableIO.System.IO.Abstractions.Wrappers, Version=19.0.0.0, Culture=neutral, PublicKeyToken=96bf224d23c43e59, processorArchitecture=MSIL">
-      <HintPath>..\packages\TestableIO.System.IO.Abstractions.Wrappers.19.2.29\lib\net461\TestableIO.System.IO.Abstractions.Wrappers.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.13.1.1\lib\net47\YamlDotNet.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Common\RestrictedValuesAttributeTests.cs" />
-    <Compile Include="Common\ZipArchiveExtensionsTests.cs" />
-    <Compile Include="CustomerTests.cs" />
-    <Compile Include="DependencyResolverTests.cs" />
-    <Compile Include="FileSystemExtentions.cs" />
-    <Compile Include="ToscaFileSystemSaverTests.cs" />
-    <Compile Include="Common\PathEqualityComparerTests.cs" />
-    <Compile Include="SimpleIocContainerTests.cs" />
-    <Compile Include="ToscaBooleanDataTypeConverterTests.cs" />
-    <Compile Include="ToscaDeserializerTests.cs" />
-    <Compile Include="ToscaCloudServiceArchiveLoaderTests.cs" />
-    <Compile Include="ToscaFloatDataTypeConverterTests.cs" />
-    <Compile Include="ToscaIntegerDataTypeConverterTests.cs" />
-    <Compile Include="ToscaNullDataTypeConverterTests.cs" />
-    <Compile Include="ToscaSerializerTests.cs" />
-    <Compile Include="ToscaServiceTemplateLoaderTests.cs" />
-    <Compile Include="ToscaParserTests.cs" />
-    <Compile Include="ToscaValidatorTests.cs" />
-    <Compile Include="Exceptions\ToscaArtifactNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaBaseExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaCapabilityTypeNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaCloudServiceArchiveFileNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaDataTypeNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaDataTypeParserNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaImportFileNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaInvalidFileExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaMetadataFileNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaNodeTypeNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaRelationshipTypeNotFoundExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaServiceTemplateAlreadyExistsExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaValidationExceptionTests.cs" />
-    <Compile Include="Exceptions\ToscaParsingExceptionTests.cs" />
-    <Compile Include="FileContent.cs" />
-    <Compile Include="GithubRepositoryTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TempFile.cs" />
-    <Compile Include="ToscaArtifactTypeTests.cs" />
-    <Compile Include="ToscaAttributeTests.cs" />
-    <Compile Include="ToscaCapabilityAssignmentTests.cs" />
-    <Compile Include="ToscaCapabilityTests.cs" />
-    <Compile Include="ToscaCapabilityTypeTests.cs" />
-    <Compile Include="ToscaCloudServiceArchiveTests.cs" />
-    <Compile Include="ToscaDataTypeTests.cs" />
-    <Compile Include="ToscaGroupTests.cs" />
-    <Compile Include="ToscaInterfaceTests.cs" />
-    <Compile Include="ToscaMetadataTests.cs" />
-    <Compile Include="ToscaNodeTemplateTests.cs" />
-    <Compile Include="ToscaNodeTypeTests.cs" />
-    <Compile Include="ToscaObjectTests.cs" />
-    <Compile Include="ToscaPolicyTests.cs" />
-    <Compile Include="ToscaPropertyTests.cs" />
-    <Compile Include="ToscaRelationshipTemplateTests.cs" />
-    <Compile Include="ToscaRelationshipTypeTests.cs" />
-    <Compile Include="ToscaServiceTemplateTests.cs" />
-    <Compile Include="ToscaServiceTemplateMetadataTests.cs" />
-    <Compile Include="ToscaTopologyTemplateTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Toscana.snk">
-      <Link>Toscana.snk</Link>
-    </None>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Toscana\Toscana.csproj">
-      <Project>{ACAEF8EC-A3E5-4BB4-993F-BEE7FBD0A92A}</Project>
-      <Name>Toscana</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -172,11 +30,25 @@
     <Error Condition="!Exists('..\packages\NUnit.3.13.3\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.3\build\NUnit.props'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="4.6.3" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="OpenCover" Version="4.6.519" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="19.2.29" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Toscana.snk">
+      <Link>Toscana.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Toscana\Toscana.csproj" />
+  </ItemGroup>
 </Project>
