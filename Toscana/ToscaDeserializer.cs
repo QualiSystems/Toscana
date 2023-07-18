@@ -24,8 +24,8 @@ namespace Toscana
 
         public ToscaDeserializer(ITypeConvertersFactory typeConvertersFactory)
         {
-            var deserializerBuilder = new DeserializerBuilder();
-                //.WithNamingConvention(UnderscoredNamingConvention.Instance);
+            var deserializerBuilder = new DeserializerBuilder()
+                .WithNamingConvention(UnderscoredNamingConvention.Instance);
 
             foreach (var yamlTypeConverter in typeConvertersFactory.GetTypeConverter())
             {
