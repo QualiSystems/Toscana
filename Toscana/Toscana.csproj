@@ -27,7 +27,7 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>True</SignAssembly>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\Toscana.snk</AssemblyOriginatorKeyFile>
@@ -36,7 +36,7 @@
     <PackageReference Include="DataAnnotationsValidatorNetStandard" Version="[1.0.3,2.0.0)" />
     <PackageReference Include="QuickGraph.NETStandard" Version="[3.8.0,4.0.0)" />
     <PackageReference Include="System.IO.Abstractions" Version="[19.2.29,20.0.0.0)" />
-    <PackageReference Include="YamlDotNet" Version="[13.1.1,999.0.0)" />
+    <PackageReference Include="YamlDotNet" Version="[13.1.1,14.0.0)" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Toscana.snk">

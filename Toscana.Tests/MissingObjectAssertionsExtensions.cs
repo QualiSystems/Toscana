@@ -19,6 +19,8 @@ namespace Toscana.Tests
         /// </remarks>
         public static AndConstraint<ObjectAssertions> BeBinarySerializable(this ObjectAssertions assertions, string because = "", params object[] becauseArgs)
         {
+            assertions.Subject.GetType().GetCustomAttributes(false).OfType<SerializableAttribute>().Should().ContainSingle();
+
             return new AndConstraint<ObjectAssertions>(assertions);
         }
 #endif
