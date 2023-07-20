@@ -20,14 +20,19 @@ namespace Toscana
 
     internal class ToscaDeserializer<T> : IToscaDeserializer<T>
     {
-        private readonly Deserializer deserializer = new Deserializer(namingConvention: new UnderscoredNamingConvention());
+        private readonly IDeserializer deserializer;
 
         public ToscaDeserializer(ITypeConvertersFactory typeConvertersFactory)
         {
+            var deserializerBuilder = new DeserializerBuilder()
+                .WithNamingConvention(UnderscoredNamingConvention.Instance);
+
             foreach (var yamlTypeConverter in typeConvertersFactory.GetTypeConverter())
             {
-                deserializer.RegisterTypeConverter(yamlTypeConverter);
+                deserializerBuilder.WithTypeConverter(yamlTypeConverter);
             }
+
+            deserializer = deserializerBuilder.Build();
         }
 
         /// <summary>

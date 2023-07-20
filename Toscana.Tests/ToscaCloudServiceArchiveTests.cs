@@ -334,6 +334,7 @@ node_types:
                 serviceArchive.GetArtifactBytes("readme.txt")
                     .Should()
                     .BeEquivalentTo("readme content".ToByteArray(Encoding.ASCII));
+                serviceArchive.CsarVersion.Should().Be(new Version(1, 1));
             }
         }
 

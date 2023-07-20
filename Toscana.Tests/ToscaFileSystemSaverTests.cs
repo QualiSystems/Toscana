@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
 using FluentAssertions;
 using NUnit.Framework;
@@ -21,6 +22,8 @@ namespace Toscana.Tests
                 ToscaDefinitionsVersion = "tosca_simple_yaml_1_0"
             };
 
+            mockFileSystem.AddDirectory(@"c:\files");
+
             serviceTemplateSaver.Save(@"c:\files\service_template.yml", serviceTemplate);
 
             mockFileSystem.FileExists(@"c:\files\service_template.yml").Should().BeTrue();
@@ -33,7 +36,7 @@ namespace Toscana.Tests
             mockFileSystem.AddDirectory(@"C:\Dir\SubDir");
             var filePath = @"C:\Dir\SubDir\service_template.yml";
 
-            DependencyResolver.Current.Replace(mockFileSystem);
+            DependencyResolver.Current.Replace<IFileSystem>(mockFileSystem);
             var serviceTemplateSaver = DependencyResolver.GetToscaServiceTemplateSaver();
             var serviceTemplateLoader = DependencyResolver.GetToscaServiceTemplateLoader();
 

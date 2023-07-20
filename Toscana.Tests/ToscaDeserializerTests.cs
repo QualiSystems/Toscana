@@ -59,8 +59,7 @@ node_types:
             Action action = () => toscaDeserializer.Deserialize("unsupported_something:".ToMemoryStream());
 
             action.ShouldThrow<ToscaParsingException>()
-                .WithMessage(@"(Line: 1, Col: 1, Idx: 0) - (Line: 1, Col: 1, Idx: 0): Exception during deserialization
-Property 'unsupported_something' not found on type 'Toscana.ToscaServiceTemplate'.");
+                .WithMessage(@"Property 'unsupported_something' not found on type 'Toscana.ToscaServiceTemplate'.");
         }
 
         internal static ToscaDeserializer<ToscaServiceTemplate> CreateToscaDeserializer()
